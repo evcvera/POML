@@ -1,7 +1,7 @@
 @import "src/assets/baseStyles/baseStyles";
 @import "src/assets/baseStyles/variable";
 
-.main-container{
-  height: 100vh;
-  background-color: $bgc;
+.global-nav{
+  background-color: #FFFFFF;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
 }

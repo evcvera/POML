@@ -1,0 +1,32 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<button (click)="changeTogle()" class="side-bar-button btn btn-outline-primary" type="button"
+        [ngClass]="isCollapsed ? 'side-bar-button-show' :'side-bar-button-hide'">
+  <span class="navbar-toggler-icon"></span>
+</button>
+<div id="wrapper" [ngClass]="isCollapsed ? 'toggled' :''">
+  <div id="sidebar-wrapper">
+    <!--    <button (click)="changeTogle()" >
+          <span class="navbar-toggler-icon"></span>
+        </button>-->
+    <div class="m-2">
+      <app-side-bar-form></app-side-bar-form>
+    </div>
+    <!--<ul class="sidebar-nav">
+      <li class="sidebar-brand"><a href="#"> Start Bootstrap </a></li>
+      <li><a href="#">Dashboard</a></li>
+      <li><a href="#">Shortcuts</a></li>
+      <li><a href="#">Overview</a></li>
+      <li><a href="#">Events</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>-->
+  </div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+

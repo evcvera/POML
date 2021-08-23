@@ -1,0 +1,201 @@
+@import 'material-icons/iconfont/material-icons.scss';
+
+// Brand Colors
+$bgc: #f3f2ef;
+$bgc-white: #FFFFFF;
+$border-button: #0a66c2;
+$color-topic-primary: #006d92;
+$color-primary: #fbb03c;
+
+/*5473E8*/
+$color-brand-gren: #97C750;
+$color-brand-deepblue: #1D5B96;
+$color-brand-pink: #EA148D;
+$color-brand-blue: #3A8FE0;
+$danger: #F7685B;
+$danger-h: darken($danger, 10%);
+$color-brand-warning: #FFB946;
+$color-brand-success: #2ED47A;
+
+// Content Color
+$color-content-black: #333333;
+$color-content-white: #FFFFFF;
+$color-content-deepblue: #2B4469;
+$color-content-gray40: #6f8097;
+$color-content-gray30: #90A0B7;
+$color-content-gray20: #C2CFE0;
+$color-content-gray10: #F5F6F8;
+$color-content-gray: #F8F8FB;
+
+// Color Variations
+$color-primary-100: #adbcf4;
+$color-primary-200: #97aaf1;
+$color-primary-300: #8198ee;
+$color-primary-400: #6a85eb;
+$color-primary-500: $color-topic-primary;
+$color-primary-600: #3e61e5;
+$color-primary-700: #274ee2;
+$color-primary-800: #1c43d3;
+$color-primary-900: #193cbc;
+
+//TagsColors
+$tag-01: $color-brand-warning;
+$tag-02: #F85835;
+$tag-03: #FF43AD;
+$tag-04: #5AAEFF;
+$tag-05: #AC8DFF;
+$tag-06: #89A4FF;
+$tag-07: #6DD3FF;
+$tag-08: #5FF38A;
+$tag-09: #ACE35A;
+$tag-10: #D6E355;
+
+//RRSS colors
+$facebook: #3b5998;
+$twitter: #00acee;
+$instagram: #8034af;
+$linkedin: #0e76a8;
+// Fonts
+//$font-family-primary: Poppins, sans-serif;
+$font-family-secondary: Roboto, sans-serif;
+
+
+.login-form {
+  max-width: 700px;
+  box-shadow: 0 2px 6px 0 rgba(9, 9, 9, 0.15);
+  padding: 20px;
+  border-radius: 5px;
+  margin: 10px auto;
+  border: solid 1px #006d92;
+
+  is-valid {
+    background-color: #FFFFFF;
+  }
+}
+
+.registration-login {
+  position: relative;
+  top: 4px;
+  margin-bottom: 10px;
+  color: $color-topic-primary;
+  font-weight: 500;
+  padding: 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #F8F8FB;
+  }
+}
+
+.registration-submit-button {
+  width: 100%;
+  color: #FFFFFF;
+  background-color: $color-topic-primary;
+}
+
+form {
+  background-color: white;
+}
+
+.white {
+  background-color: white;
+}
+
+.material-icons {
+  float: right;
+  color: rgb(194, 183, 183);
+  font-size: 22px;
+}
+
+.primary-border {
+  border-radius: 5px;
+  border: solid 1px #006d92;
+}
+
+label {
+  margin-bottom: 0;
+}
+
+::ng-deep .mat-dialog-container {
+  padding: 0;
+  border-radius: 5px;
+  box-sizing: border-box;
+  overflow: inherit;
+}
+
+
+::ng-deep .bs-popover-top > .arrow::after {
+  border-top-color: $color-topic-primary;
+}
+
+::ng-deep .popover-body {
+  background-color: $color-topic-primary;
+  color: #FFFFFF;
+}
+
+::ng-deep {
+  .mat-dialog-actions {
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 0;
+    align-items: center;
+    box-sizing: content-box;
+    margin-bottom: 0;
+  }
+
+  .mat-dialog-content {
+    display: block;
+    margin: 0;
+    padding: 0;
+    max-height: 65vh;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .mat-dialog-title {
+    margin: 0;
+    display: block;
+  }
+}
+
+
+//MARGEN DE MODAL
+
+::ng-deep .cdk-overlay-pane {
+  max-width: calc(100vw - 20px) !important;
+}
+
+::ng-deep .cdk-overlay-dark-backdrop {
+  background: rgba(0, 0, 0, 0.88);
+  pointer-events: none;
+}
+
+
+
+.confirm-button{
+  margin-left: auto;
+  background-color: $color-topic-primary;
+  color: #FFFFFF;
+  font-weight: 400;
+  font-size: 16px;
+  height: 40px;
+}
+
+.cancel-button{
+  margin-left: auto;
+  background-color: transparent;
+  color: $color-topic-primary;
+  font-weight: 400;
+  font-size: 16px;
+  height: 40px;
+}
+
+.red-label {
+  color: $danger;
+}
+
+.green-label {
+  color: $color-brand-success;
+}
