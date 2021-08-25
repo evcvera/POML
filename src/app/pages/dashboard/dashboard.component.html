@@ -1,8 +1,4 @@
-<div >
-  <input [(ngModel)]="years">
-  <button (click)="clickBuildNextYears(years)"> Arrancar </button>
-  <div>
-    <div class="ln-card" echarts [options]="_chartOption">
-    </div>
-  </div>
+<div>
+  <app-echart-life-time></app-echart-life-time>
+  <app-user-metrics></app-user-metrics>
 </div>

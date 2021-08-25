@@ -21,8 +21,8 @@
     </div>
 
     <p>Tipo de moneda: <br/>
-      <input type="radio" name="isDolar" formControlName="isDolar" value="{{false}} checked"> Peso argentino<br>
-      <input type="radio" name="isDolar" formControlName="isDolar" value="{{true}}"> Dolar<br>
+      <input type="radio" name="isDolar" formControlName="isDolar" [value]="false"> Peso argentino<br>
+      <input type="radio" name="isDolar" formControlName="isDolar" [value]="true"> Dolar<br>
     </p>
     <div *ngIf="form.get('isDolar').errors && form.get('isDolar').touched">
       <p *ngIf="form.get('isDolar').hasError('required')">
@@ -51,8 +51,8 @@
     <div class="form-check">
     <p>Aguinaldo <br/>
 
-      <input class="form-check-input" type="radio" name="isDepenRelationship" formControlName="isDepenRelationship" value="{{true}}"> Con aguinaldo<br>
-      <input class="form-check-input" type="radio" name="isDepenRelationship" formControlName="isDepenRelationship" value="{{false}}"> sin aguinaldo<br>
+      <input class="form-check-input" type="radio" name="isDepenRelationship" formControlName="isDepenRelationship" [value]="true"> Con aguinaldo<br>
+      <input class="form-check-input" type="radio" name="isDepenRelationship" formControlName="isDepenRelationship" [value]="false"> sin aguinaldo<br>
     </p>
     </div>
 

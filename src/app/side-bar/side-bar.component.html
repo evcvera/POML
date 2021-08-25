@@ -5,7 +5,8 @@
 
 <button (click)="changeTogle()" class="side-bar-button btn btn-outline-primary" type="button"
         [ngClass]="isCollapsed ? 'side-bar-button-show' :'side-bar-button-hide'">
-  <span class="navbar-toggler-icon"></span>
+  <!--<span class="navbar-toggler-icon"></span>-->
+  <i class="bi bi-arrow-right-circle"></i>
 </button>
 <div id="wrapper" [ngClass]="isCollapsed ? 'toggled' :''">
   <div id="sidebar-wrapper">

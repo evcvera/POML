@@ -2,6 +2,6 @@
 @import "src/assets/baseStyles/variable";
 
 .main-container{
-  height: 100vh;
   background-color: $bgc;
+  min-height: 100vh;
 }

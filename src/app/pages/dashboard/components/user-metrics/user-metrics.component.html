@@ -1,0 +1,143 @@
+<div *ngIf="casaModelService.currentDollar$ | async as currentDollar" class="ln-card mb-2 p-3">
+  <div class="d-flex justify-content-around">
+    <div>
+      <label class="d-block txtSize14 mb-0 txtBlack">
+        <label class=" font-weight-600">DOLAR</label>
+      </label>
+      <label class="d-block txtSize14 mb-0 txtBlack"> Oficial compra:
+        <label class="float-end ml-1 font-weight-600">{{currentDollar.oficialCompra}}$</label>
+      </label>
+      <label class="d-block txtSize14 mb-0 txtBlack"> Oficial venta:
+        <label class="float-end ml-1 font-weight-600">{{currentDollar.oficialVenta}}$</label>
+      </label>
+      <label class="d-block txtSize14 mb-0 txtBlack"> Oficial promedio:
+        <label class="float-end ml-1 font-weight-600">{{currentDollar.oficialProm}}$</label>
+      </label>
+      <label class="d-block txtSize14 mb-0 txtBlack"> Blue compra:
+        <label class="float-end ml-1 font-weight-600">{{currentDollar.blueCompra}}$</label>
+      </label>
+      <label class="d-block txtSize14 mb-0 txtBlack"> Blue venta:
+        <label class="float-end ml-1 font-weight-600">{{currentDollar.blueVenta}}$</label>
+      </label>
+      <label class="d-block txtSize14 mb-0 txtBlack"> Blue promedio:
+        <label class="float-end ml-1 font-weight-600">{{currentDollar.blueProm}}$</label>
+      </label>
+    </div>
+    <ng-container *ngIf="userDataModelService.userData$ | async as userData">
+      <div *ngIf="userData.isDollar === true">
+        <label class="d-block txtSize14 mb-0 txtBlack font-weight-600">
+          <label class=" ">INGRESOS: </label>
+          <label class="float-end ml-2">{{userData.salary | thousandsPipe}} U$D</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Oficial compra:
+          <label class="float-end ml-2 font-weight-600">{{(currentDollar.oficialCompra * userData.salary).toFixed(0) | thousandsPipe}}$AR</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Oficial venta:
+          <label class="float-end ml-2 font-weight-600">{{(currentDollar.oficialVenta * userData.salary).toFixed(0) | thousandsPipe}}$AR</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Oficial promedio:
+          <label class="float-end ml-2 font-weight-600">{{(currentDollar.oficialProm * userData.salary).toFixed(0) | thousandsPipe}}$AR</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Blue compra:
+          <label class="float-end ml-2 font-weight-600">{{(currentDollar.blueCompra * userData.salary).toFixed(0) | thousandsPipe}}$AR</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Blue venta:
+          <label class="float-end ml-2 font-weight-600">{{(currentDollar.blueVenta * userData.salary).toFixed(0) | thousandsPipe}}$AR</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Blue promedio:
+          <label class="float-end ml-2 font-weight-600">{{(currentDollar.blueProm * userData.salary).toFixed(0) | thousandsPipe}}$AR</label>
+        </label>
+      </div>
+      <div *ngIf="userData.isDollar === false">
+        <label class="d-block txtSize14 mb-0 txtBlack font-weight-600">
+          <label class=" ">INGRESOS: </label>
+          <label class="float-end ml-2">{{userData.salary | thousandsPipe}} $AR</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Oficial compra:
+          <label class="float-end ml-2 font-weight-600">{{(userData.salary / currentDollar.oficialCompra).toFixed(1) | thousandsPipe}}U$D</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Oficial venta:
+          <label class="float-end ml-2 font-weight-600">{{(userData.salary / currentDollar.oficialVenta).toFixed(1) | thousandsPipe}}U$D</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Oficial promedio:
+          <label class="float-end ml-2 font-weight-600">{{(userData.salary / currentDollar.oficialProm).toFixed(1) | thousandsPipe}}U$D</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Blue compra:
+          <label class="float-end ml-2 font-weight-600">{{(userData.salary / currentDollar.blueCompra).toFixed(1) | thousandsPipe}}U$D</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Blue venta:
+          <label class="float-end ml-2 font-weight-600">{{(userData.salary / currentDollar.blueVenta).toFixed(1) | thousandsPipe}}U$D</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Blue promedio:
+          <label class="float-end ml-2 font-weight-600">{{(userData.salary / currentDollar.blueProm).toFixed(1) | thousandsPipe}}U$D</label>
+        </label>
+      </div>
+
+      <div *ngIf="userData.isDepenRelationship !== undefined">
+        <label class="d-block txtSize14 mb-0 txtBlack font-weight-600">
+          <label class=" ">INGRESOS: </label>
+          <label class="float-end ml-2">{{userData.salary | thousandsPipe}} {{userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Anual:
+          <label class="float-end ml-2 font-weight-600">{{(userData.salary * (userData.isDepenRelationship ? 13 : 12)).toFixed(0) | thousandsPipe}} {{userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Mensual:
+          <label class="float-end ml-2 font-weight-600">{{(userData.salary * ((userData.isDepenRelationship ? 13 : 12)/12)).toFixed(0) | thousandsPipe}} {{userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Semanal:
+          <label class="float-end ml-2 font-weight-600">{{((userData.salary * ((userData.isDepenRelationship ? 13 : 12)/12)) /4).toFixed(1) | thousandsPipe}} {{userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Diario:
+          <label class="float-end ml-2 font-weight-600">{{((userData.salary * (userData.isDepenRelationship ? 13 : 12)) / 232).toFixed(1) | thousandsPipe}} {{userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Hora:
+          <label class="float-end ml-2 font-weight-600">{{(((userData.salary * (userData.isDepenRelationship ? 13 : 12)) / 232) / 8).toFixed(1) | thousandsPipe}} {{userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+      </div>
+      <div *ngIf="userData.isDepenRelationship !== undefined">
+        <label class="d-block txtSize14 mb-0 txtBlack font-weight-600">
+          <label class=" ">INGRESOS: </label>
+          <label class="float-end ml-2">{{userData.salary | thousandsPipe}} {{userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Anual:
+          <label class="float-end ml-2 font-weight-600">{{(inverseOficialProm * (userData.isDepenRelationship ? 13 : 12)).toFixed(0) | thousandsPipe}} {{!userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Mensual:
+          <label class="float-end ml-2 font-weight-600">{{(inverseOficialProm * ((userData.isDepenRelationship ? 13 : 12)/12)).toFixed(0) | thousandsPipe}} {{!userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Semanal:
+          <label class="float-end ml-2 font-weight-600">{{((inverseOficialProm * ((userData.isDepenRelationship ? 13 : 12)/12)) /4).toFixed(1) | thousandsPipe}} {{!userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Diario:
+          <label class="float-end ml-2 font-weight-600">{{((inverseOficialProm * (userData.isDepenRelationship ? 13 : 12)) / 232).toFixed(1) | thousandsPipe}} {{!userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Hora:
+          <label class="float-end ml-2 font-weight-600">{{(((inverseOficialProm * (userData.isDepenRelationship ? 13 : 12)) / 232) / 8).toFixed(1) | thousandsPipe}} {{!userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+      </div>
+    </ng-container>
+    <div>
+      <label class="d-block txtSize14 mb-0 txtBlack"> Dolar oficial compra: {{currentDollar.oficialCompra}}</label>
+      <label class="d-block txtSize14 mb-0 txtBlack"> Dolar oficial venta: {{currentDollar.oficialVenta}}</label>
+      <label class="d-block txtSize14 mb-0 txtBlack"> Dolar oficial promedio: {{currentDollar.oficialProm}}</label>
+      <label class="d-block txtSize14 mb-0 txtBlack"> Dolar blue compra: {{currentDollar.blueCompra}}</label>
+      <label class="d-block txtSize14 mb-0 txtBlack"> Dolar blue venta: {{currentDollar.blueVenta}}</label>
+      <label class="d-block txtSize14 mb-0 txtBlack"> Dolar blue promedio: {{currentDollar.blueProm}}</label>
+    </div>
+    <div>
+      <label class="d-block txtSize14 mb-0 txtBlack"> Dolar oficial compra: {{currentDollar.oficialCompra}}</label>
+      <label class="d-block txtSize14 mb-0 txtBlack"> Dolar oficial venta: {{currentDollar.oficialVenta}}</label>
+      <label class="d-block txtSize14 mb-0 txtBlack"> Dolar oficial promedio: {{currentDollar.oficialProm}}</label>
+      <label class="d-block txtSize14 mb-0 txtBlack"> Dolar blue compra: {{currentDollar.blueCompra}}</label>
+      <label class="d-block txtSize14 mb-0 txtBlack"> Dolar blue venta: {{currentDollar.blueVenta}}</label>
+      <label class="d-block txtSize14 mb-0 txtBlack"> Dolar blue promedio: {{currentDollar.blueProm}}</label>
+    </div>
+  </div>
+</div>
+
+
+<!-- PARA CALCULAR FERIADOS FUERON 14 NACIONALES EN DIAS LABORALES  Y 15 DIAS LABORALES DE VACACIONES = 29
+(365/7) * 5 = 260.7 dias de semana
+261 - 29 = 232 dias trabajados
+365 - 232 = 133 dias sin trabajar
+-->

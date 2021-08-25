@@ -37,7 +37,7 @@ export class SideBarFormComponent implements OnInit {
     const userTimezoneOffset =  new Date( auxDate).getTimezoneOffset() * 60000;
     this.sideBarForm.birthday = new Date(auxDate.getTime() + userTimezoneOffset);
     this.sideBarForm.gender = this.form.get('gender').value;
-    this.sideBarForm.isDolar = this.form.get('isDolar').value;
+    this.sideBarForm.isDollar = this.form.get('isDolar').value;
     this.sideBarForm.salary = this.form.get('salary').value;
     this.sideBarForm.weeklyHours = this.form.get('weeklyHours').value;
     this.sideBarForm.isDepenRelationship = this.form.get('isDepenRelationship').value;
@@ -45,11 +45,9 @@ export class SideBarFormComponent implements OnInit {
     event.preventDefault();
     if (this.form.valid) {
       const value = this.form.value;
-      console.log(value);
     } else {
       this.form.markAllAsTouched();
     }
-    console.log(this.sideBarForm);
   }
 
 }

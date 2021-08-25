@@ -15,6 +15,9 @@ import {CasaModelService} from './core/mode-services/casa-model.service';
 import {CasaService} from './core/services/casa.service';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { SideBarFormComponent } from './side-bar/Components/side-bar-form/side-bar-form.component';
+import { EchartLifeTimeComponent } from './pages/dashboard/components/echart-life-time/echart-life-time.component';
+import { UserMetricsComponent } from './pages/dashboard/components/user-metrics/user-metrics.component';
+import { ThousandsPipePipe } from './core/pipes/thousands-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,9 @@ import { SideBarFormComponent } from './side-bar/Components/side-bar-form/side-b
     DashboardComponent,
     SideBarComponent,
     SideBarFormComponent,
+    EchartLifeTimeComponent,
+    UserMetricsComponent,
+    ThousandsPipePipe
   ],
   imports: [
     BrowserModule,
