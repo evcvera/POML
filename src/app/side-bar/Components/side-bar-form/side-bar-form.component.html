@@ -1,68 +1,88 @@
 <ng-container>
   <form [formGroup]="form" (ngSubmit)="save($event)">
-    <p>Fecha de nacimiento: <br/>
+
+    <div class="my-2">
+      <p class="input__label txtSize14">Fecha de nacimiento </p>
       <input class="form-control" type="date" formControlName="birthday">
-    </p>
+    </div>
     <div *ngIf="form.get('birthday').errors && form.get('birthday').touched">
-      <p *ngIf="form.get('birthday').hasError('required')">
+      <p class="color-red-error txtSize14"
+         *ngIf="form.get('birthday').hasError('required')">
         Es un campo requerido
       </p>
     </div>
 
-    <p>Genero: <br/>
-      <input type="radio" name="gender" formControlName="gender" value="0"> Masculino<br>
-      <input type="radio" name="gender" formControlName="gender" value="1"> Femenino<br>
-      <input type="radio" name="gender" formControlName="gender" value="2" checked> Otro
-    </p>
-    <div *ngIf="form.get('gender').errors && form.get('gender').touched">
-      <p *ngIf="form.get('gender').hasError('required')">
-        Es un campo requerido
-      </p>
+    <div class="my-2">
+      <p class="input__label txtSize14">Genero</p>
+      <div class="ln-card p-2">
+        <input type="radio" name="gender" formControlName="gender" value="0"> Masculino<br>
+        <input type="radio" name="gender" formControlName="gender" value="1"> Femenino<br>
+        <input type="radio" name="gender" formControlName="gender" value="2" checked> Otro
+
+        <div *ngIf="form.get('gender').errors && form.get('gender').touched">
+          <p class="color-red-error txtSize14"
+             *ngIf="form.get('gender').hasError('required')">
+            Es un campo requerido
+          </p>
+        </div>
+      </div>
     </div>
 
-    <p>Tipo de moneda: <br/>
-      <input type="radio" name="isDolar" formControlName="isDolar" [value]="false"> Peso argentino<br>
-      <input type="radio" name="isDolar" formControlName="isDolar" [value]="true"> Dolar<br>
-    </p>
-    <div *ngIf="form.get('isDolar').errors && form.get('isDolar').touched">
-      <p *ngIf="form.get('isDolar').hasError('required')">
-        Es un campo requerido
-      </p>
+    <div class="my-2">
+      <p class="input__label txtSize14">Tipo de moneda</p>
+      <div class="ln-card p-2">
+        <input type="radio" name="isDollar" formControlName="isDollar" [value]="false"> Peso argentino<br>
+        <input type="radio" name="isDollar" formControlName="isDollar" [value]="true"> Dolar
+
+        <div *ngIf="form.get('isDollar').errors && form.get('isDollar').touched">
+          <p class="color-red-error txtSize14"
+             *ngIf="form.get('isDollar').hasError('required')">
+            Es un campo requerido
+          </p>
+        </div>
+      </div>
     </div>
 
-    <p>Ingresos: <br/>
-      <input type="number" name="salary" formControlName="salary">
-    </p>
+    <div class="my-2">
+      <p class="input__label txtSize14">Ingresos</p>
+      <input class="form-control" type="number" name="salary" formControlName="salary">
+    </div>
     <div *ngIf="form.get('salary').errors && form.get('salary').touched">
-      <p *ngIf="form.get('salary').hasError('required')">
+      <p class="color-red-error txtSize14"
+         *ngIf="form.get('salary').hasError('required')">
         Es un campo requerido
       </p>
     </div>
 
-    <p>Horas semanales: <br/>
-      <input type="number" name="weeklyHours" formControlName="weeklyHours">
-    </p>
+    <div class="my-2">
+      <p class="input__label txtSize14">Horas diarias</p>
+      <input class="form-control" type="number" name="weeklyHours" formControlName="weeklyHours">
+    </div>
     <div *ngIf="form.get('weeklyHours').errors && form.get('weeklyHours').touched">
-      <p *ngIf="form.get('weeklyHours').hasError('required')">
+      <p class="color-red-error txtSize14"
+         *ngIf="form.get('weeklyHours').hasError('required')">
         Es un campo requerido
       </p>
     </div>
 
-    <div class="form-check">
-    <p>Aguinaldo <br/>
-
-      <input class="form-check-input" type="radio" name="isDepenRelationship" formControlName="isDepenRelationship" [value]="true"> Con aguinaldo<br>
-      <input class="form-check-input" type="radio" name="isDepenRelationship" formControlName="isDepenRelationship" [value]="false"> sin aguinaldo<br>
-    </p>
+    <div class="my-2">
+      <p class="input__label txtSize14">Aguinaldo</p>
+      <div class="ln-card p-2">
+        <input type="radio" name="isDepenRelationship" formControlName="isDepenRelationship"
+               [value]="true"> Con aguinaldo<br>
+        <input type="radio" name="isDepenRelationship" formControlName="isDepenRelationship"
+               [value]="false"> sin aguinaldo
+        <div *ngIf="form.get('isDepenRelationship').errors && form.get('isDepenRelationship').touched">
+          <p class="color-red-error txtSize14"
+             *ngIf="form.get('isDepenRelationship').hasError('required')">
+            Es un campo requerido
+          </p>
+        </div>
+      </div>
     </div>
 
-    <div *ngIf="form.get('isDepenRelationship').errors && form.get('isDepenRelationship').touched">
-      <p *ngIf="form.get('isDepenRelationship').hasError('required')">
-        Es un campo requerido
-      </p>
+    <div class="w-100 d-flex justify-content-center">
+      <button type="submit" class="btn btn-primary mt-3 w-100">Confirmar</button>
     </div>
-
-    <button type="submit">Guardar</button>
-
   </form>
 </ng-container>

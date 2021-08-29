@@ -1,8 +1,8 @@
 export interface ISideBarForm {
   birthday?: Date;
-  gender?: number;
+  gender?: string;
   isDollar?: boolean;
   salary?: number;
   isDepenRelationship?: boolean;
-  weeklyHours?: number;
+  dailyHours?: number;
 }

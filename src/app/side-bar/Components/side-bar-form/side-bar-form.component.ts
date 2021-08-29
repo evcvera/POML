@@ -25,7 +25,7 @@ export class SideBarFormComponent implements OnInit {
     this.form = this.formBuilder.group({
       birthday: ['', [Validators.required]],
       gender: ['', [Validators.required]],
-      isDolar: ['', [Validators.required]],
+      isDollar: ['', [Validators.required]],
       salary: ['', [Validators.required]],
       weeklyHours: ['', [Validators.required]],
       isDepenRelationship: ['', [Validators.required]]
@@ -37,14 +37,14 @@ export class SideBarFormComponent implements OnInit {
     const userTimezoneOffset =  new Date( auxDate).getTimezoneOffset() * 60000;
     this.sideBarForm.birthday = new Date(auxDate.getTime() + userTimezoneOffset);
     this.sideBarForm.gender = this.form.get('gender').value;
-    this.sideBarForm.isDollar = this.form.get('isDolar').value;
+    this.sideBarForm.isDollar = this.form.get('isDollar').value;
     this.sideBarForm.salary = this.form.get('salary').value;
-    this.sideBarForm.weeklyHours = this.form.get('weeklyHours').value;
+    this.sideBarForm.dailyHours = this.form.get('weeklyHours').value;
     this.sideBarForm.isDepenRelationship = this.form.get('isDepenRelationship').value;
-    this.userDataModelService.userData$.next(this.sideBarForm);
     event.preventDefault();
     if (this.form.valid) {
       const value = this.form.value;
+      this.userDataModelService.userData$.next(this.sideBarForm);
     } else {
       this.form.markAllAsTouched();
     }

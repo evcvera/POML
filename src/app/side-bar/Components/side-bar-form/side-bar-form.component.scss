@@ -1,0 +1,13 @@
+@import "src/assets/baseStyles/baseStyles";
+@import "src/assets/baseStyles/variable";
+
+p {
+  margin-bottom: 0 !important;
+}
+
+.input__label {
+  line-height: 1.42857;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.6);
+  display: block;
+}

@@ -28,4 +28,15 @@ export class UserMetricsComponent implements OnInit {
     }
   }
 
+  get inverseBlueProm(): number {
+    if (this.userDataModelService.userData$.value) {
+      if (this.userDataModelService.userData$.value.isDollar) {
+        return this.userDataModelService.userData$.value.salary * this.casaModelService.currentDollar$.value.blueProm;
+      } else {
+        return this.userDataModelService.userData$.value.salary / this.casaModelService.currentDollar$.value.blueProm;
+      }
+    } else {
+      return 0;
+    }
+  }
 }

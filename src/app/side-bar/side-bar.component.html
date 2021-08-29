@@ -1,19 +1,16 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
-<button (click)="changeTogle()" class="side-bar-button btn btn-outline-primary" type="button"
+<button (click)="changeTogle()" class="side-bar-button " type="button"
         [ngClass]="isCollapsed ? 'side-bar-button-show' :'side-bar-button-hide'">
-  <!--<span class="navbar-toggler-icon"></span>-->
-  <i class="bi bi-arrow-right-circle"></i>
+  <i class="fas fa-angle-right"></i>
 </button>
+
 <div id="wrapper" [ngClass]="isCollapsed ? 'toggled' :''">
   <div id="sidebar-wrapper">
     <!--    <button (click)="changeTogle()" >
           <span class="navbar-toggler-icon"></span>
         </button>-->
-    <div class="m-2">
+    <div class="m-2 mt-5">
       <app-side-bar-form></app-side-bar-form>
     </div>
     <!--<ul class="sidebar-nav">
@@ -28,6 +25,10 @@
     </ul>-->
   </div>
 </div>
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.bundle.min.js"></script>
-
+<ng-container>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</ng-container>

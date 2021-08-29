@@ -1,4 +1,5 @@
 @import "src/assets/baseStyles/baseStyles";
+@import "src/assets/baseStyles/variable";
 
 body {
   direction: rtl;
@@ -1322,14 +1323,21 @@ body {
 
 .side-bar-button{
   position: fixed;
+  height: 30px;
+  width: 30px;
   z-index: 1001;
   top: 20px;
   transition: all 0.5s ease;
   border-radius: 50%;
   &-hide{
-    left: -16px;
+    left: -5px;
   }
   &-show{
     left: 230px;
   }
+}
+
+
+.float-left-button{
+  color: white;
 }

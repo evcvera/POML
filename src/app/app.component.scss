@@ -4,4 +4,6 @@
 .main-container{
   background-color: $bgc;
   min-height: 100vh;
+  padding-bottom: 10px;
+  //min-height: calc(100vh - 53px);
 }

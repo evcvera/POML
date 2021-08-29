@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
   name: 'thousandsPipe'
@@ -6,7 +6,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class ThousandsPipePipe implements PipeTransform {
 
   public transform(value: any): string {
-    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    const aux = value.toString().replace('.', ',');
+    return aux.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
   }
 
 }

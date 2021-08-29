@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {EChartsOption} from 'echarts';
 import {Subscription} from 'rxjs';
 import {IBasicEchartLineModel} from '../../../../core/interfaces/ibasic-echart-line-model';
@@ -90,27 +90,45 @@ export class EchartLifeTimeComponent implements OnInit {
 
   buildNextYears(): void {
     let auxDataEchart: IBasicEchartLineModel[] = [];
+    const auxBirthYear = this.dataEchart.findIndex(x => +x.year === this.userDataModelService.userData$.value?.birthday?.getUTCFullYear());
     if (this.userDataModelService.userData$.value.birthday !== undefined) {
-      const auxBirthYear = this.dataEchart.findIndex(x => +x.year === this.userDataModelService.userData$.value.birthday.getUTCFullYear());
-      for (let i = (auxBirthYear); i < this.dataEchart.length; i++) {
-        if (this.dataEchart[i - 1].me < this.dataEchart[i].woman || this.dataEchart[i].woman === null) {
-          this.dataEchart[i].me = this.dataEchart[i - 1].me === null ? 0 : this.dataEchart[i - 1].me + 1;
-        } else {
-          break;
+      if (this.userDataModelService.userData$.value.gender === '0') {
+        for (let i = (auxBirthYear); i < this.dataEchart.length; i++) {
+          if (this.dataEchart[i - 1].me < this.dataEchart[i].man || this.dataEchart[i].man === null) {
+            this.dataEchart[i].me = this.dataEchart[i - 1].me === null ? 0 : this.dataEchart[i - 1].me + 1;
+          } else {
+            break;
+          }
         }
+        auxDataEchart = this.dataEchart.filter(x => x.me >= 0 && x.me !== null);
       }
-    }
-    if (this.userDataModelService.userData$.value.birthday !== undefined) {
-      auxDataEchart = this.dataEchart.filter(x => x.me >= 0 && x.me !== null);
+      if (this.userDataModelService.userData$.value.gender === '1') {
+        for (let i = (auxBirthYear); i < this.dataEchart.length; i++) {
+          if (this.dataEchart[i - 1].me < this.dataEchart[i].woman || this.dataEchart[i].woman === null) {
+            this.dataEchart[i].me = this.dataEchart[i - 1].me === null ? 0 : this.dataEchart[i - 1].me + 1;
+          } else {
+            break;
+          }
+        }
+        auxDataEchart = this.dataEchart.filter(x => x.me >= 0 && x.me !== null);
+      }
+      if (this.userDataModelService.userData$.value.gender === '2') {
+        for (let i = (auxBirthYear); i < this.dataEchart.length; i++) {
+          if (this.dataEchart[i - 1].me < this.dataEchart[i].prom || this.dataEchart[i].prom === null) {
+            this.dataEchart[i].me = this.dataEchart[i - 1].me === null ? 0 : this.dataEchart[i - 1].me + 1;
+          } else {
+            break;
+          }
+        }
+        auxDataEchart = this.dataEchart.filter(x => x.me >= 0 && x.me !== null);
+      }
     } else {
-      auxDataEchart = this.dataEchart.filter(x => parseInt(x.year, 10) >= 1960 && parseInt(x.year, 10)  <= 2022);
+      auxDataEchart = this.dataEchart.filter(x => parseInt(x.year, 10) >= 1960 && parseInt(x.year, 10) <= 2022);
     }
-
     this._initBasicLineChart(auxDataEchart);
   }
 
   _initBasicLineChart(chartData: IBasicEchartLineModel[]): void {
-
     const auxCharData: string[] = [];
     chartData.forEach(x => {
       auxCharData.push(x.year);
