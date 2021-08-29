@@ -1,0 +1,31 @@
+@import "colorPalette";
+@import "fonts/fontsXL";
+@import "variable";
+@import "~bootstrap/dist/css/bootstrap.css";
+@import '~material-icons/iconfont/material-icons.scss';
+
+.ln-card {
+  border-radius: 0.8rem;
+  background-color: $bgc-white;
+  box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.08);;
+}
+
+.font-weight-400{
+  font-weight: 400;
+}
+
+.font-weight-500{
+  font-weight: 500;
+}
+
+.font-weight-600{
+  font-weight: 600;
+}
+
+.font-weight-700{
+  font-weight: 700;
+}
+
+.font-weight-800{
+  font-weight: 800;
+}

@@ -1,0 +1,695 @@
+[
+  {
+    "year": 2018,
+    "woman": 79.86,
+    "man": 73.08,
+    "prom": 76.52,
+    "me": null
+  },
+  {
+    "year": 2017,
+    "woman": 79.73,
+    "man": 72.92,
+    "prom": 76.37,
+    "me": null
+  },
+  {
+    "year": 2016,
+    "woman": 79.58,
+    "man": 72.77,
+    "prom": 76.22,
+    "me": null
+  },
+  {
+    "year": 2015,
+    "woman": 79.43,
+    "man": 72.61,
+    "prom": 76.07,
+    "me": null
+  },
+  {
+    "year": 2014,
+    "woman": 79.28,
+    "man": 72.46,
+    "prom": 75.91,
+    "me": null
+  },
+  {
+    "year": 2013,
+    "woman": 79.12,
+    "man": 72.31,
+    "prom": 75.76,
+    "me": null
+  },
+  {
+    "year": 2012,
+    "woman": 78.97,
+    "man": 72.15,
+    "prom": 75.60,
+    "me": null
+  },
+  {
+    "year": 2011,
+    "woman": 78.81,
+    "man": 72.00,
+    "prom": 75.44,
+    "me": null
+  },
+  {
+    "year": 2010,
+    "woman": 78.65,
+    "man": 71.84,
+    "prom": 75.28,
+    "me": null
+  },
+  {
+    "year": 2009,
+    "woman": 78.49,
+    "man": 71.68,
+    "prom": 75.12,
+    "me": null
+  },
+  {
+    "year": 2008,
+    "woman": 78.32,
+    "man": 71.51,
+    "prom": 74.95,
+    "me": null
+  },
+  {
+    "year": 2007,
+    "woman": 78.16,
+    "man": 71.35,
+    "prom": 74.79,
+    "me": null
+  },
+  {
+    "year": 2006,
+    "woman": 78.00,
+    "man": 71.18,
+    "prom": 74.62,
+    "me": null
+  },
+  {
+    "year": 2005,
+    "woman": 77.83,
+    "man": 71.01,
+    "prom": 74.45,
+    "me": null
+  },
+  {
+    "year": 2004,
+    "woman": 77.66,
+    "man": 70.84,
+    "prom": 74.28,
+    "me": null
+  },
+  {
+    "year": 2003,
+    "woman": 77.50,
+    "man": 70.66,
+    "prom": 74.11,
+    "me": null
+  },
+  {
+    "year": 2002,
+    "woman": 77.33,
+    "man": 70.48,
+    "prom": 73.93,
+    "me": null
+  },
+  {
+    "year": 2001,
+    "woman": 77.16,
+    "man": 70.31,
+    "prom": 73.76,
+    "me": null
+  },
+  {
+    "year": 2000,
+    "woman": 76.98,
+    "man": 70.13,
+    "prom": 73.58,
+    "me": null
+  },
+  {
+    "year": 1999,
+    "woman": 76.81,
+    "man": 69.95,
+    "prom": 73.40,
+    "me": null
+  },
+  {
+    "year": 1998,
+    "woman": 76.63,
+    "man": 69.77,
+    "prom": 73.21,
+    "me": null
+  },
+  {
+    "year": 1997,
+    "woman": 76.45,
+    "man": 69.59,
+    "prom": 73.03,
+    "me": null
+  },
+  {
+    "year": 1996,
+    "woman": 76.27,
+    "man": 69.40,
+    "prom": 72.84,
+    "me": null
+  },
+  {
+    "year": 1995,
+    "woman": 76.09,
+    "man": 69.21,
+    "prom": 72.65,
+    "me": null
+  },
+  {
+    "year": 1994,
+    "woman": 75.90,
+    "man": 69.01,
+    "prom": 72.45,
+    "me": null
+  },
+  {
+    "year": 1993,
+    "woman": 75.71,
+    "man": 68.80,
+    "prom": 72.25,
+    "me": null
+  },
+  {
+    "year": 1992,
+    "woman": 75.52,
+    "man": 68.59,
+    "prom": 72.03,
+    "me": null
+  },
+  {
+    "year": 1991,
+    "woman": 75.32,
+    "man": 68.36,
+    "prom": 71.81,
+    "me": null
+  },
+  {
+    "year": 1990,
+    "woman": 75.12,
+    "man": 68.14,
+    "prom": 71.59,
+    "me": null
+  },
+  {
+    "year": 1989,
+    "woman": 74.93,
+    "man": 67.92,
+    "prom": 71.38,
+    "me": null
+  },
+  {
+    "year": 1988,
+    "woman": 74.75,
+    "man": 67.73,
+    "prom": 71.19,
+    "me": null
+  },
+  {
+    "year": 1987,
+    "woman": 74.57,
+    "man": 67.55,
+    "prom": 71.00,
+    "me": null
+  },
+  {
+    "year": 1986,
+    "woman": 74.40,
+    "man": 67.38,
+    "prom": 70.83,
+    "me": null
+  },
+  {
+    "year": 1985,
+    "woman": 74.22,
+    "man": 67.22,
+    "prom": 70.65,
+    "me": null
+  },
+  {
+    "year": 1984,
+    "woman": 74.03,
+    "man": 67.05,
+    "prom": 70.47,
+    "me": null
+  },
+  {
+    "year": 1983,
+    "woman": 73.82,
+    "man": 66.87,
+    "prom": 70.26,
+    "me": null
+  },
+  {
+    "year": 1982,
+    "woman": 73.58,
+    "man": 66.66,
+    "prom": 70.03,
+    "me": null
+  },
+  {
+    "year": 1981,
+    "woman": 73.31,
+    "man": 66.43,
+    "prom": 69.78,
+    "me": null
+  },
+  {
+    "year": 1980,
+    "woman": 73.02,
+    "man": 66.17,
+    "prom": 69.50,
+    "me": null
+  },
+  {
+    "year": 1979,
+    "woman": 72.72,
+    "man": 65.90,
+    "prom": 69.20,
+    "me": null
+  },
+  {
+    "year": 1978,
+    "woman": 72.41,
+    "man": 65.61,
+    "prom": 68.89,
+    "me": null
+  },
+  {
+    "year": 1977,
+    "woman": 72.10,
+    "man": 65.33,
+    "prom": 68.59,
+    "me": null
+  },
+  {
+    "year": 1976,
+    "woman": 71.79,
+    "man": 65.05,
+    "prom": 68.28,
+    "me": null
+  },
+  {
+    "year": 1975,
+    "woman": 71.49,
+    "man": 64.77,
+    "prom": 67.99,
+    "me": null
+  },
+  {
+    "year": 1974,
+    "woman": 71.20,
+    "man": 64.48,
+    "prom": 67.69,
+    "me": null
+  },
+  {
+    "year": 1973,
+    "woman": 70.90,
+    "man": 64.20,
+    "prom": 67.38,
+    "me": null
+  },
+  {
+    "year": 1972,
+    "woman": 70.59,
+    "man": 63.91,
+    "prom": 67.08,
+    "me": null
+  },
+  {
+    "year": 1971,
+    "woman": 70.29,
+    "man": 63.62,
+    "prom": 66.77,
+    "me": null
+  },
+  {
+    "year": 1970,
+    "woman": 70.00,
+    "man": 63.35,
+    "prom": 66.48,
+    "me": null
+  },
+  {
+    "year": 1969,
+    "woman": 69.73,
+    "man": 63.11,
+    "prom": 66.22,
+    "me": null
+  },
+  {
+    "year": 1968,
+    "woman": 69.50,
+    "man": 62.90,
+    "prom": 65.99,
+    "me": null
+  },
+  {
+    "year": 1967,
+    "woman": 69.29,
+    "man": 62.74,
+    "prom": 65.80,
+    "me": null
+  },
+  {
+    "year": 1966,
+    "woman": 69.11,
+    "man": 62.62,
+    "prom": 65.64,
+    "me": null
+  },
+  {
+    "year": 1965,
+    "woman": 68.96,
+    "man": 62.54,
+    "prom": 65.52,
+    "me": null
+  },
+  {
+    "year": 1964,
+    "woman": 68.82,
+    "man": 62.50,
+    "prom": 65.43,
+    "me": null
+  },
+  {
+    "year": 1963,
+    "woman": 68.69,
+    "man": 62.49,
+    "prom": 65.35,
+    "me": null
+  },
+  {
+    "year": 1962,
+    "woman": 68.54,
+    "man": 62.48,
+    "prom": 65.27,
+    "me": null
+  },
+  {
+    "year": 1961,
+    "woman": 68.36,
+    "man": 62.46,
+    "prom": 65.18,
+    "me": null
+  },
+  {
+    "year": 1960,
+    "woman": 68.15,
+    "man": 62.42,
+    "prom": 65.06,
+    "me": null
+  },
+  {
+    "year": 1959,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1958,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1957,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1956,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1955,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1954,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1953,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1952,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1951,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1950,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1949,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1948,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1947,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1946,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1945,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1944,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1943,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1942,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1941,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1940,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1939,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1938,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1937,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1936,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1935,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1934,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1933,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1932,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1931,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1930,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1929,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1928,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1927,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1926,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1925,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1924,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1923,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1922,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1921,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  },
+  {
+    "year": 1920,
+    "woman": null,
+    "man": null,
+    "prom": null,
+    "me": null
+  }
+]
