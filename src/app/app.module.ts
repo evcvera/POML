@@ -18,6 +18,9 @@ import { SideBarFormComponent } from './side-bar/Components/side-bar-form/side-b
 import { EchartLifeTimeComponent } from './pages/dashboard/components/echart-life-time/echart-life-time.component';
 import { UserMetricsComponent } from './pages/dashboard/components/user-metrics/user-metrics.component';
 import { ThousandsPipePipe } from './core/pipes/thousands-pipe.pipe';
+import { SalesComponent } from './pages/sales/sales.component';
+import { MetricsComponent } from './pages/metrics/metrics.component';
+import { BottomNavBarComponent } from './bottom-nav-bar/bottom-nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { ThousandsPipePipe } from './core/pipes/thousands-pipe.pipe';
     SideBarFormComponent,
     EchartLifeTimeComponent,
     UserMetricsComponent,
-    ThousandsPipePipe
+    ThousandsPipePipe,
+    SalesComponent,
+    MetricsComponent,
+    BottomNavBarComponent
   ],
   imports: [
     BrowserModule,

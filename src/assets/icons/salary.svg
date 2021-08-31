@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="7 3 26 26" data-supported-dps="30x30" >
+  <linearGradient id="app-salary-@1-a" gradientUnits="userSpaceOnUse" x1="21.826" y1="19.121" x2="16.728" y2="13.2">
+    <stop offset="0" stop-color="#000000"></stop>
+  </linearGradient>
+  <circle cx="20" cy="17" r="5" clip-rule="evenodd"></circle>
+  <linearGradient id="app-salary-@1-b" gradientUnits="userSpaceOnUse" x1="25.44" y1="23.318" x2="10.254" y2="5.681">
+    <stop offset="0" stop-color="#000000"></stop>
+  </linearGradient>
+  <path d="M32 8H8c-.6 0-1 .4-1 1v16c0 .6.4 1 1 1h24c.6 0 1-.4 1-1V9c0-.6-.4-1-1-1zm-1 12c-1.9.7-3.3 2.2-4 4H13c-.7-1.9-2.2-3.3-4-4v-6c1.9-.7 3.3-2.2 4-4h14c.7 1.9 2.2 3.3 4 4v6z" clip-rule="evenodd"></path>
+</svg>

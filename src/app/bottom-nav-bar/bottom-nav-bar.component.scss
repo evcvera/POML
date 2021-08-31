@@ -1,0 +1,43 @@
+@import "src/assets/baseStyles/baseStyles";
+@import "src/assets/baseStyles/variable";
+
+.nav{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding-top: 2px;
+  height: 48px;
+  display: flex;
+  background-color: $bgc-white;
+  overflow-x: auto;
+  box-shadow: 0 -1px 0 $border-color;
+}
+
+.nav__link{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  min-height: 45px;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 13px;
+  color: #444444;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.1s ease-in-out;
+}
+
+.nav__link:hover{
+  background-color: #eeeeee;
+}
+
+.nav__link--active{
+  color: #009578;
+}
+
+.nav__icon{
+  width: 24px !important;
+  height: 24px !important;
+}

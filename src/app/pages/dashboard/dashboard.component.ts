@@ -6,6 +6,7 @@ import {EChartsOption} from 'echarts';
 import {CasaModelService} from '../../core/mode-services/casa-model.service';
 import {UserDataModelService} from '../../core/mode-services/user-data-model.service';
 import {Casa} from '../../core/interfaces/casa';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +15,7 @@ import {Casa} from '../../core/interfaces/casa';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() {
+  constructor(public router: Router) {
   }
 
   ngOnInit(): void {
