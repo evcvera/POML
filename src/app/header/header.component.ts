@@ -7,9 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  get notTablet(): boolean {
-    return window.innerWidth > 991;
-  }
+
 
   constructor() { }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-bottom-nav-bar',
@@ -7,11 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BottomNavBarComponent implements OnInit {
 
-  get tabletOrLess(): boolean {
-    return window.innerWidth <= 991;
-  }
-
-  constructor() { }
+  constructor(public router: Router) { }
 
   ngOnInit(): void {
   }

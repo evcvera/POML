@@ -11,6 +11,10 @@ import {CasaModelService} from './core/mode-services/casa-model.service';
 export class AppComponent implements OnInit {
   title = 'POML';
 
+  get tabletOrLess(): boolean {
+    return window.innerWidth <= 991;
+  }
+
   constructor(private casaModelService: CasaModelService) {
   }
 
