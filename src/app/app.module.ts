@@ -21,6 +21,7 @@ import { ThousandsPipePipe } from './core/pipes/thousands-pipe.pipe';
 import { SalesComponent } from './pages/sales/sales.component';
 import { MetricsComponent } from './pages/metrics/metrics.component';
 import { BottomNavBarComponent } from './bottom-nav-bar/bottom-nav-bar.component';
+import { CloseIconComponent } from './svg-icons/close-icon/close-icon.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { BottomNavBarComponent } from './bottom-nav-bar/bottom-nav-bar.component
     ThousandsPipePipe,
     SalesComponent,
     MetricsComponent,
-    BottomNavBarComponent
+    BottomNavBarComponent,
+    CloseIconComponent
   ],
   imports: [
     BrowserModule,

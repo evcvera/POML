@@ -1,28 +1,21 @@
-<!------ Include the above in your HEAD tag ---------->
-
+<!--
 <button (click)="changeTogle()" class="side-bar-button " type="button"
         [ngClass]="isCollapsed ? 'side-bar-button-show' :'side-bar-button-hide'">
   <i class="fas fa-angle-right"></i>
 </button>
+-->
 
 <div id="wrapper" [ngClass]="isCollapsed ? 'toggled' :''">
   <div id="sidebar-wrapper">
-    <!--    <button (click)="changeTogle()" >
-          <span class="navbar-toggler-icon"></span>
-        </button>-->
-    <div class="m-2 mt-5">
-      <app-side-bar-form></app-side-bar-form>
+    <div>
+      <div class="d-flex justify-content-end mt-2 mr-2">
+        <app-close-icon (click)="changeTogle()">
+        </app-close-icon>
+      </div>
+      <div class="m-4 mt-0 mb-0">
+        <app-side-bar-form></app-side-bar-form>
+      </div>
     </div>
-    <!--<ul class="sidebar-nav">
-      <li class="sidebar-brand"><a href="#"> Start Bootstrap </a></li>
-      <li><a href="#">Dashboard</a></li>
-      <li><a href="#">Shortcuts</a></li>
-      <li><a href="#">Overview</a></li>
-      <li><a href="#">Events</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>-->
   </div>
 </div>
 <ng-container>

@@ -1216,7 +1216,7 @@ body {
 }
 
 #wrapper.toggled {
-  padding-right: 250px;
+  padding-right: 359px;
 }
 
 #sidebar-wrapper {
@@ -1224,19 +1224,19 @@ body {
   position: fixed;
   width: 0;
   height: 100%;
-  margin-right: -251px;
+  margin-right: -360px;
   overflow-y: auto;
   overflow-x: hidden;
   background: #FFFFFF;
   border-right: 1px solid #ebebeb;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 #wrapper.toggled #sidebar-wrapper {
-  width: 250px;
+  width: 359px;
 }
 
 #page-content-wrapper {
@@ -1247,16 +1247,15 @@ body {
 
 #wrapper.toggled #page-content-wrapper {
   position: absolute;
-  margin-right: 0px;
+  margin-right: 0;
 }
-
 
 /* Sidebar Styles */
 
 .sidebar-nav {
   position: absolute;
   top: 0;
-  width: 250px;
+  width: 359px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -1303,13 +1302,13 @@ body {
     padding-left: 0;
   }
   #wrapper.toggled {
-    padding-right: 250px;
+    padding-right: 359px;
   }
   #sidebar-wrapper {
     width: 0;
   }
   #wrapper.toggled #sidebar-wrapper {
-    width: 251px;
+    width: 360px;
   }
   #page-content-wrapper {
     padding: 20px;

@@ -45,6 +45,7 @@ export class SideBarFormComponent implements OnInit {
     if (this.form.valid) {
       const value = this.form.value;
       this.userDataModelService.userData$.next(this.sideBarForm);
+      this.userDataModelService.toggleForm$.next(false);
     } else {
       this.form.markAllAsTouched();
     }

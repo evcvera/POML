@@ -15,9 +15,7 @@ export class SideBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.userDataModelService.toggleForm$.subscribe((resp) => {
-      if (resp) {
         this.isCollapsed = resp;
-      }
     });
   }
 

@@ -1,0 +1,16 @@
+.close-button{
+  fill: #00000099;
+  height: 40px;
+  width: 40px;
+  border-radius:50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    background-color: #0000001f;
+    cursor:pointer;
+  }
+  &:active{
+    fill: #000000e6;
+  }
+}
