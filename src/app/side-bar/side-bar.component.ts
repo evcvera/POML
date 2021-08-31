@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {UserDataModelService} from '../core/mode-services/user-data-model.service';
 
 @Component({
   selector: 'app-side-bar',
@@ -7,12 +8,17 @@ import {Component, OnInit} from '@angular/core';
 })
 export class SideBarComponent implements OnInit {
 
-  constructor() {
+  constructor(public userDataModelService: UserDataModelService) {
   }
 
   public isCollapsed = false;
 
   ngOnInit(): void {
+    this.userDataModelService.toggleForm$.subscribe((resp) => {
+      if (resp) {
+        this.isCollapsed = resp;
+      }
+    });
   }
 
   changeTogle(): void {

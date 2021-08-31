@@ -8,6 +8,7 @@ import {ISideBarForm} from '../interfaces/iside-bar-form';
 export class UserDataModelService {
 
   userData$: BehaviorSubject<ISideBarForm> = new BehaviorSubject<ISideBarForm>({});
+  toggleForm$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(undefined);
 
   constructor() { }
 }
