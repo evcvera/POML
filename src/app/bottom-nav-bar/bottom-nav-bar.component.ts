@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BottomNavBarComponent implements OnInit {
 
+  get tabletOrLess(): boolean {
+    return window.innerWidth <= 991;
+  }
+
   constructor() { }
 
   ngOnInit(): void {

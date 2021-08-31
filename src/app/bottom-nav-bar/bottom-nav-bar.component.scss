@@ -27,6 +27,7 @@
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
   transition: background-color 0.1s ease-in-out;
+  fill: #00000099;
 }
 
 .nav__link:hover{
@@ -37,7 +38,13 @@
   color: #009578;
 }
 
-.nav__icon{
+svg{
   width: 24px !important;
   height: 24px !important;
 }
+
+.nav__link:hover{
+  fill: #000000e6;
+  color: #000000e6;
+}
+
