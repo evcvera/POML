@@ -10,14 +10,12 @@ import {CasaModelService} from './core/mode-services/casa-model.service';
 })
 export class AppComponent implements OnInit {
   title = 'POML';
-  width = 0;
 
   public get tabletOrLess(): boolean {
-    return this.width <= 991;
+    return window.innerWidth <= 991;
   }
 
   constructor(private casaModelService: CasaModelService) {
-    this.width = window.innerWidth;
   }
 
   ngOnInit(): void {
