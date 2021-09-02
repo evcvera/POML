@@ -18,4 +18,7 @@ export class BottomNavBarComponent implements OnInit {
   toggleForm(): void{
     this.userDataModelService.toggleForm$.next(true);
   }
+  GoToLink(url: string): void {
+    window.open(url, '_blank');
+  }
 }
