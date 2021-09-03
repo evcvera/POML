@@ -1,24 +1,24 @@
 <ng-container>
   <nav class="navbar navbar-expand-lg navbar-light global-nav header-margin">
-    <div class="container">
+    <div class="container px-0">
       <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
-        <nav class="nav w-100 py-1">
-          <a (click)="GoToLink('https://www.linkedin.com/in/ernesto-v-2b56a1199/')" class="nav__link">
+        <nav class="nav w-100 align-items-center">
+          <a (click)="GoToLink('https://www.linkedin.com/in/ernesto-v-2b56a1199/')" class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" class="linkdin-logo">
               <path
                 d="M34,2.5v29A2.5,2.5,0,0,1,31.5,34H2.5A2.5,2.5,0,0,1,0,31.5V2.5A2.5,2.5,0,0,1,2.5,0h29A2.5,2.5,0,0,1,34,2.5ZM10,13H5V29h5Zm.45-5.5A2.88,2.88,0,0,0,7.59,4.6H7.5a2.9,2.9,0,0,0,0,5.8h0a2.88,2.88,0,0,0,2.95-2.81ZM29,19.28c0-4.81-3.06-6.68-6.1-6.68a5.7,5.7,0,0,0-5.06,2.58H17.7V13H13V29h5V20.49a3.32,3.32,0,0,1,3-3.58h.19c1.59,0,2.77,1,2.77,3.52V29h5Z"
                 fill="#0a66c2"></path>
             </svg>
           </a>
-          <div class="d-flex">
-            <a routerLink="" routerLinkActive="active" class="nav__link">
+          <div class="d-flex svg-group">
+            <a routerLink="/" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }" class="nav__link">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="home-active-medium"
                    data-supported-dps="24x24">
                 <path d="M23 9v2h-2v7a3 3 0 01-3 3h-4v-6h-4v6H6a3 3 0 01-3-3v-7H1V9l11-7 5 3.18V2h3v5.09z"></path>
               </svg>
               <div class="txtSize12">Inicio</div>
             </a>
-            <a routerLink="/metrics" routerLinkActive="active" class="nav__link">
+            <a routerLink="/metrics" [routerLinkActive]="'active'" class="nav__link">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24"
                    class="mercado-match"
                    width="24" height="24" focusable="false">
@@ -26,7 +26,7 @@
               </svg>
               <div class="txtSize12">Metricas</div>
             </a>
-            <a routerLink="/sales" routerLinkActive="active" class="nav__link">
+            <a routerLink="/sales" [routerLinkActive]="'active'" class="nav__link">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="7 3 26 26" data-supported-dps="30x30">
                 <linearGradient id="app-salary-@1-a" gradientUnits="userSpaceOnUse" x1="21.826" y1="19.121" x2="16.728"
                                 y2="13.2">
@@ -43,7 +43,7 @@
               </svg>
               <div class="txtSize12">Compras</div>
             </a>
-            <a (click)="toggleForm()" class="nav__link">
+            <a (click)="toggleForm()" class="nav__link" [ngClass]="this.userDataModelService.toggleForm$.value == true ? 'active' : ''" >
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="home-active-medium"
                    data-supported-dps="24x24">
                 <path

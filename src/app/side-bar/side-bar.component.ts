@@ -21,6 +21,7 @@ export class SideBarComponent implements OnInit {
 
   changeTogle(): void {
     this.isCollapsed = !this.isCollapsed;
+    this.userDataModelService.toggleForm$.next(false);
   }
 
 }

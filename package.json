@@ -27,6 +27,7 @@
     "echarts": "^5.1.2",
     "material-icons": "^0.7.5",
     "ngx-echarts": "^7.0.1",
+    "node-sass": "^4.14.1",
     "rxjs": "~6.6.0",
     "sass": "^1.35.1",
     "tslib": "^2.0.0",

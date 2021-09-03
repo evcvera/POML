@@ -16,7 +16,7 @@
   align-items: center;
   justify-content: center;
   flex-grow: 1;
-  min-height: 45px;
+  min-height: 52px;
   overflow: hidden;
   white-space: nowrap;
   font-size: 13px;
@@ -26,8 +26,8 @@
   transition: background-color 0.1s ease-in-out;
   fill: #00000099;
   width: 80px;
+  border-bottom: 2px solid transparent;
 }
-
 
 /*.nav__link--active{
   color: #009578;
@@ -47,4 +47,17 @@ svg{
   fill: #000000e6;
   cursor:pointer;
   color: #000000e6;
+}
+
+.svg-group{
+  margin-left: auto;
+}
+
+.active {
+  border-bottom: 2px solid #191919;
+  content: '';
+  transform: scaleX(1);
+  transition: border-bottom-color 0.5s ease-in-out;
+  //max-width: 80px;
+  fill: #000000e6;
 }
