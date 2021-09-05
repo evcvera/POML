@@ -29,8 +29,7 @@ export class HeaderComponent implements OnInit {
 
   keyPress($event: KeyboardEvent): void {
     if ($event.key === 'Enter' && this.search !== '') {
-      console.log(this.search);
-      this.userDataModelService.searchData.next(this.search);
+      this.userDataModelService.searchData$.next(this.search);
       this.router.navigate(['sales']);
     }
   }

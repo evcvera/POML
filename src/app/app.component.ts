@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {EchartModelService} from './core/mode-services/echart-model.service';
 import {UserDataModelService} from './core/mode-services/user-data-model.service';
 import {CasaModelService} from './core/mode-services/casa-model.service';
+import {MeliModelService} from './core/mode-services/meli-model.service';
 
 @Component({
   selector: 'app-root',

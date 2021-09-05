@@ -9,7 +9,7 @@ export class UserDataModelService {
 
   userData$: BehaviorSubject<ISideBarForm> = new BehaviorSubject<ISideBarForm>({});
   toggleForm$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(undefined);
-  searchData: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  searchData$: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
   constructor() { }
 }

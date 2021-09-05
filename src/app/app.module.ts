@@ -22,6 +22,7 @@ import { SalesComponent } from './pages/sales/sales.component';
 import { MetricsComponent } from './pages/metrics/metrics.component';
 import { BottomNavBarComponent } from './bottom-nav-bar/bottom-nav-bar.component';
 import { CloseIconComponent } from './svg-icons/close-icon/close-icon.component';
+import { SearchItemsGroupComponent } from './pages/sales/search-items-group/search-items-group.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { CloseIconComponent } from './svg-icons/close-icon/close-icon.component'
     SalesComponent,
     MetricsComponent,
     BottomNavBarComponent,
-    CloseIconComponent
+    CloseIconComponent,
+    SearchItemsGroupComponent
   ],
   imports: [
     BrowserModule,

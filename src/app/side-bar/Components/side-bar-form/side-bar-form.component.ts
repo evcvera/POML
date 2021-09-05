@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ISideBarForm} from '../../../core/interfaces/iside-bar-form';
 import {UserDataModelService} from '../../../core/mode-services/user-data-model.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-side-bar-form',
@@ -14,7 +15,8 @@ export class SideBarFormComponent implements OnInit {
   sideBarForm: ISideBarForm = {};
 
   constructor(private formBuilder: FormBuilder,
-              private userDataModelService: UserDataModelService) {
+              private userDataModelService: UserDataModelService,
+              private router: Router) {
     this.buildForm();
   }
 
@@ -45,9 +47,9 @@ export class SideBarFormComponent implements OnInit {
     this.sideBarForm.savingCapacity = this.form.get('savingCapacity').value;
     event.preventDefault();
     if (this.form.valid) {
-      const value = this.form.value;
       this.userDataModelService.userData$.next(this.sideBarForm);
       this.userDataModelService.toggleForm$.next(false);
+      this.router.navigate(['metrics']);
     } else {
       this.form.markAllAsTouched();
     }
