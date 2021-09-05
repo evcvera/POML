@@ -1,7 +1,9 @@
 <ng-container *ngIf="(meliModelService.searchMeliData$ | async) as meli">
   <div *ngFor="let item of meli?.results">
-    <div>
-      <img width="160" height="160" [src]="item.thumbnail" class="ui-search-result-image__element" alt="Samsung Galaxy A32 128 GB awesome black 4 GB RAM">
+    <div class="meli-card d-flex">
+      <img width="160" height="160" [src]="item.thumbnail" class="mx-3" alt="Samsung Galaxy A32 128 GB awesome black 4 GB RAM">
+      <label>{{item.title}}</label>
+      <label>{{item.price}}</label>
     </div>
   </div>
 </ng-container>
