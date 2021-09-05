@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserDataModelService} from '../core/mode-services/user-data-model.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +9,11 @@ import {UserDataModelService} from '../core/mode-services/user-data-model.servic
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public userDataModelService: UserDataModelService) {
+  constructor(public userDataModelService: UserDataModelService,
+              private router: Router) {
   }
 
+  search = '';
   public isCollapsed = true;
 
   ngOnInit(): void {
@@ -22,5 +25,13 @@ export class HeaderComponent implements OnInit {
 
   GoToLink(url: string): void {
     window.open(url, '_blank');
+  }
+
+  keyPress($event: KeyboardEvent): void {
+    if ($event.key === 'Enter' && this.search !== '') {
+      console.log(this.search);
+      this.userDataModelService.searchData.next(this.search);
+      this.router.navigate(['sales']);
+    }
   }
 }

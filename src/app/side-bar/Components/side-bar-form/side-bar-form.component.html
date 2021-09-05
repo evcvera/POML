@@ -17,7 +17,7 @@
       <p class="input__label txtSize14">Genero</p>
       <div class="ln-card p-2">
         <input type="radio" name="gender" formControlName="gender" value="0"> Masculino<br>
-        <input type="radio" name="gender" formControlName="gender" value="1"> Femenino<br>
+        <input type="radio" name="gender" formControlName="gender" value="1" > Femenino<br>
         <input type="radio" name="gender" formControlName="gender" value="2" checked> Otro
 
         <div *ngIf="form.get('gender').errors && form.get('gender').touched">
@@ -80,6 +80,17 @@
           </p>
         </div>
       </div>
+    </div>
+
+    <div class="mt-2">
+      <p class="input__label txtSize14">Capacidad de ahorro en porcentaje</p>
+      <input class="form-control" type="number" name="savingCapacity" formControlName="savingCapacity">
+    </div>
+    <div *ngIf="form.get('savingCapacity').errors && form.get('savingCapacity').touched">
+      <p class="color-red-error txtSize14"
+         *ngIf="form.get('savingCapacity').hasError('savingCapacity')">
+        Es un campo requerido
+      </p>
     </div>
 
     <div class="w-100 d-flex justify-content-center">

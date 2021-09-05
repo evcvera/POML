@@ -28,7 +28,8 @@ export class SideBarFormComponent implements OnInit {
       isDollar: ['', [Validators.required]],
       salary: ['', [Validators.required]],
       weeklyHours: ['', [Validators.required]],
-      isDepenRelationship: ['', [Validators.required]]
+      isDepenRelationship: ['', [Validators.required]],
+      savingCapacity: ['', [Validators.required]]
     });
   }
 
@@ -41,6 +42,7 @@ export class SideBarFormComponent implements OnInit {
     this.sideBarForm.salary = this.form.get('salary').value;
     this.sideBarForm.dailyHours = this.form.get('weeklyHours').value;
     this.sideBarForm.isDepenRelationship = this.form.get('isDepenRelationship').value;
+    this.sideBarForm.savingCapacity = this.form.get('savingCapacity').value;
     event.preventDefault();
     if (this.form.valid) {
       const value = this.form.value;

@@ -1340,3 +1340,15 @@ body {
 .float-left-button{
   color: white;
 }
+
+.solid--bg{
+ z-index: 1;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: #00000099;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}

@@ -5,4 +5,5 @@ export interface ISideBarForm {
   salary?: number;
   isDepenRelationship?: boolean;
   dailyHours?: number;
+  savingCapacity?: number;
 }

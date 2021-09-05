@@ -75,11 +75,6 @@ export class EchartLifeTimeComponent implements OnInit {
       this.dataEchart.forEach(x => x.me = null);
       this.buildNextYears();
     }
-    /************ PARA REFRESCAR EL OBJECTO ********************/
-    /*this.echartModelService.getBasicLineEchartData().subscribe(data => {
-      data.reverse();
-      this.dataEchart = data;
-    });*/
   }
 
   dateSuscribe(): void {
