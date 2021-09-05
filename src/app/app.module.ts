@@ -23,6 +23,8 @@ import { MetricsComponent } from './pages/metrics/metrics.component';
 import { BottomNavBarComponent } from './bottom-nav-bar/bottom-nav-bar.component';
 import { CloseIconComponent } from './svg-icons/close-icon/close-icon.component';
 import { SearchItemsGroupComponent } from './pages/sales/search-items-group/search-items-group.component';
+import { SalesContainerComponent} from './pages/sales/sales-container/sales-container.component';
+import { SalesItemComponent } from './pages/sales/sales-item/sales-item.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { SearchItemsGroupComponent } from './pages/sales/search-items-group/sear
     MetricsComponent,
     BottomNavBarComponent,
     CloseIconComponent,
-    SearchItemsGroupComponent
+    SearchItemsGroupComponent,
+    SalesContainerComponent,
+    SalesItemComponent
   ],
   imports: [
     BrowserModule,

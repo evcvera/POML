@@ -1,7 +1,7 @@
 <div *ngIf="(meliModelService.searchMeliData$ | async)">
-  <h4>{{meliModelService.searchMeliData$.value.query}}</h4>
   <div *ngFor="let meliResp of (meliModelService.searchMeliData$.value.results)">
-    <label>{{meliResp.title}}</label>
+    <label>{{meliResp.title}} +</label>
     <a target="_blank" href="{{meliResp.permalink}}">no link here</a>.
+    <label>{{meliResp.price}} {{meliResp.original_price}}</label>
   </div>
 </div>

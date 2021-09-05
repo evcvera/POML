@@ -11,11 +11,12 @@ export class MeliModelService {
 
   constructor(private http: HttpClient) { }
 
-  searchMeliData$: BehaviorSubject<IMeliSearch> = new BehaviorSubject<IMeliSearch>({});
+  searchMeliData$: BehaviorSubject<IMeliSearch> = new BehaviorSubject<IMeliSearch>(undefined);
 
   meliSearch(search: string): any {
-    this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}`).subscribe((resp: IMeliSearch) => {
+    this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}`).subscribe((resp: any) => {
       this.searchMeliData$.next(resp);
+      console.log(resp);
     });
   }
 }
