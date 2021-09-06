@@ -1,9 +1,31 @@
 <ng-container *ngIf="(meliModelService.searchMeliData$ | async) as meli">
   <div *ngFor="let item of meli?.results">
     <div class="meli-card d-flex">
-      <img width="160" height="160" [src]="item.thumbnail" class="mx-3" alt="Samsung Galaxy A32 128 GB awesome black 4 GB RAM">
-      <label>{{item.title}}</label>
-      <label>{{item.price}}</label>
+      <img width="160" height="160" [src]="item.thumbnail" class="mx-3"
+           alt="Samsung Galaxy A32 128 GB awesome black 4 GB RAM">
+      <div>
+        <h2 class="item-title txtSize20 font-weight-300">{{item.title}}</h2>
+        <label class="item-price">
+          {{item.currency_id === 'USD' ? 'U$D ' : '$ '}}{{item.price | thousandsPipe}}</label>
+        <label *ngIf="item.installments && item.installments.rate === 0">
+          Hasta {{item.installments.rate}} cuotas sin interés
+        </label>
+        <!--<label>{{item.tags}}</label>-->
+        <div class="detail-section__secundary-column">
+          <div class="detail-section__secundary-column__state">
+            <span *ngIf="item.condition == 'new'">Nuevo -</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </ng-container>
+
+
+<!--
+installments": {
+"quantity": 9,
+"amount": 4444.33,
+"rate": 0,
+"currency_id": "ARS"
+},-->
