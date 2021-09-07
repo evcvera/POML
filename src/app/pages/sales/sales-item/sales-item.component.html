@@ -1,21 +1,41 @@
 <ng-container *ngIf="(meliModelService.searchMeliData$ | async) as meli">
-  <div *ngFor="let item of meli?.results">
-    <div class="meli-card d-flex">
+  <div *ngFor="let item of meli?.results; let first = first ;let last = last" class="general-font-family">
+    <div class="meli-card first d-flex" [ngClass]="first ? 'item-first' : last ? 'item-last' : ''">
       <img width="160" height="160" [src]="item.thumbnail" class="mx-3"
-           alt="Samsung Galaxy A32 128 GB awesome black 4 GB RAM">
+           alt="{{item.title}}">
       <div>
+        <ng-container *ngFor="let prices of item?.prices?.prices">
+          <p class="txtSize11 font-weight-600 mb-0 deal-day"
+             *ngIf="prices.metadata.promotion_type === 'deal_of_the_day'">OFERTA DEL DÍA</p>
+        </ng-container>
         <h2 class="item-title txtSize20 font-weight-300">{{item.title}}</h2>
         <label class="item-price">
           {{item.currency_id === 'USD' ? 'U$D ' : '$ '}}{{item.price | thousandsPipe}}</label>
-        <label *ngIf="item.installments && item.installments.rate === 0">
-          Hasta {{item.installments.rate}} cuotas sin interés
-        </label>
+        <p *ngIf="item.installments && item.installments.rate === 0"
+          class="mb-0 item-free-fees">
+          Hasta {{item.installments.quantity}} cuotas sin interés
+        </p>
+        <p *ngIf="item.shipping.free_shipping"
+        class="mb-0 item-free-shipping">
+          Envío gratis
+        </p>
+        <!--<ng-container *ngIf="item.shipping.mode === 'me2' ">
+          <div>Llega gratis mañana</div>
+        </ng-container>-->
+
+          <p *ngIf="item.shipping.mode === 'me2'"
+            class="mb-0 item-shipping-tomorrow">Llega gratis mañana</p>
+
+        <ng-container *ngFor="let tag of item.shipping.tags">
+          <div *ngIf="tag === 'fulfillment'">RAYOOO</div>
+        </ng-container>
+
         <!--<label>{{item.tags}}</label>-->
-        <div class="detail-section__secundary-column">
+        <!--<div class="detail-section__secundary-column">
           <div class="detail-section__secundary-column__state">
             <span *ngIf="item.condition == 'new'">Nuevo -</span>
           </div>
-        </div>
+        </div>-->
       </div>
     </div>
   </div>

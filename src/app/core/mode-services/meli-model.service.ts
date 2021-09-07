@@ -14,7 +14,7 @@ export class MeliModelService {
   searchMeliData$: BehaviorSubject<IMeliSearch> = new BehaviorSubject<IMeliSearch>(undefined);
 
   meliSearch(search: string): any {
-    this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}`).subscribe((resp: any) => {
+    this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}&offset=50`).subscribe((resp: any) => {
       this.searchMeliData$.next(resp);
       console.log(resp);
     });

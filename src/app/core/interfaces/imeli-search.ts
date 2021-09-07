@@ -36,7 +36,7 @@ export interface ResultsEntity {
   thumbnail: string;
   thumbnail_id: string;
   accepts_mercadopago: boolean;
-  installments?: null;
+  installments?: any;
   address: Address;
   shipping: Shipping;
   seller_address: SellerAddress;
@@ -134,6 +134,8 @@ export interface Conditions {
 }
 
 export interface Metadata {
+  promotion_id?: string;
+  promotion_type?: string;
 }
 
 export interface Presentation {

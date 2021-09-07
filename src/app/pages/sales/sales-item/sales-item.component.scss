@@ -3,7 +3,6 @@
 
 .item-title {
   color: #333;
-  font-family: Proxima Nova,-apple-system,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;
   border-collapse: collapse;
   box-sizing: border-box;
   cursor: pointer;
@@ -25,7 +24,6 @@
 }
 
 .item-price {
-  font-family: Proxima Nova,-apple-system,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;
   color: #333;
   display: -webkit-flex;
   display: flex;
@@ -33,4 +31,48 @@
   font-weight: 400;
   margin-right: 8px;
   line-height: 1.25;
+}
+
+.item-first{
+  border-radius: 4px 4px 0 0;
+}
+
+.item-last{
+  border-radius: 0 0 4px 4px;
+}
+
+.deal-day{
+  color: #fff;
+  background: #3483FA;
+  padding: 2px 4px;
+  border-radius: 3px;
+  width: fit-content;
+}
+
+.general-font-family{
+  font-family: Proxima Nova,-apple-system,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;
+}
+
+.item-free-fees{
+  font-size: 14px;
+  font-weight: 400;
+  color: #00a650;
+}
+
+.item-free-shipping{
+  font-size: 14px;
+  font-weight: 600;
+  color: #00a650;
+}
+
+.item-shipping-tomorrow{
+  background-color: #e6f7ee;
+  color: #00a650;
+  border-radius: 3px;
+  display: flex;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 1px 5px 4px;
+  width: fit-content;
 }
