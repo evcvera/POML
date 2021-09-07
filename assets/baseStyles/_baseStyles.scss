@@ -7,13 +7,12 @@
 .ln-card {
   border-radius: 0.8rem;
   background-color: $bgc-white;
-  box-shadow: 0 0 0 1px rgba(0,0,0,0.08);;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.08);
 }
 
 .meli-card{
-  border-radius: 0.8rem;
   background-color: $bgc-white;
-  box-shadow: 0 0 0 1px rgba(0,0,0,0.08);
+  border-bottom: 1px solid #eee;
   padding: 20px 50px 20px 0;
 }
 
