@@ -1,9 +1,15 @@
 <div *ngIf="(meliModelService.searchMeliData$ | async) as meli">
   <label *ngFor="let category of meli?.filters[0]?.values[0]?.path_from_root"
-    class="mb-0">{{category.name}} >
+         class="mb-0">{{category.name}} >
   </label>
   <h4 class="text-capitalize">{{meli.query}}</h4>
   <label>{{meli.paging.total | thousandsPipe}} resultados</label>
-  <app-sales-item></app-sales-item>
+  <ng-container *ngIf="(meliModelService.searchMeliData$ | async) as meli">
+    <div *ngFor="let item of meli?.results; let first = first ;let last = last" class="general-font-family">
+      <div class="meli-card" [ngClass]="first ? 'item-first' : last ? 'item-last' : ''">
+        <app-sales-item [resultsEntity]="item"></app-sales-item>
+      </div>
+    </div>
+  </ng-container>
   <!--<app-search-items-group></app-search-items-group>-->
 </div>

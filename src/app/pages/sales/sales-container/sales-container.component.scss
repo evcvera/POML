@@ -1,2 +1,14 @@
 @import "src/assets/baseStyles/baseStyles";
 @import "src/assets/baseStyles/variable";
+
+.general-font-family{
+  font-family: Proxima Nova,-apple-system,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;
+}
+
+.item-first{
+  border-radius: 4px 4px 0 0;
+}
+
+.item-last{
+  border-radius: 0 0 4px 4px;
+}

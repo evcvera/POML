@@ -4,23 +4,22 @@
 .item-title {
   color: #333;
   border-collapse: collapse;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   cursor: pointer;
   display: block;
-  height: 26px;
-  line-height: 26px;
-  margin-block-end: 0px;
-  margin-block-start: 0px;
-  margin-inline-end: 0px;
-  margin-inline-start: 0px;
-  margin: 0;
+  /* height: 26px; */
+  /* line-height: 26px; */
+  /* margin-block-end: 0px; */
+  /* margin-block-start: 0px; */
+  /* margin-inline-end: 0px; */
+  /* margin-inline-start: 0px; */
+  /* margin: 0; */
   text-align: left;
   text-decoration-thickness: auto;
-  text-overflow: clip;
-  word-break: normal;
-  -webkit-box-direction: normal;
-  -webkit-font-smoothing: antialiased;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  /* text-overflow: clip; */
+  /* word-break: normal; */
+  /* -webkit-font-smoothing: antialiased; */
+  /* -webkit-tap-highlight-color: rgba(0, 0, 0, 0);*/
 }
 
 .item-price {
@@ -33,39 +32,35 @@
   line-height: 1.25;
 }
 
-.item-first{
-  border-radius: 4px 4px 0 0;
+.item-old-price {
+  color: #999;
+  font-size: 12px;
+  text-decoration:line-through
 }
 
-.item-last{
-  border-radius: 0 0 4px 4px;
-}
-
-.deal-day{
+.deal-day {
   color: #fff;
   background: #3483FA;
   padding: 2px 4px;
   border-radius: 3px;
   width: fit-content;
+  margin-top: 4px;
+  margin-bottom: 12px;
 }
 
-.general-font-family{
-  font-family: Proxima Nova,-apple-system,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;
-}
-
-.item-free-fees{
+.item-free-fees {
   font-size: 14px;
   font-weight: 400;
   color: #00a650;
 }
 
-.item-free-shipping{
+.item-free-shipping {
   font-size: 14px;
   font-weight: 600;
   color: #00a650;
 }
 
-.item-shipping-tomorrow{
+.item-shipping-tomorrow {
   background-color: #e6f7ee;
   color: #00a650;
   border-radius: 3px;
