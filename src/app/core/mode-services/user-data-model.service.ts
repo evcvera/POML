@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {ISideBarForm} from '../interfaces/iside-bar-form';
 
@@ -10,6 +10,8 @@ export class UserDataModelService {
   userData$: BehaviorSubject<ISideBarForm> = new BehaviorSubject<ISideBarForm>({});
   toggleForm$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(undefined);
   searchData$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  pageNumber$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
-  constructor() { }
+  constructor() {
+  }
 }

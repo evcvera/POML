@@ -37,6 +37,7 @@ export interface ResultsEntity {
   thumbnail_id: string;
   accepts_mercadopago: boolean;
   installments?: any;
+  quantity?: any;
   address: Address;
   shipping: Shipping;
   seller_address: SellerAddress;

@@ -6,8 +6,12 @@ import {Pipe, PipeTransform} from '@angular/core';
 export class ThousandsPipePipe implements PipeTransform {
 
   public transform(value: any): string {
-    const aux = value.toString().replace('.', ',');
-    return aux.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    if (value !== null) {
+      const aux = value.toString().replace('.', ',');
+      return aux.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    } else {
+      return null;
+    }
   }
 
 }
