@@ -1,9 +1,9 @@
 <div class="d-flex justify-content-center mt-3"
      *ngIf="meliModelService?.searchMeliData$ | async as meliSearch">
   <ul class="d-flex p-0 align-items-center mb-0">
-    <li class="d-inline-block cursor-type" (click)="nextPage(-1)"
+    <li class="d-inline-block button-paginator" (click)="nextPage(-1)"
         *ngIf="userDataModelService.pageNumber$.value > 0">
-      <a><i class="fas fa-angle-left"></i><span class="andes-pagination__arrow-title">Anterior</span></a>
+      <a class="d-flex align-items-center"><i class="fas fa-angle-left icon-margin"></i><span class="ml-2">Anterior</span></a>
     </li>
     <li class="d-inline-block">
       <div class="current-position">{{userDataModelService.pageNumber$.value + 1}} </div>
@@ -15,7 +15,9 @@
         *ngIf="userDataModelService.pageNumber$.value + 1 < 21 &&
         userDataModelService.pageNumber$.value < ((meliSearch.paging?.total / 50)).toFixed(0)"
         (click)="nextPage(1)">
-      <a><span class="andes-pagination__arrow-title">Siguiente</span><i class="fas fa-angle-right"></i></a>
+      <div class="button-paginator next-page">
+        <a class="d-flex align-items-center"><span class="mr-2">Siguiente</span><i class="fas fa-angle-right icon-margin"></i></a>
+      </div>
     </li>
   </ul>
 </div>

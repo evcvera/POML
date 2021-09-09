@@ -1,11 +1,11 @@
 <div class="d-flex">
   <!--Image-->
-  <div>
-    <a [href]="resultsEntity.permalink" target="_blank" style="text-decoration: none">
-      <img width="160" height="160" [src]="resultsEntity.thumbnail" class="mx-3"
+  <a [href]="resultsEntity.permalink" target="_blank" style="text-decoration: none">
+    <div class="image-size mx-3">
+      <img [src]="resultsEntity.thumbnail"
            alt="{{resultsEntity.title}}">
-    </a>
-  </div>
+    </div>
+  </a>
   <div>
     <ng-container *ngFor="let prices of resultsEntity?.prices?.prices">
       <p class="txtSize11 font-weight-600 deal-day"
