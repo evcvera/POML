@@ -22,11 +22,11 @@ import { SalesComponent } from './pages/sales/sales.component';
 import { MetricsComponent } from './pages/metrics/metrics.component';
 import { BottomNavBarComponent } from './bottom-nav-bar/bottom-nav-bar.component';
 import { CloseIconComponent } from './svg-icons/close-icon/close-icon.component';
-import { SearchItemsGroupComponent } from './pages/sales/search-items-group/search-items-group.component';
-import { SalesContainerComponent} from './pages/sales/sales-container/sales-container.component';
-import { SalesItemComponent } from './pages/sales/sales-item/sales-item.component';
+import { SearchItemsGroupComponent } from './pages/sales/components/search-items-group/search-items-group.component';
+import { SalesContainerComponent} from './pages/sales/components/sales-container/sales-container.component';
+import { SalesItemComponent } from './pages/sales/components/sales-item/sales-item.component';
 import { FullIconComponent } from './svg-icons/full-icon/full-icon.component';
-import { SalesPaginatorComponent } from './pages/sales/sales-paginator/sales-paginator.component';
+import { SalesPaginatorComponent } from './pages/sales/components/sales-paginator/sales-paginator.component';
 
 @NgModule({
   declarations: [

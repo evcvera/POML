@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {MeliModelService} from '../../../core/mode-services/meli-model.service';
-import {ResultsEntity} from '../../../core/interfaces/imeli-search';
+import {MeliModelService} from '../../../../core/mode-services/meli-model.service';
+import {ResultsEntity} from '../../../../core/interfaces/imeli-search';
 
 @Component({
   selector: 'app-sales-item',

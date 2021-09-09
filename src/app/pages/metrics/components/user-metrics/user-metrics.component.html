@@ -24,7 +24,7 @@
       </label>
     </div>
     <ng-container *ngIf="userDataModelService.userData$ | async as userData">
-      <div class="d-grid"  *ngIf="userData.isDollar === true">
+      <div class="d-grid" *ngIf="userData.isDollar === true">
         <label class="d-block txtSize14 mb-0 txtBlack font-weight-600">
           <label class=" ">INGRESOS: </label>
           <label class="float-end ml-2 mb-0">{{userData.salary | thousandsPipe}} U$D</label>
@@ -187,6 +187,171 @@
         <label class="d-block txtSize14 mb-0 txtBlack"> Minuto:
           <label
             class="float-end ml-2 mb-0 font-weight-600">{{((((inverseBlueProm * (userData.isDepenRelationship ? 13 : 12)) / 232) / userData.dailyHours) / 60).toFixed(2) | thousandsPipe}} {{!userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+      </div>
+      <div class="d-grid" *ngIf="userData.isDollar === true">
+        <label class="d-block txtSize14 mb-0 txtBlack font-weight-600">
+          <label class=" ">INGRESOS: </label>
+          <label class="float-end ml-2 mb-0">{{userData.savingCapacity | thousandsPipe}} U$D</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Oficial compra:
+          <label
+            class="float-end ml-2 mb-0 font-weight-600">{{(currentDollar.oficialCompra * userData.savingCapacity).toFixed(0) | thousandsPipe}}
+            $AR</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Oficial venta:
+          <label
+            class="float-end ml-2 mb-0 font-weight-600">{{(currentDollar.oficialVenta * userData.savingCapacity).toFixed(0) | thousandsPipe}}
+            $AR</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Oficial promedio:
+          <label
+            class="float-end ml-2 mb-0 font-weight-600">{{(currentDollar.oficialProm * userData.savingCapacity).toFixed(0) | thousandsPipe}}
+            $AR</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Blue compra:
+          <label
+            class="float-end ml-2 mb-0 font-weight-600">{{(currentDollar.blueCompra * userData.savingCapacity).toFixed(0) | thousandsPipe}}
+            $AR</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Blue venta:
+          <label
+            class="float-end ml-2 mb-0 font-weight-600">{{(currentDollar.blueVenta * userData.savingCapacity).toFixed(0) | thousandsPipe}}
+            $AR</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Blue promedio:
+          <label
+            class="float-end ml-2 mb-0 font-weight-600">{{(currentDollar.blueProm * userData.savingCapacity).toFixed(0) | thousandsPipe}}
+            $AR</label>
+        </label>
+      </div>
+      <div class="d-grid" *ngIf="userData.isDollar === false">
+        <label class="d-block txtSize14 mb-0 txtBlack font-weight-600">
+          <label class=" ">Capacidad ahorro: </label>
+          <label
+            class="float-end ml-2 mb-0">{{userData.savingCapacity | thousandsPipe}} {{userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Oficial compra:
+          <label
+            class="float-end ml-2 mb-0 font-weight-600">{{(userData.savingCapacity / currentDollar.oficialCompra).toFixed(1) | thousandsPipe}}
+            U$D</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Oficial venta:
+          <label
+            class="float-end ml-2 mb-0 font-weight-600">{{(userData.savingCapacity / currentDollar.oficialVenta).toFixed(1) | thousandsPipe}}
+            U$D</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Oficial promedio:
+          <label
+            class="float-end ml-2 mb-0 font-weight-600">{{(userData.savingCapacity / currentDollar.oficialProm).toFixed(1) | thousandsPipe}}
+            U$D</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Blue compra:
+          <label
+            class="float-end ml-2 mb-0 font-weight-600">{{(userData.savingCapacity / currentDollar.blueCompra).toFixed(1) | thousandsPipe}}
+            U$D</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Blue venta:
+          <label
+            class="float-end ml-2 mb-0 font-weight-600">{{(userData.savingCapacity / currentDollar.blueVenta).toFixed(1) | thousandsPipe}}
+            U$D</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Blue promedio:
+          <label
+            class="float-end ml-2 mb-0 font-weight-600">{{(userData.savingCapacity / currentDollar.blueProm).toFixed(1) | thousandsPipe}}
+            U$D</label>
+        </label>
+      </div>
+
+      <div class="d-grid" *ngIf="userData.isDepenRelationship !== undefined">
+        <label class="d-block txtSize14 mb-0 txtBlack font-weight-600">
+          <label class=" ">Capacidad ahorro: </label>
+          <label
+            class="float-end ml-2 mb-0">{{userData.savingCapacity | thousandsPipe}} {{userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Anual:
+          <label
+            class="float-end ml-2 mb-0 font-weight-600">{{(userData.savingCapacity * (userData.isDepenRelationship ? 13 : 12)).toFixed(0) | thousandsPipe}} {{userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Mensual:
+          <label
+            class="float-end ml-2 mb-0 font-weight-600">{{(userData.savingCapacity * ((userData.isDepenRelationship ? 13 : 12) / 12)).toFixed(0) | thousandsPipe}} {{userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Semanal:
+          <label
+            class="float-end ml-2 mb-0 font-weight-600">{{((userData.savingCapacity * ((userData.isDepenRelationship ? 13 : 12) / 12)) / 4).toFixed(1) | thousandsPipe}} {{userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Diario:
+          <label
+            class="float-end ml-2 mb-0 font-weight-600">{{((userData.savingCapacity * (userData.isDepenRelationship ? 13 : 12)) / 232).toFixed(1) | thousandsPipe}} {{userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Hora:
+          <label
+            class="float-end ml-2 mb-0 font-weight-600">{{(((userData.savingCapacity * (userData.isDepenRelationship ? 13 : 12)) / 232) / userData.dailyHours).toFixed(1) | thousandsPipe}} {{userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Minuto:
+          <label
+            class="float-end ml-2 mb-0 font-weight-600">{{((((userData.savingCapacity * (userData.isDepenRelationship ? 13 : 12)) / 232) / userData.dailyHours) / 60).toFixed(2) | thousandsPipe}} {{userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+      </div>
+      <div class="d-grid" *ngIf="userData.isDepenRelationship !== undefined">
+        <label class="d-block txtSize14 mb-0 txtBlack font-weight-600">
+          <label class=" ">OFICIAL PROMEDIO A</label>
+          <label class="float-end ml-2 mb-0"> {{!userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Anual:
+          <label
+            class="float-end ml-2 mb-0 font-weight-600">{{(inverseOficialPromSavingCapacity * (userData.isDepenRelationship ? 13 : 12)).toFixed(0) | thousandsPipe}} {{!userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Mensual:
+          <label
+            class="float-end ml-2 mb-0 font-weight-600">{{(inverseOficialPromSavingCapacity * ((userData.isDepenRelationship ? 13 : 12) / 12)).toFixed(0) | thousandsPipe}} {{!userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Semanal:
+          <label
+            class="float-end ml-2 mb-0 font-weight-600">{{((inverseOficialPromSavingCapacity * ((userData.isDepenRelationship ? 13 : 12) / 12)) / 4).toFixed(1) | thousandsPipe}} {{!userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Diario:
+          <label
+            class="float-end ml-2 mb-0 font-weight-600">{{((inverseOficialPromSavingCapacity * (userData.isDepenRelationship ? 13 : 12)) / 232).toFixed(1) | thousandsPipe}} {{!userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Hora:
+          <label
+            class="float-end ml-2 mb-0 font-weight-600">{{(((inverseOficialPromSavingCapacity * (userData.isDepenRelationship ? 13 : 12)) / 232) / userData.dailyHours).toFixed(1) | thousandsPipe}} {{!userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Minuto:
+          <label
+            class="float-end ml-2 mb-0 font-weight-600">{{((((inverseOficialPromSavingCapacity * (userData.isDepenRelationship ? 13 : 12)) / 232) / userData.dailyHours) / 60).toFixed(2) | thousandsPipe}} {{!userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+      </div>
+      <div class="d-grid" *ngIf="userData.isDepenRelationship !== undefined">
+        <label class="d-block txtSize14 mb-0 txtBlack font-weight-600">
+          <label class=" ">BLUE PROMEDIO A</label>
+          <label class="float-end ml-2 mb-0"> {{!userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Anual:
+          <label
+            class="float-end ml-2 mb-0 font-weight-600">{{(inverseBluePromSavingCapacity * (userData.isDepenRelationship ? 13 : 12)).toFixed(0) | thousandsPipe}} {{!userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Mensual:
+          <label
+            class="float-end ml-2 mb-0 font-weight-600">{{(inverseBluePromSavingCapacity * ((userData.isDepenRelationship ? 13 : 12) / 12)).toFixed(0) | thousandsPipe}} {{!userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Semanal:
+          <label
+            class="float-end ml-2 mb-0 font-weight-600">{{((inverseBluePromSavingCapacity * ((userData.isDepenRelationship ? 13 : 12) / 12)) / 4).toFixed(1) | thousandsPipe}} {{!userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Diario:
+          <label
+            class="float-end ml-2 mb-0 font-weight-600">{{((inverseBluePromSavingCapacity * (userData.isDepenRelationship ? 13 : 12)) / 232).toFixed(1) | thousandsPipe}} {{!userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Hora:
+          <label
+            class="float-end ml-2 mb-0 font-weight-600">{{(((inverseBluePromSavingCapacity * (userData.isDepenRelationship ? 13 : 12)) / 232) / userData.dailyHours).toFixed(1) | thousandsPipe}} {{!userData.isDollar ? 'U$D' : '$AR'}}</label>
+        </label>
+        <label class="d-block txtSize14 mb-0 txtBlack"> Minuto:
+          <label
+            class="float-end ml-2 mb-0 font-weight-600">{{((((inverseBluePromSavingCapacity * (userData.isDepenRelationship ? 13 : 12)) / 232) / userData.dailyHours) / 60).toFixed(2) | thousandsPipe}} {{!userData.isDollar ? 'U$D' : '$AR'}}</label>
         </label>
       </div>
     </ng-container>

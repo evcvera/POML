@@ -1,0 +1,30 @@
+@import "src/assets/baseStyles/variable";
+@import "src/assets/baseStyles/baseStyles";
+
+.current-position{
+  color: rgba(0, 0, 0, 0.50);
+  width: 36px;
+  height: 36px;
+  background-color: rgba(0, 0, 0, 0.06);
+  font-weight: 600;
+  cursor: default;
+  pointer-events: none;
+  font-size: 16px;
+  border: 2px solid transparent;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.max-paging{
+  font-size: 16px;
+  margin-left: 10px;
+  color: rgba(0, 0, 0, 0.50);
+}
+
+/********************* ************/
+.cursor-type{
+  cursor: pointer;
+}

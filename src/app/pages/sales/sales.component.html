@@ -1,6 +1,6 @@
 <ng-container>
   <h1 class="py-3">Sales</h1>
-  <div class="search-container">
+  <div *ngIf="tabletOrLess" class="search-container">
     <input class="search" placeholder="Buscar productos" [(ngModel)]="search" (keypress)="keyPress($event)" type="text">
     <div class="search-icon-ln">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" data-supported-dps="16x16" fill="currentColor"
@@ -12,4 +12,5 @@
     </div>
   </div>
   <app-sales-container></app-sales-container>
+  <app-sales-paginator></app-sales-paginator>
 </ng-container>

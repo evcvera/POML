@@ -23,7 +23,7 @@
       && resultsEntity.prices?.prices[resultsEntity.prices?.prices?.length - 1].regular_amount - 10 >= resultsEntity.price : false">
       {{resultsEntity.prices?.prices[resultsEntity.prices?.prices?.length - 1].currency_id === 'USD' ? 'U$D ' :
       resultsEntity.prices?.prices[resultsEntity.prices?.prices?.length - 1].currency_id === 'ARS' ? '$ ' : null}}
-      {{resultsEntity.prices?.prices[resultsEntity.prices?.prices?.length - 1].regular_amount | thousandsPipe}}
+      {{resultsEntity.prices?.prices[resultsEntity.prices?.prices?.length - 1].regular_amount.toFixed(0) | thousandsPipe}}
     </label>
     <!--Current price-->
     <label class="item-price mb-0">

@@ -31,22 +31,25 @@ export class SideBarFormComponent implements OnInit {
       salary: ['', [Validators.required]],
       weeklyHours: ['', [Validators.required]],
       isDepenRelationship: ['', [Validators.required]],
+      isPercent: ['', [Validators.required]],
       savingCapacity: ['', [Validators.required]]
     });
   }
 
   save(event: Event): any {
-    const auxDate = new Date( this.form.get('birthday').value );
-    const userTimezoneOffset =  new Date( auxDate).getTimezoneOffset() * 60000;
+    const auxDate = new Date(this.form.get('birthday').value);
+    const userTimezoneOffset = new Date(auxDate).getTimezoneOffset() * 60000;
     this.sideBarForm.birthday = new Date(auxDate.getTime() + userTimezoneOffset);
     this.sideBarForm.gender = this.form.get('gender').value;
     this.sideBarForm.isDollar = this.form.get('isDollar').value;
     this.sideBarForm.salary = this.form.get('salary').value;
     this.sideBarForm.dailyHours = this.form.get('weeklyHours').value;
     this.sideBarForm.isDepenRelationship = this.form.get('isDepenRelationship').value;
-    this.sideBarForm.savingCapacity = this.form.get('savingCapacity').value;
+    this.sideBarForm.isDepenRelationship = this.form.get('isPercent').value;
+    this.sideBarForm.savingCapacity = this.form.get('isPercent').value ? (this.form.get('savingCapacity').value * this.form.get('salary').value) / 100 : this.form.get('savingCapacity').value;
     event.preventDefault();
     if (this.form.valid) {
+      console.log(this.sideBarForm);
       this.userDataModelService.userData$.next(this.sideBarForm);
       this.userDataModelService.toggleForm$.next(false);
       this.router.navigate(['metrics']);

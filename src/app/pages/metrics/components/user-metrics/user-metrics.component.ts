@@ -39,4 +39,28 @@ export class UserMetricsComponent implements OnInit {
       return 0;
     }
   }
+
+  get inverseOficialPromSavingCapacity(): number {
+    if (this.userDataModelService.userData$.value) {
+      if (this.userDataModelService.userData$.value.isDollar) {
+        return this.userDataModelService.userData$.value.savingCapacity * this.casaModelService.currentDollar$.value.oficialProm;
+      } else {
+        return this.userDataModelService.userData$.value.savingCapacity / this.casaModelService.currentDollar$.value.oficialProm;
+      }
+    } else {
+      return 0;
+    }
+  }
+
+  get inverseBluePromSavingCapacity(): number {
+    if (this.userDataModelService.userData$.value) {
+      if (this.userDataModelService.userData$.value.isDollar) {
+        return this.userDataModelService.userData$.value.savingCapacity * this.casaModelService.currentDollar$.value.blueProm;
+      } else {
+        return this.userDataModelService.userData$.value.savingCapacity / this.casaModelService.currentDollar$.value.blueProm;
+      }
+    } else {
+      return 0;
+    }
+  }
 }

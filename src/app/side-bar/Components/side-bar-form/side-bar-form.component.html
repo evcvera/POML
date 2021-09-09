@@ -17,7 +17,7 @@
       <p class="input__label txtSize14">Genero</p>
       <div class="ln-card p-2">
         <input type="radio" name="gender" formControlName="gender" value="0"> Masculino<br>
-        <input type="radio" name="gender" formControlName="gender" value="1" > Femenino<br>
+        <input type="radio" name="gender" formControlName="gender" value="1"> Femenino<br>
         <input type="radio" name="gender" formControlName="gender" value="2" checked> Otro
 
         <div *ngIf="form.get('gender').errors && form.get('gender').touched">
@@ -44,16 +44,6 @@
       </div>
     </div>
 
-    <div class="mt-2">
-      <p class="input__label txtSize14">Ingresos</p>
-      <input class="form-control" type="number" name="salary" formControlName="salary">
-    </div>
-    <div *ngIf="form.get('salary').errors && form.get('salary').touched">
-      <p class="color-red-error txtSize14"
-         *ngIf="form.get('salary').hasError('required')">
-        Es un campo requerido
-      </p>
-    </div>
 
     <div class="mt-2">
       <p class="input__label txtSize14">Horas diarias</p>
@@ -67,15 +57,19 @@
     </div>
 
     <div class="mt-2">
-      <p class="input__label txtSize14">Aguinaldo</p>
+      <p class="input__label txtSize14">Ingresos</p>
       <div class="ln-card p-2">
         <input type="radio" name="isDepenRelationship" formControlName="isDepenRelationship"
                [value]="true"> Con aguinaldo<br>
         <input type="radio" name="isDepenRelationship" formControlName="isDepenRelationship"
-               [value]="false"> sin aguinaldo
-        <div *ngIf="form.get('isDepenRelationship').errors && form.get('isDepenRelationship').touched">
+               [value]="false"> Sin aguinaldo
+        <p class="input__label txtSize14">Monto</p>
+        <input class="form-control" type="number" name="salary" formControlName="salary">
+        <div *ngIf="form.get('isDepenRelationship').errors && form.get('isDepenRelationship').touched
+            || form.get('salary').errors && form.get('salary').touched">
           <p class="color-red-error txtSize14"
-             *ngIf="form.get('isDepenRelationship').hasError('required')">
+             *ngIf="form.get('isDepenRelationship').hasError('required') ||
+              form.get('salary').hasError('required')">
             Es un campo requerido
           </p>
         </div>
@@ -83,14 +77,23 @@
     </div>
 
     <div class="mt-2">
-      <p class="input__label txtSize14">Capacidad de ahorro en porcentaje</p>
-      <input class="form-control" type="number" name="savingCapacity" formControlName="savingCapacity">
-    </div>
-    <div *ngIf="form.get('savingCapacity').errors && form.get('savingCapacity').touched">
-      <p class="color-red-error txtSize14"
-         *ngIf="form.get('savingCapacity').hasError('savingCapacity')">
-        Es un campo requerido
-      </p>
+      <p class="input__label txtSize14">Capacidad de ahorro</p>
+      <div class="ln-card p-2">
+        <input type="radio" name="isPercent" formControlName="isPercent"
+               [value]="true"> Porcentaje<br>
+        <input type="radio" name="isPercent" formControlName="isPercent"
+               [value]="false"> Entero
+        <p class="input__label txtSize14">Monto</p>
+        <input class="form-control" type="number" name="savingCapacity" formControlName="savingCapacity">
+        <div *ngIf="(form.get('savingCapacity').errors && form.get('savingCapacity').touched) ||
+          (form.get('isPercent').errors && form.get('isPercent').touched)">
+          <p class="color-red-error txtSize14"
+             *ngIf="form.get('savingCapacity').hasError('required') ||
+                form.get('isPercent').hasError('required')">
+            Es un campo requerido
+          </p>
+        </div>
+      </div>
     </div>
 
     <div class="w-100 d-flex justify-content-center">

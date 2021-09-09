@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {UserDataModelService} from '../../../core/mode-services/user-data-model.service';
-import {MeliModelService} from '../../../core/mode-services/meli-model.service';
+import {UserDataModelService} from '../../../../core/mode-services/user-data-model.service';
+import {MeliModelService} from '../../../../core/mode-services/meli-model.service';
 
 @Component({
   selector: 'app-search-items-group',
