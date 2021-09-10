@@ -32,10 +32,10 @@
 
     <!--Current price-->
     <div class="d-flex"
-         *ngIf="resultsEntity.prices?.prices[resultsEntity.prices?.prices?.length - 1].amount; else elseBlock">
+         *ngIf="currentPrice !== ''">
       <label class="item-price">
-        {{resultsEntity.currency_id === 'USD' ? 'U$D ' : '$ '}}
-        {{resultsEntity.prices?.prices[resultsEntity.prices?.prices?.length - 1].amount.toFixed(0) | thousandsPipe}}
+        {{typeOfCurrency}}
+        {{currentPrice | thousandsPipe}}
       </label>
       <!-- Promo percent -->
       <span *ngIf="promoPercent !== ''">
@@ -43,32 +43,19 @@
       </span>
     </div>
 
-    <ng-template #elseBlock>
-      <div class="d-flex">
-        <label class="item-price">
-          {{resultsEntity.currency_id === 'USD' ? 'U$D ' : '$ '}}
-          {{resultsEntity.price.toFixed(0) | thousandsPipe}}
-        </label>
-        <!-- Promo percent -->
-        <span *ngIf="promoPercent !== ''">
-        <label class="promo-percent mb-0">{{promoPercent}}</label>
-      </span>
-      </div>
-    </ng-template>
-
 
     <!-- Remaining promo days-->
-    <div *ngIf="resultsEntity.prices?.prices[resultsEntity.prices.prices.length - 1]?.metadata.campaign_discount_percentage
-        && remainingDays > 0">
+    <div *ngIf="remainingPromoDays !== '' && remainingDays > 0">
       <label class="remaining-promo">
-        {{resultsEntity.prices?.prices[resultsEntity.prices.prices.length - 1]?.metadata.campaign_discount_percentage.toFixed(0)}}
+        {{remainingPromoDays}}
         % OFF
       </label>
       <span class="remaining-days"
-      [ngClass]="remainingDays.toFixed(0) === '1' ? 'remaining-one-day' : ''">
+            [ngClass]="remainingDays.toFixed(0) === '1' ? 'remaining-one-day' : ''">
        {{remainingDays.toFixed(0) === '1' ? 'Queda' : 'Quedan'}} {{remainingDays.toFixed(0)}} {{remainingDays.toFixed(0) === '1' ? 'día' : 'días'}}
     </span>
     </div>
+
     <!--Cuotes-->
     <p *ngIf="resultsEntity.installments && resultsEntity.installments.rate === 0"
        class="mb-0 item-free-fees">

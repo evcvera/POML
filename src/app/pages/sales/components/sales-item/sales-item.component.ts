@@ -34,12 +34,14 @@ export class SalesItemComponent implements OnInit {
   }
 
   get promoPercent(): string {
-    if (this.resultsEntity.prices?.prices[this.resultsEntity.prices?.prices?.length - 1] &&
-      this.resultsEntity.prices?.prices[this.resultsEntity.prices?.prices?.length - 1].regular_amount !== null &&
-      this.resultsEntity.prices?.prices[this.resultsEntity.prices?.prices?.length - 1].amount !== null) {
-      const regularAmount = this.resultsEntity.prices?.prices[this.resultsEntity.prices?.prices?.length - 1].regular_amount !== null ? this.resultsEntity.prices?.prices[this.resultsEntity.prices?.prices?.length - 1].regular_amount : 1;
-      const percent = (this.resultsEntity.prices?.prices[this.resultsEntity.prices?.prices?.length - 1].amount / regularAmount - 1) * (-100);
-      return percent.toFixed(0) + '% OFF';
+    if (this.resultsEntity.prices?.prices?.length) {
+      if (this.resultsEntity.prices?.prices[this.resultsEntity.prices?.prices?.length - 1] &&
+        this.resultsEntity.prices?.prices[this.resultsEntity.prices?.prices?.length - 1].regular_amount !== null &&
+        this.resultsEntity.prices?.prices[this.resultsEntity.prices?.prices?.length - 1].amount !== null) {
+        const regularAmount = this.resultsEntity.prices?.prices[this.resultsEntity.prices?.prices?.length - 1].regular_amount !== null ? this.resultsEntity.prices?.prices[this.resultsEntity.prices?.prices?.length - 1].regular_amount : 1;
+        const percent = (this.resultsEntity.prices?.prices[this.resultsEntity.prices?.prices?.length - 1].amount / regularAmount - 1) * (-100);
+        return percent.toFixed(0) + '% OFF';
+      }
     }
     return '';
   }
@@ -64,6 +66,34 @@ export class SalesItemComponent implements OnInit {
     if (this.resultsEntity.seller.permalink === 'http://perfil.mercadolibre.com.ar/MERCADOLIBRE+ELECTRONICA_AR' &&
       this.resultsEntity.attributes[0].values) {
       return this.resultsEntity.attributes[0].values[0].name;
+    }
+    return '';
+  }
+
+  get typeOfCurrency(): string {
+    if (this.resultsEntity.currency_id) {
+      return (this.resultsEntity.currency_id === 'USD' ? 'U$D ' : '$ ');
+    } else {
+      return '';
+    }
+  }
+
+  get currentPrice(): string {
+    if (this.resultsEntity.prices?.prices?.length) {
+      if (this.resultsEntity.prices?.prices[this.resultsEntity.prices?.prices?.length - 1]?.amount) {
+        return this.resultsEntity.prices?.prices[this.resultsEntity.prices?.prices?.length - 1]?.amount?.toFixed(0);
+      }
+    }
+    if (this.resultsEntity.price) {
+      return this.resultsEntity.price.toFixed(0);
+    }
+    return '';
+  }
+
+  get remainingPromoDays(): string {
+    if (this.resultsEntity.prices?.prices?.length &&
+      this.resultsEntity.prices?.prices[this.resultsEntity.prices.prices.length - 1]?.metadata.campaign_discount_percentage) {
+      return this.resultsEntity.prices?.prices[this.resultsEntity.prices.prices.length - 1]?.metadata.campaign_discount_percentage.toFixed(0);
     }
     return '';
   }
