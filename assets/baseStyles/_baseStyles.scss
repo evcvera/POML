@@ -3,6 +3,8 @@
 @import "variable";
 @import "~bootstrap/dist/css/bootstrap.css";
 @import '~material-icons/iconfont/material-icons.scss';
+@import "~bootstrap/dist/css/bootstrap.css";
+
 
 .ln-card {
   border-radius: 0.8rem;
@@ -52,12 +54,16 @@
   .container {
     max-width: 720px;
   }
+
 }
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
   .container {
     max-width: 960px;
+  }
+  .meli-card{
+    padding: 20px 20px 20px 0;
   }
 }
 
