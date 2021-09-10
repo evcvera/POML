@@ -1,2 +1,15 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import '~material-icons/iconfont/material-icons.scss';
+@import "src/assets/baseStyles/baseStyles";
+
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  left: 0;
+  top: 0;
+  font-size: 100%;
+  background-color: #f3f2ef !important;
+  z-index: 10000;
+}

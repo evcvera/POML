@@ -65,7 +65,39 @@ export interface Seller {
   tags?: (string)[] | null;
   seller_reputation: SellerReputation;
   home_image_url?: string | null;
+  eshop?: Eshop;
 }
+
+export interface Eshop {
+  nick_name?: string;
+  eshop_rubro?: EshopRubro;
+  eshop_id?: number;
+  eshop_locations?: (EshopLocationsEntity)[] | null;
+  site_id?: string;
+  eshop_logo_url?: string;
+  eshop_status_id?: number;
+  seller?: number;
+  eshop_experience?: number;
+}
+export interface EshopRubro {
+  id?: string;
+  name?: string;
+  category_id?: string;
+}
+export interface EshopLocationsEntity {
+  state?: StateOrCountryOrCity;
+  neighborhood?: Neighborhood;
+  country?: StateOrCountryOrCity;
+  city?: StateOrCountryOrCity;
+}
+export interface StateOrCountryOrCity {
+  id?: string;
+}
+export interface Neighborhood {
+  id?: null;
+}
+
+
 
 export interface SellerReputation {
   transactions: Transactions;
@@ -137,6 +169,11 @@ export interface Conditions {
 export interface Metadata {
   promotion_id?: string;
   promotion_type?: string;
+  campaign_id?: string;
+  discount_meli_amount?: number;
+  campaign_discount_percentage?: number;
+  campaign_end_date?: Date;
+  order_item_price?: number;
 }
 
 export interface Presentation {

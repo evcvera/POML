@@ -6,22 +6,10 @@
 .item-title {
   color: #333;
   border-collapse: collapse;
-  /* box-sizing: border-box; */
   cursor: pointer;
   display: block;
-  /* height: 26px; */
-  /* line-height: 26px; */
-  /* margin-block-end: 0px; */
-  /* margin-block-start: 0px; */
-  /* margin-inline-end: 0px; */
-  /* margin-inline-start: 0px; */
-  /* margin: 0; */
   text-align: left;
   text-decoration-thickness: auto;
-  /* text-overflow: clip; */
-  /* word-break: normal; */
-  /* -webkit-font-smoothing: antialiased; */
-  /* -webkit-tap-highlight-color: rgba(0, 0, 0, 0);*/
 }
 
 .item-price {
@@ -32,12 +20,13 @@
   font-weight: 400;
   margin-right: 8px;
   line-height: 1.25;
+  margin-bottom: 10px;
 }
 
 .item-old-price {
   color: #999;
   font-size: 12px;
-  text-decoration:line-through
+  text-decoration: line-through
 }
 
 .deal-day {
@@ -75,15 +64,88 @@
 }
 
 
-.image-size{
+.image-size {
   width: 160px;
   height: 160px;
+  object-fit: contain;
 }
 
-/* Resize images */
 .image-size img {
   width: 100%;
   max-height: 100%;
   max-width: 100%;
   height: auto;
+  object-fit: contain;
+}
+
+.remaining-promo {
+  padding: 0 4px;
+  color: #3483FA;
+  margin: 0 0 2px;
+  font-size: 14px;
+  border-radius: 3px;
+  font-weight: 600;
+  line-height: 18px;
+  background: #D9E7FA;
+  margin-bottom: 10px;
+}
+
+.remaining-days {
+  font-size: 12px;
+  color: #999;
+  padding-left: 6px;
+}
+
+.remaining-one-day {
+  color: #FF7733 !important;
+}
+
+.promo-percent {
+  color: #00a650;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.seller-name {
+  color: #666;
+  font-size: 12px;
+  font-weight: 300;
+  margin-bottom: 0;
+}
+
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {
+}
+
+@media (max-width: 992px) {
+  .image-size {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+  }
+
+  .item-title {
+    font-size: 14px;
+  }
+
+  .item-price {
+    font-size: 20px;
+  }
+
+  .item-old-price, .seller-name {
+    display: none;
+  }
+
+  .remaining-days, .remaining-promo, .item-free-shipping, .item-free-fees, .promo-percent {
+    font-size: 12px;
+  }
+
+  .remaining-promo, .item-price {
+    margin-bottom: 2px;
+  }
+}
+
+@media (min-width: 1200px) {
 }
