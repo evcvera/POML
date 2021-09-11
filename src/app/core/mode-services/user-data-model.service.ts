@@ -11,6 +11,7 @@ export class UserDataModelService {
   toggleForm$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(undefined);
   searchData$: BehaviorSubject<string> = new BehaviorSubject<string>('');
   pageNumber$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  pageSort$: BehaviorSubject<string> = new BehaviorSubject<string>('relevance');
 
   constructor() {
   }

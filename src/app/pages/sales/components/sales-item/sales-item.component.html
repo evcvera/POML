@@ -13,7 +13,6 @@
     </ng-container>
 
     <!--title-->
-
     <a [href]="resultsEntity.permalink" target="_blank" style="text-decoration: none">
       <h2 class="item-title txtSize20 font-weight-300">{{resultsEntity.title}}
         <p *ngIf="sellerName !== ''" class="seller-name">Vendido por {{sellerName}}</p>
@@ -52,7 +51,7 @@
       </label>
       <span class="remaining-days"
             [ngClass]="remainingDays.toFixed(0) === '1' ? 'remaining-one-day' : ''">
-       {{remainingDays.toFixed(0) === '1' ? 'Queda' : 'Quedan'}} {{remainingDays.toFixed(0)}} {{remainingDays.toFixed(0) === '1' ? 'día' : 'días'}}
+       {{remainingDays.toFixed(0) === '1' ? 'Queda' : 'Quedan'}} {{remainingDays.toFixed(0)}} {{remainingDays > 0 && remainingDays < 2 ? 'día' : 'días'}}
     </span>
     </div>
 

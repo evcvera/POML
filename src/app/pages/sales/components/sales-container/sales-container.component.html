@@ -1,9 +1,33 @@
-<div *ngIf="(meliModelService.searchMeliData$ | async) as meli">
-  <label *ngFor="let category of meli?.filters[0]?.values[0]?.path_from_root; let last = last"
-         class="mb-0">{{category.name}} <i *ngIf="!last" class="fas fa-angle-right icon-margin mr-1"></i>
-  </label>
-  <h4 class="text-capitalize">{{meli.query}}</h4>
-  <label>{{meli.paging.total | thousandsPipe}} resultados</label>
+<div *ngIf="resultsEntity as meli">
+  <div>
+    <label *ngFor="let category of meli?.filters[0]?.values[0]?.path_from_root; let last = last"
+           class="name">{{category.name}} <i *ngIf="!last" class="fas fa-angle-right icon-margin mr-1"></i>
+    </label>
+    <!--    <div class="spinner-border text-dark" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>-->
+
+    <span class="float-end">
+      <span class="order-text">Ordenar por</span>
+    <span ngbDropdown>
+				<label ngbDropdownToggle class="mb-0 order-button"> {{labelText}}</label>
+        <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton dropdown-menu-lg-end ">
+          <li><a class="dropdown-item"
+                 [ngClass]="orderName === 'relevance' ? 'active' : ''"
+                 (click)="orderBy('relevance')">Más relevantes</a></li>
+          <li><a class="dropdown-item"
+                 [ngClass]="orderName === 'price_asc' ? 'active' : ''"
+                 (click)="orderBy('price_asc')">Menor precio</a></li>
+          <li><a class="dropdown-item"
+                 [ngClass]="orderName === 'price_desc' ? 'active' : ''"
+                 (click)="orderBy('price_desc')">Mayor precio</a></li>
+        </ul>
+      </span>
+    </span>
+
+  </div>
+  <h4 class="text-capitalize item-query">{{meli.query}}</h4>
+  <label class="result-count">{{meli.paging.total | thousandsPipe}} resultados</label>
   <ng-container *ngIf="(meliModelService.searchMeliData$ | async) as meli">
     <div *ngFor="let item of meli?.results; let first = first ;let last = last" class="general-font-family">
       <div class="meli-card" [ngClass]="first ? 'item-first' : last ? 'item-last' : ''">

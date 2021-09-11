@@ -2,7 +2,7 @@
      *ngIf="meliModelService?.searchMeliData$ | async as meliSearch">
   <ul class="d-flex p-0 align-items-center mb-0">
     <li class="d-inline-block button-paginator" (click)="nextPage(-1)"
-        *ngIf="userDataModelService.pageNumber$.value > 0">
+        [ngClass]="userDataModelService.pageNumber$.value > 0 ? '' : 'visibility-hidden'">
       <a class="d-flex align-items-center"><i class="fas fa-angle-left icon-margin"></i><span class="ml-2">Anterior</span></a>
     </li>
     <li class="d-inline-block">
@@ -12,8 +12,8 @@
         *ngIf="meliSearch"> de {{meliSearch.paging?.total / 50 >= 21 ? 21 :
       ((meliSearch.paging?.total / 50) + 1).toFixed(0)}}</li>
     <li class="d-inline-block ml-2 cursor-type"
-        *ngIf="userDataModelService.pageNumber$.value + 1 < 21 &&
-        userDataModelService.pageNumber$.value < ((meliSearch.paging?.total / 50)).toFixed(0)"
+        [ngClass]="userDataModelService.pageNumber$.value + 1 < 21 &&
+        userDataModelService.pageNumber$.value < ((meliSearch.paging?.total / 50)).toFixed(0) ? '' : 'visibility-hidden'"
         (click)="nextPage(1)">
       <div class="button-paginator next-page">
         <a class="d-flex align-items-center"><span class="mr-2">Siguiente</span><i class="fas fa-angle-right icon-margin"></i></a>
