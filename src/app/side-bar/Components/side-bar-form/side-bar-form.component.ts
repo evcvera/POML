@@ -13,6 +13,7 @@ export class SideBarFormComponent implements OnInit {
 
   form: FormGroup;
   sideBarForm: ISideBarForm = {};
+  cacheUserData: ISideBarForm = {};
 
   constructor(private formBuilder: FormBuilder,
               private userDataModelService: UserDataModelService,
@@ -24,15 +25,17 @@ export class SideBarFormComponent implements OnInit {
   }
 
   private buildForm(): any {
+    this.cacheUserData =  JSON.parse(localStorage.getItem('userData'));
+    console.log(this.cacheUserData);
     this.form = this.formBuilder.group({
-      birthday: ['', [Validators.required]],
-      gender: ['', [Validators.required]],
-      isDollar: ['', [Validators.required]],
-      salary: ['', [Validators.required]],
-      weeklyHours: ['', [Validators.required]],
-      isDepenRelationship: ['', [Validators.required]],
-      isPercent: ['', [Validators.required]],
-      savingCapacity: ['', [Validators.required]]
+      birthday: [`${this.cacheUserData?.birthday !== undefined ? this.cacheUserData.birthday : ''}`, [Validators.required]],
+      gender: [`${this.cacheUserData?.gender !== undefined ? this.cacheUserData.gender : ''}`, [Validators.required]],
+      isDollar: [`${this.cacheUserData?.isDollar !== undefined ? this.cacheUserData.isDollar === 'true' : ''}`, [Validators.required]],
+      salary: [`${this.cacheUserData?.salary !== undefined ? this.cacheUserData.salary : ''}`, [Validators.required]],
+      weeklyHours: [`${this.cacheUserData?.dailyHours !== undefined ? this.cacheUserData.dailyHours : ''}`, [Validators.required]],
+      isDepenRelationship: [`${this.cacheUserData?.isDepenRelationship !== undefined ? this.cacheUserData.isDepenRelationship === 'true' : ''}`, [Validators.required]],
+      isPercent: [`${this.cacheUserData?.isPercent !== undefined ? this.cacheUserData.isPercent === 'true' : ''}`, [Validators.required]],
+      savingCapacity: [`${this.cacheUserData?.savingCapacity !== undefined ? this.cacheUserData.savingCapacity : ''}`, [Validators.required]]
     });
   }
 
@@ -41,17 +44,19 @@ export class SideBarFormComponent implements OnInit {
     const userTimezoneOffset = new Date(auxDate).getTimezoneOffset() * 60000;
     this.sideBarForm.birthday = new Date(auxDate.getTime() + userTimezoneOffset);
     this.sideBarForm.gender = this.form.get('gender').value;
-    this.sideBarForm.isDollar = this.form.get('isDollar').value;
+    this.sideBarForm.isDollar = JSON.parse(this.form.get('isDollar').value);
     this.sideBarForm.salary = this.form.get('salary').value;
     this.sideBarForm.dailyHours = this.form.get('weeklyHours').value;
-    this.sideBarForm.isDepenRelationship = this.form.get('isDepenRelationship').value;
-    this.sideBarForm.isDepenRelationship = this.form.get('isPercent').value;
-    this.sideBarForm.savingCapacity = this.form.get('isPercent').value ? (this.form.get('savingCapacity').value * this.form.get('salary').value) / 100 : this.form.get('savingCapacity').value;
+    this.sideBarForm.isDepenRelationship = JSON.parse(this.form.get('isDepenRelationship').value);
+    this.sideBarForm.isPercent = JSON.parse(this.form.get('isPercent').value);
+    this.sideBarForm.savingCapacity = this.form.get('savingCapacity').value;
+    //this.sideBarForm.savingCapacity = this.form.get('isPercent').value ? (this.form.get('savingCapacity').value * this.form.get('salary').value) / 100 : this.form.get('savingCapacity').value;
     event.preventDefault();
     if (this.form.valid) {
       this.userDataModelService.userData$.next(this.sideBarForm);
       this.userDataModelService.toggleForm$.next(false);
       this.router.navigate(['metrics']);
+      localStorage.setItem('userData', JSON.stringify(this.sideBarForm));
     } else {
       this.form.markAllAsTouched();
     }

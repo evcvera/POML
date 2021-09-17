@@ -1,13 +1,15 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {IMeliSearch, ResultsEntity} from '../../../../core/interfaces/imeli-search';
 import {MeliModelService} from '../../../../core/mode-services/meli-model.service';
-import {ResultsEntity} from '../../../../core/interfaces/imeli-search';
+import {UserDataModelService} from '../../../../core/mode-services/user-data-model.service';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-sales-item',
-  templateUrl: './sales-item.component.html',
-  styleUrls: ['./sales-item.component.scss']
+  selector: 'app-sales-item-classified',
+  templateUrl: './sales-item-classified.component.html',
+  styleUrls: ['./sales-item-classified.component.scss']
 })
-export class SalesItemComponent implements OnInit {
+export class SalesItemClassifiedComponent implements OnInit {
 
   private _resultsEntity: ResultsEntity;
 

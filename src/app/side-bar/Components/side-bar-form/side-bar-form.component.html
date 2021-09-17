@@ -32,8 +32,8 @@
     <div class="mt-2">
       <p class="input__label txtSize14">Tipo de moneda</p>
       <div class="ln-card p-2">
-        <input type="radio" name="isDollar" formControlName="isDollar" [value]="false"> Peso argentino<br>
-        <input type="radio" name="isDollar" formControlName="isDollar" [value]="true"> Dolar
+        <input type="radio" name="isDollar" formControlName="isDollar" value="false"> Peso argentino<br>
+        <input type="radio" name="isDollar" formControlName="isDollar" value="true"> Dolar
 
         <div *ngIf="form.get('isDollar').errors && form.get('isDollar').touched">
           <p class="color-red-error txtSize14"
@@ -60,9 +60,9 @@
       <p class="input__label txtSize14">Ingresos</p>
       <div class="ln-card p-2">
         <input type="radio" name="isDepenRelationship" formControlName="isDepenRelationship"
-               [value]="true"> Con aguinaldo<br>
+               value="true"> Con aguinaldo<br>
         <input type="radio" name="isDepenRelationship" formControlName="isDepenRelationship"
-               [value]="false"> Sin aguinaldo
+               value="false"> Sin aguinaldo
         <p class="input__label txtSize14">Monto</p>
         <input class="form-control" type="number" name="salary" formControlName="salary">
         <div *ngIf="form.get('isDepenRelationship').errors && form.get('isDepenRelationship').touched
@@ -80,9 +80,9 @@
       <p class="input__label txtSize14">Capacidad de ahorro</p>
       <div class="ln-card p-2">
         <input type="radio" name="isPercent" formControlName="isPercent"
-               [value]="true"> Porcentaje<br>
+               value="true"> Porcentaje<br>
         <input type="radio" name="isPercent" formControlName="isPercent"
-               [value]="false"> Entero
+               value="false"> Entero
         <p class="input__label txtSize14">Monto</p>
         <input class="form-control" type="number" name="savingCapacity" formControlName="savingCapacity">
         <div *ngIf="(form.get('savingCapacity').errors && form.get('savingCapacity').touched) ||

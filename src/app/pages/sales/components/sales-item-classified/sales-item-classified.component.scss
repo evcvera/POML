@@ -3,6 +3,10 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import '~material-icons/iconfont/material-icons.scss';
 
+
+
+
+
 .item-title {
   color: #333;
   border-collapse: collapse;
@@ -70,9 +74,11 @@
 
 
 .image-size {
-  width: 160px;
-  height: 160px;
-  object-fit: contain;
+  height: 100%;
+  width: 100%;
+  min-height: 284px;
+  max-height: 284px;
+  object-fit: cover;
 }
 
 .image-size img {
