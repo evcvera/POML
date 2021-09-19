@@ -1,3 +1,5 @@
+import {IMeliItem, Struct} from './imeli-item';
+
 export interface IMeliSearch {
   site_id?: string;
   country_default_time_zone?: string;
@@ -40,6 +42,7 @@ export interface ResultsEntity {
   quantity?: any;
   address: Address;
   shipping: Shipping;
+  variations: Variation[];
   seller_address: SellerAddress;
   seller_contact: SellerContact;
   location: Location;
@@ -54,7 +57,35 @@ export interface ResultsEntity {
   use_thumbnail_id: boolean;
   offer_score?: null;
   offer_share?: null;
+  iMeliItem?: IMeliItem;
 }
+
+export interface Variation {
+  id: number;
+  price: number;
+  attribute_combinations: AttributeCombination[];
+  available_quantity: number;
+  sold_quantity: number;
+  sale_terms: any[];
+  picture_ids: string[];
+  catalog_product_id: null;
+}
+
+export interface AttributeCombination {
+  id: string;
+  name: string;
+  value_id: null;
+  value_name: string;
+  value_struct: null;
+  values: Value[];
+}
+
+export interface Value {
+  id: null | string;
+  name: string;
+  struct: Struct | null;
+}
+
 
 export interface Seller {
   id: number;
@@ -79,24 +110,27 @@ export interface Eshop {
   seller?: number;
   eshop_experience?: number;
 }
+
 export interface EshopRubro {
   id?: string;
   name?: string;
   category_id?: string;
 }
+
 export interface EshopLocationsEntity {
   state?: StateOrCountryOrCity;
   neighborhood?: Neighborhood;
   country?: StateOrCountryOrCity;
   city?: StateOrCountryOrCity;
 }
+
 export interface StateOrCountryOrCity {
   id?: string;
 }
+
 export interface Neighborhood {
   id?: null;
 }
-
 
 
 export interface SellerReputation {

@@ -3,6 +3,8 @@ import {MeliModelService} from '../../../../core/mode-services/meli-model.servic
 import {UserDataModelService} from '../../../../core/mode-services/user-data-model.service';
 import {Router} from '@angular/router';
 import {IMeliSearch, ResultsEntity} from '../../../../core/interfaces/imeli-search';
+import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {SalesZipCodeModalComponent} from '../sales-zip-code-modal/sales-zip-code-modal.component';
 
 @Component({
   selector: 'app-sales-container',
@@ -49,7 +51,8 @@ export class SalesContainerComponent implements OnInit {
 
   constructor(public meliModelService: MeliModelService,
               public userDataModelService: UserDataModelService,
-              private router: Router) {
+              private router: Router,
+              private modalService: NgbModal ) {
   }
 
   ngOnInit(): void {
@@ -63,6 +66,12 @@ export class SalesContainerComponent implements OnInit {
     this.meliModelService.meliSearch(this.userDataModelService.searchData$.value,
       this.userDataModelService.pageNumber$.value,
       order);
+  }
+
+  openModal(item: any): void{
+    item = 'hola mundo';
+    const ref = this.modalService.open(SalesZipCodeModalComponent, { modalDialogClass: 'modal-dialog-centered modal-dialog-zipcode' });
+    ref.componentInstance.item = item;
   }
 
 }

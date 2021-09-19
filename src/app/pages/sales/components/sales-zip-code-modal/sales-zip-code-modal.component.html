@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <h1 class="title-zip">Elegí dónde recibir tus compras</h1>
+  <!--<button type="button" class="close p-0" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>-->
+  <i class="fas fa-times modal-close-icon" (click)="modal.dismiss('Cross click')"></i>
+</div>
+<div class="modal-body">
+  <p class="subtitle-zip">Podrás ver costos y tiempos de entrega precisos en todo lo que busques.</p>
+  <div class="zip-code">
+    <div class="modal-zipcode-input">
+      <input mdbInput type="text" id="form1" class="form-control">
+    </div>
+    <button class="modal-zipcode-button">Usar</button>
+    <a [href]="'https://www6.oca.com.ar/BuscadorCP/'" target="_blank" style="text-decoration: none">
+      <label class="modal-idk-zipcode">No sé mi código</label>
+    </a>
+  </div>
+</div>
+
+<!--<input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">-->

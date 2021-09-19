@@ -1,4 +1,7 @@
 <div *ngIf="resultsEntity as meli">
+  <button (click)="openModal('')">CODIGO POSTAL</button>
+
+
   <div>
     <label *ngFor="let category of meli?.filters[0]?.values[0]?.path_from_root; let last = last"
            class="name">{{category.name}} <i *ngIf="!last" class="fas fa-angle-right icon-margin mr-1"></i>
@@ -7,6 +10,8 @@
           <span class="visually-hidden">Loading...</span>
         </div>-->
   </div>
+
+
   <h4 class="text-capitalize item-query">{{meli.query}}</h4>
   <div>
     <label class="result-count">{{meli.paging.total | thousandsPipe}} resultados</label>

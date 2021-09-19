@@ -44,6 +44,17 @@
   margin-bottom: 12px;
 }
 
+.lightning_deal {
+  color: #fff;
+  background: #FF7733;
+  padding: 2px 4px;
+  border-radius: 3px;
+  width: fit-content;
+  margin-top: 4px;
+  margin-bottom: 12px;
+  font-size: 11px;
+}
+
 .item-free-fees {
   font-size: 14px;
   font-weight: 400;
@@ -145,6 +156,10 @@
 
   .remaining-days, .remaining-promo, .item-free-shipping, .item-free-fees, .promo-percent {
     font-size: 12px;
+  }
+
+  .lightning_deal{
+    font-size: 10px;
   }
 
   .remaining-promo, .item-price {

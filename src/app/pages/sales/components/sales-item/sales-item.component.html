@@ -12,6 +12,16 @@
       <p class="txtSize11 font-weight-600 deal-day">OFERTA DEL DÍA</p>
     </ng-container>
 
+
+    <!-- Lightning deal -->
+    <div *ngFor="let tag of resultsEntity.tags">
+      <label *ngIf="tag === 'lightning_deal'" class="font-weight-600 lightning_deal">OFERTA RELÁMPAGO</label>
+    </div>
+
+    <div *ngIf="resultsEntity.variations">
+      <label class="font-weight-600 lightning_deal">{{resultsEntity.variations.length}}</label>
+    </div>
+
     <!--title-->
     <a [href]="resultsEntity.permalink" target="_blank" style="text-decoration: none">
       <h2 class="item-title txtSize20 font-weight-300">{{resultsEntity.title}}
@@ -64,17 +74,20 @@
       Hasta {{resultsEntity.installments.quantity}} cuotas sin interés
     </p>
     <!--Shipping -->
-    <p *ngIf="resultsEntity.shipping.free_shipping"
+    <span *ngIf="resultsEntity.shipping.free_shipping"
        class="mb-0 item-free-shipping">
-      Envío gratis <span class="ml-1" *ngFor="let tag of resultsEntity.shipping.tags"><app-full-icon
+      Envío gratis
+    </span>
+    <span class="ml-1" *ngFor="let tag of resultsEntity.shipping.tags"><app-full-icon
       *ngIf="tag === 'fulfillment'"></app-full-icon></span>
-    </p>
     <!--<label>{{item.tags}}</label>-->
     <!--<div class="detail-section__secundary-column">
       <div class="detail-section__secundary-column__state">
         <span *ngIf="item.condition == 'new'">Nuevo -</span>
       </div>
     </div>-->
+
+    <!--<button (click)="Shoemw()">show me </button>-->
   </div>
 </div>
 

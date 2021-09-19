@@ -13,3 +13,6 @@ body {
   background-color: #f3f2ef !important;
   z-index: 10000;
 }
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

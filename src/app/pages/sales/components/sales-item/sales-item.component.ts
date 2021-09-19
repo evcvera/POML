@@ -12,6 +12,7 @@ export class SalesItemComponent implements OnInit {
   private _resultsEntity: ResultsEntity;
 
   @Input() isClassified: boolean;
+
   @Input('resultsEntity') set resultsEntity(value: ResultsEntity) {
     this._resultsEntity = value;
   }
@@ -107,4 +108,8 @@ export class SalesItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  Shoemw(): void {
+    console.log(this.meliModelService.searchMeliData$.value);
+    console.log(this.resultsEntity);
+  }
 }

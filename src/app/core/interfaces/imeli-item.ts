@@ -42,7 +42,7 @@ export interface Body {
   attributes: Attribute[];
   warnings: any[];
   listing_source: string;
-  variations: any[];
+  variations: Variation[];
   status: string;
   sub_status: any[];
   tags: string[];
@@ -58,6 +58,26 @@ export interface Body {
   health: null;
   catalog_listing: boolean;
   channels: string[];
+}
+
+export interface Variation {
+  id: number;
+  price: number;
+  attribute_combinations: AttributeCombination[];
+  available_quantity: number;
+  sold_quantity: number;
+  sale_terms: any[];
+  picture_ids: string[];
+  catalog_product_id: null;
+}
+
+export interface AttributeCombination {
+  id: string;
+  name: string;
+  value_id: null;
+  value_name: string;
+  value_struct: null;
+  values: Value[];
 }
 
 export interface Attribute {
