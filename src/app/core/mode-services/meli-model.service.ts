@@ -4,6 +4,7 @@ import {environment} from '../../../environments/environment.prod';
 import {IMeliSearch} from '../interfaces/imeli-search';
 import {BehaviorSubject, Subscription} from 'rxjs';
 import {IMeliItem} from '../interfaces/imeli-item';
+import {IMeliZipCode} from '../interfaces/imeli-zip-code';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,9 @@ export class MeliModelService {
   }
 
   searchMeliData$: BehaviorSubject<IMeliSearch> = new BehaviorSubject<IMeliSearch>(undefined);
-  subscription: Subscription;
+  zipCodeData$: BehaviorSubject<IMeliZipCode> = new BehaviorSubject<IMeliZipCode>(undefined);
+  searchSubscription: Subscription;
+  zipCodeSubscription: Subscription;
   array20Ids: string [] = [];
   first20Ids = '';
   seconds20Ids = '';
@@ -44,14 +47,14 @@ export class MeliModelService {
     }
     /************************************* ****************************/
 
-    if (this.subscription) {
-      this.subscription.unsubscribe();
+    if (this.searchSubscription) {
+      this.searchSubscription.unsubscribe();
     }
     /*this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}&offset=50`).subscribe((resp: any) => {*/
     /*this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}&limit=50&zip_code=5000`).subscribe((resp: any) => {*/
-    this.subscription = this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}&offset=${pageNumber * 50}&limit=50&zip_code=5000&sort=${sortPage}`).subscribe((resp: any) => {
+    this.searchSubscription = this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}&offset=${pageNumber * 50}&limit=50&zip_code=5000&sort=${sortPage}`).subscribe((resp: any) => {
       this.searchMeliData$.next(resp);
-      this.searchMeliData$.value.results.forEach( x => x.thumbnail = x.thumbnail.replace('-I.jpg', '-O.jpg'));
+      this.searchMeliData$.value.results.forEach(x => x.thumbnail = x.thumbnail.replace('-I.jpg', '-O.jpg'));
       console.log(resp);
     });
   }
@@ -121,6 +124,23 @@ export class MeliModelService {
         }
       }
     });*/
+  }
+
+  async getZipcode(zipCode: string): Promise<boolean> {
+    return new Promise(ret => {
+      if (this.zipCodeSubscription) {
+        this.zipCodeSubscription.unsubscribe();
+      }
+      /*this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}&offset=50`).subscribe((resp: any) => {*/
+      /*this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}&limit=50&zip_code=5000`).subscribe((resp: any) => {*/
+      this.zipCodeSubscription = this.http.get(`${environment.api.meli}/countries/AR/zip_codes/${zipCode}`).subscribe((resp: any) => {
+        console.log(resp);
+        this.zipCodeData$.next(resp);
+        ret(true);
+      }, (error) => {
+        ret(false);
+      });
+    });
   }
 
 }

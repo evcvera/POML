@@ -29,6 +29,7 @@ import { FullIconComponent } from './svg-icons/full-icon/full-icon.component';
 import { SalesPaginatorComponent } from './pages/sales/components/sales-paginator/sales-paginator.component';
 import { SalesItemClassifiedComponent } from './pages/sales/components/sales-item-classified/sales-item-classified.component';
 import { SalesZipCodeModalComponent } from './pages/sales/components/sales-zip-code-modal/sales-zip-code-modal.component';
+import { SalesMeliHeaderComponent } from './pages/sales/components/sales-meli-header/sales-meli-header.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { SalesZipCodeModalComponent } from './pages/sales/components/sales-zip-c
     FullIconComponent,
     SalesPaginatorComponent,
     SalesItemClassifiedComponent,
-    SalesZipCodeModalComponent
+    SalesZipCodeModalComponent,
+    SalesMeliHeaderComponent
   ],
   imports: [
     BrowserModule,
