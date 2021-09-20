@@ -1,0 +1,72 @@
+@import "../../../../../assets/baseStyles/baseStyles";
+@import "../../../../../assets/baseStyles/variable";
+@import "~bootstrap/dist/css/bootstrap.css";
+@import '~material-icons/iconfont/material-icons.scss';
+
+.meli-header-container{
+  background-color: #fff159;
+  width: 100%;
+  height: 44px;
+  position: absolute;
+  right: 0;
+  border-bottom: 1px solid #d5d5d5;
+}
+
+.city-icon{
+  position: relative;
+  top: 9px;
+  left: 25px;
+  font-size: 22px;
+  -webkit-text-stroke: 1px black;
+  color: #fff159;
+}
+
+.send-to{
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  top: 1px;
+  font-size: 12px;
+  color: rgba(0,0,0,.5);
+  display: block;
+  width: 100%;
+  left: 8px;
+  padding: 6px 0 0 13px;
+  margin-right: 8px;
+  line-height: 10px;
+  height: 20px;
+}
+
+.city-to-send{
+  line-height: 13px;
+  height: 20px;
+  padding-left: 22px;
+  padding-right: 0;
+  color: #333;
+  font-size: 14px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+
+.zip-code-container{
+  height: 40px;
+  padding: 0 8px;
+  border: 1px solid transparent;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  top: 52px;
+  left: 1px;
+
+  &:hover{
+    cursor: pointer;
+    border: 1px solid rgb(0 0 0 / 10%);
+  }
+}
+
+.padding-top-2 {
+  padding: 2px 0 0 0;
+}

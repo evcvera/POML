@@ -1,0 +1,14 @@
+<div class="meli-header-container">
+  <div class="container px-0 padding-top-2">
+    <div>
+      <div class="d-flex">
+        <i class="fas fa-map-marker-alt city-icon"></i>
+        <div class="zip-code-container" (click)="openModal('')">
+          <span class="send-to">Enviar a</span>
+          <span
+            class="city-to-send">{{meliModelService.zipCodeData$.value !== undefined ? meliModelService.zipCodeData$.value.state.name : 'Cordoba'}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

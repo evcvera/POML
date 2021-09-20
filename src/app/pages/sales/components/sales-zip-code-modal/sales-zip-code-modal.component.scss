@@ -50,16 +50,6 @@
   }
 }
 
-.modal-zipcode-button {
-  margin-left: 12px;
-  width: 100px;
-  font-size: 14px;
-  line-height: 32px;
-  padding: 0 12px;
-  height: 32px;
-  border-radius: 5px;
-}
-
 .zip-code{
   padding: 8px 16px 0 0;
   margin-bottom: 18px;
@@ -90,5 +80,44 @@
 
   &:active{
     border: 2px solid #1f4e9666;
+  }
+}
+
+.modal-error-txt{
+  color: #f04449;
+  font-weight: 600;
+  opacity: 1;
+  font-size: 14px;
+  line-height: 1em;
+  margin-top: .3333333333em;
+  transition: opacity .15s ease-out;
+  text-align: left;
+  min-height: 14px;
+  position: absolute;
+}
+
+.meli-zipcode-button {
+  margin-left: 12px;
+  width: 100px;
+
+  font-size: 14px;
+  line-height: 32px;
+  padding: 0 12px;
+  height: 32px;
+  border-radius: 5px;
+
+
+  border-color: transparent;
+  background-color: #3483fa;
+  color: #fff;
+  font-weight: 600;
+
+  transition: box-shadow .25s ease-out,background-color .2s ease-out;
+  box-shadow: 0 0 0 0 #fff;
+
+  &:hover{
+    border-color: transparent;
+    background-color: #1f4e96;
+    color: #fff;
   }
 }

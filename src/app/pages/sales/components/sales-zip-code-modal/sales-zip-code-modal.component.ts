@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {MeliModelService} from '../../../../core/mode-services/meli-model.service';
 
 @Component({
   selector: 'app-sales-zip-code-modal',
@@ -10,11 +11,28 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 export class SalesZipCodeModalComponent implements OnInit {
 
   item: any;
-  constructor(public modal: NgbActiveModal) {
+  zipCode: string;
+  isZipcode: boolean;
+
+  constructor(public modal: NgbActiveModal,
+              public meliModelService: MeliModelService) {
   }
 
   ngOnInit(): void {
     console.log(this.item);
+    this.isZipcode = true;
   }
+
+  getZipCode(): void {
+    if (this.zipCode !== '' && this.zipCode !== 'undefined') {
+      this.meliModelService.getZipcode(this.zipCode).then(resp => {
+        this.isZipcode = resp;
+        if (resp) {
+          this.modal.dismiss('Cross click');
+        }
+      });
+    }
+  }
+
 
 }

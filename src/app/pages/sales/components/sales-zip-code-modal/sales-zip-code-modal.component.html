@@ -9,9 +9,14 @@
   <p class="subtitle-zip">Podrás ver costos y tiempos de entrega precisos en todo lo que busques.</p>
   <div class="zip-code">
     <div class="modal-zipcode-input">
-      <input mdbInput type="text" id="form1" class="form-control">
+      <input [maxlength]="4" (keyup.enter)="getZipCode()" placeholder="Ingresar un código postal"
+             (ngModelChange)="isZipcode = true" autocomplete="off"
+             mdbInput type="text" id="form1" class="form-control" [(ngModel)]="zipCode">
+      <span *ngIf="!this.isZipcode" class="modal-error-txt">Ingresá un código postal válido.</span>
+      <!--<span class="modal-error-txt">Ingresá un CP de 4 dígitos.</span>
+      <span class="modal-error-txt">Ingresá solamente números.</span>-->
     </div>
-    <button class="modal-zipcode-button">Usar</button>
+    <button class="meli-zipcode-button" (click)="getZipCode()">Usar</button>
     <a [href]="'https://www6.oca.com.ar/BuscadorCP/'" target="_blank" style="text-decoration: none">
       <label class="modal-idk-zipcode">No sé mi código</label>
     </a>
