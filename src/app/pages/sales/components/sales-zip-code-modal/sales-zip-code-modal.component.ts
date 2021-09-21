@@ -19,7 +19,7 @@ export class SalesZipCodeModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.item);
+    //console.log(this.item);
     this.isZipcode = true;
   }
 

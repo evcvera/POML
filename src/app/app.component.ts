@@ -4,6 +4,7 @@ import {UserDataModelService} from './core/mode-services/user-data-model.service
 import {CasaModelService} from './core/mode-services/casa-model.service';
 import {MeliModelService} from './core/mode-services/meli-model.service';
 import {ISideBarForm} from './core/interfaces/iside-bar-form';
+import {IMeliZipCode} from './core/interfaces/imeli-zip-code';
 
 @Component({
   selector: 'app-root',
@@ -13,18 +14,13 @@ import {ISideBarForm} from './core/interfaces/iside-bar-form';
 export class AppComponent implements OnInit {
 
   title = 'POML';
-  public innerWidth: any;
-
-  public get tabletOrLess(): boolean {
-    return this.innerWidth <= 991;
-  }
 
   constructor(private casaModelService: CasaModelService,
-              private userDataModelService: UserDataModelService) {
+              private userDataModelService: UserDataModelService,
+              private meliModelService: MeliModelService) {
   }
 
   ngOnInit(): void {
-    this.innerWidth = window.innerWidth;
     if (this.casaModelService.currentDollar$.value !== []) {
       this.casaModelService.getDollar();
     }
@@ -37,11 +33,15 @@ export class AppComponent implements OnInit {
       cacheUserData.isPercent = cacheUserData.isPercent === 'true';
       this.userDataModelService.userData$.next(cacheUserData);
     }
+
+    const zipCodeData: IMeliZipCode = JSON.parse(localStorage.getItem('zipCodeData'));
+    if (zipCodeData !== null && this.meliModelService.zipCodeData$.value === undefined) {
+      this.meliModelService.zipCodeData$.next(zipCodeData);
+    }
+    if (this.meliModelService.zipCodeData$.value === undefined) {
+      this.meliModelService.getZipcode('1425');
+    }
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event): any {
-    this.innerWidth = window.innerWidth;
-  }
 
 }

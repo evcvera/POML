@@ -28,9 +28,21 @@ export class MeliModelService {
   iMeliItem1: IMeliItem [] = [];
   iMeliItem2: IMeliItem [] = [];
   iMeliItem3: IMeliItem [] = [];
+  defaultZipCode = '1425';
 
 
   meliSearch(search: string, pageNumber: number, sortPage = 'relevance'): any {
+
+    /*********************** ZIP CODE **************************/
+    let zipCode = '';
+    if (this.zipCodeData$.value) {
+      zipCode = this.zipCodeData$.value.zip_code;
+    } else {
+      this.getZipcode(this.defaultZipCode).then();
+      zipCode = this.defaultZipCode;
+    }
+    /*********************** ZIP CODE **************************/
+
 
     /*********************  CLEAR IMAGES ******************************/
     this.first20Ids = '';
@@ -52,7 +64,7 @@ export class MeliModelService {
     }
     /*this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}&offset=50`).subscribe((resp: any) => {*/
     /*this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}&limit=50&zip_code=5000`).subscribe((resp: any) => {*/
-    this.searchSubscription = this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}&offset=${pageNumber * 50}&limit=50&zip_code=5000&sort=${sortPage}`).subscribe((resp: any) => {
+    this.searchSubscription = this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}&offset=${pageNumber * 50}&limit=50&zip_code=${zipCode}&sort=${sortPage}`).subscribe((resp: any) => {
       this.searchMeliData$.next(resp);
       this.searchMeliData$.value.results.forEach(x => x.thumbnail = x.thumbnail.replace('-I.jpg', '-O.jpg'));
       console.log(resp);
@@ -131,11 +143,10 @@ export class MeliModelService {
       if (this.zipCodeSubscription) {
         this.zipCodeSubscription.unsubscribe();
       }
-      /*this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}&offset=50`).subscribe((resp: any) => {*/
-      /*this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}&limit=50&zip_code=5000`).subscribe((resp: any) => {*/
       this.zipCodeSubscription = this.http.get(`${environment.api.meli}/countries/AR/zip_codes/${zipCode}`).subscribe((resp: any) => {
         console.log(resp);
         this.zipCodeData$.next(resp);
+        localStorage.setItem('zipCodeData', JSON.stringify(resp));
         ret(true);
       }, (error) => {
         ret(false);

@@ -68,10 +68,4 @@ export class SalesContainerComponent implements OnInit {
       order);
   }
 
-  openModal(item: any): void{
-    item = 'hola mundo';
-    const ref = this.modalService.open(SalesZipCodeModalComponent, { modalDialogClass: 'modal-dialog-centered modal-dialog-zipcode' });
-    ref.componentInstance.item = item;
-  }
-
 }

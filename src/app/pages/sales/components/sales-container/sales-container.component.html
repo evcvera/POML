@@ -1,6 +1,4 @@
 <div *ngIf="resultsEntity as meli">
-  <button (click)="openModal('')">CODIGO POSTAL</button>
-
 
   <div>
     <label *ngFor="let category of meli?.filters[0]?.values[0]?.path_from_root; let last = last"
@@ -42,9 +40,9 @@
       </div>
     </ng-container>
     <ng-container *ngIf="isClassified">
-      <div class="row">
+      <div class="row mx-0">
         <div *ngFor="let item of meli?.results; let first = first ;let last = last" class="general-font-family col-sm-6 col-lg-4 px-0">
-          <div *ngIf="isClassified" class="meli-card" [ngClass]="first ? 'item-first' : last ? 'item-last' : ''">
+          <div *ngIf="isClassified" class="meli-card-classified" [ngClass]="first ? 'item-first' : last ? 'item-last' : ''">
             <app-sales-item-classified [resultsEntity]="item"></app-sales-item-classified>
           </div>
         </div>
