@@ -4,9 +4,6 @@
 @import '~material-icons/iconfont/material-icons.scss';
 
 
-
-
-
 .item-title {
   color: #333;
   border-collapse: collapse;
@@ -22,14 +19,6 @@
   display: flex;
   font-size: 24px;
   font-weight: 400;
-  margin-right: 8px;
-  line-height: 1.25;
-  margin-bottom: 10px;
-  word-break: normal;
-  -webkit-box-direction: normal;
-  -webkit-box-orient: horizontal;
-  -webkit-font-smoothing: antialiased;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .item-old-price {
@@ -80,11 +69,15 @@
   max-height: 284px;
   object-fit: cover;
   border-radius: 6px 6px 0 0;
+  box-shadow: 0 10px 16px 0 rgb(0 0 0 / 10%);
+  cursor: pointer;
 }
 
 .img-container{
   padding: 0 16px;
 }
+
+
 
 .image-size img {
   width: 100%;
@@ -127,6 +120,16 @@
   font-size: 12px;
   font-weight: 300;
   margin-bottom: 0;
+}
+
+.item-container{
+}
+
+.description-container{
+  border-radius: 0 0 6px 6px;
+  padding: 16px;
+  background-color: #ffffff;
+  box-shadow: 0 10px 16px 0 rgb(0 0 0 / 10%);
 }
 
 @media (min-width: 576px) {

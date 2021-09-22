@@ -12,8 +12,10 @@ import {Router} from '@angular/router';
 export class SalesItemClassifiedComponent implements OnInit {
 
   private _resultsEntity: ResultsEntity;
+  public isCarousel: boolean;
 
   @Input() isClassified: boolean;
+
   @Input('resultsEntity') set resultsEntity(value: ResultsEntity) {
     this._resultsEntity = value;
   }
@@ -82,6 +84,48 @@ export class SalesItemClassifiedComponent implements OnInit {
     }
   }
 
+  get surface(): string {
+    const aux: string[] = [];
+    let auxSurface = false;
+    let ambs = false;
+    if (this.resultsEntity.attributes) {
+      this.resultsEntity.attributes.forEach((x) => {
+
+        if (aux.length >= 2) {
+          return aux.join(' | ');
+        }
+
+        if (x.name.includes('Superficie cubierta') && !auxSurface) {
+          if (x.value_struct.number !== 0) {
+            aux.push(x.value_name + ' cubiertos');
+            auxSurface = true;
+          }
+        }
+        if (x.name.includes('Superficie total') && !auxSurface) {
+          if (x.value_struct.number !== 0) {
+            aux.push(x.value_name + ' totales');
+            auxSurface = true;
+          }
+        }
+        if (x.name.includes('Dormitorios') && !ambs) {
+          if (x.value_name !== '0') {
+          aux.push(x.value_name + ' dorms.');
+            ambs = true;
+          }
+        }
+        if (x.name.includes('Ambientes') && !ambs){
+          if (x.value_name !== '0') {
+            aux.push(x.value_name + ' ambs.');
+            ambs = true;
+          }
+        }
+      });
+      aux.reverse();
+      return aux.join(' | ');
+    }
+    return aux.join('');
+  }
+
   get currentPrice(): string {
     if (this.resultsEntity.prices?.prices?.length) {
       if (this.resultsEntity.prices?.prices[this.resultsEntity.prices?.prices?.length - 1]?.amount) {
@@ -100,6 +144,10 @@ export class SalesItemClassifiedComponent implements OnInit {
       return this.resultsEntity.prices?.prices[this.resultsEntity.prices.prices.length - 1]?.metadata.campaign_discount_percentage.toFixed(0);
     }
     return '';
+  }
+
+  activeCarousel(): void {
+    this.isCarousel = true;
   }
 
 

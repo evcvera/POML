@@ -67,6 +67,7 @@ export class MeliModelService {
     this.searchSubscription = this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}&offset=${pageNumber * 50}&limit=50&zip_code=${zipCode}&sort=${sortPage}`).subscribe((resp: any) => {
       this.searchMeliData$.next(resp);
       this.searchMeliData$.value.results.forEach(x => x.thumbnail = x.thumbnail.replace('-I.jpg', '-O.jpg'));
+      //this.images();
       console.log(resp);
     });
   }
@@ -74,7 +75,7 @@ export class MeliModelService {
 
   images(): any {
 
-    /*this.searchMeliData$.subscribe(resp => {
+    this.searchMeliData$.subscribe(resp => {
       if (resp) {
         if (resp.results) {
           resp.results.forEach((x) => {
@@ -105,7 +106,7 @@ export class MeliModelService {
             this.iMeliItem1.forEach(x => {
               const index = resp.results.findIndex(y => y.id === x.body?.id);
               //resp.results[index].thumbnail = x.body.pictures[0].url;
-              resp.results[index].variations = x.body.variations;
+              //resp.results[index].variations = x.body.variations;
               resp.results[index].iMeliItem = x;
             });
           });
@@ -117,7 +118,7 @@ export class MeliModelService {
             this.iMeliItem2.forEach(x => {
               const index = resp.results.findIndex(y => y.id === x.body?.id);
               //resp.results[index].thumbnail = x.body.pictures[0].url;
-              resp.results[index].variations = x.body.variations;
+              //resp.results[index].variations = x.body.variations;
               resp.results[index].iMeliItem = x;
             });
           });
@@ -129,13 +130,13 @@ export class MeliModelService {
             this.iMeliItem3.forEach(x => {
               const index = resp.results.findIndex(y => y.id === x.body?.id);
               //resp.results[index].thumbnail = x.body.pictures[0].url;
-              resp.results[index].variations = x.body.variations;
+              //resp.results[index].variations = x.body.variations;
               resp.results[index].iMeliItem = x;
             });
           });
         }
       }
-    });*/
+    });
   }
 
   async getZipcode(zipCode: string): Promise<boolean> {
