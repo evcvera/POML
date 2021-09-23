@@ -109,11 +109,11 @@ export class SalesItemClassifiedComponent implements OnInit {
         }
         if (x.name.includes('Dormitorios') && !ambs) {
           if (x.value_name !== '0') {
-          aux.push(x.value_name + ' dorms.');
+            aux.push(x.value_name + ' dorms.');
             ambs = true;
           }
         }
-        if (x.name.includes('Ambientes') && !ambs){
+        if (x.name.includes('Ambientes') && !ambs) {
           if (x.value_name !== '0') {
             aux.push(x.value_name + ' ambs.');
             ambs = true;
@@ -124,6 +124,26 @@ export class SalesItemClassifiedComponent implements OnInit {
       return aux.join(' | ');
     }
     return aux.join('');
+  }
+
+  get operationPropertyType(): string {
+    let operation = '';
+    let propertyType = '';
+    if (this.resultsEntity.attributes) {
+      this.resultsEntity.attributes.forEach((x) => {
+        if (x.id.includes('PROPERTY_TYPE')) {
+          propertyType = x.value_name;
+        }
+        if (x.id.includes('OPERATION')) {
+          operation = x.value_name;
+        }
+      });
+    }
+    if (operation !== '' && propertyType !== '') {
+      return propertyType + ' en ' + operation;
+    } else {
+      return '';
+    }
   }
 
   get currentPrice(): string {
