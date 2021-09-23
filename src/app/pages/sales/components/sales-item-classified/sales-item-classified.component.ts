@@ -126,6 +126,32 @@ export class SalesItemClassifiedComponent implements OnInit {
     return aux.join('');
   }
 
+  get attributesCar(): string {
+    const aux: string[] = [];
+    if (this.resultsEntity.attributes) {
+      this.resultsEntity.attributes.forEach((x) => {
+
+        if (aux.length >= 2) {
+          return aux.join(' | ');
+        }
+
+        if (x.name.includes('Año')) {
+          if (x.values) {
+            aux.push(x.value_name);
+          }
+        }
+        if (x.name.includes('Kilómetros')) {
+          if (x.values) {
+            aux.push(x.value_name);
+          }
+        }
+      });
+      aux.reverse();
+      return aux.join(' | ');
+    }
+    return aux.join('');
+  }
+
   get operationPropertyType(): string {
     let operation = '';
     let propertyType = '';
@@ -164,6 +190,21 @@ export class SalesItemClassifiedComponent implements OnInit {
       return this.resultsEntity.prices?.prices[this.resultsEntity.prices.prices.length - 1]?.metadata.campaign_discount_percentage.toFixed(0);
     }
     return '';
+  }
+
+  get location(): string {
+    let locationTxt = '';
+    if (this.resultsEntity.location && this.resultsEntity.location.address_line) {
+      locationTxt = this.resultsEntity.location.address_line;
+      if (this.resultsEntity.location.city) {
+        locationTxt += ', ' + this.resultsEntity.location.city.name;
+        if (this.resultsEntity.location.state) {
+          locationTxt += ', ' + this.resultsEntity.location.state.name;
+        }
+      }
+      return locationTxt;
+    }
+    return locationTxt;
   }
 
   activeCarousel(): void {

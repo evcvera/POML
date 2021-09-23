@@ -1,36 +1,46 @@
 <div class="mb-4 item-container">
   <div class="img-container">
-    <img *ngIf="!isCarousel" class="image-size" [src]="resultsEntity.thumbnail" width="284" height="213"
-         (click)="activeCarousel()"
-         alt="{{resultsEntity.title}}">
-    <ng-container *ngIf="isCarousel">
-      <ngb-carousel *ngIf="resultsEntity.iMeliItem?.body?.pictures as images" [interval]="0" [animation]="false">
-        <!--<ng-container *ngFor="let image of images.slice(0, 4)">-->
-        <ng-container *ngFor="let image of images">
-          <ng-template ngbSlide>
-            <div class="picsum-img-wrapper">
-              <img class="image-size" [src]="image.url || resultsEntity.thumbnail" width="284" height="213"
-                   alt="{{image.url}}">
-            </div>
-          </ng-template>
-        </ng-container>
-      </ngb-carousel>
-    </ng-container>
-  </div>
-  <div class="img-container description">
-    <div class="description-container">
-      <label class="item-price mb-0">
+    <div>
+      <img *ngIf="!isCarousel" class="image-size" [src]="resultsEntity.thumbnail" width="284" height="213"
+           (click)="activeCarousel()"
+           alt="{{resultsEntity.title}}">
+      <ng-container *ngIf="isCarousel">
+        <ngb-carousel *ngIf="resultsEntity.iMeliItem?.body?.pictures as images" [interval]="0" [animation]="false">
+          <!--<ng-container *ngFor="let image of images.slice(0, 4)">-->
+          <ng-container *ngFor="let image of images">
+            <ng-template ngbSlide>
+              <div class="picsum-img-wrapper">
+                <img class="image-size" [src]="image.url || resultsEntity.thumbnail" width="284" height="213"
+                     alt="{{image.url}}">
+              </div>
+            </ng-template>
+          </ng-container>
+        </ngb-carousel>
+      </ng-container>
+    </div>
+    <div class="description">
+      <div class="description-container">
+        <div>
+      <span class="item-price mb-0">
         {{typeOfCurrency}}
         {{currentPrice | thousandsPipe}}
-      </label>
-      <div>
-        <span *ngIf="surface !== ''">{{surface}}</span>
-      </div>
-      <div>
-        <span *ngIf="operationPropertyType !== ''">{{operationPropertyType}} </span>
-      </div>
-      <div>
-        <span *ngIf="resultsEntity.title !== ''">{{resultsEntity.title}} </span>
+      </span>
+        </div>
+        <div *ngIf="surface !== ''" class="surface-house">
+          <span>{{surface}}</span>
+        </div>
+        <div *ngIf="attributesCar !== ''" class="surface-house">
+          <span>{{attributesCar}}</span>
+        </div>
+        <div *ngIf="operationPropertyType !== ''" class="operationType-house">
+          <span>{{operationPropertyType}} </span>
+        </div>
+        <div *ngIf="resultsEntity.title !== ''" class="title-house">
+          <span>{{resultsEntity.title}} </span>
+        </div>
+        <div *ngIf="location !== ''" class="location-house">
+          <span>{{location}} </span>
+        </div>
       </div>
     </div>
   </div>

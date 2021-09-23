@@ -1,19 +1,17 @@
 <div *ngIf="resultsEntity as meli">
-
-  <div>
-    <label *ngFor="let category of meli?.filters[0]?.values[0]?.path_from_root; let last = last"
-           class="name">{{category.name}} <i *ngIf="!last" class="fas fa-angle-right icon-margin mr-1"></i>
-    </label>
-    <!--    <div class="spinner-border text-dark" role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div>-->
-  </div>
-
-
-  <h4 class="text-capitalize item-query">{{meli.query}}</h4>
-  <div>
-    <label class="result-count">{{meli.paging.total | thousandsPipe}} resultados</label>
-    <span class="float-end">
+  <div class="mx-1">
+    <div>
+      <label *ngFor="let category of meli?.filters[0]?.values[0]?.path_from_root; let last = last"
+             class="name">{{category.name}} <i *ngIf="!last" class="fas fa-angle-right icon-margin mr-1"></i>
+      </label>
+      <!--    <div class="spinner-border text-dark" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>-->
+    </div>
+    <h4 class="text-capitalize item-query">{{meli.query}}</h4>
+    <div>
+      <label class="result-count">{{meli.paging.total | thousandsPipe}} resultados</label>
+      <span class="float-end">
       <span class="order-text">Ordenar por</span>
     <span ngbDropdown>
 				<label ngbDropdownToggle class="mb-0 order-button"> {{labelText}}</label>
@@ -30,6 +28,7 @@
         </ul>
       </span>
     </span>
+    </div>
   </div>
   <ng-container *ngIf="(meliModelService.searchMeliData$ | async) as meli">
     <ng-container *ngIf="!isClassified">
@@ -41,8 +40,10 @@
     </ng-container>
     <ng-container *ngIf="isClassified">
       <div class="row mx-0">
-        <div *ngFor="let item of meli?.results; let first = first ;let last = last" class="general-font-family col-sm-6 col-lg-4 px-0">
-          <div *ngIf="isClassified" class="meli-card-classified" [ngClass]="first ? 'item-first' : last ? 'item-last' : ''">
+        <div *ngFor="let item of meli?.results; let first = first ;let last = last"
+             class="general-font-family col-sm-6 col-lg-4 px-0">
+          <div *ngIf="isClassified" class="meli-card-classified"
+               [ngClass]="first ? 'item-first' : last ? 'item-last' : ''">
             <app-sales-item-classified [resultsEntity]="item"></app-sales-item-classified>
           </div>
         </div>
