@@ -27,10 +27,10 @@
       </span>
         </div>
         <div *ngIf="surface !== ''" class="surface-house">
-          <span>{{surface}}</span>
+          <span>{{surface | thousandsPipe}}</span>
         </div>
         <div *ngIf="attributesCar !== ''" class="surface-house">
-          <span>{{attributesCar}}</span>
+          <span>{{attributesCar | thousandsPipe}}</span>
         </div>
         <div *ngIf="operationPropertyType !== ''" class="operationType-house">
           <span>{{operationPropertyType}} </span>
@@ -38,8 +38,11 @@
         <div *ngIf="resultsEntity.title !== ''" class="title-house">
           <span>{{resultsEntity.title}} </span>
         </div>
-        <div *ngIf="location !== ''" class="location-house">
+        <div *ngIf="location !== '' " class="location-house">
           <span>{{location}} </span>
+        </div>
+        <div *ngIf="locationCar && !(location !== '')" class="location-house">
+          <span>{{locationCar}}</span>
         </div>
       </div>
     </div>

@@ -207,6 +207,20 @@ export class SalesItemClassifiedComponent implements OnInit {
     return locationTxt;
   }
 
+  get locationCar(): string {
+    let locationTxt = '';
+    if (this.resultsEntity.location && this.resultsEntity.location.city) {
+      if (this.resultsEntity.location.city) {
+        locationTxt +=  this.resultsEntity.location.city.name;
+        if (this.resultsEntity.location.state) {
+          locationTxt += ' - ' + this.resultsEntity.location.state.name;
+        }
+      }
+      return locationTxt;
+    }
+    return locationTxt;
+  }
+
   activeCarousel(): void {
     this.isCarousel = true;
   }
