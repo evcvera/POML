@@ -10,6 +10,8 @@ import {ResultsEntity} from '../../../../core/interfaces/imeli-search';
 export class SalesItemComponent implements OnInit {
 
   private _resultsEntity: ResultsEntity;
+  public activeHeart = false;
+  currentRate = 3.14;
 
   @Input() isClassified: boolean;
 
@@ -99,6 +101,11 @@ export class SalesItemComponent implements OnInit {
       return this.resultsEntity.prices?.prices[this.resultsEntity.prices.prices.length - 1]?.metadata.campaign_discount_percentage.toFixed(0);
     }
     return '';
+  }
+
+
+  activeFavorites(): void {
+    this.activeHeart = !this.activeHeart;
   }
 
 
