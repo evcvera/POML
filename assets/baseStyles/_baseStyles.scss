@@ -15,7 +15,7 @@
 .meli-card {
   background-color: $bgc-white;
   border-bottom: 1px solid #eee;
-  padding: 20px 50px 20px 0;
+  padding: 20px 16px 20px 0;
 }
 
 .modal-dialog-zipcode{
@@ -72,6 +72,9 @@
   .container {
     max-width: 960px;
   }
+}
+
+@media (max-width: 991px) {
   .meli-card {
     padding: 20px 20px 20px 0;
   }
