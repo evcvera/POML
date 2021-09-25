@@ -162,8 +162,9 @@ export class SalesItemClassifiedComponent implements OnInit {
     return locationTxt;
   }
 
-  activeCarousel(): void {
+  activeCarousel(id: string): void {
     this.isCarousel = true;
+    this.meliModelService.getImages(id);
   }
 
   activeFavorites(): void {

@@ -4,8 +4,8 @@
       <div class="heart-container"  (click)="activeFavorites()">
         <i class="fas fa-heart heart-icon"></i>
       </div>
-      <img *ngIf="!isCarousel" class="image-size" [src]="resultsEntity.thumbnail" width="284" height="213"
-           (click)="activeCarousel()"
+      <img *ngIf="!isCarousel" class="image-size" [src]="resultsEntity.pictures[0]" width="284" height="213"
+           (click)="activeCarousel(resultsEntity.id)"
            alt="{{resultsEntity.title}}">
       <ng-container *ngIf="isCarousel">
         <ngb-carousel *ngIf="resultsEntity.pictures as images" [interval]="0" [animation]="false">
@@ -29,7 +29,7 @@
       </span>
         </div>
         <div *ngIf="surface !== ''" class="surface-house">
-          <span>{{surface | thousandsPipe}}</span>
+          <span>{{surface}}</span>
         </div>
         <div *ngIf="attributesCar !== ''" class="surface-house">
           <span>{{attributesCar | thousandsPipe}}</span>

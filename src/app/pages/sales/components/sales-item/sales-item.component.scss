@@ -233,10 +233,14 @@
   }
 
   .heart-container {
+    width: 66px !important;
+    position: relative;
+    border-radius: 50%;
+    bottom: 9px;
     background: hsla(0, 0%, 100%, .7);
   }
   .heart-icon {
-    -webkit-text-stroke: 1px #1f4e96;
+    -webkit-text-stroke: 1px #3483fa;
   }
 }
 
