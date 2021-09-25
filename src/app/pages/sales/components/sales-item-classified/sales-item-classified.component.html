@@ -8,12 +8,12 @@
            (click)="activeCarousel()"
            alt="{{resultsEntity.title}}">
       <ng-container *ngIf="isCarousel">
-        <ngb-carousel *ngIf="resultsEntity.iMeliItem?.body?.pictures as images" [interval]="0" [animation]="false">
+        <ngb-carousel *ngIf="resultsEntity.pictures as images" [interval]="0" [animation]="false">
           <ng-container *ngFor="let image of images">
             <ng-template ngbSlide>
               <div class="picsum-img-wrapper">
-                <img class="image-size" [src]="image.url || resultsEntity.thumbnail" width="284" height="213"
-                     alt="{{image.url}}">
+                <img class="image-size" [src]="image || resultsEntity.thumbnail" width="284" height="213"
+                     alt="{{image}}">
               </div>
             </ng-template>
           </ng-container>

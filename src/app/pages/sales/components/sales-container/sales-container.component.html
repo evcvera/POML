@@ -31,18 +31,18 @@
     </div>
   </div>
   <ng-container *ngIf="(meliModelService.searchMeliData$ | async) as meli">
-    <ng-container *ngIf="!isClassified">
+    <ng-container *ngIf="!meli.classified">
       <div *ngFor="let item of meli?.results; let first = first ;let last = last" class="general-font-family">
         <div class="meli-card" [ngClass]="first ? 'item-first' : last ? 'item-last' : ''">
           <app-sales-item [resultsEntity]="item"></app-sales-item>
         </div>
       </div>
     </ng-container>
-    <ng-container *ngIf="isClassified">
+    <ng-container *ngIf="meli.classified">
       <div class="row mx-0">
         <div *ngFor="let item of meli?.results; let first = first ;let last = last"
              class="general-font-family col-sm-6 col-lg-4 px-0">
-          <div *ngIf="isClassified" class="meli-card-classified"
+          <div class="meli-card-classified"
                [ngClass]="first ? 'item-first' : last ? 'item-last' : ''">
             <app-sales-item-classified [resultsEntity]="item"></app-sales-item-classified>
           </div>

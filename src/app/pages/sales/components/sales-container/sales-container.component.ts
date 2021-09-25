@@ -41,14 +41,6 @@ export class SalesContainerComponent implements OnInit {
     return '';
   }
 
-  get isClassified(): boolean {
-    const result = this.meliModelService.searchMeliData$.value.results.find(x => x.buying_mode === 'classified');
-    if (!result) {
-      return false;
-    }
-    return true;
-  }
-
   constructor(public meliModelService: MeliModelService,
               public userDataModelService: UserDataModelService,
               private router: Router,
@@ -56,7 +48,6 @@ export class SalesContainerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.meliModelService.images();
   }
 
   orderBy(order: string): void {

@@ -10,6 +10,7 @@ export interface IMeliSearch {
   available_sorts?: (CountryOrStateOrCityOrNeighborhoodOrAvailableSortsEntityOrPathFromRootEntityOrValuesEntityOrSort)[] | null;
   filters?: (FiltersEntity)[] | null;
   available_filters?: (AvailableFiltersEntity)[] | null;
+  classified?: boolean;
 }
 
 export interface Paging {
@@ -58,6 +59,7 @@ export interface ResultsEntity {
   offer_score?: null;
   offer_share?: null;
   iMeliItem?: IMeliItem;
+  pictures?: string[];
 }
 
 export interface Variation {
