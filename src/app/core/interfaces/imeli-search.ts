@@ -11,6 +11,7 @@ export interface IMeliSearch {
   filters?: (FiltersEntity)[] | null;
   available_filters?: (AvailableFiltersEntity)[] | null;
   classified?: boolean;
+  itemIds?: string[];
 }
 
 export interface Paging {
@@ -60,6 +61,7 @@ export interface ResultsEntity {
   offer_share?: null;
   iMeliItem?: IMeliItem;
   pictures?: string[];
+  rating_average?: number;
 }
 
 export interface Variation {

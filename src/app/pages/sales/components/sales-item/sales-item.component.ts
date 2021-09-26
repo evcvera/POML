@@ -11,7 +11,7 @@ export class SalesItemComponent implements OnInit {
 
   private _resultsEntity: ResultsEntity;
   public activeHeart = false;
-  currentRate = 3.14;
+  currentRate = 3.26;
 
   @Input() isClassified: boolean;
 

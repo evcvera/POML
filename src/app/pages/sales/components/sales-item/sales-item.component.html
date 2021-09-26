@@ -21,9 +21,9 @@
         <label *ngIf="tag === 'lightning_deal'" class="font-weight-600 lightning_deal">OFERTA RELÁMPAGO</label>
       </div>
 
-      <div *ngIf="resultsEntity.variations">
-        <label class="font-weight-600 lightning_deal">{{resultsEntity.variations.length}}</label>
-      </div>
+      <!--      <div *ngIf="resultsEntity.variations">
+              <label class="font-weight-600 lightning_deal">{{resultsEntity.variations.length}}</label>
+            </div>-->
 
       <!--title-->
       <a [href]="resultsEntity.permalink" target="_blank" style="text-decoration: none">
@@ -100,17 +100,16 @@
         </div>
       </div>
       <div class="col-md-6 px-0">
-        <div>
-          <ngb-rating [rate]="3.14" [max]=5>
-            <ng-template let-fill="fill">
-              <span class="star color{{3.14}}" [class.filled]="fill === 100">&#9733;</span>
-            </ng-template>
-          </ngb-rating>
+        <div *ngIf="resultsEntity.rating_average > 0">
+          <app-star-rating [rating]="resultsEntity.rating_average"
+                           ngbPopover="Rating: {{resultsEntity.rating_average}}"
+                           [openDelay]="200" [closeDelay]="200" triggers="mouseenter:mouseleave"></app-star-rating>
+          <!--<small>{{resultsEntity.rating_average}}</small>-->
         </div>
       </div>
     </div>
   </div>
-  <div class="heart-container" (click)="activeFavorites()" >
+  <div class="heart-container" (click)="activeFavorites()">
     <i class="fas fa-heart heart-icon"></i>
   </div>
 </div>

@@ -30,6 +30,7 @@ import { SalesPaginatorComponent } from './pages/sales/components/sales-paginato
 import { SalesItemClassifiedComponent } from './pages/sales/components/sales-item-classified/sales-item-classified.component';
 import { SalesZipCodeModalComponent } from './pages/sales/components/sales-zip-code-modal/sales-zip-code-modal.component';
 import { SalesMeliHeaderComponent } from './pages/sales/components/sales-meli-header/sales-meli-header.component';
+import { StarRatingComponent } from './sharedComponents/star-rating/star-rating.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { SalesMeliHeaderComponent } from './pages/sales/components/sales-meli-he
     SalesPaginatorComponent,
     SalesItemClassifiedComponent,
     SalesZipCodeModalComponent,
-    SalesMeliHeaderComponent
+    SalesMeliHeaderComponent,
+    StarRatingComponent
   ],
   imports: [
     BrowserModule,

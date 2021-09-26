@@ -2,10 +2,13 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment.prod';
 import {IMeliSearch} from '../interfaces/imeli-search';
-import {BehaviorSubject, Subscription} from 'rxjs';
+import {BehaviorSubject, from, Subscription} from 'rxjs';
 import {IMeliItem} from '../interfaces/imeli-item';
 import {IMeliZipCode} from '../interfaces/imeli-zip-code';
 import {IMeliSingleItem} from '../interfaces/imeli-single-item';
+import {concatMap} from 'rxjs/operators';
+import {Observable} from 'rxjs';
+import {IMeliItemOpinion} from '../interfaces/imeli-item-opinion';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +23,7 @@ export class MeliModelService {
   searchSubscription: Subscription;
   zipCodeSubscription: Subscription;
   getImagesSingleItem: Subscription;
+  getOpinionsSingleItem: Subscription;
   /*  array20Ids: string [] = [];
     first20Ids = '';
     seconds20Ids = '';
@@ -45,6 +49,11 @@ export class MeliModelService {
     }
     /*********************** ZIP CODE **************************/
 
+    /*********************** OPINIONS *************************/
+    if(this.getOpinionsSingleItem){
+      this.getOpinionsSingleItem.unsubscribe();
+    }
+    /*********************** OPINIONS *************************/
 
     /*********************  CLEAR IMAGES ******************************/
     /*    this.first20Ids = '';
@@ -66,19 +75,22 @@ export class MeliModelService {
     }
     this.searchSubscription = this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}&offset=${pageNumber * 50}&limit=50&zip_code=${zipCode}&sort=${sortPage}`).subscribe((resp: any) => {
       const respAux: IMeliSearch = resp;
+      respAux.itemIds = [];
       console.log(resp);
       respAux.results.forEach((x) => {
         x.thumbnail = x.thumbnail.replace('-I.jpg', '-O.jpg');
         x.pictures = [x.thumbnail];
+        respAux.itemIds.push(x.id);
       });
-      const isClassified = respAux.results.find(x => x.buying_mode === 'classified');
+      const isClassified = respAux.results.find(x => x.buying_mode !== 'classified');
       if (isClassified) {
         //this.images(respAux);
-        respAux.classified = true;
-      } else {
         respAux.classified = false;
+      } else {
+        respAux.classified = true;
       }
       this.searchMeliData$.next(respAux);
+      this.getOpinionsRating(respAux.itemIds);
     });
   }
 
@@ -183,6 +195,33 @@ export class MeliModelService {
         item.pictures.forEach(z =>
           this.searchMeliData$.value.results[index].pictures.push(z.url));
       }
+    });
+  }
+
+  /***************************** GET RATING AND OPINIONS ***************************************/
+  getOpinionsRatingObservable(ids: string[]): any {
+    return from(ids).pipe(
+      concatMap(id => <Observable<IMeliItemOpinion>> this.http.get(`${environment.api.meli}/reviews/item/${id}`))
+    );
+  }
+
+  getOpinionsRating(ids: string[]): any {
+    let auxItemOpinion: IMeliItemOpinion = null;
+    this.getOpinionsSingleItem = this.getOpinionsRatingObservable(ids).subscribe(response => {
+      auxItemOpinion = response;
+      if (auxItemOpinion !== null && auxItemOpinion.rating_average) {
+        const index = this.searchMeliData$.value.results.findIndex(x => x.rating_average === undefined);
+        if (index !== -1) {
+          this.searchMeliData$.value.results[index].rating_average = auxItemOpinion.rating_average;
+        }
+      } else {
+        const index = this.searchMeliData$.value.results.findIndex(x => x.rating_average === undefined);
+        if (index !== -1) {
+          this.searchMeliData$.value.results[index].rating_average = 0;
+        }
+      }
+    }, error => {
+      console.error(error);
     });
   }
 

@@ -1,0 +1,33 @@
+/*.star{
+  color: #3483fa;
+}
+
+  .void{
+    color: red;
+  }
+
+.half{
+  color: yellow;
+}
+
+.full{
+  color: blue;
+}*/
+
+
+.star {
+  position: relative;
+  display: inline-block;
+  color: #d3d3d3;
+  font-size: 19px;
+  margin-right: 2px;
+}
+.full {
+  color: #3483fa;
+}
+.half {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  color: #3483fa;
+}
