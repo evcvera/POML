@@ -20,6 +20,7 @@ export class MeliModelService {
 
   searchMeliData$: BehaviorSubject<IMeliSearch> = new BehaviorSubject<IMeliSearch>(undefined);
   zipCodeData$: BehaviorSubject<IMeliZipCode> = new BehaviorSubject<IMeliZipCode>(undefined);
+  favouritesItems$: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
   searchSubscription: Subscription;
   zipCodeSubscription: Subscription;
   getImagesSingleItem: Subscription;
@@ -50,7 +51,7 @@ export class MeliModelService {
     /*********************** ZIP CODE **************************/
 
     /*********************** OPINIONS *************************/
-    if(this.getOpinionsSingleItem){
+    if (this.getOpinionsSingleItem) {
       this.getOpinionsSingleItem.unsubscribe();
     }
     /*********************** OPINIONS *************************/
@@ -81,6 +82,13 @@ export class MeliModelService {
         x.thumbnail = x.thumbnail.replace('-I.jpg', '-O.jpg');
         x.pictures = [x.thumbnail];
         respAux.itemIds.push(x.id);
+
+        const found = this.favouritesItems$.value.some(r => r === x.id);
+        if (found) {
+          x.isFavourite = true;
+        } else {
+          x.isFavourite = false;
+        }
       });
       const isClassified = respAux.results.find(x => x.buying_mode !== 'classified');
       if (isClassified) {
@@ -89,6 +97,7 @@ export class MeliModelService {
       } else {
         respAux.classified = true;
       }
+
       this.searchMeliData$.next(respAux);
       this.getOpinionsRating(respAux.itemIds);
     });
@@ -208,6 +217,7 @@ export class MeliModelService {
   getOpinionsRating(ids: string[]): any {
     let auxItemOpinion: IMeliItemOpinion = null;
     this.getOpinionsSingleItem = this.getOpinionsRatingObservable(ids).subscribe(response => {
+      console.log(response);
       auxItemOpinion = response;
       if (auxItemOpinion !== null && auxItemOpinion.rating_average) {
         const index = this.searchMeliData$.value.results.findIndex(x => x.rating_average === undefined);
@@ -225,4 +235,21 @@ export class MeliModelService {
     });
   }
 
+  /***************************** GET RATING AND OPINIONS ***************************************/
+
+  /***************************** ADD FAVOURITES ***************************************/
+  upsertFavourites(id: string, typeAction: boolean): void {
+    if (typeAction) {
+      this.favouritesItems$.value.push(id);
+    } else {
+      const index = this.favouritesItems$.value.findIndex(x => x === id);
+      if (index > -1) {
+        this.favouritesItems$.value.splice(index, 1);
+      }
+    }
+    console.log(this.favouritesItems$.value);
+  }
+
+
+  /***************************** ADD FAVOURITES ***************************************/
 }

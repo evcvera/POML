@@ -62,6 +62,7 @@ export interface ResultsEntity {
   iMeliItem?: IMeliItem;
   pictures?: string[];
   rating_average?: number;
+  isFavourite?: boolean;
 }
 
 export interface Variation {

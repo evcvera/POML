@@ -1,4 +1,4 @@
-<div class="d-flex item-container" [ngClass]="activeHeart ? 'heart-icon-active' : ''">
+<div class="d-flex item-container" [ngClass]="resultsEntity.isFavourite ? 'heart-icon-active' : ''">
   <!--Image-->
   <div class="image-container">
     <a [href]="resultsEntity.permalink" target="_blank" style="text-decoration: none">
@@ -112,7 +112,7 @@
       </div>
     </div>
   </div>
-  <div class="heart-container" (click)="activeFavorites()">
+  <div class="heart-container" (click)="activeFavorites(resultsEntity.id)">
     <i class="fas fa-heart heart-icon"></i>
   </div>
 </div>

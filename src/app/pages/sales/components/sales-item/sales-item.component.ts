@@ -104,8 +104,9 @@ export class SalesItemComponent implements OnInit {
   }
 
 
-  activeFavorites(): void {
-    this.activeHeart = !this.activeHeart;
+  activeFavorites(id: string): void {
+    this.resultsEntity.isFavourite = !this.resultsEntity.isFavourite;
+    this.meliModelService.upsertFavourites(id, this.resultsEntity.isFavourite);
   }
 
 
