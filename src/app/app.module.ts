@@ -24,13 +24,15 @@ import { BottomNavBarComponent } from './bottom-nav-bar/bottom-nav-bar.component
 import { CloseIconComponent } from './svg-icons/close-icon/close-icon.component';
 import { SearchItemsGroupComponent } from './pages/sales/components/search-items-group/search-items-group.component';
 import { SalesContainerComponent} from './pages/sales/components/sales-container/sales-container.component';
-import { SalesItemComponent } from './pages/sales/components/sales-item/sales-item.component';
+import { SalesItemComponent } from './sharedComponents/sales-item/sales-item.component';
 import { FullIconComponent } from './svg-icons/full-icon/full-icon.component';
-import { SalesPaginatorComponent } from './pages/sales/components/sales-paginator/sales-paginator.component';
-import { SalesItemClassifiedComponent } from './pages/sales/components/sales-item-classified/sales-item-classified.component';
+import { SalesPaginatorComponent } from './sharedComponents/sales-paginator/sales-paginator.component';
+import { SalesItemClassifiedComponent } from './sharedComponents/sales-item-classified/sales-item-classified.component';
 import { SalesZipCodeModalComponent } from './pages/sales/components/sales-zip-code-modal/sales-zip-code-modal.component';
-import { SalesMeliHeaderComponent } from './pages/sales/components/sales-meli-header/sales-meli-header.component';
+import { SalesMeliHeaderComponent } from './sharedComponents/sales-meli-header/sales-meli-header.component';
 import { StarRatingComponent } from './sharedComponents/star-rating/star-rating.component';
+import { SalesFavouritesComponent } from './pages/sales-favourites/sales-favourites.component';
+import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { StarRatingComponent } from './sharedComponents/star-rating/star-rating.
     SalesItemClassifiedComponent,
     SalesZipCodeModalComponent,
     SalesMeliHeaderComponent,
-    StarRatingComponent
+    StarRatingComponent,
+    SalesFavouritesComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,

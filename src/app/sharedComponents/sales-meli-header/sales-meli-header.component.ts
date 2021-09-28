@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {SalesZipCodeModalComponent} from '../sales-zip-code-modal/sales-zip-code-modal.component';
+import {SalesZipCodeModalComponent} from '../../pages/sales/components/sales-zip-code-modal/sales-zip-code-modal.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {MeliModelService} from '../../../../core/mode-services/meli-model.service';
+import {MeliModelService} from '../../core/mode-services/meli-model.service';
 
 @Component({
   selector: 'app-sales-meli-header',

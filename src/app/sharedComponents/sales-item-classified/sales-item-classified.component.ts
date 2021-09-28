@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {IMeliSearch, ResultsEntity} from '../../../../core/interfaces/imeli-search';
-import {MeliModelService} from '../../../../core/mode-services/meli-model.service';
-import {UserDataModelService} from '../../../../core/mode-services/user-data-model.service';
+import {IMeliSearch, ResultsEntity} from '../../core/interfaces/imeli-search';
+import {MeliModelService} from '../../core/mode-services/meli-model.service';
+import {UserDataModelService} from '../../core/mode-services/user-data-model.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -14,7 +14,6 @@ export class SalesItemClassifiedComponent implements OnInit {
   @Input() isClassified: boolean;
   @Input() resultsEntity: ResultsEntity;
 
-  private _resultsEntity: ResultsEntity;
   public isCarousel: boolean;
   activeHeart = false;
   typeOfCurrency: string;

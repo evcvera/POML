@@ -1,7 +1,7 @@
-@import "../../../../../assets/baseStyles/baseStyles";
-@import "../../../../../assets/baseStyles/variable";
-@import "~bootstrap/dist/css/bootstrap.css";
-@import '~material-icons/iconfont/material-icons.scss';
+@import "../../../assets/baseStyles/baseStyles";
+@import "../../../assets/baseStyles/variable";
+@import "../../../../node_modules/bootstrap/dist/css/bootstrap.css";
+@import '../../../../node_modules/material-icons/iconfont/material-icons';
 
 .item-title {
   color: #333;

@@ -39,19 +39,7 @@ export class MeliModelService {
     }
     /*********************** ZIP CODE **************************/
 
-    /*********************** OPINIONS *************************/
-    if (this.getOpinionsSingleItem) {
-      this.getOpinionsSingleItem.unsubscribe();
-    }
-    /*********************** OPINIONS *************************/
-
-    if (this.searchSubscription) {
-      this.searchSubscription.unsubscribe();
-    }
-
-    if (this.getRatingSingleItem) {
-      this.getRatingSingleItem.unsubscribe();
-    }
+    this.unSubscribe();
 
     this.searchSubscription = this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}&offset=${pageNumber * 50}&limit=50&zip_code=${zipCode}&sort=${sortPage}`).subscribe((resp: any) => {
       const respAux: IMeliSearch = resp;
@@ -86,6 +74,18 @@ export class MeliModelService {
         ret(false);
       });
     });
+  }
+
+  unSubscribe(): void{
+    if (this.getOpinionsSingleItem) {
+      this.getOpinionsSingleItem.unsubscribe();
+    }
+    if (this.searchSubscription) {
+      this.searchSubscription.unsubscribe();
+    }
+    if (this.getRatingSingleItem) {
+      this.getRatingSingleItem.unsubscribe();
+    }
   }
 
   getImages(id: string): void {
