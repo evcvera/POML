@@ -2,12 +2,10 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment.prod';
 import {IMeliSearch} from '../interfaces/imeli-search';
-import {BehaviorSubject, from, Subscription} from 'rxjs';
-import {IMeliItem} from '../interfaces/imeli-item';
+import {BehaviorSubject, from, Observable, Subscription} from 'rxjs';
 import {IMeliZipCode} from '../interfaces/imeli-zip-code';
 import {IMeliSingleItem} from '../interfaces/imeli-single-item';
 import {concatMap} from 'rxjs/operators';
-import {Observable} from 'rxjs';
 import {IMeliItemOpinion} from '../interfaces/imeli-item-opinion';
 
 @Injectable({
@@ -25,16 +23,7 @@ export class MeliModelService {
   zipCodeSubscription: Subscription;
   getImagesSingleItem: Subscription;
   getOpinionsSingleItem: Subscription;
-  /*  array20Ids: string [] = [];
-    first20Ids = '';
-    seconds20Ids = '';
-    thirds20Ids = '';
-    imagesSubscriptions1: Subscription;
-    imagesSubscriptions2: Subscription;
-    imagesSubscriptions3: Subscription;
-    iMeliItem1: IMeliItem [] = [];
-    iMeliItem2: IMeliItem [] = [];
-    iMeliItem3: IMeliItem [] = [];*/
+  getRatingSingleItem: Subscription;
   defaultZipCode = '1425';
 
 
@@ -56,24 +45,14 @@ export class MeliModelService {
     }
     /*********************** OPINIONS *************************/
 
-    /*********************  CLEAR IMAGES ******************************/
-    /*    this.first20Ids = '';
-        this.seconds20Ids = '';
-        this.thirds20Ids = '';
-        if (this.imagesSubscriptions1) {
-          this.imagesSubscriptions1.unsubscribe();
-        }
-        if (this.imagesSubscriptions2) {
-          this.imagesSubscriptions2.unsubscribe();
-        }
-        if (this.imagesSubscriptions3) {
-          this.imagesSubscriptions3.unsubscribe();
-        }*/
-    /************************************* ****************************/
-
     if (this.searchSubscription) {
       this.searchSubscription.unsubscribe();
     }
+
+    if (this.getRatingSingleItem) {
+      this.getRatingSingleItem.unsubscribe();
+    }
+
     this.searchSubscription = this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}&offset=${pageNumber * 50}&limit=50&zip_code=${zipCode}&sort=${sortPage}`).subscribe((resp: any) => {
       const respAux: IMeliSearch = resp;
       respAux.itemIds = [];
@@ -83,102 +62,15 @@ export class MeliModelService {
         x.pictures = [x.thumbnail];
         respAux.itemIds.push(x.id);
 
-        const found = this.favouritesItems$.value.some(r => r === x.id);
-        if (found) {
-          x.isFavourite = true;
-        } else {
-          x.isFavourite = false;
-        }
+        x.isFavourite = this.favouritesItems$.value.some(r => r === x.id);
       });
       const isClassified = respAux.results.find(x => x.buying_mode !== 'classified');
-      if (isClassified) {
-        //this.images(respAux);
-        respAux.classified = false;
-      } else {
-        respAux.classified = true;
-      }
+      respAux.classified = !isClassified;
 
       this.searchMeliData$.next(respAux);
-      this.getOpinionsRating(respAux.itemIds);
+      //this.getOpinionsRating(respAux.itemIds);
     });
   }
-
-
-  /*  images(resp: IMeliSearch): any {
-
-      if (resp) {
-        if (resp.results) {
-          resp.results.forEach((x) => {
-            this.array20Ids.push(x.id);
-          });
-
-        }
-
-        for (let i = 0; i < resp.results.length; i++) {
-          if (i < 20) {
-            this.first20Ids = this.first20Ids + resp.results[i].id + ',';
-            this.first20Ids.slice(0, -1);
-          }
-          if (i > 19 && i < 40) {
-            this.seconds20Ids = this.seconds20Ids + resp.results[i].id + ',';
-            this.seconds20Ids.slice(0, -1);
-          }
-          if (i > 39 && i < 60) {
-            this.thirds20Ids = this.thirds20Ids + resp.results[i].id + ',';
-            this.thirds20Ids.slice(0, -1);
-          }
-        }
-
-        if (this.first20Ids !== '') {
-          this.imagesSubscriptions1 = this.http.get(`${environment.api.meli}/items?ids=${this.first20Ids}`).subscribe((items1: any) => {
-            console.log(items1);
-            this.iMeliItem1 = items1;
-            this.iMeliItem1.forEach(x => {
-              const index = resp.results.findIndex(y => y.id === x.body?.id);
-              //resp.results[index].thumbnail = x.body.pictures[0].url;
-              //resp.results[index].variations = x.body.variations;
-              x.body.pictures.shift();
-              if (x.body.pictures) {
-                x.body.pictures.forEach(z =>
-                  resp.results[index].pictures.push(z.url));
-              }
-            });
-          });
-        }
-        if (this.seconds20Ids !== '') {
-          this.imagesSubscriptions2 = this.http.get(`${environment.api.meli}/items?ids=${this.seconds20Ids}`).subscribe((items2: any) => {
-            console.log(items2);
-            this.iMeliItem2 = items2;
-            this.iMeliItem2.forEach(x => {
-              const index = resp.results.findIndex(y => y.id === x.body?.id);
-              //resp.results[index].thumbnail = x.body.pictures[0].url;
-              //resp.results[index].variations = x.body.variations;
-              x.body.pictures.shift();
-              if (x.body.pictures) {
-                x.body.pictures.forEach(z =>
-                  resp.results[index].pictures.push(z.url));
-              }
-            });
-          });
-        }
-        if (this.thirds20Ids !== '') {
-          this.imagesSubscriptions3 = this.http.get(`${environment.api.meli}/items?ids=${this.thirds20Ids}`).subscribe((items3: any) => {
-            console.log(items3);
-            this.iMeliItem3 = items3;
-            this.iMeliItem3.forEach(x => {
-              const index = resp.results.findIndex(y => y.id === x.body?.id);
-              //resp.results[index].thumbnail = x.body.pictures[0].url;
-              //resp.results[index].variations = x.body.variations;
-              x.body.pictures.shift();
-              if (x.body.pictures) {
-                x.body.pictures.forEach(z =>
-                  resp.results[index].pictures.push(z.url));
-              }
-            });
-          });
-        }
-      }
-    }*/
 
   async getZipcode(zipCode: string): Promise<boolean> {
     return new Promise(ret => {
@@ -250,6 +142,24 @@ export class MeliModelService {
     console.log(this.favouritesItems$.value);
   }
 
-
   /***************************** ADD FAVOURITES ***************************************/
+
+
+  getSingleMeliItemOpinionObservable(id: string): Observable<number> {
+    return new Observable<number>((resp) => {
+      this.http.get(`${environment.api.meli}/reviews/item/${id}`).subscribe((respQ: IMeliItemOpinion) => {
+        console.log(respQ);
+        resp.next(respQ.rating_average);
+      });
+    });
+  }
+
+  getSingleMeliItemOpinion(id: string): void {
+    this.getRatingSingleItem = this.getSingleMeliItemOpinionObservable(id).subscribe((resp) => {
+      const index = this.searchMeliData$.value.results.findIndex(x => x.id === id);
+      if (index !== -1) {
+        this.searchMeliData$.value.results[index].rating_average = resp;
+      }
+    });
+  }
 }

@@ -52,3 +52,37 @@
 .visibility-hidden{
   visibility: hidden;
 }
+.margin-left-8{
+  margin-left: 8px;
+}
+
+
+@media (max-width: 767px) {
+  .button-paginator {
+    padding: 4.5px 13px;
+    cursor: pointer;
+    color: #3483fa !important;
+    border-radius: 4px;
+    font-size: 14px;
+    border: 2px solid #00000000;
+  }
+
+  .current-position{
+    font-size: 14px;
+    margin-left: 13px;
+  }
+
+  .margin-left-8{
+    margin-left: 0;
+  }
+
+  .max-paging{
+    font-size: 14px;
+    margin-left: 8px;
+    color: rgba(0, 0, 0, 0.50);
+  }
+
+  .next-page{
+    margin-left: 13px
+  }
+}

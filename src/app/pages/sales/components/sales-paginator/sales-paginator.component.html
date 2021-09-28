@@ -11,7 +11,7 @@
     <li class="d-inline-block max-paging"
         *ngIf="meliSearch"> de {{meliSearch.paging?.total / 50 >= 21 ? 21 :
       (meliSearch.paging?.total / 50).toFixed(0)}}</li>
-    <li class="d-inline-block ml-2 cursor-type"
+    <li class="d-inline-block margin-left-8 cursor-type"
         [ngClass]="userDataModelService.pageNumber$.value + 1 < 21 &&
         userDataModelService.pageNumber$.value < ((meliSearch.paging?.total / 50)).toFixed(0) ? '' : 'visibility-hidden'"
         (click)="nextPage(1)">

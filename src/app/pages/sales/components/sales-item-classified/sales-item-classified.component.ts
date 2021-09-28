@@ -11,21 +11,29 @@ import {Router} from '@angular/router';
 })
 export class SalesItemClassifiedComponent implements OnInit {
 
+  @Input() isClassified: boolean;
+  @Input() resultsEntity: ResultsEntity;
+
   private _resultsEntity: ResultsEntity;
   public isCarousel: boolean;
   activeHeart = false;
+  typeOfCurrency: string;
+  surface: string;
+  attributesCar: string;
+  operationPropertyType: string;
+  currentPrice: string;
+  location: string;
+  locationCar: string;
 
-  @Input() isClassified: boolean;
+  /*  @Input('resultsEntity') set resultsEntity(value: ResultsEntity) {
+      this._resultsEntity = value;
+    }
 
-  @Input('resultsEntity') set resultsEntity(value: ResultsEntity) {
-    this._resultsEntity = value;
-  }
+    get resultsEntity(): ResultsEntity {
+      return this._resultsEntity;
+    }*/
 
-  get resultsEntity(): ResultsEntity {
-    return this._resultsEntity;
-  }
-
-  get typeOfCurrency(): string {
+  getTypeOfCurrency(): string {
     if (this.resultsEntity.currency_id) {
       return (this.resultsEntity.currency_id === 'USD' ? 'U$D ' : '$ ');
     } else {
@@ -33,7 +41,7 @@ export class SalesItemClassifiedComponent implements OnInit {
     }
   }
 
-  get surface(): string {
+  getSurface(): string {
     const aux: string[] = [];
     let auxSurface = false;
     let ambs = false;
@@ -75,7 +83,7 @@ export class SalesItemClassifiedComponent implements OnInit {
     return aux.join('');
   }
 
-  get attributesCar(): string {
+  getAttributesCar(): string {
     const aux: string[] = [];
     if (this.resultsEntity.attributes) {
       this.resultsEntity.attributes.forEach((x) => {
@@ -101,7 +109,7 @@ export class SalesItemClassifiedComponent implements OnInit {
     return aux.join('');
   }
 
-  get operationPropertyType(): string {
+  getOperationPropertyType(): string {
     let operation = '';
     let propertyType = '';
     if (this.resultsEntity.attributes) {
@@ -121,7 +129,7 @@ export class SalesItemClassifiedComponent implements OnInit {
     }
   }
 
-  get currentPrice(): string {
+  getCurrentPrice(): string {
     if (this.resultsEntity.prices?.prices?.length) {
       if (this.resultsEntity.prices?.prices[this.resultsEntity.prices?.prices?.length - 1]?.amount) {
         return this.resultsEntity.prices?.prices[this.resultsEntity.prices?.prices?.length - 1]?.amount?.toFixed(0);
@@ -133,7 +141,7 @@ export class SalesItemClassifiedComponent implements OnInit {
     return '';
   }
 
-  get location(): string {
+  getLocation(): string {
     let locationTxt = '';
     if (this.resultsEntity.location && this.resultsEntity.location.address_line) {
       locationTxt = this.resultsEntity.location.address_line;
@@ -148,7 +156,7 @@ export class SalesItemClassifiedComponent implements OnInit {
     return locationTxt;
   }
 
-  get locationCar(): string {
+  getLocationCar(): string {
     let locationTxt = '';
     if (this.resultsEntity.location && this.resultsEntity.location.city) {
       if (this.resultsEntity.location.city) {
@@ -175,6 +183,13 @@ export class SalesItemClassifiedComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.typeOfCurrency = this.getTypeOfCurrency();
+    this.surface = this.getSurface();
+    this.attributesCar = this.getAttributesCar();
+    this.operationPropertyType = this.getOperationPropertyType();
+    this.currentPrice = this.getCurrentPrice();
+    this.location = this.getLocation();
+    this.locationCar = this.getLocationCar();
   }
 
 }

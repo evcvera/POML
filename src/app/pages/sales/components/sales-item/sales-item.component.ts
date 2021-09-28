@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MeliModelService} from '../../../../core/mode-services/meli-model.service';
 import {ResultsEntity} from '../../../../core/interfaces/imeli-search';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-sales-item',
@@ -9,21 +10,31 @@ import {ResultsEntity} from '../../../../core/interfaces/imeli-search';
 })
 export class SalesItemComponent implements OnInit {
 
+  @Input() isClassified: boolean;
+  @Input() resultsEntity: ResultsEntity;
+
   private _resultsEntity: ResultsEntity;
   public activeHeart = false;
   currentRate = 3.26;
+  remainingDays: number;
+  promoPercent: string;
+  dealOfTheDay: boolean;
+  sellerName: string;
+  typeOfCurrency: string;
+  currentPrice: string;
+  remainingPromoDays: string;
 
-  @Input() isClassified: boolean;
+  getRating: Subscription;
 
-  @Input('resultsEntity') set resultsEntity(value: ResultsEntity) {
+  /*@Input('resultsEntity') set resultsEntity(value: ResultsEntity) {
     this._resultsEntity = value;
   }
 
   get resultsEntity(): ResultsEntity {
     return this._resultsEntity;
-  }
+  }*/
 
-  get remainingDays(): number {
+  getRemainingDays(): number {
     if (this.resultsEntity.prices.prices[this.resultsEntity.prices.prices.length - 1].metadata.campaign_end_date) {
       const to = new Date(this.resultsEntity.prices.prices[this.resultsEntity.prices.prices.length - 1].metadata.campaign_end_date);
       const from = new Date();
@@ -38,7 +49,7 @@ export class SalesItemComponent implements OnInit {
     return -1;
   }
 
-  get promoPercent(): string {
+  getPromoPercent(): string {
     if (this.resultsEntity.prices?.prices?.length) {
       if (this.resultsEntity.prices?.prices[this.resultsEntity.prices?.prices?.length - 1] &&
         this.resultsEntity.prices?.prices[this.resultsEntity.prices?.prices?.length - 1].regular_amount !== null &&
@@ -51,7 +62,7 @@ export class SalesItemComponent implements OnInit {
     return '';
   }
 
-  get dealOfTheDay(): boolean {
+  getDealOfTheDay(): boolean {
     if (this.resultsEntity.tags) {
       const aux = this.resultsEntity.tags.find(x => x === 'deal_of_the_day');
       return aux !== undefined;
@@ -63,7 +74,7 @@ export class SalesItemComponent implements OnInit {
     return false;
   }
 
-  get sellerName(): string {
+  getSellerName(): string {
     if (this.resultsEntity.seller.eshop &&
       this.resultsEntity.seller.eshop.nick_name) {
       return this.resultsEntity.seller.eshop.nick_name.replace('_', ' ');
@@ -75,7 +86,7 @@ export class SalesItemComponent implements OnInit {
     return '';
   }
 
-  get typeOfCurrency(): string {
+  getTypeOfCurrency(): string {
     if (this.resultsEntity.currency_id) {
       return (this.resultsEntity.currency_id === 'USD' ? 'U$D ' : '$ ');
     } else {
@@ -83,7 +94,7 @@ export class SalesItemComponent implements OnInit {
     }
   }
 
-  get currentPrice(): string {
+  getCurrentPrice(): string {
     if (this.resultsEntity.prices?.prices?.length) {
       if (this.resultsEntity.prices?.prices[this.resultsEntity.prices?.prices?.length - 1]?.amount) {
         return this.resultsEntity.prices?.prices[this.resultsEntity.prices?.prices?.length - 1]?.amount?.toFixed(0);
@@ -95,7 +106,7 @@ export class SalesItemComponent implements OnInit {
     return '';
   }
 
-  get remainingPromoDays(): string {
+  getRemainingPromoDays(): string {
     if (this.resultsEntity.prices?.prices?.length &&
       this.resultsEntity.prices?.prices[this.resultsEntity.prices.prices.length - 1]?.metadata.campaign_discount_percentage) {
       return this.resultsEntity.prices?.prices[this.resultsEntity.prices.prices.length - 1]?.metadata.campaign_discount_percentage.toFixed(0);
@@ -103,21 +114,23 @@ export class SalesItemComponent implements OnInit {
     return '';
   }
 
-
-  activeFavorites(id: string): void {
-    this.resultsEntity.isFavourite = !this.resultsEntity.isFavourite;
-    this.meliModelService.upsertFavourites(id, this.resultsEntity.isFavourite);
-  }
-
-
   constructor(public meliModelService: MeliModelService) {
   }
 
   ngOnInit(): void {
+    this.remainingDays = this.getRemainingDays();
+    this.promoPercent = this.getPromoPercent();
+    this.dealOfTheDay = this.getDealOfTheDay();
+    this.sellerName = this.getSellerName();
+    this.typeOfCurrency = this.getTypeOfCurrency();
+    this.currentPrice = this.getCurrentPrice();
+    this.remainingPromoDays = this.getRemainingPromoDays();
+    this.resultsEntity.rating_average = 0;
+    this.meliModelService.getSingleMeliItemOpinion(this.resultsEntity.id);
   }
 
-  Shoemw(): void {
-    console.log(this.meliModelService.searchMeliData$.value);
-    console.log(this.resultsEntity);
+  activeFavorites(id: string): void {
+    this.resultsEntity.isFavourite = !this.resultsEntity.isFavourite;
+    this.meliModelService.upsertFavourites(id, this.resultsEntity.isFavourite);
   }
 }
