@@ -33,6 +33,7 @@ import { SalesMeliHeaderComponent } from './sharedComponents/sales-meli-header/s
 import { StarRatingComponent } from './sharedComponents/star-rating/star-rating.component';
 import { SalesFavouritesComponent } from './pages/sales-favourites/sales-favourites.component';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
+import { ZipCodeModalMobileComponent } from './sharedComponents/zip-code-modal-mobile/zip-code-modal-mobile.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.compo
     SalesMeliHeaderComponent,
     StarRatingComponent,
     SalesFavouritesComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    ZipCodeModalMobileComponent
   ],
   imports: [
     BrowserModule,

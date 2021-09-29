@@ -1,0 +1,17 @@
+<div class="zip-code-mcontainer">
+  <i class="fas fa-arrow-left return-arrow" routerLink="/sales"></i>
+  <h1 class="title-zipcode mt-3">Elegí dónde recibir tus compras</h1>
+  <p class="subtitle-zipcode">Podrás ver costos y tiempos de entrega precisos en todo lo que busques.</p>
+  <div class="mb-1">
+    <input [maxlength]="4" (keyup.enter)="getZipCode()" placeholder="Ingresar un código postal"
+           (ngModelChange)="isZipcode = true" autocomplete="off"
+           mdbInput type="text" class="form-control" [(ngModel)]="zipCode">
+    <div class="error-span">
+    <p *ngIf="!this.isZipcode" class="modal-error-txt">Ingresá un código postal válido.</p>
+      </div>
+  </div>
+  <button class="meli-zipcode-button" (click)="getZipCode()"><span>Usar</span></button>
+  <a [href]="'https://www6.oca.com.ar/BuscadorCP/'" target="_blank" style="text-decoration: none">
+    <label class="modal-idk-zipcode mb-0">No sé mi código</label>
+  </a>
+</div>

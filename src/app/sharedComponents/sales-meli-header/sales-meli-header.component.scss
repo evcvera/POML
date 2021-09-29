@@ -93,3 +93,26 @@
   margin-right: 25px;
   cursor: pointer;
 }
+
+.city-icon-mob {
+  position: relative;
+  top: 9px;
+  left: 8px;
+  font-size: 22px;
+  -webkit-text-stroke: 1px black;
+  width: 0;
+  color: transparent;
+  cursor: pointer;
+}
+
+@media (max-width: 991px) {
+  .zip-desk{
+    display: none;
+  }
+}
+
+@media (min-width: 992px) {
+  .zip-mob{
+    display: none;
+  }
+}

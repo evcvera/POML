@@ -1,24 +1,33 @@
 <div class="meli-header-container">
-  <div class="container px-0 padding-top-2">
-    <div class="d-flex">
-      <div class="d-flex">
-        <i class="fas fa-map-marker-alt city-icon"></i>
-        <div class="zip-code-container" (click)="openModal('')">
-          <span class="send-to">Enviar a</span>
-          <span class="city-to-send" *ngIf="(meliModelService.zipCodeData$ | async) as meli">
+  <div class="container px-0 padding-top-2 h-100">
+    <div class="d-flex h-100">
+      <div class="zip-desk">
+        <div class="d-flex">
+          <i class="fas fa-map-marker-alt city-icon"></i>
+          <div class="zip-code-container" (click)="openModal('')">
+            <span class="send-to">Enviar a</span>
+            <span class="city-to-send" *ngIf="(meliModelService.zipCodeData$ | async) as meli">
             {{meli.state.name}} {{meli.zip_code}}
           </span>
+          </div>
+        </div>
+      </div>
+      <div class="zip-mob">
+        <div class="d-flex">
+          <div routerLink="/sales/zipcode">
+            <i class="fas fa-map-marker-alt city-icon-mob"></i>
+          </div>
         </div>
       </div>
       <div class="right-icons">
         <div>
           <a routerLink="/sales/favourites">
-          <i class="fas fa-heart heart-icon" ></i>
+            <i class="fas fa-heart heart-icon"></i>
           </a>
         </div>
         <div>
           <a routerLink="/sales/cart">
-          <i class="fas fa-shopping-cart market-icon"></i>
+            <i class="fas fa-shopping-cart market-icon"></i>
           </a>
         </div>
       </div>
