@@ -20,6 +20,9 @@ export class SalesZipCodeModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.isZipcode = true;
+    if (this.meliModelService.zipCodeData$.value) {
+      this.zipCode = this.meliModelService.zipCodeData$.value.zip_code;
+    }
   }
 
   getZipCode(): void {

@@ -8,10 +8,17 @@
 <div class="modal-body">
   <p class="subtitle-zip">Podrás ver costos y tiempos de entrega precisos en todo lo que busques.</p>
   <div class="zip-code">
-    <div class="modal-zipcode-input">
-      <input [maxlength]="4" (keyup.enter)="getZipCode()" placeholder="Ingresar un código postal"
-             (ngModelChange)="isZipcode = true" autocomplete="off"
-             mdbInput type="text" id="form1" class="form-control" [(ngModel)]="zipCode">
+    <div>
+      <div class="input-meli">
+        <div class="form">
+          <input [maxlength]="4" (keyup.enter)="getZipCode()"
+                 (ngModelChange)="isZipcode = true" autocomplete="off"
+                 mdbInput type="text" [(ngModel)]="zipCode" class="zip-code-input-desk">
+          <label class="lbl-nombre">
+            <span class="text-nomb">Ingresar un código postal</span>
+          </label>
+        </div>
+      </div>
       <span *ngIf="!this.isZipcode" class="modal-error-txt">Ingresá un código postal válido.</span>
       <!--<span class="modal-error-txt">Ingresá un CP de 4 dígitos.</span>
       <span class="modal-error-txt">Ingresá solamente números.</span>-->
