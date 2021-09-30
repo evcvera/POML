@@ -1,5 +1,6 @@
 @import "colorPalette";
 @import "fonts/fontsXL";
+@import "inputStyles";
 @import "variable";
 @import "~bootstrap/dist/css/bootstrap.css";
 @import '~material-icons/iconfont/material-icons.scss';
@@ -59,21 +60,20 @@
 }
 
 // Medium devices (tablets, 768px and up)
-@media (min-width: 768px) {
+@media (max-width: 767px) {
   .container {
-    max-width: 720px;
+    max-width: 768px;
+    padding: 0 4px;
   }
 
 }
 
 // Large devices (desktops, 992px and up)
-@media (min-width: 992px) {
-  .container {
-    max-width: 960px;
-  }
-}
-
 @media (max-width: 991px) {
+  .container {
+    max-width: 992px;
+    padding: 0 4px;
+  }
   .meli-card {
     padding: 16px 0;
   }
