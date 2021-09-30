@@ -1,6 +1,6 @@
 export interface IMeliItem {
-  code: number;
-  body: Body;
+  code?: number;
+  body?: Body;
 }
 
 export interface Body {
@@ -58,6 +58,8 @@ export interface Body {
   health: null;
   catalog_listing: boolean;
   channels: string[];
+  isFavourite?: boolean;
+  rating_average?: number;
 }
 
 export interface Variation {

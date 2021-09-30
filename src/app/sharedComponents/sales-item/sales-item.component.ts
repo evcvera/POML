@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {MeliModelService} from '../../core/mode-services/meli-model.service';
 import {ResultsEntity} from '../../core/interfaces/imeli-search';
 import {Subscription} from 'rxjs';
+import {FavouritesModelServiceService} from '../../core/mode-services/favourites-model-service.service';
 
 @Component({
   selector: 'app-sales-item',
@@ -12,6 +13,7 @@ export class SalesItemComponent implements OnInit {
 
   @Input() isClassified: boolean;
   @Input() resultsEntity: ResultsEntity;
+  @Input() typeItem: string;
 
   private _resultsEntity: ResultsEntity;
   public activeHeart = false;
@@ -35,7 +37,7 @@ export class SalesItemComponent implements OnInit {
   }*/
 
   getRemainingDays(): number {
-    if (this.resultsEntity.prices.prices[this.resultsEntity.prices.prices.length - 1].metadata.campaign_end_date) {
+    if (this.resultsEntity.prices && this.resultsEntity.prices.prices[this.resultsEntity.prices.prices.length - 1].metadata.campaign_end_date) {
       const to = new Date(this.resultsEntity.prices.prices[this.resultsEntity.prices.prices.length - 1].metadata.campaign_end_date);
       const from = new Date();
       const diff = to.getTime() - from.getTime();
@@ -75,11 +77,11 @@ export class SalesItemComponent implements OnInit {
   }
 
   getSellerName(): string {
-    if (this.resultsEntity.seller.eshop &&
+    if (this.resultsEntity.seller?.eshop &&
       this.resultsEntity.seller.eshop.nick_name) {
       return this.resultsEntity.seller.eshop.nick_name.replace('_', ' ');
     }
-    if (this.resultsEntity.seller.permalink === 'http://perfil.mercadolibre.com.ar/MERCADOLIBRE+ELECTRONICA_AR' &&
+    if (this.resultsEntity.seller?.permalink === 'http://perfil.mercadolibre.com.ar/MERCADOLIBRE+ELECTRONICA_AR' &&
       this.resultsEntity.attributes[0].values) {
       return this.resultsEntity.attributes[0].values[0].name;
     }
@@ -114,7 +116,8 @@ export class SalesItemComponent implements OnInit {
     return '';
   }
 
-  constructor(public meliModelService: MeliModelService) {
+  constructor(public meliModelService: MeliModelService,
+              public favouritesModelServiceService: FavouritesModelServiceService) {
   }
 
   ngOnInit(): void {
@@ -126,11 +129,11 @@ export class SalesItemComponent implements OnInit {
     this.currentPrice = this.getCurrentPrice();
     this.remainingPromoDays = this.getRemainingPromoDays();
     this.resultsEntity.rating_average = 0;
-    this.meliModelService.getSingleMeliItemOpinion(this.resultsEntity.id);
+    this.meliModelService.getSingleMeliItemOpinion(this.resultsEntity.id, this.typeItem);
   }
 
   activeFavorites(id: string): void {
     this.resultsEntity.isFavourite = !this.resultsEntity.isFavourite;
-    this.meliModelService.upsertFavourites(id, this.resultsEntity.isFavourite);
+    this.favouritesModelServiceService.upSertFavouriteItem(id, this.resultsEntity.isFavourite);
   }
 }

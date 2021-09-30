@@ -7,13 +7,15 @@ import {IMeliZipCode} from '../interfaces/imeli-zip-code';
 import {IMeliSingleItem} from '../interfaces/imeli-single-item';
 import {concatMap} from 'rxjs/operators';
 import {IMeliItemOpinion} from '../interfaces/imeli-item-opinion';
+import {FavouritesModelServiceService} from './favourites-model-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MeliModelService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private favouritesModelServiceService: FavouritesModelServiceService) {
   }
 
   searchMeliData$: BehaviorSubject<IMeliSearch> = new BehaviorSubject<IMeliSearch>(undefined);
@@ -50,7 +52,9 @@ export class MeliModelService {
         x.pictures = [x.thumbnail];
         respAux.itemIds.push(x.id);
 
-        x.isFavourite = this.favouritesItems$.value.some(r => r === x.id);
+        if (this.favouritesModelServiceService.favouritesMeliItems$.value && this.favouritesModelServiceService.favouritesMeliItems$.value !== []) {
+          x.isFavourite = this.favouritesModelServiceService.favouritesMeliItems$.value.some(r => r === x.id);
+        }
       });
       const isClassified = respAux.results.find(x => x.buying_mode !== 'classified');
       respAux.classified = !isClassified;
@@ -76,7 +80,7 @@ export class MeliModelService {
     });
   }
 
-  unSubscribe(): void{
+  unSubscribe(): void {
     if (this.getOpinionsSingleItem) {
       this.getOpinionsSingleItem.unsubscribe();
     }
@@ -129,21 +133,6 @@ export class MeliModelService {
 
   /***************************** GET RATING AND OPINIONS ***************************************/
 
-  /***************************** ADD FAVOURITES ***************************************/
-  upsertFavourites(id: string, typeAction: boolean): void {
-    if (typeAction) {
-      this.favouritesItems$.value.push(id);
-    } else {
-      const index = this.favouritesItems$.value.findIndex(x => x === id);
-      if (index > -1) {
-        this.favouritesItems$.value.splice(index, 1);
-      }
-    }
-    console.log(this.favouritesItems$.value);
-  }
-
-  /***************************** ADD FAVOURITES ***************************************/
-
 
   getSingleMeliItemOpinionObservable(id: string): Observable<number> {
     return new Observable<number>((resp) => {
@@ -154,11 +143,23 @@ export class MeliModelService {
     });
   }
 
-  getSingleMeliItemOpinion(id: string): void {
+  getSingleMeliItemOpinion(id: string, type: string): void {
     this.getRatingSingleItem = this.getSingleMeliItemOpinionObservable(id).subscribe((resp) => {
-      const index = this.searchMeliData$.value.results.findIndex(x => x.id === id);
-      if (index !== -1) {
-        this.searchMeliData$.value.results[index].rating_average = resp;
+      switch (type) {
+        case 'search': {
+          const index = this.searchMeliData$.value.results.findIndex(x => x.id === id);
+          if (index !== -1) {
+            this.searchMeliData$.value.results[index].rating_average = resp;
+          }
+          break;
+        }
+        case 'favourite': {
+          const index = this.favouritesModelServiceService.favouritesMeliData$.value.meliFavouriteItem.findIndex(x => x.body.id === id);
+          if (index !== -1) {
+            this.favouritesModelServiceService.favouritesMeliData$.value.meliFavouriteItem[index].body.rating_average = resp;
+          }
+          break;
+        }
       }
     });
   }
