@@ -1,7 +1,7 @@
 .input-meli {
   .form {
     width: 100%;
-    height: 50px;
+    height: 55px;
     max-width: 100%;
     position: relative;
     overflow: hidden;
@@ -13,7 +13,7 @@
     background: none;
     color: rgba(0,0,0,.8);
     font-size: 18px;
-    margin: 8px 0 4px;
+    padding: 8px 0 4px;
     border: none;
     outline: 0;
   }
@@ -27,6 +27,7 @@
     height: 100%;
     pointer-events: none;
     border-bottom: 1px solid #c7c7c7;
+    z-index: 10;
   }
 
   .form .lbl-nombre:after {
@@ -54,14 +55,11 @@
     transform: translateY(-150%);
     font-size: 14px;
     position: absolute;
-    bottom: 1px;
     color: rgba(0,0,0,.45);
-    z-index: 3;
   }
 
   .form input:focus + .lbl-nombre:after, .form input:valid + .lbl-nombre:after {
     transform: translateX(0%);
-    z-index: 3;
   }
 
 }
