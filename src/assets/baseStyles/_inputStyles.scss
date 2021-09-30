@@ -56,10 +56,12 @@
     position: absolute;
     bottom: 1px;
     color: rgba(0,0,0,.45);
+    z-index: 3;
   }
 
   .form input:focus + .lbl-nombre:after, .form input:valid + .lbl-nombre:after {
     transform: translateX(0%);
+    z-index: 3;
   }
 
 }
