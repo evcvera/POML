@@ -129,11 +129,20 @@ export class SalesItemComponent implements OnInit {
     this.currentPrice = this.getCurrentPrice();
     this.remainingPromoDays = this.getRemainingPromoDays();
     this.resultsEntity.rating_average = 0;
-    this.meliModelService.getSingleMeliItemOpinion(this.resultsEntity.id, this.typeItem);
+    if (this.resultsEntity.rating_average) {
+      this.meliModelService.getSingleMeliItemOpinion(this.resultsEntity.id, this.typeItem);
+    }
   }
 
   activeFavorites(id: string): void {
     this.resultsEntity.isFavourite = !this.resultsEntity.isFavourite;
+
+    if (this.meliModelService.searchMeliData$.value) {
+      const searchIndex = this.meliModelService.searchMeliData$.value.results.findIndex(x => x.id === id);
+      if (searchIndex > -1) {
+        this.meliModelService.searchMeliData$.value.results[searchIndex].isFavourite = this.resultsEntity.isFavourite;
+      }
+    }
     this.favouritesModelServiceService.upSertFavouriteItem(id, this.resultsEntity.isFavourite);
   }
 }
