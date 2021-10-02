@@ -17,6 +17,28 @@ export class SalesFavouritesComponent implements OnInit, OnDestroy {
     this.favouritesModelServiceService.meliSearchFavourites();
   }
 
+ /* ngOnInit(): void {
+    if (this.favouritesModelServiceService.favouritesMeliItems$.value !== []
+      && this.favouritesModelServiceService.favouritesMeliItems$.value.length > 0) {
+      try {
+        this.favouritesModelServiceService.favouritesMeliItems$.value.forEach(x => {
+          if (this.favouritesModelServiceService.favouritesMeliData$.value !== {}) {
+            if (!this.favouritesModelServiceService.favouritesMeliData$.value.meliFavouriteItem.some(y => y.body.id === x)) {
+              console.log('hola');
+              throw true;
+            }
+          }
+        });
+      } catch (e) {
+        this.favouritesModelServiceService.meliSearchFavourites();
+        console.log('hola1');
+      }
+    } else {
+      this.favouritesModelServiceService.meliSearchFavourites();
+      console.log('hola2');
+    }
+  }*/
+
   ngOnDestroy(): void {
     this.favouritesModelServiceService.favouritesMeliData$.next({});
   }

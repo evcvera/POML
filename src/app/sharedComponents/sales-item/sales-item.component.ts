@@ -128,8 +128,8 @@ export class SalesItemComponent implements OnInit {
     this.typeOfCurrency = this.getTypeOfCurrency();
     this.currentPrice = this.getCurrentPrice();
     this.remainingPromoDays = this.getRemainingPromoDays();
-    this.resultsEntity.rating_average = 0;
-    if (this.resultsEntity.rating_average) {
+    if (this.resultsEntity.rating_average === undefined) {
+      this.resultsEntity.rating_average = 0;
       this.meliModelService.getSingleMeliItemOpinion(this.resultsEntity.id, this.typeItem);
     }
   }
