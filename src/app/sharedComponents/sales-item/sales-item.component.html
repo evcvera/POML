@@ -1,5 +1,5 @@
 <div class="item-container" [ngClass]="resultsEntity.isCart ? 'cart-icon-active' : ''">
-  <div class="d-flex" [ngClass]="resultsEntity.isFavourite ? 'heart-icon-active' : ''" >
+  <div class="d-flex" [ngClass]="resultsEntity.isFavourite ? 'heart-icon-active' : ''">
     <!--Image-->
     <div class="image-container">
       <a [href]="resultsEntity.permalink" target="_blank" style="text-decoration: none">
@@ -113,13 +113,17 @@
         </div>
       </div>
     </div>
-    <div class="heart-container" (click)="activeFavorites(resultsEntity.id)">
-      <i class="fas fa-heart heart-icon"></i>
-    </div>
+    <ng-container *ngIf="editFavourite">
+      <div class="heart-container" (click)="activeFavorites(resultsEntity.id)">
+        <i class="fas fa-heart heart-icon"></i>
+      </div>
+    </ng-container>
   </div>
-  <div class="w-100">
-    <div class="cart-container" (click)="activeCart(resultsEntity.id)">
-      <i class="fas fa-shopping-cart cart-icon heart-icon "></i>
+  <ng-container *ngIf="editCart">
+    <div class="w-100">
+      <div class="cart-container" (click)="activeCart(resultsEntity.id)">
+        <i class="fas fa-shopping-cart cart-icon heart-icon "></i>
+      </div>
     </div>
-  </div>
+  </ng-container>
 </div>
