@@ -27,11 +27,20 @@ export class SalesComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
     this.searchSubscription = this.userDataModelService.searchData$.subscribe((resp) => {
-      if (resp !== '' && !(this.meliModelService.searchMeliData$?.value?.query === resp)) {
+      if (resp) {
         this.meliModelService.meliSearch(resp, this.userDataModelService.pageNumber$.value);
       }
     });
   }
+
+/*  ngOnInit(): void {
+    this.innerWidth = window.innerWidth;
+    this.searchSubscription = this.userDataModelService.searchData$.subscribe((resp) => {
+      if (resp !== '' && !(this.meliModelService.searchMeliData$?.value?.query === resp)) {
+        this.meliModelService.meliSearch(resp, this.userDataModelService.pageNumber$.value);
+      }
+    });
+  }*/
 
   ngOnDestroy(): void {
     if (this.searchSubscription) {
