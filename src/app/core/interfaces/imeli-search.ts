@@ -63,6 +63,7 @@ export interface ResultsEntity {
   pictures?: string[];
   rating_average?: number;
   isFavourite?: boolean;
+  isCart?: boolean;
 }
 
 export interface Variation {

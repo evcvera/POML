@@ -40,7 +40,6 @@ export class FavouritesModelServiceService {
       this.favouritesMeliItems$.value.forEach((x, index) => {
         if (index < 20) {
           auxIds += x + ',';
-          console.log(auxIds);
         }
       });
     }
@@ -56,6 +55,11 @@ export class FavouritesModelServiceService {
             if (this.favouritesMeliItems$.value && this.favouritesMeliItems$.value !== []) {
               x.body.isFavourite = this.favouritesMeliItems$.value.some(r => r === x.body.id);
             }
+
+            if (this.favouritesMeliItems$.value && this.favouritesMeliItems$.value !== []) {
+              x.body.isFavourite = this.favouritesMeliItems$.value.some(r => r === x.body.id);
+            }
+
           });
           const isClassified = this.favouritesMeliData$.value.meliFavouriteItem.find(x => x.body.buying_mode !== 'classified');
           this.favouritesMeliData$.value.classified = !isClassified;

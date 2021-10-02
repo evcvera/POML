@@ -2,15 +2,16 @@
   <app-sales-meli-header></app-sales-meli-header>
   <h1 class="py-3 pt-5 mx-1">Favoritos</h1>
   <a routerLink="/sales">
-    <button>regresar</button>
+    <i class="fas fa-arrow-left return-arrow"></i>
+    <!--<button>regresar</button>-->
   </a>
-  <ng-container *ngIf="(favouritesModelServiceService.favouritesMeliItems$ | async) as items">
+<!--  <ng-container *ngIf="(favouritesModelServiceService.favouritesMeliItems$ | async) as items">
     <ng-container *ngFor="let item of items">
       <div>
         {{item | json}}
       </div>
     </ng-container>
-  </ng-container>
+  </ng-container>-->
   <ng-container *ngIf="(favouritesModelServiceService.favouritesMeliData$ | async) as meli">
     <ng-container *ngIf="!meli.classified">
       <div *ngFor="let item of meli?.meliFavouriteItem; let first = first ;let last = last" class="general-font-family">

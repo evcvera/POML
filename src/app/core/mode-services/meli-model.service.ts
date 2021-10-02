@@ -8,6 +8,7 @@ import {IMeliSingleItem} from '../interfaces/imeli-single-item';
 import {concatMap} from 'rxjs/operators';
 import {IMeliItemOpinion} from '../interfaces/imeli-item-opinion';
 import {FavouritesModelServiceService} from './favourites-model-service.service';
+import {CartModelService} from './cart-model.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ import {FavouritesModelServiceService} from './favourites-model-service.service'
 export class MeliModelService {
 
   constructor(private http: HttpClient,
-              private favouritesModelServiceService: FavouritesModelServiceService) {
+              private favouritesModelServiceService: FavouritesModelServiceService,
+              private cartModelService: CartModelService) {
   }
 
   searchMeliData$: BehaviorSubject<IMeliSearch> = new BehaviorSubject<IMeliSearch>(undefined);
@@ -54,6 +56,9 @@ export class MeliModelService {
 
         if (this.favouritesModelServiceService.favouritesMeliItems$.value && this.favouritesModelServiceService.favouritesMeliItems$.value !== []) {
           x.isFavourite = this.favouritesModelServiceService.favouritesMeliItems$.value.some(r => r === x.id);
+        }
+        if (this.cartModelService.cartMeliItems$.value && this.cartModelService.cartMeliItems$.value !== []) {
+          x.isCart = this.cartModelService.cartMeliItems$.value.some(r => r === x.id);
         }
       });
       const isClassified = respAux.results.find(x => x.buying_mode !== 'classified');
@@ -137,7 +142,7 @@ export class MeliModelService {
   getSingleMeliItemOpinionObservable(id: string): Observable<number> {
     return new Observable<number>((resp) => {
       this.http.get(`${environment.api.meli}/reviews/item/${id}`).subscribe((respQ: IMeliItemOpinion) => {
-        console.log(respQ);
+        //console.log(respQ);
         resp.next(respQ.rating_average);
       });
     });
@@ -154,11 +159,13 @@ export class MeliModelService {
           break;
         }
         case 'favourite': {
-          const index = this.favouritesModelServiceService.favouritesMeliData$.value.meliFavouriteItem.findIndex(x => x.body.id === id);
-          if (index !== -1) {
-            this.favouritesModelServiceService.favouritesMeliData$.value.meliFavouriteItem[index].body.rating_average = resp;
+          if (this.favouritesModelServiceService.favouritesMeliData$.value?.meliFavouriteItem !== undefined) {
+            const index = this.favouritesModelServiceService.favouritesMeliData$.value.meliFavouriteItem.findIndex(x => x.body.id === id);
+            if (index !== -1) {
+              this.favouritesModelServiceService.favouritesMeliData$.value.meliFavouriteItem[index].body.rating_average = resp;
+            }
+            break;
           }
-          break;
         }
       }
     });

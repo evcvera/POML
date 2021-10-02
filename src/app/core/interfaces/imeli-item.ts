@@ -59,6 +59,7 @@ export interface Body {
   catalog_listing: boolean;
   channels: string[];
   isFavourite?: boolean;
+  isCart?: boolean;
   rating_average?: number;
 }
 

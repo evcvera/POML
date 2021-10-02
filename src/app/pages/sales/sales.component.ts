@@ -14,6 +14,7 @@ export class SalesComponent implements OnInit, OnDestroy {
   search = '';
   public innerWidth: any;
   public searchSubscription: Subscription;
+  public pageNumberSubscription: Subscription;
 
   public get tabletOrLess(): boolean {
     return this.innerWidth <= 991;
@@ -27,24 +28,33 @@ export class SalesComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
     this.searchSubscription = this.userDataModelService.searchData$.subscribe((resp) => {
-      if (resp) {
+      if (resp && resp !== this.meliModelService.searchMeliData$?.value?.query) {
         this.meliModelService.meliSearch(resp, this.userDataModelService.pageNumber$.value);
+      }
+    });
+    this.pageNumberSubscription = this.userDataModelService.pageNumber$.subscribe(resp => {
+      console.log(resp);
+      if (resp && resp !== (this.meliModelService.searchMeliData$.value.paging.offset / 50)) {
+        this.meliModelService.meliSearch(this.userDataModelService.searchData$.value, resp);
       }
     });
   }
 
-/*  ngOnInit(): void {
-    this.innerWidth = window.innerWidth;
-    this.searchSubscription = this.userDataModelService.searchData$.subscribe((resp) => {
-      if (resp !== '' && !(this.meliModelService.searchMeliData$?.value?.query === resp)) {
-        this.meliModelService.meliSearch(resp, this.userDataModelService.pageNumber$.value);
-      }
-    });
-  }*/
+  /*  ngOnInit(): void {
+      this.innerWidth = window.innerWidth;
+      this.searchSubscription = this.userDataModelService.searchData$.subscribe((resp) => {
+        if (resp !== '' && !(this.meliModelService.searchMeliData$?.value?.query === resp)) {
+          this.meliModelService.meliSearch(resp, this.userDataModelService.pageNumber$.value);
+        }
+      });
+    }*/
 
   ngOnDestroy(): void {
     if (this.searchSubscription) {
       this.searchSubscription.unsubscribe();
+    }
+    if (this.pageNumberSubscription) {
+      this.pageNumberSubscription.unsubscribe();
     }
   }
 
