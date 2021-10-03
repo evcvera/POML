@@ -32,7 +32,6 @@ import { SalesZipCodeModalComponent } from './pages/sales/components/sales-zip-c
 import { SalesMeliHeaderComponent } from './sharedComponents/sales-meli-header/sales-meli-header.component';
 import { StarRatingComponent } from './sharedComponents/star-rating/star-rating.component';
 import { SalesFavouritesComponent } from './pages/sales-favourites/sales-favourites.component';
-import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 import { ZipCodeModalMobileComponent } from './sharedComponents/zip-code-modal-mobile/zip-code-modal-mobile.component';
 
 @NgModule({
@@ -59,7 +58,6 @@ import { ZipCodeModalMobileComponent } from './sharedComponents/zip-code-modal-m
     SalesMeliHeaderComponent,
     StarRatingComponent,
     SalesFavouritesComponent,
-    ShoppingCartComponent,
     ZipCodeModalMobileComponent
   ],
   imports: [

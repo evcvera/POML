@@ -34,7 +34,7 @@
     <ng-container *ngIf="!meli.classified">
       <div *ngFor="let item of meli?.results; let first = first ;let last = last" class="general-font-family">
         <div class="meli-card" [ngClass]="first ? 'item-first' : last ? 'item-last' : ''">
-          <app-sales-item [resultsEntity]="item" [typeItem]="'search'" [editCart]="true" [editFavourite]="true"></app-sales-item>
+          <app-sales-item [resultsEntity]="item" [typeItem]="'search'"></app-sales-item>
         </div>
       </div>
     </ng-container>

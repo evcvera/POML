@@ -3,7 +3,6 @@ import {MeliModelService} from '../../core/mode-services/meli-model.service';
 import {ResultsEntity} from '../../core/interfaces/imeli-search';
 import {Subscription} from 'rxjs';
 import {FavouritesModelServiceService} from '../../core/mode-services/favourites-model-service.service';
-import {CartModelService} from '../../core/mode-services/cart-model.service';
 
 @Component({
   selector: 'app-sales-item',
@@ -15,8 +14,6 @@ export class SalesItemComponent implements OnInit {
   @Input() isClassified: boolean;
   @Input() resultsEntity: ResultsEntity;
   @Input() typeItem: string;
-  @Input() editFavourite: boolean;
-  @Input() editCart: boolean;
 
   private _resultsEntity: ResultsEntity;
   public activeHeart = false;
@@ -41,8 +38,7 @@ export class SalesItemComponent implements OnInit {
 
 
   constructor(public meliModelService: MeliModelService,
-              public favouritesModelServiceService: FavouritesModelServiceService,
-              public cartModelService: CartModelService) {
+              public favouritesModelServiceService: FavouritesModelServiceService) {
   }
 
   ngOnInit(): void {
@@ -151,17 +147,5 @@ export class SalesItemComponent implements OnInit {
       }
     }
     this.favouritesModelServiceService.upSertFavouriteItem(id, this.resultsEntity.isFavourite);
-  }
-
-  activeCart(id: string): void {
-    this.resultsEntity.isCart = !this.resultsEntity.isCart;
-
-    if (this.meliModelService.searchMeliData$.value) {
-      const searchIndex = this.meliModelService.searchMeliData$.value.results.findIndex(x => x.id === id);
-      if (searchIndex > -1) {
-        this.meliModelService.searchMeliData$.value.results[searchIndex].isCart = this.resultsEntity.isCart;
-      }
-    }
-    this.cartModelService.upSertCartItem(id, this.resultsEntity.isCart);
   }
 }

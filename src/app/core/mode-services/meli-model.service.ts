@@ -8,7 +8,6 @@ import {IMeliSingleItem} from '../interfaces/imeli-single-item';
 import {concatMap} from 'rxjs/operators';
 import {IMeliItemOpinion} from '../interfaces/imeli-item-opinion';
 import {FavouritesModelServiceService} from './favourites-model-service.service';
-import {CartModelService} from './cart-model.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +15,7 @@ import {CartModelService} from './cart-model.service';
 export class MeliModelService {
 
   constructor(private http: HttpClient,
-              private favouritesModelServiceService: FavouritesModelServiceService,
-              private cartModelService: CartModelService) {
+              private favouritesModelServiceService: FavouritesModelServiceService) {
   }
 
   searchMeliData$: BehaviorSubject<IMeliSearch> = new BehaviorSubject<IMeliSearch>(undefined);
@@ -56,9 +54,6 @@ export class MeliModelService {
 
         if (this.favouritesModelServiceService.favouritesMeliItems$.value && this.favouritesModelServiceService.favouritesMeliItems$.value !== []) {
           x.isFavourite = this.favouritesModelServiceService.favouritesMeliItems$.value.some(r => r === x.id);
-        }
-        if (this.cartModelService.cartMeliItems$.value && this.cartModelService.cartMeliItems$.value !== []) {
-          x.isCart = this.cartModelService.cartMeliItems$.value.some(r => r === x.id);
         }
       });
       const isClassified = respAux.results.find(x => x.buying_mode !== 'classified');

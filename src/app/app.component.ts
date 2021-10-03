@@ -6,7 +6,6 @@ import {MeliModelService} from './core/mode-services/meli-model.service';
 import {ISideBarForm} from './core/interfaces/iside-bar-form';
 import {IMeliZipCode} from './core/interfaces/imeli-zip-code';
 import {FavouritesModelServiceService} from './core/mode-services/favourites-model-service.service';
-import {CartModelService} from './core/mode-services/cart-model.service';
 
 @Component({
   selector: 'app-root',
@@ -20,8 +19,7 @@ export class AppComponent implements OnInit {
   constructor(private casaModelService: CasaModelService,
               private userDataModelService: UserDataModelService,
               private meliModelService: MeliModelService,
-              private favouritesModelServiceService: FavouritesModelServiceService,
-              private cartModelService: CartModelService) {
+              private favouritesModelServiceService: FavouritesModelServiceService) {
   }
 
   ngOnInit(): void {
@@ -51,12 +49,6 @@ export class AppComponent implements OnInit {
     if (favouriteItems !== null && favouriteItems !== []) {
       this.favouritesModelServiceService.favouritesMeliItems$.next(favouriteItems);
       console.log(favouriteItems);
-    }
-
-    const cartItems: string[] = JSON.parse(localStorage.getItem('cartItems'));
-    if (cartItems !== null && cartItems !== []) {
-      this.cartModelService.cartMeliItems$.next(cartItems);
-      console.log(cartItems);
     }
     console.log('SOY APP COMPONENT PAPU');
   }
