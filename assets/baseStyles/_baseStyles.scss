@@ -6,6 +6,10 @@
 @import '~material-icons/iconfont/material-icons.scss';
 @import "~bootstrap/dist/css/bootstrap.css";
 
+.general-font-family {
+  font-family: Proxima Nova, -apple-system, Helvetica Neue, Helvetica, Roboto, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
 
 .ln-card {
   border-radius: 0.8rem;
