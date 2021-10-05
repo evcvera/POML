@@ -3,6 +3,7 @@ import {IMeliSearch, ResultsEntity} from '../../core/interfaces/imeli-search';
 import {MeliModelService} from '../../core/mode-services/meli-model.service';
 import {UserDataModelService} from '../../core/mode-services/user-data-model.service';
 import {Router} from '@angular/router';
+import {FavouritesModelServiceService} from '../../core/mode-services/favourites-model-service.service';
 
 @Component({
   selector: 'app-sales-item-classified',
@@ -31,6 +32,21 @@ export class SalesItemClassifiedComponent implements OnInit {
     get resultsEntity(): ResultsEntity {
       return this._resultsEntity;
     }*/
+
+
+  constructor(public meliModelService: MeliModelService,
+              public favouritesModelServiceService: FavouritesModelServiceService) {
+  }
+
+  ngOnInit(): void {
+    this.typeOfCurrency = this.getTypeOfCurrency();
+    this.surface = this.getSurface();
+    this.attributesCar = this.getAttributesCar();
+    this.operationPropertyType = this.getOperationPropertyType();
+    this.currentPrice = this.getCurrentPrice();
+    this.location = this.getLocation();
+    this.locationCar = this.getLocationCar();
+  }
 
   getTypeOfCurrency(): string {
     if (this.resultsEntity.currency_id) {
@@ -174,21 +190,20 @@ export class SalesItemClassifiedComponent implements OnInit {
     this.meliModelService.getImages(id);
   }
 
-  activeFavorites(): void {
+  /*activeFavorites(): void {
     this.activeHeart = !this.activeHeart;
-  }
+  }*/
 
-  constructor(public meliModelService: MeliModelService) {
-  }
+  activeFavorites(id: string): void {
+    this.resultsEntity.isFavourite = !this.resultsEntity.isFavourite;
 
-  ngOnInit(): void {
-    this.typeOfCurrency = this.getTypeOfCurrency();
-    this.surface = this.getSurface();
-    this.attributesCar = this.getAttributesCar();
-    this.operationPropertyType = this.getOperationPropertyType();
-    this.currentPrice = this.getCurrentPrice();
-    this.location = this.getLocation();
-    this.locationCar = this.getLocationCar();
+    if (this.meliModelService.searchMeliData$.value) {
+      const searchIndex = this.meliModelService.searchMeliData$.value.results.findIndex(x => x.id === id);
+      if (searchIndex > -1) {
+        this.meliModelService.searchMeliData$.value.results[searchIndex].isFavourite = this.resultsEntity.isFavourite;
+      }
+    }
+    this.favouritesModelServiceService.upSertFavouriteItem(id, this.resultsEntity.isFavourite);
   }
 
 }

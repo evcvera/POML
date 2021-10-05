@@ -49,8 +49,8 @@ export class SideBarFormComponent implements OnInit {
     this.sideBarForm.dailyHours = this.form.get('weeklyHours').value;
     this.sideBarForm.isDepenRelationship = JSON.parse(this.form.get('isDepenRelationship').value);
     this.sideBarForm.isPercent = JSON.parse(this.form.get('isPercent').value);
-    this.sideBarForm.savingCapacity = this.form.get('savingCapacity').value;
-    //this.sideBarForm.savingCapacity = this.form.get('isPercent').value ? (this.form.get('savingCapacity').value * this.form.get('salary').value) / 100 : this.form.get('savingCapacity').value;
+    //this.sideBarForm.savingCapacity = this.form.get('savingCapacity').value;
+    this.sideBarForm.savingCapacity = this.form.get('isPercent').value ? (this.form.get('savingCapacity').value * this.form.get('salary').value) / 100 : this.form.get('savingCapacity').value;
     event.preventDefault();
     if (this.form.valid) {
       this.userDataModelService.userData$.next(this.sideBarForm);

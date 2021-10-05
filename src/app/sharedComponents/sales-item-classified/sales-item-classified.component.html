@@ -1,7 +1,7 @@
 <div class="mb-4 item-container">
   <div class="img-container">
-    <div [ngClass]="activeHeart ? 'heart-icon-active' : ''">
-      <div class="heart-container"  (click)="activeFavorites()">
+    <div [ngClass]="resultsEntity.isFavourite ? 'heart-icon-active' : ''">
+      <div class="heart-container"  (click)="activeFavorites(resultsEntity.id)">
         <i class="fas fa-heart heart-icon"></i>
       </div>
       <img *ngIf="!isCarousel" class="image-size" [src]="resultsEntity.pictures[0]" width="284" height="213"

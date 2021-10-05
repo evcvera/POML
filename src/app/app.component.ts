@@ -33,6 +33,7 @@ export class AppComponent implements OnInit {
       cacheUserData.isDepenRelationship = cacheUserData.isDepenRelationship === 'true';
       cacheUserData.isDollar = cacheUserData.isDollar === 'true';
       cacheUserData.isPercent = cacheUserData.isPercent === 'true';
+      cacheUserData.savingCapacity = cacheUserData.isPercent ? Math.round(cacheUserData.savingCapacity / cacheUserData.salary) : cacheUserData.savingCapacity;
       this.userDataModelService.userData$.next(cacheUserData);
     }
 
