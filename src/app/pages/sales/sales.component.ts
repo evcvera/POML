@@ -31,11 +31,17 @@ export class SalesComponent implements OnInit, OnDestroy {
       if (resp && resp !== this.meliModelService.searchMeliData$?.value?.query) {
         this.meliModelService.meliSearch(resp, this.userDataModelService.pageNumber$.value);
       }
-    });
+    })  ;
     this.pageNumberSubscription = this.userDataModelService.pageNumber$.subscribe(resp => {
       console.log(resp);
-      if (resp && resp !== (this.meliModelService.searchMeliData$.value.paging.offset / 50)) {
-        this.meliModelService.meliSearch(this.userDataModelService.searchData$.value, resp);
+      if (this.meliModelService.searchByInput$.value) {
+        if (resp && resp !== (this.meliModelService.searchMeliData$.value.paging.offset / 50)) {
+          this.meliModelService.meliSearch(this.userDataModelService.searchData$.value, resp);
+        }
+      } else {
+        if (resp && resp !== (this.meliModelService.searchMeliData$.value.paging.offset / 50)) {
+          this.meliModelService.meliSearch(this.userDataModelService.searchDataByCategory$.value, resp);
+        }
       }
     });
   }
@@ -60,6 +66,7 @@ export class SalesComponent implements OnInit, OnDestroy {
 
   keyPress($event: KeyboardEvent): void {
     if ($event.key === 'Enter' && this.search !== '') {
+      this.meliModelService.searchByInput$.next(true);
       this.userDataModelService.pageNumber$.next(0);
       this.userDataModelService.searchData$.next(this.search);
       this.router.navigate(['sales']);

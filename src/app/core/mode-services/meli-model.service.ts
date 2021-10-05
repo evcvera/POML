@@ -19,8 +19,10 @@ export class MeliModelService {
   }
 
   searchMeliData$: BehaviorSubject<IMeliSearch> = new BehaviorSubject<IMeliSearch>(undefined);
+
   zipCodeData$: BehaviorSubject<IMeliZipCode> = new BehaviorSubject<IMeliZipCode>(undefined);
   favouritesItems$: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
+  searchByInput$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   searchSubscription: Subscription;
   zipCodeSubscription: Subscription;
   getImagesSingleItem: Subscription;
@@ -30,7 +32,6 @@ export class MeliModelService {
 
 
   meliSearch(search: string, pageNumber: number, sortPage = 'relevance'): any {
-
     /*********************** ZIP CODE **************************/
     let zipCode = '';
     if (this.zipCodeData$.value) {
@@ -40,28 +41,36 @@ export class MeliModelService {
       zipCode = this.defaultZipCode;
     }
     /*********************** ZIP CODE **************************/
-
     this.unSubscribe();
 
-    this.searchSubscription = this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}&offset=${pageNumber * 50}&limit=50&zip_code=${zipCode}&sort=${sortPage}`).subscribe((resp: any) => {
-      const respAux: IMeliSearch = resp;
-      respAux.itemIds = [];
-      console.log(resp);
-      respAux.results.forEach((x) => {
-        x.thumbnail = x.thumbnail.replace('-I.jpg', '-O.jpg');
-        x.pictures = [x.thumbnail];
-        respAux.itemIds.push(x.id);
-
-        if (this.favouritesModelServiceService.favouritesMeliItems$.value && this.favouritesModelServiceService.favouritesMeliItems$.value !== []) {
-          x.isFavourite = this.favouritesModelServiceService.favouritesMeliItems$.value.some(r => r === x.id);
-        }
+    if (this.searchByInput$.value) {
+      this.searchSubscription = this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}&offset=${pageNumber * 50}&limit=50&zip_code=${zipCode}&sort=${sortPage}`).subscribe((resp: any) => {
+        this.setSearchResp(resp);
       });
-      const isClassified = respAux.results.find(x => x.buying_mode !== 'classified');
-      respAux.classified = !isClassified;
+    } else {
+      this.searchSubscription = this.http.get(`${environment.api.meli}/sites/MLA/search?category=${search}&offset=${pageNumber * 50}&limit=50&zip_code=${zipCode}&sort=${sortPage}`).subscribe((resp: any) => {
+        this.setSearchResp(resp);
+      });
+    }
+  }
 
-      this.searchMeliData$.next(respAux);
-      //this.getOpinionsRating(respAux.itemIds);
+  setSearchResp(resp: any): void {
+    const respAux: IMeliSearch = resp;
+    respAux.itemIds = [];
+    console.log(resp);
+    respAux.results.forEach((x) => {
+      x.thumbnail = x.thumbnail.replace('-I.jpg', '-O.jpg');
+      x.pictures = [x.thumbnail];
+      respAux.itemIds.push(x.id);
+      if (this.favouritesModelServiceService.favouritesMeliItems$.value && this.favouritesModelServiceService.favouritesMeliItems$.value !== []) {
+        x.isFavourite = this.favouritesModelServiceService.favouritesMeliItems$.value.some(r => r === x.id);
+      }
     });
+    const isClassified = respAux.results.find(x => x.buying_mode !== 'classified');
+    respAux.classified = !isClassified;
+
+    this.searchMeliData$.next(respAux);
+    //this.getOpinionsRating(respAux.itemIds);
   }
 
   async getZipcode(zipCode: string): Promise<boolean> {
@@ -134,11 +143,11 @@ export class MeliModelService {
   /***************************** GET RATING AND OPINIONS ***************************************/
 
 
-  getSingleMeliItemOpinionObservable(id: string): Observable<number> {
-    return new Observable<number>((resp) => {
+  getSingleMeliItemOpinionObservable(id: string): Observable<IMeliItemOpinion> {
+    return new Observable<IMeliItemOpinion>((resp) => {
       this.http.get(`${environment.api.meli}/reviews/item/${id}`).subscribe((respQ: IMeliItemOpinion) => {
         //console.log(respQ);
-        resp.next(respQ.rating_average);
+        resp.next(respQ);
       });
     });
   }
@@ -149,7 +158,8 @@ export class MeliModelService {
         case 'search': {
           const index = this.searchMeliData$.value.results.findIndex(x => x.id === id);
           if (index !== -1) {
-            this.searchMeliData$.value.results[index].rating_average = resp;
+            this.searchMeliData$.value.results[index].rating_average = resp.rating_average;
+            this.searchMeliData$.value.results[index].comments_count = resp.paging.total;
           }
           break;
         }
@@ -157,7 +167,8 @@ export class MeliModelService {
           if (this.favouritesModelServiceService.favouritesMeliData$.value?.meliFavouriteItem !== undefined) {
             const index = this.favouritesModelServiceService.favouritesMeliData$.value.meliFavouriteItem.findIndex(x => x.body.id === id);
             if (index !== -1) {
-              this.favouritesModelServiceService.favouritesMeliData$.value.meliFavouriteItem[index].body.rating_average = resp;
+              this.favouritesModelServiceService.favouritesMeliData$.value.meliFavouriteItem[index].body.rating_average = resp.rating_average;
+              this.favouritesModelServiceService.favouritesMeliData$.value.meliFavouriteItem[index].body.comments_count = resp.paging.total;
             }
             break;
           }

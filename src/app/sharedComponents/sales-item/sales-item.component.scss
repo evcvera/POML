@@ -201,6 +201,12 @@
   display: none;
 }
 
+.comments-count{
+  margin-left: 4px;
+  color: #333;
+  font-size: 13px;
+}
+
 @media (min-width: 576px) {
 }
 
@@ -272,6 +278,13 @@
   }
   .heart-icon {
     -webkit-text-stroke: 1px #3483fa;
+  }
+
+  .comments-count{
+    color: #999;
+    font-size: 12px;
+    margin-left: 2px;
+    font-weight: 300;
   }
 }
 

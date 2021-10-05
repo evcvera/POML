@@ -44,7 +44,7 @@ export class SalesContainerComponent implements OnInit {
   constructor(public meliModelService: MeliModelService,
               public userDataModelService: UserDataModelService,
               private router: Router,
-              private modalService: NgbModal ) {
+              private modalService: NgbModal) {
   }
 
   ngOnInit(): void {
@@ -59,4 +59,12 @@ export class SalesContainerComponent implements OnInit {
       order);
   }
 
+  searchByCategory(categoryId: string): void {
+    this.meliModelService.searchByInput$.next(false);
+    this.userDataModelService.pageNumber$.next(0);
+    this.userDataModelService.searchDataByCategory$.next(categoryId);
+    this.userDataModelService.searchData$.next(categoryId);
+    /*this.meliModelService.meliSearch(this.userDataModelService.searchDataByCategory$.value,
+      this.userDataModelService.pageNumber$.value);*/
+  }
 }

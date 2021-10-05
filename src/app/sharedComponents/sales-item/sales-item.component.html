@@ -79,7 +79,7 @@
                   [ngClass]="remainingDays > 0 && remainingDays < 2
              ? 'remaining-one-day' : ''">
        {{remainingDays > 0 && remainingDays < 2 ? 'Queda' : 'Quedan'}}
-              {{remainingDays.toFixed(0) === '0' ? '1' : remainingDays.toFixed(0)}}
+              {{remainingDays > 0 && remainingDays < 2 ? '1' : remainingDays.toFixed(0)}}
               {{remainingDays > 0 && remainingDays < 2 ? 'día' : 'días'}}
     </span>
           </div>
@@ -107,6 +107,7 @@
           <app-star-rating [rating]="resultsEntity.rating_average"
                            ngbPopover="Rating: {{resultsEntity.rating_average}}"
                            [openDelay]="200" [closeDelay]="200" triggers="mouseenter:mouseleave"></app-star-rating>
+          <span class="comments-count">{{resultsEntity.comments_count}}</span>
           <!--<small>{{resultsEntity.rating_average}}</small>-->
         </div>
       </div>

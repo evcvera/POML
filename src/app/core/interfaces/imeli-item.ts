@@ -60,6 +60,7 @@ export interface Body {
   channels: string[];
   isFavourite?: boolean;
   rating_average?: number;
+  comments_count?: number;
 }
 
 export interface Variation {

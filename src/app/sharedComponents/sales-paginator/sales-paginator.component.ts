@@ -19,7 +19,7 @@ export class SalesPaginatorComponent implements OnInit {
   nextPage(position: number): void {
     if (this.userDataModelService.pageNumber$.value + position >= 0) {
       this.userDataModelService.pageNumber$.next(this.userDataModelService.pageNumber$.value + position);
-      this.userDataModelService.searchData$.next(this.userDataModelService.searchData$.value);
+      //this.userDataModelService.searchData$.next(this.userDataModelService.searchData$.value);
     }
   }
 }

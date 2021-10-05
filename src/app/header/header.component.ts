@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserDataModelService} from '../core/mode-services/user-data-model.service';
 import {Router} from '@angular/router';
+import {MeliModelService} from '../core/mode-services/meli-model.service';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +11,7 @@ import {Router} from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   constructor(public userDataModelService: UserDataModelService,
+              public meliModelService: MeliModelService,
               private router: Router) {
   }
 
@@ -29,6 +31,7 @@ export class HeaderComponent implements OnInit {
 
   keyPress($event: KeyboardEvent): void {
     if ($event.key === 'Enter' && this.search !== '') {
+      this.meliModelService.searchByInput$.next(true);
       this.userDataModelService.pageNumber$.next(0);
       this.userDataModelService.searchData$.next(this.search);
       this.router.navigate(['sales']);
