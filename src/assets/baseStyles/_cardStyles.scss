@@ -1,0 +1,13 @@
+.card-img-top{
+  border-radius: 5px 5px 0 0;
+}
+//0 0 0 1px rgb(0 0 0 / 8%),
+.card-body{
+  box-shadow: 1px 0 1px -1px rgb(0 0 0 / 8%),
+  0 1px 1px -1px rgb(0 0 0 / 8%),
+  -1px 0 1px -1px rgb(0 0 0 / 8%)
+}
+
+.card{
+  border: 0;
+}

@@ -30,11 +30,11 @@ export class SideBarFormComponent implements OnInit {
     this.form = this.formBuilder.group({
       birthday: [`${this.cacheUserData?.birthday !== undefined ? this.cacheUserData.birthday : ''}`, [Validators.required]],
       gender: [`${this.cacheUserData?.gender !== undefined ? this.cacheUserData.gender : ''}`, [Validators.required]],
-      isDollar: [`${this.cacheUserData?.isDollar !== undefined ? this.cacheUserData.isDollar === 'true' : ''}`, [Validators.required]],
+      isDollar: [`${this.cacheUserData?.isDollar !== undefined ? this.cacheUserData.isDollar : ''}`, [Validators.required]],
       salary: [`${this.cacheUserData?.salary !== undefined ? this.cacheUserData.salary : ''}`, [Validators.required]],
       weeklyHours: [`${this.cacheUserData?.dailyHours !== undefined ? this.cacheUserData.dailyHours : ''}`, [Validators.required]],
-      isDepenRelationship: [`${this.cacheUserData?.isDepenRelationship !== undefined ? this.cacheUserData.isDepenRelationship === 'true' : ''}`, [Validators.required]],
-      isPercent: [`${this.cacheUserData?.isPercent !== undefined ? this.cacheUserData.isPercent === 'true' : ''}`, [Validators.required]],
+      isDepenRelationship: [`${this.cacheUserData?.isDepenRelationship !== undefined ? this.cacheUserData.isDepenRelationship : ''}`, [Validators.required]],
+      isPercent: [`${this.cacheUserData?.isPercent !== undefined ? this.cacheUserData.isPercent : ''}`, [Validators.required]],
       savingCapacity: [`${this.cacheUserData?.savingCapacity !== undefined ? this.cacheUserData.savingCapacity : ''}`, [Validators.required]]
     });
   }
@@ -49,8 +49,8 @@ export class SideBarFormComponent implements OnInit {
     this.sideBarForm.dailyHours = this.form.get('weeklyHours').value;
     this.sideBarForm.isDepenRelationship = JSON.parse(this.form.get('isDepenRelationship').value);
     this.sideBarForm.isPercent = JSON.parse(this.form.get('isPercent').value);
-    //this.sideBarForm.savingCapacity = this.form.get('savingCapacity').value;
-    this.sideBarForm.savingCapacity = this.form.get('isPercent').value ? (this.form.get('savingCapacity').value * this.form.get('salary').value) / 100 : this.form.get('savingCapacity').value;
+    this.sideBarForm.savingCapacity = this.form.get('savingCapacity').value;
+    //this.sideBarForm.savingCapacity = this.form.get('isPercent').value ? (this.form.get('savingCapacity').value * this.form.get('salary').value) / 100 : this.form.get('savingCapacity').value;
     event.preventDefault();
     if (this.form.valid) {
       this.userDataModelService.userData$.next(this.sideBarForm);

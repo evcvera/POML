@@ -33,6 +33,7 @@ import { SalesMeliHeaderComponent } from './sharedComponents/sales-meli-header/s
 import { StarRatingComponent } from './sharedComponents/star-rating/star-rating.component';
 import { SalesFavouritesComponent } from './pages/sales-favourites/sales-favourites.component';
 import { ZipCodeModalMobileComponent } from './sharedComponents/zip-code-modal-mobile/zip-code-modal-mobile.component';
+import { PriceDolarPesoComponent } from './pages/metrics/components/price-dolar-peso/price-dolar-peso.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { ZipCodeModalMobileComponent } from './sharedComponents/zip-code-modal-m
     SalesMeliHeaderComponent,
     StarRatingComponent,
     SalesFavouritesComponent,
-    ZipCodeModalMobileComponent
+    ZipCodeModalMobileComponent,
+    PriceDolarPesoComponent
   ],
   imports: [
     BrowserModule,
