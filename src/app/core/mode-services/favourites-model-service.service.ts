@@ -14,14 +14,16 @@ export class FavouritesModelServiceService {
 
   favouritesMeliItems$: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
   favouritesMeliData$: BehaviorSubject<IMeliFavouriteItems> = new BehaviorSubject<IMeliFavouriteItems>({});
-  searchFavouritesSubscription: Subscription;
+  forkJoinSubscription: Subscription;
 
   constructor(private http: HttpClient) {
   }
 
   upSertFavouriteItem(id: string, addItem: boolean): void {
     if (addItem) {
-      this.favouritesMeliItems$.value.push(id);
+      if (!this.favouritesMeliItems$.value.find(x => x === id)) {
+        this.favouritesMeliItems$.value.push(id);
+      }
     } else {
       const index = this.favouritesMeliItems$.value.findIndex(x => x === id);
       if (index > -1) {
@@ -31,78 +33,45 @@ export class FavouritesModelServiceService {
     localStorage.setItem('favouriteItems', JSON.stringify(this.favouritesMeliItems$.value));
   }
 
-  meliSearchFavourites123(): any {
-    const testAux: string[][] = [];
-    const arrayOfData = [];
-    let auxIds = '';
-    if (this.favouritesMeliItems$.value) {
-      for (let i = 0; i < (this.favouritesMeliItems$.value.length / 20); i++) {
-        const slicedArray = this.favouritesMeliItems$.value.slice(i, 20);
-        testAux.push(slicedArray);
-      }
-    }
-
-    for (let i = 0; i < testAux.length; i++) {
-      auxIds = '';
-      if (this.favouritesMeliData$.value) {
-        testAux[i].forEach((x, index) => {
-          if (index < 20) {
+  async meliSearchFavouritesArrayString(): Promise<string[]> {
+    return new Promise<string[]>(resolve => {
+      const testAux: string[] = [];
+      if (this.favouritesMeliItems$.value) {
+        for (let i = 0; i < (this.favouritesMeliItems$.value.length / 20); i++) {
+          const slicedArray = this.favouritesMeliItems$.value.slice(i * 20, (i + 1) * 20);
+          console.log(slicedArray);
+          let auxIds = '';
+          slicedArray.forEach((x) => {
             auxIds += x + ',';
-          }
-        });
+          });
+          testAux.push(auxIds);
+        }
       }
-      arrayOfData.push(this.getSearchFavourites(auxIds));
-    }
-
-    console.log(testAux);
-
-    console.log('asdadsadsasd');
-    forkJoin(arrayOfData).subscribe(response => {
-      console.log('asdadsadsasd');
-      console.log(response);
-      for (const item in Object.keys(response)) {
-      }
-    }, error => {
-      console.error(error);
-    });
-  }
-
-  getSearchFavourites(ids: string): Observable<IMeliItem[]> {
-    console.log('ids showme');
-    console.log(ids);
-    return new Observable<IMeliItem[]>((resp) => {
-      this.http.get(`${environment.api.meli}/items?ids=${ids}`).subscribe((respQ: IMeliItem[]) => {
-        resp.next(respQ);
-        console.log('getSearchFavourites');
-      });
+      resolve(testAux);
     });
   }
 
   meliSearchFavourites(): any {
-    if (this.searchFavouritesSubscription) {
-      this.searchFavouritesSubscription.unsubscribe();
+    if (this.forkJoinSubscription) {
+      this.forkJoinSubscription.unsubscribe();
     }
 
-    let auxIds = '';
-    if (this.favouritesMeliData$.value) {
-      this.favouritesMeliItems$.value.forEach((x, index) => {
-        if (index < 20) {
-          auxIds += x + ',';
+    const arrayOfObs = [];
+    let favouriteItems: IMeliItem[] = [];
+    this.meliSearchFavouritesArrayString().then(y => {
+      for (let i = 0; i < y.length; i++) {
+        arrayOfObs.push(this.getSearchFavourites(y[i]));
+      }
+
+      this.forkJoinSubscription = forkJoin(arrayOfObs).subscribe((response: IMeliItem[]) => {
+        for (const item of Object.keys(response)) {
+          favouriteItems = favouriteItems.concat(response[item]);
         }
-      });
-    }
-
-    if (auxIds !== '') {
-      this.searchFavouritesSubscription = this.http.get(`${environment.api.meli}/items?ids=${auxIds}`).subscribe((resp: IMeliItem[]) => {
-        if (resp) {
-          this.favouritesMeliData$.next({meliFavouriteItem: resp});
-          console.log(resp);
+        if (favouriteItems) {
+          this.favouritesMeliData$.next({meliFavouriteItem: favouriteItems});
+          console.log(favouriteItems);
           this.favouritesMeliData$.value.meliFavouriteItem.forEach((x) => {
             x.body.thumbnail = x.body.thumbnail.replace('-I.jpg', '-O.jpg');
-
-            if (this.favouritesMeliItems$.value && this.favouritesMeliItems$.value !== []) {
-              x.body.isFavourite = this.favouritesMeliItems$.value.some(r => r === x.body.id);
-            }
 
             if (this.favouritesMeliItems$.value && this.favouritesMeliItems$.value !== []) {
               x.body.isFavourite = this.favouritesMeliItems$.value.some(r => r === x.body.id);
@@ -112,7 +81,14 @@ export class FavouritesModelServiceService {
           const isClassified = this.favouritesMeliData$.value.meliFavouriteItem.find(x => x.body.buying_mode !== 'classified');
           this.favouritesMeliData$.value.classified = !isClassified;
         }
+      }, error => {
+        console.error(error);
       });
-    }
+
+    });
+  }
+
+  public getSearchFavourites(ids: string): any {
+    return this.http.get(`${environment.api.meli}/items?ids=${ids}`);
   }
 }

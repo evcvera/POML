@@ -14,6 +14,7 @@ export class SalesItemComponent implements OnInit {
   @Input() isClassified: boolean;
   @Input() resultsEntity: ResultsEntity;
   @Input() typeItem: string;
+  @Input() opinions: boolean;
 
   private _resultsEntity: ResultsEntity;
   public activeHeart = false;
@@ -49,12 +50,14 @@ export class SalesItemComponent implements OnInit {
     this.typeOfCurrency = this.getTypeOfCurrency();
     this.currentPrice = this.getCurrentPrice();
     this.remainingPromoDays = this.getRemainingPromoDays();
-    if (this.resultsEntity.rating_average === undefined) {
+  }
+
+  imgLoaded(): any{
+    if (this.resultsEntity.rating_average === undefined && this.opinions) {
       this.resultsEntity.rating_average = 0;
       this.meliModelService.getSingleMeliItemOpinion(this.resultsEntity.id, this.typeItem);
     }
   }
-
 
   getRemainingDays(): number {
     if (this.resultsEntity.prices && this.resultsEntity.prices.prices[this.resultsEntity.prices.prices.length - 1].metadata.campaign_end_date) {

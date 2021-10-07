@@ -48,10 +48,11 @@ export class AppComponent implements OnInit {
 
     const favouriteItems: string[] = JSON.parse(localStorage.getItem('favouriteItems'));
     if (favouriteItems !== null && favouriteItems !== []) {
-      this.favouritesModelServiceService.favouritesMeliItems$.next(favouriteItems);
-      console.log(favouriteItems);
+      const result = favouriteItems.filter((item, index) => {
+        return favouriteItems.indexOf(item) === index;
+      });
+      this.favouritesModelServiceService.favouritesMeliItems$.next(result);
     }
-    console.log('SOY APP COMPONENT PAPU');
   }
 
 
