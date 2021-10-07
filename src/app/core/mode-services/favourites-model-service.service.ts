@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Subscription} from 'rxjs';
+import {BehaviorSubject, forkJoin, Observable, Subscription} from 'rxjs';
 import {environment} from '../../../environments/environment.prod';
 import {IMeliSearch} from '../interfaces/imeli-search';
 import {HttpClient} from '@angular/common/http';
 import {IMeliItem} from '../interfaces/imeli-item';
 import {IMeliFavouriteItems} from '../interfaces/imeli-favourite-items';
+import {IMeliItemOpinion} from '../interfaces/imeli-item-opinion';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,53 @@ export class FavouritesModelServiceService {
       }
     }
     localStorage.setItem('favouriteItems', JSON.stringify(this.favouritesMeliItems$.value));
+  }
+
+  meliSearchFavourites123(): any {
+    const testAux: string[][] = [];
+    const arrayOfData = [];
+    let auxIds = '';
+    if (this.favouritesMeliItems$.value) {
+      for (let i = 0; i < (this.favouritesMeliItems$.value.length / 20); i++) {
+        const slicedArray = this.favouritesMeliItems$.value.slice(i, 20);
+        testAux.push(slicedArray);
+      }
+    }
+
+    for (let i = 0; i < testAux.length; i++) {
+      auxIds = '';
+      if (this.favouritesMeliData$.value) {
+        testAux[i].forEach((x, index) => {
+          if (index < 20) {
+            auxIds += x + ',';
+          }
+        });
+      }
+      arrayOfData.push(this.getSearchFavourites(auxIds));
+    }
+
+    console.log(testAux);
+
+    console.log('asdadsadsasd');
+    forkJoin(arrayOfData).subscribe(response => {
+      console.log('asdadsadsasd');
+      console.log(response);
+      for (const item in Object.keys(response)) {
+      }
+    }, error => {
+      console.error(error);
+    });
+  }
+
+  getSearchFavourites(ids: string): Observable<IMeliItem[]> {
+    console.log('ids showme');
+    console.log(ids);
+    return new Observable<IMeliItem[]>((resp) => {
+      this.http.get(`${environment.api.meli}/items?ids=${ids}`).subscribe((respQ: IMeliItem[]) => {
+        resp.next(respQ);
+        console.log('getSearchFavourites');
+      });
+    });
   }
 
   meliSearchFavourites(): any {

@@ -146,7 +146,6 @@ export class MeliModelService {
   getSingleMeliItemOpinionObservable(id: string): Observable<IMeliItemOpinion> {
     return new Observable<IMeliItemOpinion>((resp) => {
       this.http.get(`${environment.api.meli}/reviews/item/${id}`).subscribe((respQ: IMeliItemOpinion) => {
-        //console.log(respQ);
         resp.next(respQ);
       });
     });
