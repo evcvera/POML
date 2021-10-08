@@ -3,16 +3,9 @@
   <h1 class="py-3 pt-5 mx-1">Favoritos</h1>
   <a routerLink="/sales">
     <i class="my-3 ml-3 fas fa-arrow-left return-arrow"></i>
-    <!--<button>regresar</button>-->
   </a>
-<!--  <ng-container *ngIf="(favouritesModelServiceService.favouritesMeliItems$ | async) as items">
-    <ng-container *ngFor="let item of items">
-      <div>
-        {{item | json}}
-      </div>
-    </ng-container>
-  </ng-container>-->
   <ng-container *ngIf="(favouritesModelServiceService.favouritesMeliData$ | async) as meli">
+    <h4 class="mb-3">Monto total {{meli.totalSum | thousandsPipe}} $</h4>
       <div *ngFor="let item of meli?.meliFavouriteItem; let first = first ;let last = last" class="general-font-family">
         <div class="meli-card" [ngClass]="first ? 'item-first' : last ? 'item-last' : ''">
           <app-sales-item [resultsEntity]="item.body" [typeItem]="'favourite'" [opinions]="true"></app-sales-item>

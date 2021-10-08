@@ -70,9 +70,10 @@ export class FavouritesModelServiceService {
         if (favouriteItems) {
           this.favouritesMeliData$.next({meliFavouriteItem: favouriteItems});
           console.log(favouriteItems);
+          this.favouritesMeliData$.value.totalSum = 0;
           this.favouritesMeliData$.value.meliFavouriteItem.forEach((x) => {
             x.body.thumbnail = x.body.thumbnail.replace('-I.jpg', '-O.jpg');
-
+            this.favouritesMeliData$.value.totalSum += x.body.price;
             if (this.favouritesMeliItems$.value && this.favouritesMeliItems$.value !== []) {
               x.body.isFavourite = this.favouritesMeliItems$.value.some(r => r === x.body.id);
             }
