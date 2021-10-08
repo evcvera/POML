@@ -2,7 +2,9 @@
   <app-sales-meli-header></app-sales-meli-header>
   <h1 class="py-3 pt-5 mx-1">Mercado libre api</h1>
   <div *ngIf="tabletOrLess" class="search-container mx-1">
-    <input class="search" placeholder="Buscar productos" [(ngModel)]="search" (keypress)="keyPress($event)" type="text">
+    <form (ngSubmit)="keyPress($event)">
+      <input class="search" placeholder="Buscar productos" [(ngModel)]="search" type="text">
+    </form>
     <div class="search-icon-ln">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" data-supported-dps="16x16" fill="currentColor"
            class="mercado-match" width="16" height="16" focusable="false">
