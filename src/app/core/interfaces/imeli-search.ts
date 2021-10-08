@@ -183,8 +183,19 @@ export interface Prices {
   prices?: (PricesEntity)[] | null;
   presentation: Presentation;
   payment_method_prices?: (null)[] | null;
-  reference_prices?: (null)[] | null;
+  reference_prices?: ReferencePrices[];
   purchase_discounts?: (null)[] | null;
+}
+
+export interface ReferencePrices {
+  id: string;
+  type: string;
+  conditions: Conditions;
+  amount: number;
+  currency_id: string;
+  exchange_rate_context: string;
+  tags: any[];
+  last_updated: Date;
 }
 
 export interface PricesEntity {
@@ -200,10 +211,10 @@ export interface PricesEntity {
 }
 
 export interface Conditions {
-  context_restrictions?: (null)[] | null;
-  start_time?: null;
-  end_time?: null;
-  eligible: boolean;
+  context_restrictions?: string[];
+  start_time?: Date | null;
+  end_time?: Date | null;
+  eligible?: boolean;
 }
 
 export interface Metadata {

@@ -29,6 +29,8 @@ export class SalesItemComponent implements OnInit {
 
   getRating: Subscription;
 
+  currentDate: Date;
+
   /*@Input('resultsEntity') set resultsEntity(value: ResultsEntity) {
     this._resultsEntity = value;
   }
@@ -43,6 +45,7 @@ export class SalesItemComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.currentDate = new Date();
     this.remainingDays = this.getRemainingDays();
     this.promoPercent = this.getPromoPercent();
     this.dealOfTheDay = this.getDealOfTheDay();
@@ -52,7 +55,7 @@ export class SalesItemComponent implements OnInit {
     this.remainingPromoDays = this.getRemainingPromoDays();
   }
 
-  imgLoaded(): any{
+  imgLoaded(): any {
     if (this.resultsEntity.rating_average === undefined && this.opinions) {
       this.resultsEntity.rating_average = 0;
       this.meliModelService.getSingleMeliItemOpinion(this.resultsEntity.id, this.typeItem);
@@ -121,6 +124,9 @@ export class SalesItemComponent implements OnInit {
 
   getCurrentPrice(): string {
     if (this.resultsEntity.prices?.prices?.length) {
+      /*if (this.resultsEntity.prices?.reference_prices[0]?.amount) {
+        return this.resultsEntity.prices?.reference_prices[0]?.amount.toFixed(0);
+      }*/
       if (this.resultsEntity.prices?.prices[this.resultsEntity.prices?.prices?.length - 1]?.amount) {
         return this.resultsEntity.prices?.prices[this.resultsEntity.prices?.prices?.length - 1]?.amount?.toFixed(0);
       }
@@ -130,6 +136,41 @@ export class SalesItemComponent implements OnInit {
     }
     return '';
   }
+
+/*  getCurrentPrice(): string {
+    if (this.resultsEntity.prices?.prices?.length) {
+      /!*if (this.resultsEntity.prices?.reference_prices[0]?.amount) {
+        return this.resultsEntity.prices?.reference_prices[0]?.amount.toFixed(0);
+      }*!/
+      /!*if (this.resultsEntity.prices?.prices[this.resultsEntity.prices?.prices?.length - 1]?.amount) {
+        return this.resultsEntity.prices?.prices[this.resultsEntity.prices?.prices?.length - 1]?.amount?.toFixed(0);
+      }*!/
+      this.resultsEntity.prices?.prices?.forEach(x => {
+        if (x.conditions?.start_time && x.conditions?.end_time) {
+          const startTime = new Date(x.conditions?.start_time);
+          const endTime = new Date(x.conditions?.end_time);
+          console.log(startTime);
+          console.log(endTime);
+          console.log(this.currentDate);
+          console.log(this.currentDate > startTime);
+          console.log(x.conditions?.end_time < endTime);
+          console.log('$' + x.regular_amount);
+          console.log('$' + x.amount);
+          if (this.currentDate > startTime && this.currentDate < endTime) {
+            if (x.conditions?.context_restrictions) {
+              if (x.conditions.context_restrictions.findIndex(y => y === 'channel_marketplace') === -1) {
+                console.log('asdasda dsads dasda sda sdas ads das ads entre');
+              }
+            }
+          }
+        }
+      });
+    }
+    if (this.resultsEntity.price) {
+      return this.resultsEntity.price.toFixed(0);
+    }
+    return '';
+  }*/
 
   getRemainingPromoDays(): string {
     if (this.resultsEntity.prices?.prices?.length &&

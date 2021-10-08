@@ -1,1 +1,17 @@
-<h1 class="py-3">Landing</h1>
+<h1 class="py-3">El tiempo de las cosas</h1>
+<div class="time-img-container">
+  <!--<img class="time-img" src="assets/images/time.jpg">-->
+
+  <ngb-carousel class="dashboard-carousel" [showNavigationArrows]="false" [showNavigationIndicators]="false">
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img class="time-img" [src]="'assets/images/time.jpg'" alt="Random slide">
+      </div>
+      <div class="carousel-caption">
+        <h3>Hola</h3>
+        <p>Mundo</p>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
+

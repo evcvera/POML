@@ -54,18 +54,20 @@ export class FavouritesModelServiceService {
   }
 
   meliSearchFavourites(): any {
+    const arrayOfObs = [];
+    let favouriteItems: IMeliItem[] = [];
+
     if (this.forkJoinSubscription) {
       this.forkJoinSubscription.unsubscribe();
     }
 
-    const arrayOfObs = [];
-    let favouriteItems: IMeliItem[] = [];
     this.meliSearchFavouritesArrayString().then(y => {
       for (let i = 0; i < y.length; i++) {
         arrayOfObs.push(this.getSearchFavourites(y[i]));
       }
 
       this.forkJoinSubscription = forkJoin(arrayOfObs).subscribe((response: IMeliItem[]) => {
+        console.log(response);
         for (const item of Object.keys(response)) {
           favouriteItems = favouriteItems.concat(response[item]);
         }
