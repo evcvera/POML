@@ -1,0 +1,112 @@
+@import "src/assets/baseStyles/baseStyles";
+@import "src/assets/baseStyles/variable";
+
+.zip-code-mcontainer {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+  background-color: #ffffff;
+  padding: 24px 24px 12px;
+}
+
+.meli-zipcode-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size: 14px;
+  line-height: 32px;
+  padding: 0 12px;
+  height: 32px;
+  border-radius: 5px;
+  border: 2px solid #00000000;
+  background-color: #3483fa;
+  color: #fff;
+  font-weight: 600;
+  transition: box-shadow 0.25s ease-out, background-color 0.2s ease-out;
+  box-shadow: 0 0 0 0 #fff;
+
+  &:hover {
+    border: 2px solid #00000000;
+    background-color: #1f4e96;
+    color: #fff;
+  }
+
+  &:active {
+    border: 2px solid #1f4e9666;
+  }
+}
+
+.modal-idk-zipcode {
+  border: 2px solid #00000000;
+  margin-top: 7px;
+  width: 100%;
+  padding: 4px 12px;
+  font-size: 14px;
+  color: #3483fa;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  text-align: center;
+
+  &:hover {
+    border: 2px solid #00000000;
+    background-color: rgba(65, 137, 230, .2);
+    color: #3483fa;
+    transition: background-color .2s ease-in;
+    transition-property: background-color;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in;
+    transition-delay: 0s;
+  }
+
+  &:active {
+    border: 2px solid #1f4e9666;
+  }
+}
+
+.subtitle-zipcode {
+  color: rgba(0, 0, 0, .45);
+  line-height: 1.38;
+  margin: -4px 0 25px;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.title-zipcode {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: rgba(0, 0, 0, 0.8);
+  margin-top: 17px;
+  margin-bottom: 12px;
+}
+
+.return-arrow {
+  color: #3483fa;
+  margin: 8px 0 7px 8px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.modal-error-txt {
+  color: #f04449;
+  font-weight: 500;
+  opacity: 1;
+  font-size: 14px;
+  line-height: 1em;
+  margin-top: .3333333333em;
+  transition: opacity .15s ease-out;
+  text-align: left;
+  min-height: 14px;
+  height: 14px;
+  margin-bottom: 0;
+}
+
+.error-span {
+  margin-top: 5px;
+  padding-bottom: 16px;
+}
