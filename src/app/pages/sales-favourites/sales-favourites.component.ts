@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MeliModelService} from '../../core/mode-services/meli-model.service';
 import {FavouritesModelServiceService} from '../../core/mode-services/favourites-model-service.service';
+import {CasaModelService} from '../../core/mode-services/casa-model.service';
 
 @Component({
   selector: 'app-sales-favourites',
@@ -10,7 +11,8 @@ import {FavouritesModelServiceService} from '../../core/mode-services/favourites
 export class SalesFavouritesComponent implements OnInit, OnDestroy {
 
   constructor(public meliModelService: MeliModelService,
-              public favouritesModelServiceService: FavouritesModelServiceService) {
+              public favouritesModelServiceService: FavouritesModelServiceService,
+              public casaModelService: CasaModelService) {
   }
 
   ngOnInit(): void {

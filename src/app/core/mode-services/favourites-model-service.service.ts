@@ -6,6 +6,7 @@ import {HttpClient} from '@angular/common/http';
 import {IMeliItem} from '../interfaces/imeli-item';
 import {IMeliFavouriteItems} from '../interfaces/imeli-favourite-items';
 import {IMeliItemOpinion} from '../interfaces/imeli-item-opinion';
+import {CasaModelService} from './casa-model.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class FavouritesModelServiceService {
   favouritesMeliData$: BehaviorSubject<IMeliFavouriteItems> = new BehaviorSubject<IMeliFavouriteItems>({});
   forkJoinSubscription: Subscription;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private casaModelService: CasaModelService) {
   }
 
   upSertFavouriteItem(id: string, addItem: boolean): void {
@@ -73,7 +75,7 @@ export class FavouritesModelServiceService {
           this.favouritesMeliData$.value.totalSum = 0;
           this.favouritesMeliData$.value.meliFavouriteItem.forEach((x) => {
             x.body.thumbnail = x.body.thumbnail.replace('-I.jpg', '-O.jpg');
-            this.favouritesMeliData$.value.totalSum += x.body.price;
+            this.favouritesMeliData$.value.totalSum += x.body.currency_id === 'USD' ? x.body.price * this.casaModelService.currentDollar$.value.blueProm : x.body.price;
             if (this.favouritesMeliItems$.value && this.favouritesMeliItems$.value !== []) {
               x.body.isFavourite = this.favouritesMeliItems$.value.some(r => r === x.body.id);
             }
