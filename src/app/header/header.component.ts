@@ -29,8 +29,8 @@ export class HeaderComponent implements OnInit {
     window.open(url, '_blank');
   }
 
-  keyPress($event: KeyboardEvent): void {
-    if ($event.key === 'Enter' && this.search !== '') {
+  keyPress(): void {
+    if (this.search !== '') {
       this.meliModelService.searchByInput$.next(true);
       this.userDataModelService.pageNumber$.next(0);
       this.userDataModelService.searchData$.next(this.search);
