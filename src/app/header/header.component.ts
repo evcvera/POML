@@ -34,7 +34,6 @@ export class HeaderComponent implements OnInit {
       this.meliModelService.searchByInput$.next(true);
       this.userDataModelService.pageNumber$.next(0);
       this.userDataModelService.searchData$.next(this.search);
-      blur();
       this.router.navigate(['sales']);
     }
   }
