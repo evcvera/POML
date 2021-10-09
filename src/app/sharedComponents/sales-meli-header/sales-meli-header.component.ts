@@ -21,6 +21,9 @@ export class SalesMeliHeaderComponent implements OnInit {
   openModal(item: any): void {
     const ref = this.modalService.open(SalesZipCodeModalComponent, {modalDialogClass: 'modal-dialog-centered modal-dialog-zipcode'});
     ref.componentInstance.item = item;
+    this.modalService.open(SalesZipCodeModalComponent, {modalDialogClass: 'modal-dialog-centered modal-dialog-zipcode'}).result.then((x) => {
+      console.log(x);
+    });
     /*const ref = this.modalService.open(GeneralPopupComponent, {modalDialogClass: 'modal-dialog-centered modal-dialog-zipcode'});
     ref.componentInstance.item = 'hola mundo';*/
   }
