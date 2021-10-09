@@ -35,6 +35,7 @@ import { SalesFavouritesComponent } from './pages/sales-favourites/sales-favouri
 import { ZipCodeModalMobileComponent } from './sharedComponents/zip-code-modal-mobile/zip-code-modal-mobile.component';
 import { PriceDolarPesoComponent } from './pages/metrics/components/price-dolar-peso/price-dolar-peso.component';
 import { GeneralPopupComponent } from './sharedComponents/general-popup/general-popup.component';
+import { FirstImageTitleComponent } from './pages/components/first-image-title/first-image-title.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { GeneralPopupComponent } from './sharedComponents/general-popup/general-
     SalesFavouritesComponent,
     ZipCodeModalMobileComponent,
     PriceDolarPesoComponent,
-    GeneralPopupComponent
+    GeneralPopupComponent,
+    FirstImageTitleComponent
   ],
   imports: [
     BrowserModule,

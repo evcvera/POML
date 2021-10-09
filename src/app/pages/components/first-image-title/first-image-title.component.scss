@@ -1,0 +1,42 @@
+@import "src/assets/baseStyles/baseStyles";
+@import "src/assets/baseStyles/variable";
+
+.time-img-container{
+  left: 0;
+  display: flex;
+  background-color: #000000;
+}
+
+.time-img{
+  width: auto;
+  max-height: 400px;
+  max-width: 100vw;
+  height: auto;
+  margin: auto;
+}
+
+.time-title{
+  position: absolute;
+  margin-left: 4px;
+  margin-top: 24px;
+  color: #ffffff;
+  width: 55%;
+  max-width: 500px;
+}
+
+.time-subtitle{
+}
+
+.custom-shape-divider-top-1633751416 {
+  width: 100%;
+  line-height: 0;
+}
+
+@media (max-width: 767px) {
+  .time-title{
+    margin-top: 4px;
+  }
+  .txtSize22{
+    font-size: 0.875rem;
+  }
+}

@@ -1,18 +1,30 @@
-<div class="zip-code-mcontainer">
-  <i class="fas fa-arrow-left return-arrow" routerLink="/sales"></i>
-  <h1 class="title-zipcode ">Elegí dónde recibir tus compras</h1>
-  <p class="subtitle-zipcode">Podrás ver costos y tiempos de entrega precisos en todo lo que busques.</p>
-  <div>
-    <div class="input-meli">
-      <div class="form">
-        <label class="lbl-nombre">
-          <span class="text-nomb">Ingresar un código postal</span>
-        </label>
-      </div>
-    </div>
-  </div>
-  <button class="meli-zipcode-button"><span>Usar</span></button>
-  <a [href]="'https://www6.oca.com.ar/BuscadorCP/'" target="_blank" style="text-decoration: none">
-    <label class="modal-idk-zipcode mb-0">No sé mi código</label>
-  </a>
+<div class="modal-header">
+  <h1 class="title-zip">Elegí dónde recibir tus compras</h1>
+  <i class="fas fa-times modal-close-icon" (click)="modal.dismiss('Cross click')"></i>
 </div>
+<div class="modal-body">
+  <p class="subtitle-zip">Podrás ver costos y tiempos de entrega precisos en todo lo que busques.</p>
+  <div class="zip-code">
+    <button class="meli-zipcode-button" (click)="getZipCode()"><span>Usar</span></button>
+    <a [href]="'https://www6.oca.com.ar/BuscadorCP/'" target="_blank" style="text-decoration: none">
+      <label class="modal-idk-zipcode">No sé mi código</label>
+    </a>
+  </div>
+</div>
+
+<!--<div class="card">
+  <div class="card-header">
+    Featured
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Special title treatment</h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+  <div class="card-footer">
+    <button class="meli-zipcode-button" (click)="getZipCode()"><span>Usar</span></button>
+    <a [href]="'https://www6.oca.com.ar/BuscadorCP/'" target="_blank" style="text-decoration: none">
+      <label class="modal-idk-zipcode">No sé mi código</label>
+    </a>
+  </div>
+</div>-->
