@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {MeliModelService} from '../../core/mode-services/meli-model.service';
 import {Router} from '@angular/router';
@@ -10,7 +10,8 @@ import {Router} from '@angular/router';
 })
 export class GeneralPopupComponent implements OnInit {
 
-  item: any;
+  @Input() item: any;
+  @Output() buttonResponse: EventEmitter<boolean> = new EventEmitter();
   zipCode: string;
   isZipcode: boolean;
 
@@ -20,22 +21,24 @@ export class GeneralPopupComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.isZipcode = true;
+    /*this.isZipcode = true;
     if (this.meliModelService.zipCodeData$.value) {
       this.zipCode = this.meliModelService.zipCodeData$.value.zip_code;
-    }
+    }*/
     console.log(this.item);
   }
 
   getZipCode(): void {
-    if (this.zipCode !== '' && this.zipCode !== 'undefined') {
+    /*if (this.zipCode !== '' && this.zipCode !== 'undefined') {
       this.meliModelService.getZipcode(this.zipCode).then(resp => {
         this.isZipcode = resp;
         if (resp) {
           this.router.navigate(['/sales']);
         }
       });
-    }
+    }*/
+    this.buttonResponse.emit(true);
+    this.modal.close(true);
   }
 
 }
