@@ -1,6 +1,6 @@
 <div class="container">
   <app-sales-meli-header></app-sales-meli-header>
-  <h1 class="py-3 pt-5 mx-1">Mercado libre api</h1>
+  <h1 class="pb-3 pt-5 mx-1">Mercado libre api</h1>
   <div *ngIf="tabletOrLess" class="search-container mx-1">
     <input class="search" placeholder="Buscar productos" [(ngModel)]="search" (keydown.enter)="$event.target.blur();keyPress();false" type="text">
     <div class="search-icon-ln">

@@ -94,15 +94,34 @@
   font-size: 14px;
   font-weight: 300;
   color: #333;
+  margin-top: 4px;
 }
 
 .item-query{
   color: #333;
   font-size: 26px;
   font-weight: 600;
+  margin-bottom: 0;
 }
 
 .icon-may{
   font-size: 14px;
   margin: 0 3px;
+}
+
+.search-sidebar{
+  display: block;
+  -webkit-flex: 1 1;
+  flex: 1 1;
+  max-width: 294px;
+  min-width: 210px;
+  padding-right: 14px;
+  width: 100%;
+}
+
+@media (max-width: 991px) {
+  .search-sidebar {
+    display: none;
+    min-width: 0;
+  }
 }
