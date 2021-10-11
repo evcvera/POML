@@ -1,17 +1,30 @@
 <div *ngIf="resultsEntity as meli">
+  <div class="search-toolbar">
+    <ul class="search-toolbar-actions">
+      <li class="search-toolbar-action">
+        <a class="search-link"><i class="fas fa-exchange-alt order-icon search-toolbar-icon"></i>Ordenar</a>
+      </li>
+      <li class="search-toolbar-action-filter">
+        <a class="search-link"><i class="fas fa-filter search-toolbar-icon"></i> Filtrar</a>
+      </li>
+    </ul>
+  </div>
+  <div class="container-search-title">
+    <h4 class="text-capitalize search-title">{{meli.query}}</h4>
+  </div>
   <div class="mx-1">
-      <!--    <div class="spinner-border text-dark" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>-->
-    <div>
+    <!--<div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>-->
+    <div class="category-order-by">
       <label *ngFor="let category of meli?.filters[0]?.values[0]?.path_from_root; let last = last"
              class="name">
         <label class="name-item" (click)="searchByCategory(category.id)">{{category.name}}</label>
         <i *ngIf="!last" class="fas fa-angle-right icon-may"></i>
       </label>
       <span class="float-end">
-      <span class="order-text">Ordenar por</span>
-    <span ngbDropdown>
+        <span class="order-text">Ordenar por</span>
+        <span ngbDropdown>
 				<label ngbDropdownToggle class="mb-0 order-button"> {{labelText}}</label>
         <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton dropdown-menu-lg-end ">
           <li><a class="dropdown-item"
@@ -24,8 +37,8 @@
                  [ngClass]="orderName === 'price_desc' ? 'active' : ''"
                  (click)="orderBy('price_desc')">Mayor precio</a></li>
         </ul>
+        </span>
       </span>
-    </span>
     </div>
   </div>
   <div class="d-flex">

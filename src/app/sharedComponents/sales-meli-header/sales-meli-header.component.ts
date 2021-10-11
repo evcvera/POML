@@ -3,6 +3,8 @@ import {SalesZipCodeModalComponent} from '../../pages/sales/components/sales-zip
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {MeliModelService} from '../../core/mode-services/meli-model.service';
 import {GeneralPopupComponent} from '../general-popup/general-popup.component';
+import {UserDataModelService} from '../../core/mode-services/user-data-model.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-sales-meli-header',
@@ -11,8 +13,12 @@ import {GeneralPopupComponent} from '../general-popup/general-popup.component';
 })
 export class SalesMeliHeaderComponent implements OnInit {
 
+  search = '';
+
   constructor(public modalService: NgbModal,
-              public meliModelService: MeliModelService) {
+              public meliModelService: MeliModelService,
+              public userDataModelService: UserDataModelService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -30,6 +36,14 @@ export class SalesMeliHeaderComponent implements OnInit {
         console.log(result);
       }
     }).catch((res) => {});*/
+  }
+
+  keyPress(): void {
+    if (this.search !== '') {
+      this.meliModelService.searchByInput$.next(true);
+      this.userDataModelService.pageNumber$.next(0);
+      this.userDataModelService.searchData$.next(this.search);
+    }
   }
 
 }
