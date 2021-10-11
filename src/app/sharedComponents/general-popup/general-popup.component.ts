@@ -2,6 +2,8 @@ import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {MeliModelService} from '../../core/mode-services/meli-model.service';
 import {Router} from '@angular/router';
+import {IMeliSearch} from '../../core/interfaces/imeli-search';
+import {UserDataModelService} from '../../core/mode-services/user-data-model.service';
 
 @Component({
   selector: 'app-general-popup',
@@ -17,7 +19,46 @@ export class GeneralPopupComponent implements OnInit {
 
   constructor(public modal: NgbActiveModal,
               public meliModelService: MeliModelService,
-              public router: Router) {
+              public router: Router,
+              public userDataModelService: UserDataModelService) {
+  }
+
+  orderName = 'relevance';
+
+  /*  private _resultsEntity: ResultsEntity;
+    @Input('resultsEntity') set resultsEntity(value: ResultsEntity) {
+      this._resultsEntity = value;
+    }*/
+
+  get resultsEntity(): IMeliSearch {
+    if (this.meliModelService.searchMeliData$.value) {
+      return this.meliModelService.searchMeliData$.value;
+    } else {
+      return undefined;
+    }
+  }
+
+  get labelText(): string {
+    if (this.orderName === 'relevance') {
+      return 'Más relevantes';
+    }
+    if (this.orderName === 'price_asc') {
+      return 'Menor precio';
+    }
+    if (this.orderName === 'price_desc') {
+      return 'Mayor precio';
+    }
+    return '';
+  }
+
+  orderBy(order: string): void {
+    this.orderName = order;
+    this.userDataModelService.pageSort$.next(order);
+    this.userDataModelService.pageNumber$.next(0);
+    this.meliModelService.meliSearch(this.userDataModelService.searchData$.value,
+      this.userDataModelService.pageNumber$.value,
+      order);
+    this.modal.close(true);
   }
 
   ngOnInit(): void {

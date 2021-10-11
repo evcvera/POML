@@ -7,6 +7,7 @@
   bottom: 0;
   width: 100%;
   padding-top: 2px;
+  justify-content: space-around;
   height: 48px;
   display: flex;
   background-color: $bgc-white;
@@ -19,7 +20,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-grow: 1;
+  //flex-grow: 1;
+  width: 20%;
   min-height: 45px;
   overflow: hidden;
   white-space: nowrap;
@@ -32,7 +34,7 @@
 }
 
 .nav__link:hover{
-  background-color: #eeeeee;
+  background-color: #C0E8F864;
 }
 
 /*.nav__link--active{
