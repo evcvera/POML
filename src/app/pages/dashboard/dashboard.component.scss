@@ -107,8 +107,10 @@ main .sobre-nosotros {
   background: #0a66c2;
   color: #fff;
   border-radius: 50%;
-  display: inline-block;
+  display: inline-flex;
   text-align: center;
+  justify-content: center;
+  align-items: center;
   width: 30px;
   height: 30px;
   padding: 2px;
@@ -117,7 +119,7 @@ main .sobre-nosotros {
 }
 
 .contenido-textos p {
-  padding: 0px 0px 30px 15px;
+  padding: 0 0 30px 15px;
   font-weight: 300;
   text-align: justify;
 }

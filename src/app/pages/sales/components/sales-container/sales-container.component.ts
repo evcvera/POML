@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {IMeliSearch, ResultsEntity} from '../../../../core/interfaces/imeli-search';
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {SalesZipCodeModalComponent} from '../sales-zip-code-modal/sales-zip-code-modal.component';
+import {GeneralPopupComponent} from '../../../../sharedComponents/general-popup/general-popup.component';
 
 @Component({
   selector: 'app-sales-container',
@@ -66,5 +67,17 @@ export class SalesContainerComponent implements OnInit {
     this.userDataModelService.searchData$.next(categoryId);
     /*this.meliModelService.meliSearch(this.userDataModelService.searchDataByCategory$.value,
       this.userDataModelService.pageNumber$.value);*/
+  }
+
+  orderByMobile(item: any): void {
+    const modalRef = this.modalService.open(GeneralPopupComponent, {modalDialogClass: 'modal-dialog-centered modal-dialog-zipcode'});
+    modalRef.componentInstance.item = item;
+    modalRef.result.then((result) => {
+      console.log(result);
+      if (result) {
+        console.log(result);
+      }
+    }).catch((res) => {
+    });
   }
 }

@@ -31,6 +31,10 @@
 .modal-dialog{
   margin: auto !important;
   max-width: fit-content !important;
+
+  .modal-content{
+    border: 0 solid;
+  }
 }
 
 .font-weight-300 {

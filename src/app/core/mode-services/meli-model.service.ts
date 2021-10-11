@@ -152,6 +152,9 @@ export class MeliModelService {
   }
 
   getSingleMeliItemOpinion(id: string, type: string): void {
+    if(this.getRatingSingleItem){
+      this.getRatingSingleItem.unsubscribe();
+    }
     this.getRatingSingleItem = this.getSingleMeliItemOpinionObservable(id).subscribe((resp) => {
       switch (type) {
         case 'search': {

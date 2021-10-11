@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserDataModelService} from '../core/mode-services/user-data-model.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-side-bar',
@@ -8,14 +9,19 @@ import {UserDataModelService} from '../core/mode-services/user-data-model.servic
 })
 export class SideBarComponent implements OnInit {
 
+  toggleSubscription: Subscription;
+
   constructor(public userDataModelService: UserDataModelService) {
   }
 
   public isCollapsed = false;
 
   ngOnInit(): void {
-    this.userDataModelService.toggleForm$.subscribe((resp) => {
-        this.isCollapsed = resp;
+    if (this.toggleSubscription) {
+      this.toggleSubscription.unsubscribe();
+    }
+    this.toggleSubscription = this.userDataModelService.toggleForm$.subscribe((resp) => {
+      this.isCollapsed = resp;
     });
   }
 
