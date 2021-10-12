@@ -88,8 +88,21 @@
   }
 }
 
+@media (min-width: 992px) {
+  .container {
+    max-width: 100%;
+    padding: 0;
+    margin: 0 10px;
+  }
+  .meli-card {
+    padding: 16px 0;
+  }
+}
+
 // Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {
+
+/// REVISAAAAAAAAAAAAAAAAAAAR
+@media (min-width: 1201px) {
   .container {
     max-width: 1200px;
     padding: 0;
