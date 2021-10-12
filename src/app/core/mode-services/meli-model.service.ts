@@ -23,6 +23,7 @@ export class MeliModelService {
   zipCodeData$: BehaviorSubject<IMeliZipCode> = new BehaviorSubject<IMeliZipCode>(undefined);
   favouritesItems$: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
   searchByInput$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+  searchSortBy$: BehaviorSubject<string> = new BehaviorSubject<string>('relevance');
   searchSubscription: Subscription;
   zipCodeSubscription: Subscription;
   getImagesSingleItem: Subscription;

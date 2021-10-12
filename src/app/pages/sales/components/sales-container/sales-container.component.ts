@@ -6,6 +6,7 @@ import {IMeliSearch, ResultsEntity} from '../../../../core/interfaces/imeli-sear
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {SalesZipCodeModalComponent} from '../sales-zip-code-modal/sales-zip-code-modal.component';
 import {GeneralPopupComponent} from '../../../../sharedComponents/general-popup/general-popup.component';
+import {SortItemMobileComponent} from '../../../../sharedComponents/sort-item-mobile/sort-item-mobile.component';
 
 @Component({
   selector: 'app-sales-container',
@@ -70,7 +71,7 @@ export class SalesContainerComponent implements OnInit {
   }
 
   orderByMobile(item: any): void {
-    const modalRef = this.modalService.open(GeneralPopupComponent, {modalDialogClass: 'modal-dialog-centered modal-dialog-zipcode'});
+    const modalRef = this.modalService.open(SortItemMobileComponent, {modalDialogClass: 'modal-dialog-centered modal-dialog-zipcode'});
     modalRef.componentInstance.item = item;
     modalRef.result.then((result) => {
       console.log(result);
@@ -80,4 +81,18 @@ export class SalesContainerComponent implements OnInit {
     }).catch((res) => {
     });
   }
+
+  /*******GENERLA MODAL ******/
+  /*orderByMobile(item: any): void {
+    const modalRef = this.modalService.open(SortItemMobileComponent, {modalDialogClass: 'modal-dialog-centered modal-dialog-zipcode'});
+    modalRef.componentInstance.item = item;
+    modalRef.result.then((result) => {
+      console.log(result);
+      if (result) {
+        console.log(result);
+      }
+    }).catch((res) => {
+    });
+  }*/
+  /*******GENERLA MODAL ******/
 }

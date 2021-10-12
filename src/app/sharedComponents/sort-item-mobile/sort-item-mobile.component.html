@@ -1,0 +1,19 @@
+<div class="vw-100 vh-100">
+  <div class="modal-header">
+    <i class="fas fa-arrow-left return-arrow" routerLink="/sales" (click)="modal.close(false)"></i>
+    <h3 class="order-title">Ordenar por</h3>
+  </div>
+  <div class="modal-body">
+    <ul class="actions-order">
+      <li><a class="action-item"
+             [ngClass]="orderName === 'relevance' ? 'active' : ''"
+             (click)="orderBy('relevance')">Más relevantes</a></li>
+      <li><a class="action-item"
+             [ngClass]="orderName === 'price_asc' ? 'active' : ''"
+             (click)="orderBy('price_asc')">Menor precio</a></li>
+      <li><a class="action-item last-action-item"
+             [ngClass]="orderName === 'price_desc' ? 'active' : ''"
+             (click)="orderBy('price_desc')">Mayor precio</a></li>
+    </ul>
+  </div>
+</div>
