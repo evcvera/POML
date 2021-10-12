@@ -144,23 +144,24 @@ export class MeliModelService {
   /***************************** GET RATING AND OPINIONS ***************************************/
 
 
-  getSingleMeliItemOpinionObservable(id: string): Observable<IMeliItemOpinion> {
-    return new Observable<IMeliItemOpinion>((resp) => {
+  getSingleMeliItemOpinionPromise(id: string): Promise<IMeliItemOpinion> {
+    return new Promise<IMeliItemOpinion>((resp) => {
       this.http.get(`${environment.api.meli}/reviews/item/${id}`).subscribe((respQ: IMeliItemOpinion) => {
-        resp.next(respQ);
+        resp(respQ);
       });
     });
   }
 
   getSingleMeliItemOpinion(id: string, type: string): void {
-    if(this.getRatingSingleItem){
+    /*if(this.getRatingSingleItem){
       this.getRatingSingleItem.unsubscribe();
-    }
-    this.getRatingSingleItem = this.getSingleMeliItemOpinionObservable(id).subscribe((resp) => {
+    }*/
+    this.getSingleMeliItemOpinionPromise(id).then((resp) => {
       switch (type) {
         case 'search': {
           const index = this.searchMeliData$.value.results.findIndex(x => x.id === id);
           if (index !== -1) {
+            console.log('hola entre a single ');
             this.searchMeliData$.value.results[index].rating_average = resp.rating_average;
             this.searchMeliData$.value.results[index].comments_count = resp.paging.total;
           }
