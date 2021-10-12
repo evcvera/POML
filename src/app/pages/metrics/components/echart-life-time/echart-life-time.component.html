@@ -1,8 +1,16 @@
-<div>
+<div class="mb-2">
   <!--<input [(ngModel)]="years">
   <button (click)="clickBuildNextYears()"> Arrancar </button>-->
-  <div>
-    <div class="ln-card mb-2" echarts [options]="_chartOption">
-    </div>
+  <div class="echart-life-container">
+    <ng-container *ngIf="(echartModelService.chartOption$ | async) as chartOption">
+      <div class="ln-card" echarts [options]="chartOption">
+      </div>
+    </ng-container>
   </div>
+  <span class="footer-text">
+        <span ngbPopover="Haga click para ver fuente"><a class="link-data"
+                                                         [href]="'https://datosmacro.expansion.com/demografia/esperanza-vida/argentina'"
+                                                         target="_blank"> Datos pertenecientes al territorio Argentino entre 1.960 al 2.018</a></span>
+          , los años siguientes son proyecciones calculadas acorde a los valores anteriores.
+    </span>
 </div>

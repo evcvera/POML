@@ -200,8 +200,12 @@
 }
 
 .category-order-by{
-  //padding-top: 44px;
   padding-top: 100px;
+  display: flex;
+}
+
+.order-by-button{
+  margin-left: auto;
 }
 
 @media (max-width: 991px) {

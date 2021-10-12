@@ -1,1 +1,19 @@
-@import "../../../../../assets/baseStyles/baseStyles";
+@import "src/assets/baseStyles/baseStyles";
+@import "src/assets/baseStyles/variable";
+@import "~bootstrap/dist/css/bootstrap.css";
+@import '~material-icons/iconfont/material-icons.scss';
+
+.echart-life-container{
+  height: 400px;
+}
+
+.link-data{
+  color: #3483fa;
+  text-decoration: none;
+}
+
+.footer-text{
+  display: flex;
+  justify-content: center;
+  font-size: 13px;
+}

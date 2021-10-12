@@ -20,13 +20,15 @@ export class EchartLifeTimeComponent implements OnInit {
   dataEchart: IBasicEchartLineModel[];
   years: number;
 
-  constructor(private echartModelService: EchartModelService,
+  constructor(public echartModelService: EchartModelService,
               private userDataModelService: UserDataModelService) {
   }
 
   ngOnInit(): void {
-    this.dateSuscribe();
-    this.setSubscriptionData();
+    if (this.echartModelService.chartOption$.value === null) {
+      this.dateSuscribe();
+      this.setSubscriptionData();
+    }
   }
 
   setSubscriptionData(): void {
@@ -128,10 +130,16 @@ export class EchartLifeTimeComponent implements OnInit {
     chartData.forEach(x => {
       auxCharData.push(x.year);
     });
-
+    console.log('hola');
     this._chartOption = {
       title: {
-        /*text: 'Esperanza de vida'*/
+        text: 'Esperanza de vida',
+        top: '23px',
+        left: '10px',
+        textStyle: {
+          fontSize: '17px',
+        }
+
       },
       tooltip: {
         trigger: 'axis',
@@ -193,6 +201,7 @@ export class EchartLifeTimeComponent implements OnInit {
         }
       ]
     };
+    this.echartModelService.chartOption$.next(this._chartOption);
   }
 
 }

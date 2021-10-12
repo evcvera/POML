@@ -23,7 +23,8 @@ export class MeliModelService {
   zipCodeData$: BehaviorSubject<IMeliZipCode> = new BehaviorSubject<IMeliZipCode>(undefined);
   favouritesItems$: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
   searchByInput$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
-  searchSortBy$: BehaviorSubject<string> = new BehaviorSubject<string>('relevance');
+  public searchSortBy: string;
+  /*searchSortBy$: BehaviorSubject<string> = new BehaviorSubject<string>('relevance');*/
   searchSubscription: Subscription;
   zipCodeSubscription: Subscription;
   getImagesSingleItem: Subscription;
@@ -33,6 +34,8 @@ export class MeliModelService {
 
 
   meliSearch(search: string, pageNumber: number, sortPage = 'relevance'): any {
+    this.searchSortBy = sortPage;
+
     /*********************** ZIP CODE **************************/
     let zipCode = '';
     if (this.zipCodeData$.value) {
