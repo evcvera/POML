@@ -12,10 +12,10 @@
   <div class="container-search-title">
     <h4 class="text-capitalize search-title">{{meli.query}}</h4>
   </div>
-  <div class="mx-1">
-    <!--<div class="spinner-border" role="status">
+  <!--<div class="mx-1">
+    &lt;!&ndash;<div class="spinner-border" role="status">
       <span class="visually-hidden">Loading...</span>
-    </div>-->
+    </div>&ndash;&gt;
     <div class="category-order-by mb-3">
       <label *ngFor="let category of meli?.filters[0]?.values[0]?.path_from_root; let last = last"
              class="name mb-0">
@@ -40,13 +40,41 @@
         </span>
       </span>
     </div>
-  </div>
+  </div>-->
   <div class="d-flex">
     <div class="search-sidebar">
+      <div class="category-order-by">
+        <label *ngFor="let category of meli?.filters[0]?.values[0]?.path_from_root; let last = last"
+               class="name mb-0">
+          <label class="name-item mb-0" (click)="searchByCategory(category.id)">{{category.name}}</label>
+          <i *ngIf="!last" class="fas fa-angle-right icon-may"></i>
+        </label>
+      </div>
       <h4 class="text-capitalize item-query">{{meli.query}}</h4>
       <label class="result-count">{{meli.paging.total | thousandsPipe}} resultados</label>
     </div>
-    <div class="d-block w-100">
+    <div class="d-block w-100 mb-3">
+      <div class="category-order-by">
+        <div class="d-flex">
+        <span class="order-by-button">
+          <span class="order-text">Ordenar por</span>
+          <span ngbDropdown>
+          <label ngbDropdownToggle class="mb-0 order-button"> {{labelText}}</label>
+          <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton dropdown-menu-lg-end ">
+            <li><a class="dropdown-item"
+                   [ngClass]="orderName === 'relevance' ? 'active' : ''"
+                   (click)="orderBy('relevance')">Más relevantes</a></li>
+            <li><a class="dropdown-item"
+                   [ngClass]="orderName === 'price_asc' ? 'active' : ''"
+                   (click)="orderBy('price_asc')">Menor precio</a></li>
+            <li><a class="dropdown-item"
+                   [ngClass]="orderName === 'price_desc' ? 'active' : ''"
+                   (click)="orderBy('price_desc')">Mayor precio</a></li>
+          </ul>
+          </span>
+        </span>
+        </div>
+      </div>
       <ng-container *ngIf="(meliModelService.searchMeliData$ | async) as meli">
         <ng-container *ngIf="!meli.classified">
           <div *ngFor="let item of meli?.results; let first = first ;let last = last" class="general-font-family">
@@ -67,6 +95,17 @@
           </div>
         </ng-container>
       </ng-container>
+      <div>
+        <div class="sales-sub-text">
+          <div>
+            <i class="sub-text-icon fas fa-exclamation-circle"></i>
+          </div>
+          <p class="footer-text">
+            El envío gratis está sujeto al peso, precio y la distancia del envío.
+          </p>
+        </div>
+      </div>
+      <app-sales-paginator></app-sales-paginator>
     </div>
   </div>
   <!--<app-search-items-group></app-search-items-group>-->
