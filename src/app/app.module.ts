@@ -35,8 +35,8 @@ import { SalesFavouritesComponent } from './pages/sales-favourites/sales-favouri
 import { ZipCodeModalMobileComponent } from './sharedComponents/zip-code-modal-mobile/zip-code-modal-mobile.component';
 import { PriceDolarPesoComponent } from './pages/metrics/components/price-dolar-peso/price-dolar-peso.component';
 import { GeneralPopupComponent } from './sharedComponents/general-popup/general-popup.component';
-import { FirstImageTitleComponent } from './pages/components/first-image-title/first-image-title.component';
 import { SortItemMobileComponent } from './sharedComponents/sort-item-mobile/sort-item-mobile.component';
+import { SubTextComponent } from './sharedComponents/sub-text/sub-text.component';
 
 @NgModule({
   declarations: [
@@ -65,8 +65,8 @@ import { SortItemMobileComponent } from './sharedComponents/sort-item-mobile/sor
     ZipCodeModalMobileComponent,
     PriceDolarPesoComponent,
     GeneralPopupComponent,
-    FirstImageTitleComponent,
-    SortItemMobileComponent
+    SortItemMobileComponent,
+    SubTextComponent
   ],
   imports: [
     BrowserModule,

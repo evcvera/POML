@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FirstImageTitleComponent } from './first-image-title.component';
+import { SubTextComponent } from './sub-text.component';
 
-describe('FirstImageTitleComponent', () => {
-  let component: FirstImageTitleComponent;
-  let fixture: ComponentFixture<FirstImageTitleComponent>;
+describe('SubTextComponent', () => {
+  let component: SubTextComponent;
+  let fixture: ComponentFixture<SubTextComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FirstImageTitleComponent ]
+      declarations: [ SubTextComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FirstImageTitleComponent);
+    fixture = TestBed.createComponent(SubTextComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

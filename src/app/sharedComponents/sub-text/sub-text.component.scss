@@ -1,0 +1,19 @@
+@import "src/assets/baseStyles/baseStyles";
+@import "src/assets/baseStyles/variable";
+@import "~bootstrap/dist/css/bootstrap.css";
+@import '~material-icons/iconfont/material-icons.scss';
+
+.sub-text-container {
+  display: flex;
+  width: 100%;
+}
+
+.sub-text-border {
+  display: flex;
+  background-color: #fff;
+  padding: 11px 15px 7px;
+  width: 100%;
+  margin: 8px 0 0;
+  border-radius: 4px;
+}
+

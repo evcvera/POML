@@ -1,4 +1,4 @@
-<div class="mb-2">
+<div class="mb-3">
   <!--<input [(ngModel)]="years">
   <button (click)="clickBuildNextYears()"> Arrancar </button>-->
   <div class="echart-life-container">
@@ -7,10 +7,14 @@
       </div>
     </ng-container>
   </div>
-  <span class="footer-text">
-        <span ngbPopover="Haga click para ver fuente"><a class="link-data"
-                                                         [href]="'https://datosmacro.expansion.com/demografia/esperanza-vida/argentina'"
-                                                         target="_blank"> Datos pertenecientes al territorio Argentino entre 1.960 al 2.018</a></span>
-          , los años siguientes son proyecciones calculadas acorde a los valores anteriores.
-    </span>
+  <app-sub-text>
+    <p first class="footer-text">
+      <i class="sub-text-icon fas fa-exclamation-circle"></i>
+      <a class="link-data"
+         [triggers]="'hover'" [ngbPopover]="'Ver fuente'"
+         [href]="'https://datosmacro.expansion.com/demografia/esperanza-vida/argentina'"
+         target="_blank"> Datos pertenecientes al territorio Argentino desde 1.960 al 2.018</a>
+      , los años siguientes son proyecciones calculadas acorde a los valores anteriores.
+    </p>
+  </app-sub-text>
 </div>
