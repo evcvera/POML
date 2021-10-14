@@ -1,14 +1,13 @@
-const path = require('path');
-const express = require('express');
+const express = require("express");
+
 const app = express();
 
-// Serve static files
-app.use(express.static(__dirname + '/dist/cosas-de-tiempo'));
+app.use(express.static("./dist/cosas-de-tiempo"));
 
-// Send all requests to index.html
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname + '/dist/cosas-de-tiempo/index.html'));
+app.get("/*", function (req, res) {
+  res.sendFile("index.html", { root: "dist/cosas-de-tiempo" });
 });
 
-// default Heroku port
-app.listen(process.env.PORT || 5000);
+app.listen(process.env.PORT || 8080);
+
+console.log(`Running on port ${process.env.PORT || 8080}`);
