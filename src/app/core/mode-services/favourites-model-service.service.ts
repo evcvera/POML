@@ -65,7 +65,6 @@ export class FavouritesModelServiceService {
       for (let i = 0; i < y.length; i++) {
         arrayOfObs.push(this.getSearchFavourites(y[i]));
       }
-
       this.forkJoinSubscription = forkJoin(arrayOfObs).subscribe((response: IMeliItem[]) => {
         console.log(response);
         for (const item of Object.keys(response)) {
@@ -75,7 +74,9 @@ export class FavouritesModelServiceService {
           this.favouritesMeliData$.next({meliFavouriteItem: favouriteItems});
           console.log(favouriteItems);
           this.favouritesMeliData$.value.totalSum = 0;
+          this.favouritesMeliData$.value.ids = [];
           this.favouritesMeliData$.value.meliFavouriteItem.forEach((x) => {
+            this.favouritesMeliData$.value.ids.push(x.body.id);
             x.body.thumbnail = x.body.thumbnail.replace('-I.jpg', '-O.jpg');
             this.favouritesMeliData$.value.totalSum += x.body.currency_id === 'USD' ? x.body.price * this.casaModelService.currentDollar$.value.blueProm : x.body.price;
             if (this.favouritesMeliItems$.value && this.favouritesMeliItems$.value !== []) {
