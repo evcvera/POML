@@ -1,0 +1,39 @@
+<ng-container *ngIf="(casaModelService.currentDollar$ | async) as currentDollar">
+<!--  <div class="ln-card p-1">
+    <p class="d-block txtSize14 mb-0 txtBlack font-weight-600">DOLAR</p>
+
+    <p>Oficial compra:   {{dollarInfo.oficialCompra}}$</p>
+    <p>Oficial venta:   {{dollarInfo.oficialVenta}}$</p>
+    <p>Oficial promedio:   {{dollarInfo.oficialProm}}$</p>
+
+    <p>Blue compra:   {{dollarInfo.blueCompra}}$</p>
+    <p>Blue venta:   {{dollarInfo.blueVenta}}$</p>
+    <p>Blue promedio:   {{dollarInfo.blueProm}}$</p>
+
+  </div>-->
+
+  <div class="ln-card p-1 d-grid">
+    <label class="d-block txtSize14 mb-0 txtBlack">
+      <label class=" font-weight-600">DOLAR</label>
+    </label>
+    <label class="d-block txtSize14 mb-0 txtBlack"> Oficial compra:
+      <label class="float-end ml-2 mb-0 font-weight-600">{{currentDollar.oficialCompra}}$</label>
+    </label>
+    <label class="d-block txtSize14 mb-0 txtBlack"> Oficial venta:
+      <label class="float-end ml-2 mb-0 font-weight-600">{{currentDollar.oficialVenta}}$</label>
+    </label>
+    <label class="d-block txtSize14 mb-0 txtBlack"> Oficial promedio:
+      <label class="float-end ml-2 mb-0 font-weight-600">{{currentDollar.oficialProm}}$</label>
+    </label>
+    <label class="d-block txtSize14 mb-0 txtBlack"> Blue compra:
+      <label class="float-end ml-2 mb-0 font-weight-600">{{currentDollar.blueCompra}}$</label>
+    </label>
+    <label class="d-block txtSize14 mb-0 txtBlack"> Blue venta:
+      <label class="float-end ml-2 mb-0 font-weight-600">{{currentDollar.blueVenta}}$</label>
+    </label>
+    <label class="d-block txtSize14 mb-0 txtBlack"> Blue promedio:
+      <label class="float-end ml-2 mb-0 font-weight-600">{{currentDollar.blueProm}}$</label>
+    </label>
+  </div>
+</ng-container>
+
