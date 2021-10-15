@@ -16,27 +16,8 @@ export class SalesFavouritesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    /*const result = this.favouritesModelService.favouritesMeliItems$.value
-      .filter(x => !this.favouritesModelService.favouritesMeliData$.value?.ids?.includes(x))
-      .concat(this.favouritesModelService.favouritesMeliData$.value?.ids?.filter(x => !this.favouritesModelService.favouritesMeliItems$.value?.includes(x)));*/
-    /*console.log('AAAAAAAAAAAA');
-    console.log(this.favouritesModelService.favouritesMeliItems$.value);
-    console.log('AAAAAAAAAAAA');
-    console.log('BBBBBBBBBBBB');
-    console.log(this.favouritesModelService.favouritesMeliData$.value.ids);
-    console.log('BBBBBBBBBBBB');
-    const result = this.favouritesModelService.favouritesMeliItems$.value?.filter(x => this.favouritesModelService.favouritesMeliData$.value?.ids?.includes(x));
-    console.log('CCCCCCCCCCCC');
-    console.log(result);
-    console.log('CCCCCCCCCCCC');*/
-
     const difference = this.favouritesModelService.favouritesMeliItems$.value?.filter(x => !this.favouritesModelService.favouritesMeliData$.value.ids?.includes(x))
       .concat(this.favouritesModelService.favouritesMeliData$.value.ids?.filter(x => !this.favouritesModelService.favouritesMeliItems$.value.includes(x)));
-
-    /*console.log('DDDDDDDDDDDD');
-    console.log(difference);
-    console.log('DDDDDDDDDDDD');*/
-
     if (difference.length > 0) {
       this.favouritesModelService.meliSearchFavourites();
     }

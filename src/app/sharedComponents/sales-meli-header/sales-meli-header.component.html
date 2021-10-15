@@ -7,7 +7,7 @@
           <div class="zip-code-container" (click)="openModal('')">
             <span class="send-to">Enviar a</span>
             <span class="city-to-send" *ngIf="(meliModelService.zipCodeData$ | async) as meli">
-            {{meli.state.name}} {{meli.zip_code}}
+            {{meli.state.name}} {{meli.state.name === 'Capital Federal' ? '' :meli.zip_code}}
           </span>
           </div>
         </div>

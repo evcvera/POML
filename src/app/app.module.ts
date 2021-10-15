@@ -37,6 +37,8 @@ import { PriceDolarPesoComponent } from './pages/metrics/components/price-dolar-
 import { GeneralPopupComponent } from './sharedComponents/general-popup/general-popup.component';
 import { SortItemMobileComponent } from './sharedComponents/sort-item-mobile/sort-item-mobile.component';
 import { SubTextComponent } from './sharedComponents/sub-text/sub-text.component';
+import { CurrentDolarComponent } from './pages/metrics/components/current-dolar/current-dolar.component';
+import { CardMetricInfoComponent } from './pages/metrics/components/card-metric-info/card-metric-info.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import { SubTextComponent } from './sharedComponents/sub-text/sub-text.component
     PriceDolarPesoComponent,
     GeneralPopupComponent,
     SortItemMobileComponent,
-    SubTextComponent
+    SubTextComponent,
+    CurrentDolarComponent,
+    CardMetricInfoComponent
   ],
   imports: [
     BrowserModule,
