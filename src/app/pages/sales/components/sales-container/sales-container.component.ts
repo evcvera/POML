@@ -71,7 +71,7 @@ export class SalesContainerComponent implements OnInit {
   }
 
   orderByMobile(item: any): void {
-    const modalRef = this.modalService.open(SortItemMobileComponent, {modalDialogClass: 'modal-dialog-centered modal-dialog-zipcode'});
+    const modalRef = this.modalService.open(SortItemMobileComponent, {modalDialogClass: 'modal-dialog-centered'});
     modalRef.componentInstance.item = item;
     modalRef.result.then((result) => {
       console.log(result);

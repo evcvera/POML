@@ -3,7 +3,7 @@
     <i class="fas fa-arrow-left return-arrow" routerLink="/sales" (click)="modal.close(false)"></i>
     <h3 class="order-title">Ordenar por</h3>
   </div>
-  <div class="modal-body">
+  <div class="modal-body pb-3">
     <ul class="actions-order">
       <li><a class="action-item"
              [ngClass]="meliModelService.searchSortBy === 'relevance' ? 'active' : ''"

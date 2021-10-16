@@ -1,7 +1,8 @@
 <ng-container *ngIf="(casaModelService.currentDollar$ | async) as currentDollar">
-  <div class="ln-card p-1 d-grid">
+  <div class="ln-card p-3 d-grid mb-3" style="width: 300px">
     <label class="d-block txtSize14 mb-0 txtBlack">
-      <label class=" font-weight-600">DOLAR</label>
+      <label class=" font-weight-600">{{titleLeft}}</label>
+      <label class="float-end ml-2 mb-0 font-weight-600">{{titleRight}}</label>
     </label>
     <label class="d-block txtSize14 mb-0 txtBlack"> Oficial compra:
       <label class="float-end ml-2 mb-0 font-weight-600">{{currentDollar.oficialCompra}}$</label>

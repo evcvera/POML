@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CasaModelService} from '../../../../core/mode-services/casa-model.service';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-card-metric-info',
@@ -8,9 +9,19 @@ import {CasaModelService} from '../../../../core/mode-services/casa-model.servic
 })
 export class CardMetricInfoComponent implements OnInit {
 
-  constructor(public casaModelService: CasaModelService) { }
+  currentDate: Date;
+  titleLeft: string;
+  titleRight: string;
+
+
+  constructor(public casaModelService: CasaModelService,
+              public datetime: DatePipe) {
+  }
 
   ngOnInit(): void {
+    this.currentDate = new Date();
+    this.titleLeft = 'DOLAR';
+    this.titleRight = this.datetime.transform(this.currentDate, 'dd/MM/yyyy');
   }
 
 }

@@ -39,6 +39,7 @@ import { SortItemMobileComponent } from './sharedComponents/sort-item-mobile/sor
 import { SubTextComponent } from './sharedComponents/sub-text/sub-text.component';
 import { CurrentDolarComponent } from './pages/metrics/components/current-dolar/current-dolar.component';
 import { CardMetricInfoComponent } from './pages/metrics/components/card-metric-info/card-metric-info.component';
+import {DatePipe} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,7 @@ import { CardMetricInfoComponent } from './pages/metrics/components/card-metric-
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [EchartModelService, CasaModelService, CasaService],
+  providers: [EchartModelService, CasaModelService, CasaService, DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {

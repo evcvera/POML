@@ -4,6 +4,7 @@
 @import '../../../../node_modules/material-icons/iconfont/material-icons';
 
 .item-title {
+  overflow-wrap: break-word;
   color: #333;
   border-collapse: collapse;
   cursor: pointer;
@@ -270,7 +271,7 @@
 
   .heart-container {
     height: 48px;
-    width: 91px !important;
+    width: 83px !important;
     position: relative;
     border-radius: 0%;
     bottom: 16px;

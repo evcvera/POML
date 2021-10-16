@@ -63,7 +63,9 @@ export class MeliModelService {
     respAux.itemIds = [];
     console.log(resp);
     respAux.results.forEach((x) => {
-      x.thumbnail = x.thumbnail.replace('-I.jpg', '-O.jpg');
+      x.thumbnail = x.thumbnail.replace('-I.jpg', '-O.webp');
+      x.thumbnail = x.thumbnail.replace('http:', 'https:');
+      x.thumbnail = x.thumbnail.replace('D_', 'D_NQ_NP_');
       x.pictures = [x.thumbnail];
       respAux.itemIds.push(x.id);
       if (this.favouritesModelServiceService.favouritesMeliItems$.value && this.favouritesModelServiceService.favouritesMeliItems$.value !== []) {
