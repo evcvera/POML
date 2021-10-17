@@ -41,7 +41,6 @@ export class FavouritesModelServiceService {
       if (this.favouritesMeliItems$.value) {
         for (let i = 0; i < (this.favouritesMeliItems$.value.length / 20); i++) {
           const slicedArray = this.favouritesMeliItems$.value.slice(i * 20, (i + 1) * 20);
-          console.log(slicedArray);
           let auxIds = '';
           slicedArray.forEach((x) => {
             auxIds += x + ',';

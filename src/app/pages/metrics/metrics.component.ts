@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {CasaModelService} from '../../core/mode-services/casa-model.service';
+import {UserDataModelService} from '../../core/mode-services/user-data-model.service';
 
 @Component({
   selector: 'app-metrics',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MetricsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public casaModelService: CasaModelService,
+              public userDataModelService: UserDataModelService) { }
 
   ngOnInit(): void {
+
   }
 
 }

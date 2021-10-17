@@ -1,30 +1,17 @@
-<div *ngIf="casaModelService.currentDollar$ | async as currentDollar" class="ln-card p-1">
+  <div class="d-flex flex-wrap justify-content-around">
+    <app-card-metric-info class="d-inline-flex" [cardInfo]="income"></app-card-metric-info>
+    <app-card-metric-info class="d-inline-flex" [cardInfo]="incomeUsdByTime"></app-card-metric-info>
+    <app-card-metric-info class="d-inline-flex" [cardInfo]="oficialProm"></app-card-metric-info>
+    <app-card-metric-info class="d-inline-flex" [cardInfo]="blueProm"></app-card-metric-info>
+    <app-card-metric-info class="d-inline-flex" [cardInfo]="savingCapacityIncome"></app-card-metric-info>
+    <app-card-metric-info class="d-inline-flex" [cardInfo]="savingCapacityIncomeUsdByTime"></app-card-metric-info>
+    <app-card-metric-info class="d-inline-flex" [cardInfo]="savingCapacityOficialProm"></app-card-metric-info>
+    <app-card-metric-info class="d-inline-flex" [cardInfo]="savingCapacityBlueProm"></app-card-metric-info>
+  </div>
+<!--<div *ngIf="casaModelService.currentDollar$ | async as currentDollar" class="ln-card p-1">
   <div class="d-flex justify-content-around flex-wrap">
-    <div class="d-grid">
-      <label class="d-block txtSize14 mb-0 txtBlack">
-        <label class=" font-weight-600">DOLAR</label>
-      </label>
-      <label class="d-block txtSize14 mb-0 txtBlack"> Oficial compra:
-        <label class="float-end ml-2 mb-0 font-weight-600">{{currentDollar.oficialCompra}}$</label>
-      </label>
-      <label class="d-block txtSize14 mb-0 txtBlack"> Oficial venta:
-        <label class="float-end ml-2 mb-0 font-weight-600">{{currentDollar.oficialVenta}}$</label>
-      </label>
-      <label class="d-block txtSize14 mb-0 txtBlack"> Oficial promedio:
-        <label class="float-end ml-2 mb-0 font-weight-600">{{currentDollar.oficialProm}}$</label>
-      </label>
-      <label class="d-block txtSize14 mb-0 txtBlack"> Blue compra:
-        <label class="float-end ml-2 mb-0 font-weight-600">{{currentDollar.blueCompra}}$</label>
-      </label>
-      <label class="d-block txtSize14 mb-0 txtBlack"> Blue venta:
-        <label class="float-end ml-2 mb-0 font-weight-600">{{currentDollar.blueVenta}}$</label>
-      </label>
-      <label class="d-block txtSize14 mb-0 txtBlack"> Blue promedio:
-        <label class="float-end ml-2 mb-0 font-weight-600">{{currentDollar.blueProm}}$</label>
-      </label>
-    </div>
     <ng-container *ngIf="userDataModelService.userData$ | async as userData">
-      <div class="d-grid" *ngIf="userData.isDollar === true">
+      &lt;!&ndash;<div class="d-grid" *ngIf="userData.isDollar === true">
         <label class="d-block txtSize14 mb-0 txtBlack font-weight-600">
           <label class=" ">INGRESOS: </label>
           <label class="float-end ml-2 mb-0">{{userData.salary | thousandsPipe}} U$D</label>
@@ -96,9 +83,9 @@
             class="float-end ml-2 mb-0 font-weight-600">{{(userData.salary / currentDollar.blueProm).toFixed(1) | thousandsPipe}}
             U$D</label>
         </label>
-      </div>
+      </div>&ndash;&gt;
 
-      <div class="d-grid" *ngIf="userData.isDepenRelationship !== undefined">
+      &lt;!&ndash;<div class="d-grid" *ngIf="userData.isDepenRelationship !== undefined">
         <label class="d-block txtSize14 mb-0 txtBlack font-weight-600">
           <label class=" ">INGRESOS: </label>
           <label
@@ -128,8 +115,8 @@
           <label
             class="float-end ml-2 mb-0 font-weight-600">{{((((userData.salary * (userData.isDepenRelationship ? 13 : 12)) / 232) / userData.dailyHours) / 60).toFixed(2) | thousandsPipe}} {{userData.isDollar ? 'U$D' : '$AR'}}</label>
         </label>
-      </div>
-      <div class="d-grid" *ngIf="userData.isDepenRelationship !== undefined">
+      </div>&ndash;&gt;
+      &lt;!&ndash;<div class="d-grid" *ngIf="userData.isDepenRelationship !== undefined">
         <label class="d-block txtSize14 mb-0 txtBlack font-weight-600">
           <label class=" ">OFICIAL PROMEDIO A</label>
           <label class="float-end ml-2 mb-0"> {{!userData.isDollar ? 'U$D' : '$AR'}}</label>
@@ -158,8 +145,8 @@
           <label
             class="float-end ml-2 mb-0 font-weight-600">{{((((inverseOficialProm * (userData.isDepenRelationship ? 13 : 12)) / 232) / userData.dailyHours) / 60).toFixed(2) | thousandsPipe}} {{!userData.isDollar ? 'U$D' : '$AR'}}</label>
         </label>
-      </div>
-      <div class="d-grid" *ngIf="userData.isDepenRelationship !== undefined">
+      </div>&ndash;&gt;
+      &lt;!&ndash;<div class="d-grid" *ngIf="userData.isDepenRelationship !== undefined">
         <label class="d-block txtSize14 mb-0 txtBlack font-weight-600">
           <label class=" ">BLUE PROMEDIO A</label>
           <label class="float-end ml-2 mb-0"> {{!userData.isDollar ? 'U$D' : '$AR'}}</label>
@@ -188,8 +175,8 @@
           <label
             class="float-end ml-2 mb-0 font-weight-600">{{((((inverseBlueProm * (userData.isDepenRelationship ? 13 : 12)) / 232) / userData.dailyHours) / 60).toFixed(2) | thousandsPipe}} {{!userData.isDollar ? 'U$D' : '$AR'}}</label>
         </label>
-      </div>
-      <div class="d-grid" *ngIf="userData.isDollar === true">
+      </div>&ndash;&gt;
+&lt;!&ndash;      <div class="d-grid" *ngIf="userData.isDollar === true">
         <label class="d-block txtSize14 mb-0 txtBlack font-weight-600">
           <label class=" ">INGRESOS: </label>
           <label class="float-end ml-2 mb-0">{{userData.savingCapacity | thousandsPipe}} U$D</label>
@@ -323,7 +310,7 @@
           <label
             class="float-end ml-2 mb-0 font-weight-600">{{((((inverseOficialPromSavingCapacity * (userData.isDepenRelationship ? 13 : 12)) / 232) / userData.dailyHours) / 60).toFixed(2) | thousandsPipe}} {{!userData.isDollar ? 'U$D' : '$AR'}}</label>
         </label>
-      </div>
+      </div>&ndash;&gt;
       <div class="d-grid" *ngIf="userData.isDepenRelationship !== undefined">
         <label class="d-block txtSize14 mb-0 txtBlack font-weight-600">
           <label class=" ">BLUE PROMEDIO A</label>
@@ -356,7 +343,7 @@
       </div>
     </ng-container>
   </div>
-</div>
+</div>-->
 
 
 <!-- PARA CALCULAR FERIADOS FUERON 14 NACIONALES EN DIAS LABORALES  Y 15 DIAS LABORALES DE VACACIONES = 29

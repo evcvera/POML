@@ -130,7 +130,6 @@ export class EchartLifeTimeComponent implements OnInit {
     chartData.forEach(x => {
       auxCharData.push(x.year);
     });
-    console.log('hola');
     this._chartOption = {
       title: {
         text: 'Esperanza de vida',

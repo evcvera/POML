@@ -30,10 +30,9 @@ export class AppComponent implements OnInit {
     const cacheUserData: ISideBarForm = JSON.parse(localStorage.getItem('userData'));
     if (cacheUserData?.birthday !== undefined) {
       cacheUserData.birthday = new Date(cacheUserData.birthday);
-      cacheUserData.isDepenRelationship = cacheUserData.isDepenRelationship === 'true';
+      /*cacheUserData.isDepenRelationship = cacheUserData.isDepenRelationship === 'true';
       cacheUserData.isDollar = cacheUserData.isDollar === 'true';
-      cacheUserData.isPercent = cacheUserData.isPercent === 'true';
-      cacheUserData.savingCapacity = cacheUserData.isPercent ? Math.round(cacheUserData.savingCapacity / cacheUserData.salary) : cacheUserData.savingCapacity;
+      cacheUserData.isPercent = cacheUserData.isPercent === 'true';*/
       this.userDataModelService.userData$.next(cacheUserData);
     }
 

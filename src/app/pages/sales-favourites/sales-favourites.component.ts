@@ -30,18 +30,15 @@ export class SalesFavouritesComponent implements OnInit, OnDestroy {
          this.favouritesModelServiceService.favouritesMeliItems$.value.forEach(x => {
            if (this.favouritesModelServiceService.favouritesMeliData$.value !== {}) {
              if (!this.favouritesModelServiceService.favouritesMeliData$.value.meliFavouriteItem.some(y => y.body.id === x)) {
-               console.log('hola');
                throw true;
              }
            }
          });
        } catch (e) {
          this.favouritesModelServiceService.meliSearchFavourites();
-         console.log('hola1');
        }
      } else {
        this.favouritesModelServiceService.meliSearchFavourites();
-       console.log('hola2');
      }
    }*/
 

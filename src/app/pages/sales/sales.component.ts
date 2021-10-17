@@ -12,13 +12,13 @@ import {Subscription} from 'rxjs';
 export class SalesComponent implements OnInit, OnDestroy {
 
   search = '';
-  public innerWidth: any;
+  /*public innerWidth: any;*/
   public searchSubscription: Subscription;
   public pageNumberSubscription: Subscription;
 
-  public get tabletOrLess(): boolean {
+/*  public get tabletOrLess(): boolean {
     return this.innerWidth <= 991;
-  }
+  }*/
 
   constructor(public meliModelService: MeliModelService,
               public userDataModelService: UserDataModelService,
@@ -26,7 +26,7 @@ export class SalesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.innerWidth = window.innerWidth;
+    /*this.innerWidth = window.innerWidth;*/
     if (this.searchSubscription) {
       this.searchSubscription.unsubscribe();
     }
@@ -39,7 +39,6 @@ export class SalesComponent implements OnInit, OnDestroy {
       this.pageNumberSubscription.unsubscribe();
     }
     this.pageNumberSubscription = this.userDataModelService.pageNumber$.subscribe(resp => {
-      console.log(resp);
       if (this.meliModelService.searchByInput$.value) {
         if (resp && resp !== (this.meliModelService.searchMeliData$.value.paging.offset / 50)) {
           this.meliModelService.meliSearch(this.userDataModelService.searchData$.value, resp);
@@ -70,18 +69,9 @@ export class SalesComponent implements OnInit, OnDestroy {
     }
   }
 
-  keyPress(): void {
-    if (this.search !== '') {
-      this.meliModelService.searchByInput$.next(true);
-      this.userDataModelService.pageNumber$.next(0);
-      this.userDataModelService.searchData$.next(this.search);
-      this.router.navigate(['sales']);
-    }
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event): any {
+/*  @HostListener('window:resize', ['$event'])
+  onResize($event): any {
     this.innerWidth = window.innerWidth;
-  }
+  }*/
 
 }

@@ -1,26 +1,15 @@
-<ng-container *ngIf="(casaModelService.currentDollar$ | async) as currentDollar">
-  <div class="ln-card p-3 d-grid mb-3" style="width: 300px">
-    <label class="d-block txtSize14 mb-0 txtBlack">
-      <label class=" font-weight-600">{{titleLeft}}</label>
-      <label class="float-end ml-2 mb-0 font-weight-600">{{titleRight}}</label>
-    </label>
-    <label class="d-block txtSize14 mb-0 txtBlack"> Oficial compra:
-      <label class="float-end ml-2 mb-0 font-weight-600">{{currentDollar.oficialCompra}}$</label>
-    </label>
-    <label class="d-block txtSize14 mb-0 txtBlack"> Oficial venta:
-      <label class="float-end ml-2 mb-0 font-weight-600">{{currentDollar.oficialVenta}}$</label>
-    </label>
-    <label class="d-block txtSize14 mb-0 txtBlack"> Oficial promedio:
-      <label class="float-end ml-2 mb-0 font-weight-600">{{currentDollar.oficialProm}}$</label>
-    </label>
-    <label class="d-block txtSize14 mb-0 txtBlack"> Blue compra:
-      <label class="float-end ml-2 mb-0 font-weight-600">{{currentDollar.blueCompra}}$</label>
-    </label>
-    <label class="d-block txtSize14 mb-0 txtBlack"> Blue venta:
-      <label class="float-end ml-2 mb-0 font-weight-600">{{currentDollar.blueVenta}}$</label>
-    </label>
-    <label class="d-block txtSize14 mb-0 txtBlack"> Blue promedio:
-      <label class="float-end ml-2 mb-0 font-weight-600">{{currentDollar.blueProm}}$</label>
-    </label>
+<div class="ln-card p-3 d-grid mb-3 mx-1 d-f" style="width: 290px">
+  <label class="d-block txtSize14 mb-0 txtBlack">
+    <label class=" font-weight-600">{{cardInfo?.leftTitle}}</label>
+    <label class="float-end ml-2 mb-0 font-weight-600">{{cardInfo?.rightTitle}}</label>
+  </label>
+  <label *ngFor="let subtitleItem of cardInfo?.subtitleItems"
+         class="d-block txtSize14 mb-0 txtBlack"> {{subtitleItem?.leftSubtitle}}
+    <label
+      class="float-end ml-2 mb-0 font-weight-600">{{subtitleItem?.rightSubtitle}}{{subtitleItem?.typeOfCurrency}}</label>
+  </label>
+  <div class="more-info">
+    <hr class="line">
+    <label>{{cardInfo?.description}}</label>
   </div>
-</ng-container>
+</div>

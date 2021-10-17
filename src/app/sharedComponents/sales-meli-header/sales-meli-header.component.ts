@@ -43,6 +43,7 @@ export class SalesMeliHeaderComponent implements OnInit {
       this.meliModelService.searchByInput$.next(true);
       this.userDataModelService.pageNumber$.next(0);
       this.userDataModelService.searchData$.next(this.search);
+      this.router.navigate(['sales']);
     }
   }
 

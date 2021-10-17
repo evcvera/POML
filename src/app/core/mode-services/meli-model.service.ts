@@ -128,7 +128,6 @@ export class MeliModelService {
   getOpinionsRating(ids: string[]): any {
     let auxItemOpinion: IMeliItemOpinion = null;
     this.getOpinionsSingleItem = this.getOpinionsRatingObservable(ids).subscribe(response => {
-      console.log(response);
       auxItemOpinion = response;
       if (auxItemOpinion !== null && auxItemOpinion.rating_average) {
         const index = this.searchMeliData$.value.results.findIndex(x => x.rating_average === undefined);
@@ -166,7 +165,6 @@ export class MeliModelService {
         case 'search': {
           const index = this.searchMeliData$.value.results.findIndex(x => x.id === id);
           if (index !== -1) {
-            console.log('hola entre a single ');
             this.searchMeliData$.value.results[index].rating_average = resp.rating_average;
             this.searchMeliData$.value.results[index].comments_count = resp.paging.total;
           }

@@ -26,7 +26,6 @@ export class SideBarFormComponent implements OnInit {
 
   private buildForm(): any {
     this.cacheUserData =  JSON.parse(localStorage.getItem('userData'));
-    //console.log(this.cacheUserData);
     this.form = this.formBuilder.group({
       birthday: [`${this.cacheUserData?.birthday !== undefined ? this.cacheUserData.birthday : ''}`, [Validators.required]],
       gender: [`${this.cacheUserData?.gender !== undefined ? this.cacheUserData.gender : ''}`, [Validators.required]],
