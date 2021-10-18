@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {CasaModelService} from '../../../../core/mode-services/casa-model.service';
 import {UserDataModelService} from '../../../../core/mode-services/user-data-model.service';
 import {IDollarInfo} from '../../../../core/interfaces/idollar-info';
@@ -13,7 +13,7 @@ import {Subscription} from 'rxjs';
   templateUrl: './user-metrics.component.html',
   styleUrls: ['./user-metrics.component.scss']
 })
-export class UserMetricsComponent implements OnInit {
+export class UserMetricsComponent implements OnInit, OnDestroy {
 
   @Input() dollarInfo: IDollarInfo;
   formData: ISideBarForm;
@@ -37,9 +37,6 @@ export class UserMetricsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.userData) {
-      this.userData.unsubscribe();
-    }
     this.userData = this.userDataModelService.userData$.subscribe(x => {
       this.formData = x;
       this.localSavingCapacity = this.formData.isPercent ? (this.formData.salary * this.formData.savingCapacity / 100) : this.formData.savingCapacity;
@@ -52,6 +49,12 @@ export class UserMetricsComponent implements OnInit {
       this.buildSavingCapacityOficialProm();
       this.buildSavingCapacityBlueProm();
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.userData) {
+      this.userData.unsubscribe();
+    }
   }
 
   buildIncome(): IMetricCard {

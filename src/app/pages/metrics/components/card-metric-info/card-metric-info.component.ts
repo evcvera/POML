@@ -22,7 +22,7 @@ export class CardMetricInfoComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.cardInfo);
+    //console.log(this.cardInfo);
     //console.log(changes);
   }
 
