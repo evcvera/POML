@@ -1,0 +1,13 @@
+<ng-container *ngIf="(meliModelService.searchMeliData$ | async) as meli">
+  <div class="search-sidebar">
+    <div class="category-order-by">
+      <label *ngFor="let category of meli?.filters[0]?.values[0]?.path_from_root; let last = last"
+             class="name mb-0">
+        <label class="name-item mb-0" (click)="searchByCategory(category.id)">{{category.name}}</label>
+        <i *ngIf="!last" class="fas fa-angle-right icon-may"></i>
+      </label>
+    </div>
+    <h4 class="text-capitalize item-query">{{meli.query}}</h4>
+    <label class="result-count">{{meli.paging.total | thousandsPipe}} resultados</label>
+  </div>
+</ng-container>

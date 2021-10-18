@@ -42,7 +42,7 @@
     </div>
   </div>-->
   <div class="d-flex">
-    <div class="search-sidebar">
+    <!--<div class="search-sidebar">
       <div class="category-order-by">
         <label *ngFor="let category of meli?.filters[0]?.values[0]?.path_from_root; let last = last"
                class="name mb-0">
@@ -52,7 +52,8 @@
       </div>
       <h4 class="text-capitalize item-query">{{meli.query}}</h4>
       <label class="result-count">{{meli.paging.total | thousandsPipe}} resultados</label>
-    </div>
+    </div>-->
+    <app-side-bar-filters></app-side-bar-filters>
     <div class="d-block w-100 mb-3">
       <div class="category-order-by">
         <div class="d-flex">

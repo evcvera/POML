@@ -1,0 +1,54 @@
+@import "../../../../../assets/baseStyles/baseStyles";
+@import "../../../../../assets/baseStyles/variable";
+@import "~bootstrap/dist/css/bootstrap.css";
+@import '~material-icons/iconfont/material-icons.scss';
+
+.category-order-by{
+  margin-bottom: 32px;
+  margin-top: 75px;
+}
+
+.name{
+  color: #666;
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.search-sidebar{
+  display: block;
+  -webkit-flex: 1 1;
+  flex: 1 1;
+  max-width: 294px;
+  width: 294px;
+  min-width: 292px;
+  //min-width: 210px;
+  padding-right: 14px;
+  //width: 100%;
+}
+
+.name-item{
+  cursor: pointer;
+  &:hover{
+    color: #000000;
+  }
+}
+
+.icon-may{
+  font-size: 14px;
+  margin: 0 3px;
+}
+
+.item-query{
+  color: #333;
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.result-count{
+  font-size: 14px;
+  font-weight: 300;
+  color: #333;
+  margin-top: 4px;
+}
