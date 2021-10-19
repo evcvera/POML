@@ -94,6 +94,8 @@ export class EchartLifeTimeComponent implements OnInit {
           if (this.dataEchart[i - 1].me < this.dataEchart[i].man || this.dataEchart[i].man === null) {
             this.dataEchart[i].me = this.dataEchart[i - 1].me === null ? 0 : this.dataEchart[i - 1].me + 1;
           } else {
+            this.userDataModelService.userData$.value.expectedAge = this.dataEchart[i - 2].man;
+            this.userDataModelService.userData$.value.expectedYear = parseInt(this.dataEchart[i - 2].year, 10);
             break;
           }
         }
@@ -104,6 +106,8 @@ export class EchartLifeTimeComponent implements OnInit {
           if (this.dataEchart[i - 1].me < this.dataEchart[i].woman || this.dataEchart[i].woman === null) {
             this.dataEchart[i].me = this.dataEchart[i - 1].me === null ? 0 : this.dataEchart[i - 1].me + 1;
           } else {
+            this.userDataModelService.userData$.value.expectedAge = this.dataEchart[i - 2].woman;
+            this.userDataModelService.userData$.value.expectedYear = parseInt(this.dataEchart[i - 2].year, 10);
             break;
           }
         }
@@ -114,6 +118,8 @@ export class EchartLifeTimeComponent implements OnInit {
           if (this.dataEchart[i - 1].me < this.dataEchart[i].prom || this.dataEchart[i].prom === null) {
             this.dataEchart[i].me = this.dataEchart[i - 1].me === null ? 0 : this.dataEchart[i - 1].me + 1;
           } else {
+            this.userDataModelService.userData$.value.expectedAge = this.dataEchart[i - 2].prom;
+            this.userDataModelService.userData$.value.expectedYear = parseInt(this.dataEchart[i - 2].year, 10);
             break;
           }
         }
@@ -138,7 +144,6 @@ export class EchartLifeTimeComponent implements OnInit {
         textStyle: {
           fontSize: '17px',
         }
-
       },
       tooltip: {
         trigger: 'axis',

@@ -7,4 +7,6 @@ export interface ISideBarForm {
   dailyHours?: number;
   isPercent?: boolean | string;
   savingCapacity?: number;
+  expectedAge?: number;
+  expectedYear?: number;
 }

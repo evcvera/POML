@@ -39,6 +39,8 @@ import {SubTextComponent} from './sharedComponents/sub-text/sub-text.component';
 import {CurrentDolarComponent} from './pages/metrics/components/current-dolar/current-dolar.component';
 import {CardMetricInfoComponent} from './pages/metrics/components/card-metric-info/card-metric-info.component';
 import {DatePipe} from '@angular/common';
+import { SideBarFiltersComponent } from './pages/sales/components/side-bar-filters/side-bar-filters.component';
+import { ExpectedTimeRemainingComponent } from './pages/metrics/components/expected-time-remaining/expected-time-remaining.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +71,9 @@ import {DatePipe} from '@angular/common';
     SortItemMobileComponent,
     SubTextComponent,
     CurrentDolarComponent,
-    CardMetricInfoComponent
+    CardMetricInfoComponent,
+    SideBarFiltersComponent,
+    ExpectedTimeRemainingComponent
   ],
   imports: [
     BrowserModule,
