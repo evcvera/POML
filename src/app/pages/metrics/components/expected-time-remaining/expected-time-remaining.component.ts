@@ -3,6 +3,8 @@ import {CasaModelService} from '../../../../core/mode-services/casa-model.servic
 import {UserDataModelService} from '../../../../core/mode-services/user-data-model.service';
 import {EChartsOption} from 'echarts';
 import {IBasicEchartLineModel} from '../../../../core/interfaces/ibasic-echart-line-model';
+import {ISideBarForm} from '../../../../core/interfaces/iside-bar-form';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-expected-time-remaining',
@@ -20,33 +22,50 @@ export class ExpectedTimeRemainingComponent implements OnInit {
   retirementPercent: number;
   expectedAgePercent: number;
 
+  userDataSubscription: Subscription;
+
   _chartOption: EChartsOption;
   dataEchart: IBasicEchartLineModel[];
+
+  isPercent: boolean;
 
   constructor(public casaModelService: CasaModelService,
               public userDataModelService: UserDataModelService) {
   }
 
   ngOnInit(): void {
-    this.userDataModelService.userData$.subscribe(x => {
+    this.isPercent = false;
+    this.startImg();
+    /*const timeDiff = Math.abs(Date.now() - x.birthday.getTime());
+    const age = Math.floor((timeDiff / (1000 * 3600 * 24)) / 365.25);
+    console.log(age);*/
+  }
+
+  startImg(): void {
+    this.isPercent = !this.isPercent;
+    if (this.userDataSubscription) {
+      this.userDataSubscription.unsubscribe();
+    }
+
+    this.userDataSubscription = this.userDataModelService.userData$.subscribe(x => {
+
       this.getAge(x.birthday);
-      this.retirement = x.gender === '1' ? 65 : x.gender === '0' ? 60 : 65;
+      this.retirement = x.gender === '0' ? 65 : x.gender === '1' ? 60 : 65;
       this.expectedAge = x.expectedAge;
       this.buildCompleteAge(x.birthday);
 
-      this.agePercent = (this.age / this.expectedAge) * 100;
-      this.retirementPercent = ((this.retirement - this.age) / this.expectedAge) * 100;
-      this.expectedAgePercent = ((this.expectedAge - this.retirement ) / this.expectedAge) * 100;
+      if (this.isPercent) {
+        this.agePercent = (this.age / this.expectedAge) * 100;
+        this.retirementPercent = ((this.retirement - this.age) / this.expectedAge) * 100;
+        this.expectedAgePercent = ((this.expectedAge - this.retirement) / this.expectedAge) * 100;
+      } else {
+        this.agePercent = this.age;
+        this.retirementPercent = this.retirement - this.age > 0 ? this.retirement - this.age : 0;
+        this.expectedAgePercent = (this.expectedAge - this.retirement);
+      }
 
       this.buildEchartGraph();
-
-      /*const timeDiff = Math.abs(Date.now() - x.birthday.getTime());
-      const age = Math.floor((timeDiff / (1000 * 3600 * 24)) / 365.25);
-      console.log(age);*/
-
-
     });
-
   }
 
   getAge(dateString: Date): void {
@@ -57,6 +76,7 @@ export class ExpectedTimeRemainingComponent implements OnInit {
     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
       this.age--;
     }
+
   }
 
   showme(): void {
@@ -133,9 +153,9 @@ export class ExpectedTimeRemainingComponent implements OnInit {
             show: false
           },
           data: [
-            {value: this.agePercent, name: 'Edad porcentual actual'},
-            {value: this.retirementPercent, name: 'Tiempo porcentual para jubilación'},
-            {value: this.expectedAgePercent, name: 'Tiempo porcentual con jubilación'},
+            {value: this.agePercent, name: this.isPercent ? 'Edad porcentual actual' : 'Edad actual'},
+            {value: this.retirementPercent, name: this.isPercent ? 'Tiempo porcentual para jubilación' : 'Tiempo para jubilación'},
+            {value: this.expectedAgePercent, name: this.isPercent ? 'Tiempo porcentual con jubilación' : 'Tiempo con jubilacíon'},
           ]
         }
       ]

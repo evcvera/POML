@@ -16,4 +16,7 @@ export class MetricsComponent implements OnInit {
 
   }
 
+  showme(): void {
+    console.log(this.userDataModelService.userData$.value.expectedYear);
+  }
 }

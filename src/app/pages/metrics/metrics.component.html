@@ -2,12 +2,17 @@
   <h1 class="py-3">Metrics</h1>
   <ng-container *ngIf="(casaModelService.currentDollar$ | async) as currentDollar">
     <ng-container *ngIf="currentDollar.oficialProm !== undefined">
-      <div class="d-flex">
-      <app-current-dolar [dollarInfo]="currentDollar"></app-current-dolar>
-       <div class="ln-card col p-3 mx-1 mb-3">
-         <!--<app-expected-time-remaining></app-expected-time-remaining>-->
-       </div>
-      </div>
+      <ng-container *ngIf="(userDataModelService.userData$ | async) as userData">
+        <div class="d-flex flex-wrap justify-content-around">
+          <app-current-dolar [dollarInfo]="currentDollar"></app-current-dolar>
+          <ng-container *ngIf="userDataModelService.userData$.value.expectedYear">
+            <div class="ln-card col p-3 mx-1 mb-3">
+              <!--<button (click)="showme()"></button>-->
+              <app-expected-time-remaining></app-expected-time-remaining>
+            </div>
+          </ng-container>
+        </div>
+      </ng-container>
     </ng-container>
   </ng-container>
   <app-echart-life-time></app-echart-life-time>

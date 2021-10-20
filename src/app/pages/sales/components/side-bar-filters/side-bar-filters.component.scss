@@ -52,3 +52,14 @@
   color: #333;
   margin-top: 4px;
 }
+
+@media (max-width: 991px) {
+  .search-sidebar {
+    display: none;
+    min-width: 0;
+  }
+
+  .category-order-by{
+    display: none;
+  }
+}

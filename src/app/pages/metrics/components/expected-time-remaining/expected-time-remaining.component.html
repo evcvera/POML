@@ -1,5 +1,12 @@
-<div>
-  <div style="width: 300px; height: 380px" echarts [options]="_chartOption">
+<div class="d-flex flex-wrap">
+  <div>
+    <div style="width: 260px; height: 360px" echarts [options]="_chartOption">
+    </div>
+    <div>
+      <button class="primary-button w-100" (click)="startImg()">
+        {{isPercent ? 'Cambiar a porcentaje' : 'Cambiar a entero'}}
+      </button>
+    </div>
   </div>
   <div>
     <p> Edad actual: {{age}} </p>

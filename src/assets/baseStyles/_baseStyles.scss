@@ -27,6 +27,36 @@
   height: 100vh;
 }
 
+.primary-button {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100px;
+
+  font-size: 14px;
+  line-height: 32px;
+  padding: 0 12px;
+  height: 32px;
+  border-radius: 5px;
+
+
+  border-color: transparent;
+  background-color: #3483fa;
+  color: #fff;
+  font-weight: 600;
+
+  transition: box-shadow .25s ease-out, background-color .2s ease-out;
+  box-shadow: 0 0 0 0 #fff;
+
+  &:hover {
+    border-color: transparent;
+    background-color: #1f4e96;
+    color: #fff;
+  }
+}
+
 .modal-dialog{
   margin: auto !important;
   max-width: fit-content !important;
