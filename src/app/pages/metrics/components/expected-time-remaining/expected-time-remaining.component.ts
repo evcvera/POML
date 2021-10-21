@@ -153,9 +153,12 @@ export class ExpectedTimeRemainingComponent implements OnInit {
             show: false
           },
           data: [
-            {value: this.agePercent, name: this.isPercent ? 'Edad porcentual actual' : 'Edad actual'},
+            /*{value: this.agePercent, name: this.isPercent ? 'Edad porcentual actual' : 'Edad actual'},
             {value: this.retirementPercent, name: this.isPercent ? 'Tiempo porcentual para jubilación' : 'Tiempo para jubilación'},
-            {value: this.expectedAgePercent, name: this.isPercent ? 'Tiempo porcentual con jubilación' : 'Tiempo con jubilacíon'},
+            {value: this.expectedAgePercent, name: this.isPercent ? 'Tiempo porcentual con jubilación' : 'Tiempo con jubilacíon'},*/
+            {value: this.agePercent},
+            {value: this.retirementPercent},
+            {value: this.expectedAgePercent},
           ]
         }
       ]

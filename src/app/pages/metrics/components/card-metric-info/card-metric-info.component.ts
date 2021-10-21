@@ -14,16 +14,23 @@ export class CardMetricInfoComponent implements OnInit, OnChanges {
 
   @Input() cardInfo: IMetricCard;
 
+  moreInfo: boolean;
+
   constructor(public casaModelService: CasaModelService,
               public datetime: DatePipe) {
   }
 
   ngOnInit(): void {
+    this.moreInfo = false;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     //console.log(this.cardInfo);
     //console.log(changes);
+  }
+
+  showMoreInfo(): void{
+    this.moreInfo = !this.moreInfo;
   }
 
 }

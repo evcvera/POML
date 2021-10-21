@@ -10,6 +10,7 @@
   </label>
   <div class="more-info">
     <hr class="line">
-    <label>{{cardInfo?.description}}</label>
+    <label *ngIf="moreInfo">{{cardInfo?.description}}</label>
+    <div class="primary-button" (click)="showMoreInfo()"> mas info </div>
   </div>
 </div>
