@@ -46,7 +46,7 @@ export class MeliModelService {
     }
     /*********************** ZIP CODE **************************/
     this.unSubscribe();
-
+//&shipping_cost=free
     if (this.searchByInput$.value) {
       this.searchSubscription = this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}&offset=${pageNumber * 50}&limit=50&zip_code=${zipCode}&sort=${sortPage}`).subscribe((resp: any) => {
         this.setSearchResp(resp);

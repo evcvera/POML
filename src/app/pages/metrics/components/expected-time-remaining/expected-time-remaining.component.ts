@@ -156,9 +156,9 @@ export class ExpectedTimeRemainingComponent implements OnInit {
             /*{value: this.agePercent, name: this.isPercent ? 'Edad porcentual actual' : 'Edad actual'},
             {value: this.retirementPercent, name: this.isPercent ? 'Tiempo porcentual para jubilación' : 'Tiempo para jubilación'},
             {value: this.expectedAgePercent, name: this.isPercent ? 'Tiempo porcentual con jubilación' : 'Tiempo con jubilacíon'},*/
-            {value: this.agePercent},
-            {value: this.retirementPercent},
-            {value: this.expectedAgePercent},
+            {value: Number((this.agePercent).toFixed(2)), name: this.isPercent ? 'Edad porcentual actual' : 'Edad actual'},
+            {value: Number((this.retirementPercent).toFixed(2)), name: this.isPercent ? 'Tiempo porcentual para jubilación' : 'Tiempo para jubilación'},
+            {value: Number((this.expectedAgePercent).toFixed(2)), name: this.isPercent ? 'Tiempo porcentual con jubilación' : 'Tiempo con jubilacíon'},
           ]
         }
       ]

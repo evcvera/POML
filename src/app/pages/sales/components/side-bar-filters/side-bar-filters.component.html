@@ -9,5 +9,38 @@
     </div>
     <h4 class="text-capitalize item-query">{{meli.query}}</h4>
     <label class="result-count">{{meli.paging.total | thousandsPipe}} resultados</label>
+
+
+    <div class="filter-group">
+      <div class="new-component">
+        <div class="switch-container">
+          <label class="form-check-label mb-0">Llegan mañana</label>
+          <div class="mb-0 form-check form-switch">
+            <input class="form-check-input" type="checkbox">
+          </div>
+        </div>
+      </div>
+      <div class="new-component">
+        <div class="switch-container">
+          <div>
+            <label class="form-check-label mb-0">
+              <app-full-icon></app-full-icon>
+              te ahorra envíos</label>
+            <label class="mb-0 sub-title">Con tu carrito de compras</label>
+          </div>
+          <div class="mb-0 form-check form-switch">
+            <input class="form-check-input" type="checkbox">
+          </div>
+        </div>
+      </div>
+      <div class="new-component">
+        <div class="switch-container">
+          <label class="form-check-label mb-0">Envío gratis</label>
+          <div class="mb-0 form-check form-switch">
+            <input class="form-check-input" type="checkbox">
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </ng-container>
