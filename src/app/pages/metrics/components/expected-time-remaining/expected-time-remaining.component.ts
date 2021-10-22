@@ -114,13 +114,28 @@ export class ExpectedTimeRemainingComponent implements OnInit {
 
   buildEchartGraph(): void {
     this._chartOption = {
-      tooltip: {
+      /*tooltip: {
         trigger: 'item',
         backgroundColor: '#212326',
         borderColor: '#00000000',
         textStyle: {
           color: '#FFFFFF',
         },
+      },*/
+      tooltip: {
+        trigger: 'item',
+        backgroundColor: '#1f4e96',
+        borderColor: '#00000000',
+        axisPointer: {
+          type: 'cross',
+          label: {
+            backgroundColor: '#1f4e96',
+          }
+        },
+        textStyle: {
+          color: '#FFFFFF',
+        },
+        position: 'inside',
       },
       legend: {
         top: '5%',

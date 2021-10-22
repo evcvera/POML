@@ -1,5 +1,5 @@
-@import "../../../../../assets/baseStyles/baseStyles";
-@import "../../../../../assets/baseStyles/variable";
+@import "src/assets/baseStyles/baseStyles";
+@import "src/assets/baseStyles/variable";
 @import "~bootstrap/dist/css/bootstrap.css";
 @import '~material-icons/iconfont/material-icons.scss';
 
@@ -86,13 +86,13 @@
   .form-check-input {
     width: 36px;
     height: 19px;
+    cursor: pointer;
   }
 
   .form-check{
     display: flex;
     align-items: center;
   }
-
 
   .sub-title {
     margin-top: 0;

@@ -147,11 +147,25 @@ export class EchartLifeTimeComponent implements OnInit {
       },
       tooltip: {
         trigger: 'axis',
+        backgroundColor: '#1f4e96',
+        axisPointer: {
+          type: 'cross',
+          label: {
+            backgroundColor: '#1f4e96',
+          }
+        },
+        textStyle: {
+          color: '#FFFFFF',
+        },
+        position: 'inside',
+      },
+      /*tooltip: {
+        trigger: 'axis',
         backgroundColor: '#212326',
         textStyle: {
           color: '#FFFFFF',
         },
-      },
+      },*/
       legend: {
         data: ['Mujer', 'Hombre', 'Promedio', 'Yo']
       },
