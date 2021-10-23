@@ -43,6 +43,7 @@ import { SideBarFiltersComponent } from './pages/sales/components/side-bar-filte
 import { ExpectedTimeRemainingComponent } from './pages/metrics/components/expected-time-remaining/expected-time-remaining.component';
 import { MeliFiltersComponent } from './pages/sales/components/meli-filters/meli-filters.component';
 import { FiltersMobileComponent } from './sharedComponents/filters-mobile/filters-mobile.component';
+import { FilterItemComponent } from './pages/sales/components/meli-filters/components/filter-item/filter-item.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { FiltersMobileComponent } from './sharedComponents/filters-mobile/filter
     SideBarFiltersComponent,
     ExpectedTimeRemainingComponent,
     MeliFiltersComponent,
-    FiltersMobileComponent
+    FiltersMobileComponent,
+    FilterItemComponent
   ],
   imports: [
     BrowserModule,

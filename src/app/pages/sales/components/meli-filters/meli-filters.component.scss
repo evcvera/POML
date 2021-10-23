@@ -3,47 +3,54 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import '~material-icons/iconfont/material-icons.scss';
 
+
+.filter-items-component{
+  margin-top: 30px;
+}
+
 .new-component {
   cursor: pointer;
   width: 242px;
+}
 
-  .switch-container {
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    padding: 16px;
-    margin: 4px 0;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
+.switch-container {
+  background: #fff;
+  line-height: 1.35;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 16px;
+  margin: 4px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
-  .form-check-label {
-    margin-top: 1px;
-    display: inline-block;
-    font-weight: 600;
-    font-size: 13px;
-    color: rgba(0, 0, 0, .8);
-    cursor: pointer;
-  }
+.form-check-label {
+  margin-top: 1px;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 13px;
+  color: rgba(0, 0, 0, .8);
+  cursor: pointer;
+}
 
-  .form-check-input {
-    width: 36px;
-    height: 19px;
-    cursor: pointer;
-  }
+.form-check-input {
+  width: 36px;
+  height: 19px;
+  cursor: pointer;
+}
 
-  .form-check{
-    display: flex;
-    align-items: center;
-  }
+.form-check{
+  display: flex;
+  align-items: center;
+}
 
-  .sub-title {
-    margin-top: 0;
-    font-size: 12px;
-    font-weight: 400;
-    display: inline-block;
-    color: rgba(0, 0, 0, .8);
-  }
+.sub-title {
+  margin-top: 0;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 400;
+  display: inline-block;
+  color: rgba(0, 0, 0, .8);
 }

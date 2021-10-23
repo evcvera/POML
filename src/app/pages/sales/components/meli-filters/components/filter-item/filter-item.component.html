@@ -1,0 +1,10 @@
+<div class="filter-item-component">
+  <div class="filter-title">{{filter.name}}</div>
+  <ul class="filter-ul">
+    <li class="search-filter-container" *ngFor="let value of filter.values | slice:0:countItemsShow; let i=index">
+       <span class="filter-subtitle">{{value.name}}</span>
+      <span class="filter-subtitle-count">({{value.results}})</span>
+    </li>
+    <a class="show-all" *ngIf="filter.values.length > countItemsShow" (click)="showAll()">Ver todos</a>
+  </ul>
+</div>
