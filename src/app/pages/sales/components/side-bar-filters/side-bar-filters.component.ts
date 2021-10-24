@@ -17,6 +17,7 @@ export class SideBarFiltersComponent implements OnInit {
 
 
   searchByCategory(categoryId: string): void {
+    this.meliModelService.searchSortBy$.next('relevance');
     this.meliModelService.searchByInput$.next(false);
     this.userDataModelService.pageNumber$.next(0);
     this.userDataModelService.searchDataByCategory$.next(categoryId);

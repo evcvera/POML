@@ -8,6 +8,7 @@ import {SalesZipCodeModalComponent} from '../sales-zip-code-modal/sales-zip-code
 import {GeneralPopupComponent} from '../../../../sharedComponents/general-popup/general-popup.component';
 import {SortItemMobileComponent} from '../../../../sharedComponents/sort-item-mobile/sort-item-mobile.component';
 import {FiltersMobileComponent} from '../../../../sharedComponents/filters-mobile/filters-mobile.component';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-sales-container',
@@ -17,6 +18,7 @@ import {FiltersMobileComponent} from '../../../../sharedComponents/filters-mobil
 export class SalesContainerComponent implements OnInit {
 
   orderName = 'relevance';
+  searchSortBySubscription: Subscription;
 
   /*  private _resultsEntity: ResultsEntity;
     @Input('resultsEntity') set resultsEntity(value: ResultsEntity) {
@@ -51,15 +53,22 @@ export class SalesContainerComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.searchSortBySubscription) {
+      this.searchSortBySubscription.unsubscribe();
+    }
+    this.searchSortBySubscription = this.meliModelService.searchSortBy$.subscribe(x => {
+      this.orderName = x;
+    });
   }
 
   orderBy(order: string): void {
     this.orderName = order;
-    this.userDataModelService.pageSort$.next(order);
+    //this.userDataModelService.pageSort$.next(order);
+    this.meliModelService.searchSortBy$.next(order);
     this.userDataModelService.pageNumber$.next(0);
     this.meliModelService.meliSearch(this.userDataModelService.searchData$.value,
       this.userDataModelService.pageNumber$.value,
-      order);
+      this.meliModelService.searchSortBy$.value);
   }
 
   searchByCategory(categoryId: string): void {

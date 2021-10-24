@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment.prod';
-import {IMeliSearch} from '../interfaces/imeli-search';
+import {AvailableFiltersEntity, IMeliSearch} from '../interfaces/imeli-search';
 import {BehaviorSubject, from, Observable, Subscription} from 'rxjs';
 import {IMeliZipCode} from '../interfaces/imeli-zip-code';
 import {IMeliSingleItem} from '../interfaces/imeli-single-item';
@@ -19,12 +19,13 @@ export class MeliModelService {
   }
 
   searchMeliData$: BehaviorSubject<IMeliSearch> = new BehaviorSubject<IMeliSearch>(undefined);
-
   zipCodeData$: BehaviorSubject<IMeliZipCode> = new BehaviorSubject<IMeliZipCode>(undefined);
+  selectedFilters$: BehaviorSubject<AvailableFiltersEntity[]> = new BehaviorSubject<AvailableFiltersEntity[]>([]);
+  searchSortBy$: BehaviorSubject<string> = new BehaviorSubject<string>('relevance');
   favouritesItems$: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
   searchByInput$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   public searchSortBy: string;
-  /*searchSortBy$: BehaviorSubject<string> = new BehaviorSubject<string>('relevance');*/
+
   searchSubscription: Subscription;
   zipCodeSubscription: Subscription;
   getImagesSingleItem: Subscription;
@@ -34,8 +35,8 @@ export class MeliModelService {
 
 
   meliSearch(search: string, pageNumber: number, sortPage = 'relevance'): any {
-    this.searchSortBy = sortPage;
 
+    sortPage = this.searchSortBy$.value;
     /*********************** ZIP CODE **************************/
     let zipCode = '';
     if (this.zipCodeData$.value) {
@@ -45,10 +46,21 @@ export class MeliModelService {
       zipCode = this.defaultZipCode;
     }
     /*********************** ZIP CODE **************************/
+
+    /*********************** FILTERS **************************/
+    let filters = '';
+    if (this.selectedFilters$.value !== []) {
+      this.selectedFilters$.value.forEach(x => {
+        filters += '&' + x.id + '=' + x.values[0].id;
+      });
+      console.log(filters);
+    }
+    /*********************** FILTERS **************************/
+
     this.unSubscribe();
 //&shipping_cost=free
     if (this.searchByInput$.value) {
-      this.searchSubscription = this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}&offset=${pageNumber * 50}&limit=50&zip_code=${zipCode}&sort=${sortPage}`).subscribe((resp: any) => {
+      this.searchSubscription = this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}&offset=${pageNumber * 50}&limit=50&zip_code=${zipCode}&sort=${sortPage}${filters}`).subscribe((resp: any) => {
         this.setSearchResp(resp);
       });
     } else {

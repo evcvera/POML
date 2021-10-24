@@ -12,7 +12,7 @@ export class UserDataModelService {
   searchData$: BehaviorSubject<string> = new BehaviorSubject<string>('');
   searchDataByCategory$: BehaviorSubject<string> = new BehaviorSubject<string>('');
   pageNumber$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
-  pageSort$: BehaviorSubject<string> = new BehaviorSubject<string>('relevance');
+  //pageSort$: BehaviorSubject<string> = new BehaviorSubject<string>('relevance');
 
   constructor() {
   }

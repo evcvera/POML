@@ -336,15 +336,15 @@ export interface ValuesEntity1 {
 }
 
 export interface AvailableFiltersEntity {
-  id: string;
-  name: string;
-  type: string;
+  id?: string;
+  name?: string;
+  type?: string;
   values?: (ValuesEntity2)[] | null;
 }
 
 export interface ValuesEntity2 {
-  id: string;
-  name: string;
-  results: number;
+  id?: string;
+  name?: string;
+  results?: number;
 }
 

@@ -40,6 +40,8 @@ export class SalesMeliHeaderComponent implements OnInit {
 
   keyPress(): void {
     if (this.search !== '') {
+      this.meliModelService.selectedFilters$.next([]);
+      this.meliModelService.searchSortBy$.next('relevance');
       this.meliModelService.searchByInput$.next(true);
       this.userDataModelService.pageNumber$.next(0);
       this.userDataModelService.searchData$.next(this.search);

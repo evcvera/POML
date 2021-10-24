@@ -53,11 +53,12 @@ export class FiltersMobileComponent implements OnInit {
 
   orderBy(order: string): void {
     this.orderName = order;
-    this.userDataModelService.pageSort$.next(order);
+    //this.userDataModelService.pageSort$.next(order);
     this.userDataModelService.pageNumber$.next(0);
+    this.meliModelService.searchSortBy$.next(order);
     this.meliModelService.meliSearch(this.userDataModelService.searchData$.value,
       this.userDataModelService.pageNumber$.value,
-      order);
+      this.meliModelService.searchSortBy$.value);
     this.modal.close(true);
   }
 
