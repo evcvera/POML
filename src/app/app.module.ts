@@ -44,6 +44,7 @@ import { ExpectedTimeRemainingComponent } from './pages/metrics/components/expec
 import { MeliFiltersComponent } from './pages/sales/components/meli-filters/meli-filters.component';
 import { FiltersMobileComponent } from './sharedComponents/filters-mobile/filters-mobile.component';
 import { FilterItemComponent } from './pages/sales/components/meli-filters/components/filter-item/filter-item.component';
+import { SelectedFilterComponent } from './pages/sales/components/meli-filters/components/selected-filter/selected-filter.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { FilterItemComponent } from './pages/sales/components/meli-filters/compo
     ExpectedTimeRemainingComponent,
     MeliFiltersComponent,
     FiltersMobileComponent,
-    FilterItemComponent
+    FilterItemComponent,
+    SelectedFilterComponent
   ],
   imports: [
     BrowserModule,

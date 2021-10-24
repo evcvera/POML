@@ -20,7 +20,10 @@ export class MeliModelService {
 
   searchMeliData$: BehaviorSubject<IMeliSearch> = new BehaviorSubject<IMeliSearch>(undefined);
   zipCodeData$: BehaviorSubject<IMeliZipCode> = new BehaviorSubject<IMeliZipCode>(undefined);
+
   selectedFilters$: BehaviorSubject<AvailableFiltersEntity[]> = new BehaviorSubject<AvailableFiltersEntity[]>([]);
+  categoryName$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+
   searchSortBy$: BehaviorSubject<string> = new BehaviorSubject<string>('relevance');
   favouritesItems$: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
   searchByInput$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
@@ -64,7 +67,7 @@ export class MeliModelService {
         this.setSearchResp(resp);
       });
     } else {
-      this.searchSubscription = this.http.get(`${environment.api.meli}/sites/MLA/search?category=${search}&offset=${pageNumber * 50}&limit=50&zip_code=${zipCode}&sort=${sortPage}`).subscribe((resp: any) => {
+      this.searchSubscription = this.http.get(`${environment.api.meli}/sites/MLA/search?category=${search}&offset=${pageNumber * 50}&limit=50&zip_code=${zipCode}&sort=${sortPage}${filters}`).subscribe((resp: any) => {
         this.setSearchResp(resp);
       });
     }
@@ -86,6 +89,10 @@ export class MeliModelService {
     });
     const isClassified = respAux.results.find(x => x.buying_mode !== 'classified');
     respAux.classified = !isClassified;
+
+    if (!this.searchByInput$.value) {
+      respAux.query = this.categoryName$.value;
+    }
 
     this.searchMeliData$.next(respAux);
     //this.getOpinionsRating(respAux.itemIds);

@@ -3,7 +3,7 @@
     <div class="category-order-by">
       <span *ngFor="let category of meli?.filters[0]?.values[0]?.path_from_root; let last = last"
             class="name mb-0">
-        <span class="name-item mb-0" (click)="searchByCategory(category.id)">{{category.name}}</span>
+        <span class="name-item mb-0" (click)="searchByCategory(category)">{{category.name}}</span>
         <i *ngIf="!last" class="fas fa-angle-right icon-may"></i>
       </span>
     </div>

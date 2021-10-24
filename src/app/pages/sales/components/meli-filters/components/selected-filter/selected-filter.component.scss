@@ -1,0 +1,46 @@
+@import "src/assets/baseStyles/baseStyles";
+@import "src/assets/baseStyles/variable";
+@import "~bootstrap/dist/css/bootstrap.css";
+@import '~material-icons/iconfont/material-icons.scss';
+
+.tag-container{
+  //margin: 0;
+  padding: 0;
+  border-radius: 1px;
+  max-height: 26px;
+  background-color: #fff;
+  border-color: transparent;
+  font-size: 14px;
+  height: 2.2857142857em;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 400;
+  //border: 1.2px solid rgba(0,0,0,.25);
+  color: rgba(0,0,0,.9);
+  user-select: none;
+  width: auto;
+  cursor: pointer;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  line-height: 1.35;
+}
+
+.tag-name{
+  color: rgba(0,0,0,.62);
+  font-size: 13px;
+  padding: 0 0.5714285714em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 400;
+}
+
+.tag-close{
+  color: #bfbfbf;
+  justify-content: center;
+  display: flex;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 24px;
+  margin-left: -4px;
+}

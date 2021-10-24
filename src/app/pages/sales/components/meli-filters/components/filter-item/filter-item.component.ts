@@ -34,6 +34,7 @@ export class FilterItemComponent implements OnInit {
     console.log(this.meliModelService.selectedFilters$.value);
     aux.values.push(selectedFilter);
     this.meliModelService.selectedFilters$.value.push(aux);
+    this.meliModelService.selectedFilters$.next(this.meliModelService.selectedFilters$.value);
     console.log(this.meliModelService.selectedFilters$.value);
     console.log(this.meliModelService.selectedFilters$.value);
     console.log(this.meliModelService.selectedFilters$.value);
