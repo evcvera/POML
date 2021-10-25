@@ -26,7 +26,8 @@ export class FilterItemComponent implements OnInit {
   }
 
   addFilter(selectedFilter: ValuesEntity2): void {
-    if (this.filter.name === 'Categories') {
+    //if (this.filter.name === 'Categories') {
+    if (this.filter.id === 'category') {
       this.meliModelService.categoryName$.next(selectedFilter.name);
       this.meliModelService.selectedFilters$.next([]);
       this.meliModelService.searchSortBy$.next('relevance');
