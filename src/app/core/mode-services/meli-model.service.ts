@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment.prod';
-import {AvailableFiltersEntity, IMeliSearch} from '../interfaces/imeli-search';
+import {AvailableFiltersEntity, FiltersEntity, IMeliSearch} from '../interfaces/imeli-search';
 import {BehaviorSubject, from, Observable, Subscription} from 'rxjs';
 import {IMeliZipCode} from '../interfaces/imeli-zip-code';
 import {IMeliSingleItem} from '../interfaces/imeli-single-item';
@@ -92,6 +92,10 @@ export class MeliModelService {
 
     if (!this.searchByInput$.value) {
       respAux.query = this.categoryName$.value;
+    }
+
+    if (this.selectedFilters$.value.length === 0) {
+      this.addCategorieFilter(respAux.filters[0]);
     }
 
     this.searchMeliData$.next(respAux);
@@ -201,5 +205,14 @@ export class MeliModelService {
         }
       }
     });
+  }
+
+  addCategorieFilter(filter: FiltersEntity): void {
+    if (filter && filter.id !== undefined) {
+      const auxFilter: AvailableFiltersEntity = {id: filter.id, name: filter.name, type: filter.type, values: [{}]};
+      auxFilter.values[0] = {name: filter.values[0].name, id: filter.values[0].id};
+      this.selectedFilters$.value.push(auxFilter);
+    }
+
   }
 }

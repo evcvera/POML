@@ -3,7 +3,8 @@
     <div>
       <ng-container *ngFor="let selectedFilter of selectedFilters">
         <div class="tag-container" (click)="removeSelectedFilter(selectedFilter.id)"
-             *ngIf="selectedFilter.values[0].id!== 'fulfillment' && selectedFilter.values[0].id!== 'free'">
+             *ngIf="selectedFilter.values[0].id!== 'fulfillment' && selectedFilter.values[0].id!== 'free'
+                    && selectedFilter.name !== 'Categories'">
           <span class="tag-name">{{selectedFilter.values[0].name}}</span>
           <i class="fas fa-times tag-close"></i>
         </div>

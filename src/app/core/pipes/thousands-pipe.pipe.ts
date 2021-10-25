@@ -6,7 +6,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 export class ThousandsPipePipe implements PipeTransform {
 
   public transform(value: any): string {
-    if (value !== null) {
+    if (value !== null && value !== undefined) {
       const aux = value.toString().replace('.', ',');
       return aux.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     } else {

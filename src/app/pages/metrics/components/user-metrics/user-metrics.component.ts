@@ -558,7 +558,7 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
   }
 
   public transform(value: any): string {
-    if (value !== null) {
+    if (value !== null && value !== undefined) {
       const aux = value.toString().replace('.', ',');
       return aux.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     } else {
