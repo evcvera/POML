@@ -128,7 +128,6 @@ export class MeliFiltersComponent implements OnInit {
           }
         });
         if (!this.fullSend) {
-          console.log(this.meliModelService.selectedFilters$.value);
           const index = this.meliModelService.selectedFilters$.value.findIndex(z => z.id === 'shipping' && z.values[0].id === 'fulfillment');
           console.log((index));
           if (index > -1) {
@@ -214,7 +213,6 @@ export class MeliFiltersComponent implements OnInit {
           }
         });
         if (!this.freeSend) {
-          console.log(this.meliModelService.selectedFilters$.value);
           const index = this.meliModelService.selectedFilters$.value.findIndex(z => z.id === 'shipping_cost' && z.values[0].id === 'free');
           console.log((index));
           if (index > -1) {

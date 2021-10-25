@@ -151,17 +151,9 @@ export class SalesItemComponent implements OnInit {
           if (x.conditions?.start_time && x.conditions?.end_time) {
             const startTime = new Date(x.conditions?.start_time);
             const endTime = new Date(x.conditions?.end_time);
-            console.log(startTime);
-            console.log(endTime);
-            console.log(this.currentDate);
-            console.log(this.currentDate > startTime);
-            console.log(x.conditions?.end_time < endTime);
-            console.log('$' + x.regular_amount);
-            console.log('$' + x.amount);
             if (this.currentDate > startTime && this.currentDate < endTime) {
               if (x.conditions?.context_restrictions) {
                 if (x.conditions.context_restrictions.findIndex(y => y === 'channel_marketplace') === -1) {
-                  console.log('asdasda dsads dasda sda sdas ads das ads entre');
                 }
               }
             }

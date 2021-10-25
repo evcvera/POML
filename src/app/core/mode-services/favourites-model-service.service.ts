@@ -65,13 +65,11 @@ export class FavouritesModelServiceService {
         arrayOfObs.push(this.getSearchFavourites(y[i]));
       }
       this.forkJoinSubscription = forkJoin(arrayOfObs).subscribe((response: IMeliItem[]) => {
-        console.log(response);
         for (const item of Object.keys(response)) {
           favouriteItems = favouriteItems.concat(response[item]);
         }
         if (favouriteItems) {
           this.favouritesMeliData$.next({meliFavouriteItem: favouriteItems});
-          console.log(favouriteItems);
           this.favouritesMeliData$.value.totalSum = 0;
           this.favouritesMeliData$.value.ids = [];
           this.favouritesMeliData$.value.meliFavouriteItem.forEach((x) => {

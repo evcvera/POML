@@ -31,9 +31,7 @@ export class SalesMeliHeaderComponent implements OnInit {
 /*    const modalRef = this.modalService.open(GeneralPopupComponent, {modalDialogClass: 'modal-dialog-centered modal-dialog-zipcode'});
     modalRef.componentInstance.item = item;
     modalRef.result.then((result) => {
-      console.log(result);
       if (result) {
-        console.log(result);
       }
     }).catch((res) => {});*/
   }

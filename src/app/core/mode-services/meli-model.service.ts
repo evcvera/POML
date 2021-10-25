@@ -56,7 +56,6 @@ export class MeliModelService {
       this.selectedFilters$.value.forEach(x => {
         filters += '&' + x.id + '=' + x.values[0].id;
       });
-      console.log(filters);
     }
     /*********************** FILTERS **************************/
 
