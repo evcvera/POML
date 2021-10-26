@@ -94,7 +94,7 @@ export class SalesContainerComponent implements OnInit {
 
   filtersMobile(item: any): void {
     const modalRef = this.modalService.open(FiltersMobileComponent, {modalDialogClass: 'modal-dialog-centered'});
-    modalRef.componentInstance.item = this.meliModelService.searchMeliData$.value.available_filters;
+    modalRef.componentInstance.filters = this.meliModelService.searchMeliData$.value.available_filters;
     modalRef.result.then((result) => {
       console.log(result);
       if (result) {

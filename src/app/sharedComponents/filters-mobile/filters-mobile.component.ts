@@ -12,10 +12,11 @@ import {AvailableFiltersEntity, IMeliSearch} from '../../core/interfaces/imeli-s
 })
 export class FiltersMobileComponent implements OnInit {
 
-  @Input() item: AvailableFiltersEntity[];
+  @Input() filters: AvailableFiltersEntity[];
   @Output() buttonResponse: EventEmitter<boolean> = new EventEmitter();
   zipCode: string;
   isZipcode: boolean;
+  orderName = 'relevance';
 
   constructor(public modal: NgbActiveModal,
               public meliModelService: MeliModelService,
@@ -23,12 +24,9 @@ export class FiltersMobileComponent implements OnInit {
               public userDataModelService: UserDataModelService) {
   }
 
-  orderName = 'relevance';
-
-  /*  private _resultsEntity: ResultsEntity;
-    @Input('resultsEntity') set resultsEntity(value: ResultsEntity) {
-      this._resultsEntity = value;
-    }*/
+  ngOnInit(): void {
+    console.log(this.filters);
+  }
 
   get resultsEntity(): IMeliSearch {
     if (this.meliModelService.searchMeliData$.value) {
@@ -36,19 +34,6 @@ export class FiltersMobileComponent implements OnInit {
     } else {
       return undefined;
     }
-  }
-
-  get labelText(): string {
-    if (this.orderName === 'relevance') {
-      return 'Más relevantes';
-    }
-    if (this.orderName === 'price_asc') {
-      return 'Menor precio';
-    }
-    if (this.orderName === 'price_desc') {
-      return 'Mayor precio';
-    }
-    return '';
   }
 
   orderBy(order: string): void {
@@ -62,23 +47,7 @@ export class FiltersMobileComponent implements OnInit {
     this.modal.close(true);
   }
 
-  ngOnInit(): void {
-    /*this.isZipcode = true;
-    if (this.meliModelService.zipCodeData$.value) {
-      this.zipCode = this.meliModelService.zipCodeData$.value.zip_code;
-    }*/
-    console.log(this.item);
-  }
-
   getZipCode(): void {
-    /*if (this.zipCode !== '' && this.zipCode !== 'undefined') {
-      this.meliModelService.getZipcode(this.zipCode).then(resp => {
-        this.isZipcode = resp;
-        if (resp) {
-          this.router.navigate(['/sales']);
-        }
-      });
-    }*/
     this.buttonResponse.emit(true);
     this.modal.close(true);
   }

@@ -5,15 +5,17 @@
   </div>
   <div class="modal-body pb-3">
     <ul class="actions-order">
-      <li><a class="action-item"
-             [ngClass]="meliModelService.searchSortBy === 'relevance' ? 'active' : ''"
-             (click)="orderBy('relevance')">Más relevantes</a></li>
-      <li><a class="action-item"
-             [ngClass]="meliModelService.searchSortBy === 'price_asc' ? 'active' : ''"
-             (click)="orderBy('price_asc')">Menor precio</a></li>
-      <li><a class="action-item last-action-item"
+      <li *ngFor="let filter of filters">
+        <a class="action-item">{{filter.name}}</a>
+        <ul class="filter-options">
+          <li class="title-option" *ngFor="let options of filter.values">
+            <a >{{options.name}}</a>
+          </li>
+        </ul>
+      </li>
+      <!--<li><a class="action-item last-action-item"
              [ngClass]="meliModelService.searchSortBy === 'price_desc' ? 'active' : ''"
-             (click)="orderBy('price_desc')">Mayor precio</a></li>
+             (click)="orderBy('price_desc')">Mayor precio</a></li>-->
     </ul>
   </div>
 </div>
