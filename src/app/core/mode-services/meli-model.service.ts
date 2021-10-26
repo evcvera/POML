@@ -38,7 +38,6 @@ export class MeliModelService {
 
 
   meliSearch(search: string, pageNumber: number, sortPage = 'relevance'): any {
-
     sortPage = this.searchSortBy$.value;
     /*********************** ZIP CODE **************************/
     let zipCode = '';

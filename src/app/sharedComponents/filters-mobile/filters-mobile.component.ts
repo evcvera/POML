@@ -3,7 +3,7 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {MeliModelService} from '../../core/mode-services/meli-model.service';
 import {Router} from '@angular/router';
 import {UserDataModelService} from '../../core/mode-services/user-data-model.service';
-import {IMeliSearch} from '../../core/interfaces/imeli-search';
+import {AvailableFiltersEntity, IMeliSearch} from '../../core/interfaces/imeli-search';
 
 @Component({
   selector: 'app-filters-mobile',
@@ -12,7 +12,7 @@ import {IMeliSearch} from '../../core/interfaces/imeli-search';
 })
 export class FiltersMobileComponent implements OnInit {
 
-  @Input() item: any;
+  @Input() item: AvailableFiltersEntity[];
   @Output() buttonResponse: EventEmitter<boolean> = new EventEmitter();
   zipCode: string;
   isZipcode: boolean;
