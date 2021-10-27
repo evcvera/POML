@@ -84,6 +84,21 @@
   padding: 20px 32px 20px 26px;
 }
 
+.icon-container{
+  width: 57px;
+  display: flex;
+}
+
+.arrow-icon{
+  margin: 0 13px 0 auto;
+  font-size: 18px;
+  color: #3483fa;
+}
+
+.form-check-input{
+  margin-left: -36px;
+}
+
 @media (max-width: 991px) {
   .modal-content {
     min-width: 100vw !important;

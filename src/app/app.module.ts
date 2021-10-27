@@ -45,6 +45,7 @@ import { MeliFiltersComponent } from './pages/sales/components/meli-filters/meli
 import { FiltersMobileComponent } from './sharedComponents/filters-mobile/filters-mobile.component';
 import { FilterItemComponent } from './pages/sales/components/meli-filters/components/filter-item/filter-item.component';
 import { SelectedFilterComponent } from './pages/sales/components/meli-filters/components/selected-filter/selected-filter.component';
+import { ItemFilterMobileComponent } from './sharedComponents/filters-mobile/component/item-filter-mobile/item-filter-mobile.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,8 @@ import { SelectedFilterComponent } from './pages/sales/components/meli-filters/c
     MeliFiltersComponent,
     FiltersMobileComponent,
     FilterItemComponent,
-    SelectedFilterComponent
+    SelectedFilterComponent,
+    ItemFilterMobileComponent
   ],
   imports: [
     BrowserModule,

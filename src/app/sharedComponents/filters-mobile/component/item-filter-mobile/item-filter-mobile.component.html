@@ -1,0 +1,12 @@
+<ng-container>
+  <div (click)="showAllOptions()">
+    <a class="action-item">{{filter.name}}
+      <span class="icon-container"> <i class="arrow-icon fas fa-angle-down"
+                                       [ngClass]="showOptions ? 'fa-angle-up': 'fa-angle-down'"></i> </span></a>
+  </div>
+  <ul class="filter-options" *ngIf="showOptions">
+    <li class="title-option" *ngFor="let options of filter.values">
+      <a (click)="addFilter(options, filter)">{{options.name}}</a>
+    </li>
+  </ul>
+</ng-container>

@@ -5,17 +5,40 @@
   </div>
   <div class="modal-body pb-3">
     <ul class="actions-order">
+      <li>
+        <div class="action-item" *ngIf="canFullSend || fullSend" (click)="setFullSend()">
+          <div>
+            <label class="form-check-label mb-0">
+              <app-full-icon></app-full-icon>
+              te ahorra envíos</label>
+            <label class="mb-0 sub-title">Con tu carrito de compras</label>
+          </div>
+          <div class="mb-0 form-check form-switch">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="fullSend" name="something" [value]="fullSend"
+                   [disabled]="buttonFullSend">
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="action-item" *ngIf="canFreeSend || freeSend" (click)="setFreeSend()">
+          <label class="form-check-label mb-0">Envío gratis</label>
+          <div class="mb-0 form-check form-switch">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="freeSend" name="free" [value]="freeSend"
+                   [disabled]="buttonFreeSend">
+          </div>
+        </div>
+      </li>
+
       <li *ngFor="let filter of filters">
-        <a class="action-item">{{filter.name}}</a>
+        <app-item-filter-mobile [filter]="filter" (closeModalEvent)="closeModal($event)"></app-item-filter-mobile>
+        <!--<a class="action-item">{{filter.name}}
+          <span class="icon-container"> <i class="arrow-icon fas fa-angle-down"></i> </span></a>
         <ul class="filter-options">
           <li class="title-option" *ngFor="let options of filter.values">
-            <a >{{options.name}}</a>
+            <a (click)="addFilter(options, filter)" >{{options.name}}</a>
           </li>
-        </ul>
+        </ul>-->
       </li>
-      <!--<li><a class="action-item last-action-item"
-             [ngClass]="meliModelService.searchSortBy === 'price_desc' ? 'active' : ''"
-             (click)="orderBy('price_desc')">Mayor precio</a></li>-->
     </ul>
   </div>
 </div>

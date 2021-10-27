@@ -44,3 +44,44 @@
   width: 24px;
   margin-left: -4px;
 }
+
+
+.mobile{
+  display: none;
+}
+
+@media (max-width: 991px) {
+  .selected-filters{
+    padding: 0 16px;
+  }
+
+  .tag-container{
+    font-size: 14px;
+    margin: 0;
+    height: 32px;
+    background-color: rgba(0,0,0,.04);
+    border-color: transparent;
+    padding: 0 0.2857142857em;
+    border-radius: 1.1428571429em;
+    align-items: center;
+    font-weight: 400;
+  }
+
+  .tag-name{
+    color: rgba(0,0,0,.62);
+    padding: 0 0.5714285714em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+}
+
+@media (min-width: 992px) {
+  .selected-filters{
+    padding: 0 16px;
+  }
+  .mobile{
+    display: none;
+  }
+}
