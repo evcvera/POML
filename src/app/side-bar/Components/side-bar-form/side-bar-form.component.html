@@ -4,7 +4,7 @@
 
     <div class="mt-2">
       <p class="input__label txtSize14">Fecha de nacimiento </p>
-      <input class="form-control" type="date" formControlName="birthday">
+      <input class="form-control" type="date" min="1921-01-01" max="2160-12-31" formControlName="birthday">
     </div>
     <div *ngIf="form.get('birthday').errors && form.get('birthday').touched">
       <p class="color-red-error txtSize14"

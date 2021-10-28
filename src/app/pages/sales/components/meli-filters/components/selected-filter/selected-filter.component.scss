@@ -3,7 +3,7 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import '~material-icons/iconfont/material-icons.scss';
 
-.tag-container{
+.tag-container {
   //margin: 0;
   padding: 0;
   border-radius: 1px;
@@ -16,7 +16,7 @@
   align-items: center;
   font-weight: 400;
   //border: 1.2px solid rgba(0,0,0,.25);
-  color: rgba(0,0,0,.9);
+  color: rgba(0, 0, 0, .9);
   user-select: none;
   width: auto;
   cursor: pointer;
@@ -25,8 +25,8 @@
   line-height: 1.35;
 }
 
-.tag-name{
-  color: rgba(0,0,0,.62);
+.tag-name {
+  color: rgba(0, 0, 0, .62);
   font-size: 13px;
   padding: 0 0.5714285714em;
   overflow: hidden;
@@ -35,7 +35,7 @@
   font-weight: 400;
 }
 
-.tag-close{
+.tag-close {
   color: #bfbfbf;
   justify-content: center;
   display: flex;
@@ -45,43 +45,45 @@
   margin-left: -4px;
 }
 
-
-.mobile{
-  display: none;
-}
-
 @media (max-width: 991px) {
-  .selected-filters{
+  .selected-filters {
     padding: 0 16px;
   }
 
-  .tag-container{
+  .tag-container {
     font-size: 14px;
-    margin: 0;
     height: 32px;
-    background-color: rgba(0,0,0,.04);
+    background-color: rgba(0, 0, 0, .04);
     border-color: transparent;
     padding: 0 0.2857142857em;
     border-radius: 1.1428571429em;
     align-items: center;
     font-weight: 400;
+    margin: 0 8px 8px 0;
   }
 
-  .tag-name{
-    color: rgba(0,0,0,.62);
+  .tag-name {
+    color: rgba(0, 0, 0, .62);
     padding: 0 0.5714285714em;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 
+  .desktop {
+    display: none !important;
+  }
+  .selected-container {
+    padding: 0 16px;
+    margin-bottom: 12px;
+  }
 }
 
 @media (min-width: 992px) {
-  .selected-filters{
+  .selected-filters {
     padding: 0 16px;
   }
-  .mobile{
-    display: none;
+  .mobile {
+    display: none !important;
   }
 }

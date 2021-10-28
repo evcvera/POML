@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ISideBarForm} from '../../../core/interfaces/iside-bar-form';
 import {UserDataModelService} from '../../../core/mode-services/user-data-model.service';
 import {Router} from '@angular/router';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-side-bar-form',
@@ -14,18 +15,28 @@ export class SideBarFormComponent implements OnInit {
   form: FormGroup;
   sideBarForm: ISideBarForm = {};
   cacheUserData: ISideBarForm = {};
+  currentDate: Date;
+  stringDate: string;
 
   constructor(private formBuilder: FormBuilder,
               private userDataModelService: UserDataModelService,
-              private router: Router) {
+              private router: Router,
+              public datetime: DatePipe) {
     this.buildForm();
   }
 
   ngOnInit(): void {
+    this.currentDate = new Date();
+    if (this.cacheUserData?.birthday) {
+      this.stringDate = this.datetime.transform(this.cacheUserData?.birthday, 'YYYY-MM-dd');
+    } else {
+      this.stringDate = this.datetime.transform(this.currentDate, 'YYYY-MM-dd');
+    }
+    this.form.get('birthday').setValue(this.stringDate);
   }
 
   private buildForm(): any {
-    this.cacheUserData =  JSON.parse(localStorage.getItem('userData'));
+    this.cacheUserData = JSON.parse(localStorage.getItem('userData'));
     this.form = this.formBuilder.group({
       birthday: [`${this.cacheUserData?.birthday !== undefined ? this.cacheUserData.birthday : ''}`, [Validators.required]],
       gender: [`${this.cacheUserData?.gender !== undefined ? this.cacheUserData.gender : ''}`, [Validators.required]],

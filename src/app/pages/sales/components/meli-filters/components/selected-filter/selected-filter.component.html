@@ -1,20 +1,21 @@
 <ng-container *ngIf="(meliModelService.selectedFilters$ | async) as selectedFilters">
   <ng-container *ngIf="selectedFilters.length >0">
-    <div>
+    <div class="selected-container">
       <ng-container *ngFor="let selectedFilter of selectedFilters">
-        <div class="tag-container desktop" (click)="removeSelectedFilter(selectedFilter.id)"
-             *ngIf="selectedFilter.values[0].id!== 'fulfillment' && selectedFilter.values[0].id!== 'free'
+        <ng-container *ngIf="selectedFilter.values[0].id!== 'fulfillment' && selectedFilter.values[0].id!== 'free'
              && selectedFilter.id !== 'category'">
-                    <!--&& selectedFilter.name !== 'Categories'">-->
-          <span class="tag-name">{{selectedFilter.values[0].name}}</span>
-          <i class="fas fa-times tag-close"></i>
-        </div>
-        <div class="tag-container mobile" (click)="removeSelectedFilter(selectedFilter.id)"
-             *ngIf="selectedFilter.id !== 'category'">
-          <!--&& selectedFilter.name !== 'Categories'">-->
-          <span class="tag-name">{{selectedFilter.values[0].name}}</span>
-          <i class="fas fa-times tag-close"></i>
-        </div>
+          <div class="tag-container desktop" (click)="removeSelectedFilter(selectedFilter.id)">
+            <!--&& selectedFilter.name !== 'Categories'">-->
+            <span class="tag-name">{{selectedFilter.values[0].name}}</span>
+            <i class="fas fa-times tag-close"></i>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="selectedFilter.id !== 'category'">
+          <div class="tag-container mobile" (click)="removeSelectedFilter(selectedFilter.id)">
+            <span class="tag-name">{{selectedFilter.values[0].name}}</span>
+            <i class="fas fa-times tag-close"></i>
+          </div>
+        </ng-container>
       </ng-container>
     </div>
   </ng-container>
