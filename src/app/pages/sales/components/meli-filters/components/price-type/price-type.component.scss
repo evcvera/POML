@@ -1,0 +1,54 @@
+@import "src/assets/baseStyles/baseStyles";
+@import "src/assets/baseStyles/variable";
+@import "~bootstrap/dist/css/bootstrap.css";
+@import '~material-icons/iconfont/material-icons.scss';
+
+.switch-container {
+  background: #fff;
+  line-height: 1.35;
+  border: 1px solid #fff159;
+  border-radius: 6px;
+  padding: 16px;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+ul{
+  margin-bottom: 0;
+}
+
+.filter-item-component{
+  width: 242px;
+  line-height: 1.35;
+}
+
+.filter-title {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 10px;
+  line-height: 1.25;
+  color: #333;
+}
+
+.search-filter-container {
+  font-size: 14px;
+  font-weight: 300;
+  margin: 0 0 6px;
+  list-style:none;
+}
+
+.filter-ul{
+  padding-left: 0;
+}
+
+.filter-subtitle{
+  color: #666;
+  font-weight: 400;
+  font-size: 14px;
+  margin-left: 0;
+  white-space: nowrap;
+}
+
+.pointer-text{
+  cursor: pointer;
+}

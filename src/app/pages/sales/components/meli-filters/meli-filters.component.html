@@ -18,7 +18,8 @@
           <label class="mb-0 sub-title">Con tu carrito de compras</label>
         </div>
         <div class="mb-0 form-check form-switch">
-          <input class="form-check-input" type="checkbox" [(ngModel)]="fullSend" name="something" [value]="fullSend" [disabled]="buttonFullSend">
+          <input class="form-check-input" type="checkbox" [(ngModel)]="fullSend" name="something" [value]="fullSend"
+                 [disabled]="buttonFullSend">
         </div>
       </div>
     </div>
@@ -26,16 +27,18 @@
       <div class="switch-container align-items-center" *ngIf="canFreeSend" (click)="setFreeSend()">
         <label class="form-check-label mb-0">Envío gratis</label>
         <div class="mb-0 form-check form-switch">
-          <input class="form-check-input" type="checkbox" [(ngModel)]="freeSend" name="free" [value]="freeSend" [disabled]="buttonFreeSend">
+          <input class="form-check-input" type="checkbox" [(ngModel)]="freeSend" name="free" [value]="freeSend"
+                 [disabled]="buttonFreeSend">
         </div>
       </div>
     </div>
     <div class="filter-items-component">
-    <ng-container *ngIf="(meliModelService.searchMeliData$ | async) as meliSearch">
-      <ng-container *ngFor="let filter of meliSearch.available_filters">
-        <app-filter-item [filter]="filter"></app-filter-item>
+      <app-price-type></app-price-type>
+      <ng-container *ngIf="(meliModelService.searchMeliData$ | async) as meliSearch">
+        <ng-container *ngFor="let filter of meliSearch.available_filters">
+          <app-filter-item [filter]="filter"></app-filter-item>
+        </ng-container>
       </ng-container>
-    </ng-container>
     </div>
   </div>
 </form>

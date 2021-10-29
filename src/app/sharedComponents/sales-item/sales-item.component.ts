@@ -63,20 +63,20 @@ export class SalesItemComponent implements OnInit {
   }
 
   getRemainingDays(): number {
-      if (this.resultsEntity?.prices !== null && this.resultsEntity?.prices.prices !== null
-        && this.resultsEntity?.prices?.prices !== undefined
-        && this.resultsEntity?.prices?.prices[this.resultsEntity?.prices?.prices?.length - 1].metadata?.campaign_end_date) {
-        const to = new Date(this.resultsEntity.prices.prices[this.resultsEntity.prices.prices.length - 1].metadata.campaign_end_date);
-        const from = new Date();
-        const diff = to.getTime() - from.getTime();
-        const diffDays = diff / (1000 * 3600 * 24);
-        if (diffDays >= 0) {
-          return diffDays !== undefined ? diffDays : -1;
-        } else {
-          return -1;
-        }
+    if (this.resultsEntity.prices !== undefined && this.resultsEntity?.prices !== null && this.resultsEntity?.prices.prices !== null
+      && this.resultsEntity?.prices?.prices !== undefined
+      && this.resultsEntity?.prices?.prices[this.resultsEntity?.prices?.prices?.length - 1].metadata?.campaign_end_date) {
+      const to = new Date(this.resultsEntity.prices.prices[this.resultsEntity.prices.prices.length - 1].metadata.campaign_end_date);
+      const from = new Date();
+      const diff = to.getTime() - from.getTime();
+      const diffDays = diff / (1000 * 3600 * 24);
+      if (diffDays >= 0) {
+        return diffDays !== undefined ? diffDays : -1;
+      } else {
+        return -1;
       }
-      return -1;
+    }
+    return -1;
   }
 
   getPromoPercent(): string {

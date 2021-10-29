@@ -46,6 +46,7 @@ import { FiltersMobileComponent } from './sharedComponents/filters-mobile/filter
 import { FilterItemComponent } from './pages/sales/components/meli-filters/components/filter-item/filter-item.component';
 import { SelectedFilterComponent } from './pages/sales/components/meli-filters/components/selected-filter/selected-filter.component';
 import { ItemFilterMobileComponent } from './sharedComponents/filters-mobile/component/item-filter-mobile/item-filter-mobile.component';
+import { PriceTypeComponent } from './pages/sales/components/meli-filters/components/price-type/price-type.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { ItemFilterMobileComponent } from './sharedComponents/filters-mobile/com
     FiltersMobileComponent,
     FilterItemComponent,
     SelectedFilterComponent,
-    ItemFilterMobileComponent
+    ItemFilterMobileComponent,
+    PriceTypeComponent
   ],
   imports: [
     BrowserModule,

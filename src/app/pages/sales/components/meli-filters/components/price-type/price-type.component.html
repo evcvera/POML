@@ -1,0 +1,13 @@
+<!--<app-filter-item [filter]="priceType"></app-filter-item>-->
+<div class="filter-item-component switch-container">
+  <div class="filter-title">{{priceType.name}}</div>
+  <ul class="filter-ul">
+    <li class="search-filter-container" *ngFor="let value of priceType.values">
+      <ng-container>
+        <div class="pointer-text">
+          <span class="filter-subtitle">{{value.name}}</span>
+        </div>
+      </ng-container>
+    </li>
+  </ul>
+</div>

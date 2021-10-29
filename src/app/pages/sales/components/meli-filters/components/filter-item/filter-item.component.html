@@ -5,7 +5,7 @@
       <ng-container>
         <div class="pointer-text" (click)="addFilter(value)">
           <span class="filter-subtitle">{{value.name}}</span>
-          <span class="filter-subtitle-count">({{value.results | thousandsPipe}})</span>
+          <span class="filter-subtitle-count" *ngIf="value.results">({{value.results | thousandsPipe}})</span>
         </div>
       </ng-container>
     </li>
