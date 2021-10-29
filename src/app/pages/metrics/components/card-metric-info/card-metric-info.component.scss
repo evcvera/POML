@@ -2,3 +2,30 @@
 @import "../../../../../assets/baseStyles/variable";
 @import "~bootstrap/dist/css/bootstrap.css";
 @import '~material-icons/iconfont/material-icons.scss';
+
+.card-metric-container {
+  width: 290px;
+  padding: 16px;
+  margin: 0 4px 16px;
+}
+
+@media (max-width: 991px) {
+  .card-metric-container {
+    width: calc(33vw - 11px);
+  }
+}
+
+@media (max-width: 767px) {
+  .card-metric-container {
+    width: calc(50vw - 11px);
+  }
+}
+
+@media (max-width: 575px) {
+  .card-metric-container {
+    width: calc(100vw - 8px);
+  }
+}
+
+
+
