@@ -95,6 +95,17 @@ form{
 }
 
 
+::ng-deep .block-ui-wrapper{
+  z-index: 996;
+}
+
+::ng-deep .loader{
+  border-top: 2.1em solid #000;
+  border-right: 2.1em solid #000;
+  border-bottom: 0 solid #1f4e96;
+  border-left: 0 solid rgba(255, 255, 255, 0.2);
+}
+
 @media (min-width: 576px) {
   .container {
 
