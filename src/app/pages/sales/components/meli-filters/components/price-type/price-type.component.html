@@ -4,8 +4,9 @@
   <ul class="filter-ul">
     <li class="search-filter-container" *ngFor="let value of priceType.values">
       <ng-container>
-        <div class="pointer-text">
-          <span class="filter-subtitle">{{value.name}}</span>
+        <div class="pointer-text" (click)="setPriceType(value)">
+          <span class="filter-subtitle"
+                [ngClass]="priceTypeModelService.princeType$?.value?.name === value.name ? 'selected-value' : ''">{{value.name}}</span>
         </div>
       </ng-container>
     </li>

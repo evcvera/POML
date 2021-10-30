@@ -6,7 +6,7 @@
 .switch-container {
   background: #fff;
   line-height: 1.35;
-  border: 1px solid #fff159;
+  border: 1px solid #3483fa;
   border-radius: 6px;
   padding: 16px;
   margin-bottom: 1rem;
@@ -49,6 +49,16 @@ ul{
   white-space: nowrap;
 }
 
+.selected-value{
+  color: #1f4e96;
+  font-weight: 500;
+  font-size: 15px;
+  margin-left: 0;
+  white-space: nowrap;
+}
+
 .pointer-text{
   cursor: pointer;
 }
+
+

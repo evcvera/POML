@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {AvailableFiltersEntity} from '../../../../../../core/interfaces/imeli-search';
+import {AvailableFiltersEntity, ValuesEntity2} from '../../../../../../core/interfaces/imeli-search';
+import {PriceTypeModelService} from '../../../../../../core/mode-services/price-type-model.service';
 
 @Component({
   selector: 'app-price-type',
@@ -19,10 +20,13 @@ export class PriceTypeComponent implements OnInit {
       {name: 'Porcentaje ahorro', id: 'saving_capacity_percent'}]
   };
 
-  constructor() {
+  constructor(public priceTypeModelService: PriceTypeModelService) {
   }
 
   ngOnInit(): void {
   }
 
+  setPriceType(item: ValuesEntity2): void {
+      this.priceTypeModelService.princeType$.next(item);
+  }
 }

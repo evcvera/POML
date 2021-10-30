@@ -9,6 +9,7 @@ import {GeneralPopupComponent} from '../../../../sharedComponents/general-popup/
 import {SortItemMobileComponent} from '../../../../sharedComponents/sort-item-mobile/sort-item-mobile.component';
 import {FiltersMobileComponent} from '../../../../sharedComponents/filters-mobile/filters-mobile.component';
 import {Subscription} from 'rxjs';
+import {BlockUI, NgBlockUI} from 'ng-block-ui';
 
 @Component({
   selector: 'app-sales-container',
@@ -17,8 +18,12 @@ import {Subscription} from 'rxjs';
 })
 export class SalesContainerComponent implements OnInit {
 
+
+  @BlockUI('sales-container') blockUI: NgBlockUI;
+
   orderName = 'relevance';
   searchSortBySubscription: Subscription;
+  blockUiSubscription: Subscription;
 
   /*  private _resultsEntity: ResultsEntity;
     @Input('resultsEntity') set resultsEntity(value: ResultsEntity) {
@@ -53,6 +58,18 @@ export class SalesContainerComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    if (this.blockUiSubscription) {
+      this.blockUiSubscription.unsubscribe();
+    }
+    this.blockUiSubscription = this.meliModelService.blockUi$.subscribe(x => {
+      if (x && this.meliModelService.searchMeliData$) {
+        this.blockUI.start();
+      } else {
+        this.blockUI.stop();
+      }
+    });
+
     if (this.searchSortBySubscription) {
       this.searchSortBySubscription.unsubscribe();
     }
@@ -60,6 +77,7 @@ export class SalesContainerComponent implements OnInit {
       this.orderName = x;
     });
   }
+
 
   orderBy(order: string): void {
     this.orderName = order;

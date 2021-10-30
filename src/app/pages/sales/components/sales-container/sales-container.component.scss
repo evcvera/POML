@@ -203,7 +203,6 @@
 
 .category-order-by{
   margin-bottom: 32px;
-  margin-top: 75px;
 }
 
 .order-by-button{
@@ -235,6 +234,10 @@
   bottom: 3px;
 }
 
+.container-margin{
+  padding-top: 75px;
+}
+
 @media (max-width: 991px) {
   .search-sidebar {
     display: none;
@@ -243,6 +246,10 @@
 
   .category-order-by{
     display: none;
+  }
+
+  .container-margin{
+    padding-top: 0px;
   }
 }
 

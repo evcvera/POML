@@ -31,8 +31,8 @@ export class SalesComponent implements OnInit, OnDestroy {
       this.searchSubscription.unsubscribe();
     }
     this.searchSubscription = this.userDataModelService.searchData$.subscribe((resp) => {
-      /*if (resp && resp !== this.meliModelService.searchMeliData$?.value?.query) {*/
-      if (resp) {
+      if (resp && resp !== this.meliModelService.searchMeliData$?.value?.query) {
+        /*if (resp) {*/
         this.meliModelService.meliSearch(resp, this.userDataModelService.pageNumber$.value);
       }
     });

@@ -39,14 +39,15 @@ import {SubTextComponent} from './sharedComponents/sub-text/sub-text.component';
 import {CurrentDolarComponent} from './pages/metrics/components/current-dolar/current-dolar.component';
 import {CardMetricInfoComponent} from './pages/metrics/components/card-metric-info/card-metric-info.component';
 import {DatePipe} from '@angular/common';
-import { SideBarFiltersComponent } from './pages/sales/components/side-bar-filters/side-bar-filters.component';
-import { ExpectedTimeRemainingComponent } from './pages/metrics/components/expected-time-remaining/expected-time-remaining.component';
-import { MeliFiltersComponent } from './pages/sales/components/meli-filters/meli-filters.component';
-import { FiltersMobileComponent } from './sharedComponents/filters-mobile/filters-mobile.component';
-import { FilterItemComponent } from './pages/sales/components/meli-filters/components/filter-item/filter-item.component';
-import { SelectedFilterComponent } from './pages/sales/components/meli-filters/components/selected-filter/selected-filter.component';
-import { ItemFilterMobileComponent } from './sharedComponents/filters-mobile/component/item-filter-mobile/item-filter-mobile.component';
-import { PriceTypeComponent } from './pages/sales/components/meli-filters/components/price-type/price-type.component';
+import {SideBarFiltersComponent} from './pages/sales/components/side-bar-filters/side-bar-filters.component';
+import {ExpectedTimeRemainingComponent} from './pages/metrics/components/expected-time-remaining/expected-time-remaining.component';
+import {MeliFiltersComponent} from './pages/sales/components/meli-filters/meli-filters.component';
+import {FiltersMobileComponent} from './sharedComponents/filters-mobile/filters-mobile.component';
+import {FilterItemComponent} from './pages/sales/components/meli-filters/components/filter-item/filter-item.component';
+import {SelectedFilterComponent} from './pages/sales/components/meli-filters/components/selected-filter/selected-filter.component';
+import {ItemFilterMobileComponent} from './sharedComponents/filters-mobile/component/item-filter-mobile/item-filter-mobile.component';
+import {PriceTypeComponent} from './pages/sales/components/meli-filters/components/price-type/price-type.component';
+import {BlockUIModule} from 'ng-block-ui';
 
 @NgModule({
   declarations: [
@@ -97,6 +98,9 @@ import { PriceTypeComponent } from './pages/sales/components/meli-filters/compon
     }),
     FormsModule,
     ReactiveFormsModule,
+    BlockUIModule.forRoot({
+      message: 'Cargando...'
+    }),
   ],
   providers: [EchartModelService, CasaModelService, CasaService, DatePipe],
   bootstrap: [AppComponent],

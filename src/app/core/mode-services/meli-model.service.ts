@@ -27,6 +27,9 @@ export class MeliModelService {
   searchSortBy$: BehaviorSubject<string> = new BehaviorSubject<string>('relevance');
   favouritesItems$: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
   searchByInput$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+
+  blockUi$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
   public searchSortBy: string;
 
   searchSubscription: Subscription;
@@ -38,6 +41,11 @@ export class MeliModelService {
 
 
   meliSearch(search: string, pageNumber: number, sortPage = 'relevance'): any {
+
+    /********************* BLOCK UI **********************/
+    this.blockUi$.next(true);
+
+    /********************** SET SORT ***************/
     sortPage = this.searchSortBy$.value;
     /*********************** ZIP CODE **************************/
     let zipCode = '';
@@ -78,6 +86,7 @@ export class MeliModelService {
     console.log(resp);
     respAux.results.forEach((x) => {
       x.thumbnail = x.thumbnail.replace('-I.jpg', '-O.webp');
+      //https://http2.mlstatic.com/D_NQ_NP_723831-MLA45658735494_042021-O.webp
       x.thumbnail = x.thumbnail.replace('http:', 'https:');
       x.thumbnail = x.thumbnail.replace('D_', 'D_NQ_NP_');
       x.pictures = [x.thumbnail];
@@ -99,6 +108,9 @@ export class MeliModelService {
 
     this.searchMeliData$.next(respAux);
     //this.getOpinionsRating(respAux.itemIds);
+
+    /****************** SET BLOCK UI ***************/
+    this.blockUi$.next(false);
   }
 
   async getZipcode(zipCode: string): Promise<boolean> {
