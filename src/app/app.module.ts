@@ -48,6 +48,7 @@ import {SelectedFilterComponent} from './pages/sales/components/meli-filters/com
 import {ItemFilterMobileComponent} from './sharedComponents/filters-mobile/component/item-filter-mobile/item-filter-mobile.component';
 import {PriceTypeComponent} from './pages/sales/components/meli-filters/components/price-type/price-type.component';
 import {BlockUIModule} from 'ng-block-ui';
+import { PriceTypeMobileComponent } from './sharedComponents/price-type-mobile/price-type-mobile.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import {BlockUIModule} from 'ng-block-ui';
     FilterItemComponent,
     SelectedFilterComponent,
     ItemFilterMobileComponent,
-    PriceTypeComponent
+    PriceTypeComponent,
+    PriceTypeMobileComponent
   ],
   imports: [
     BrowserModule,

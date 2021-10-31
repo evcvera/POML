@@ -12,6 +12,7 @@ const routes: Routes = [
   {path: 'metrics', component: MetricsComponent},
   {path: 'sales/favourites', component: SalesFavouritesComponent},
   {path: 'sales/zipcode', component: ZipCodeModalMobileComponent},
+  {path: '**', redirectTo: ''}
 ];
 
 @NgModule({

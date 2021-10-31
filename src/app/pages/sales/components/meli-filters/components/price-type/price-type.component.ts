@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AvailableFiltersEntity, ResultsEntity, ValuesEntity2} from '../../../../../../core/interfaces/imeli-search';
 import {PriceTypeModelService} from '../../../../../../core/mode-services/price-type-model.service';
 import {MeliModelService} from '../../../../../../core/mode-services/meli-model.service';
+import {UserDataModelService} from '../../../../../../core/mode-services/user-data-model.service';
 
 @Component({
   selector: 'app-price-type',
@@ -17,10 +18,8 @@ export class PriceTypeComponent implements OnInit {
       {name: 'Peso blue', id: 'peso_blue', display_currency: '$ B'},
       {name: 'Dolar oficial', id: 'dollar', display_currency: 'U$D'},
       {name: 'Dolar blue', id: 'dollar_blue', display_currency: 'U$D B'},
-      {name: 'Tiempo capacidad de ahorro', id: 'saving_capacity', display_currency: 'T'},
-      {name: 'Tiempo de mis ingresos', id: 'income', display_currency: 'T'},
-      {name: 'Porcentaje de ahorro', id: 'saving_capacity_percent', display_currency: '%'},
-      {name: 'Porcentaje de ingresos', id: 'income_percent', display_currency: '%'}]
+      {name: 'Tiempo de mis ingresos b.', id: 'income_time', display_currency: 'T'},
+      {name: 'Tiempo capacidad de ahorro b.', id: 'saving_capacity_time', display_currency: 'Meses'}]
   };
 
   constructor(public priceTypeModelService: PriceTypeModelService,
@@ -36,7 +35,6 @@ export class PriceTypeComponent implements OnInit {
       const price = this.getCurrentPrice(x);
       x.priceAndType = this.priceTypeModelService.buildPriceType(price, x.prices.presentation.display_currency);
     });
-    console.log(this.meliModelService.searchMeliData$.value?.results);
   }
 
   getCurrentPrice(x: ResultsEntity): number {

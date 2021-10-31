@@ -48,7 +48,7 @@
         <div>
           <!--Old price-->
           <label class="item-old-price mb-0"
-                 *ngIf="resultsEntity.prices?.prices?[resultsEntity.prices?.prices?.length - 1] !== null
+                 *ngIf="priceTypeModelService.priceType$.value.id === 'standar' && resultsEntity.prices?.prices?[resultsEntity.prices?.prices?.length - 1] !== null
       && resultsEntity.prices?.prices[resultsEntity.prices?.prices?.length - 1].regular_amount !== null
       && resultsEntity.prices?.prices[resultsEntity.prices?.prices?.length - 1].regular_amount - 10 >= resultsEntity.price : false">
             {{resultsEntity.prices?.prices[resultsEntity.prices?.prices?.length - 1].currency_id === 'USD' ? 'U$D ' :

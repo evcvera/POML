@@ -3,6 +3,8 @@ import {BehaviorSubject} from 'rxjs';
 import {ValuesEntity2} from '../interfaces/imeli-search';
 import {IPriceAndType} from '../interfaces/iprice-and-type';
 import {CasaModelService} from './casa-model.service';
+import {MeliModelService} from './meli-model.service';
+import {UserDataModelService} from './user-data-model.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,15 +13,16 @@ export class PriceTypeModelService {
 
   priceType$: BehaviorSubject<ValuesEntity2> = new BehaviorSubject<ValuesEntity2>({name: 'Estandar', id: 'standar'});
 
-  constructor(private casaModelService: CasaModelService) {
+  constructor(private casaModelService: CasaModelService,
+              private userDataModelService: UserDataModelService) {
   }
 
 
-
   buildPriceType(price: number, type: string): IPriceAndType {
-    console.log(this.priceType$.value.id);
+    console.log(this.userDataModelService.userData$.value);
+    /*console.log(this.priceType$.value.id);
     console.log(price);
-    console.log(type);
+    console.log(type);*/
     const currentDollar = this.casaModelService.currentDollar$.value;
     const priceAndType: IPriceAndType = {price: this.transform(price.toString()), id: type};
     switch (this.priceType$.value.id) {
@@ -44,6 +47,46 @@ export class PriceTypeModelService {
       case 'dollar_blue': {
         if (type === 'ARS') {
           priceAndType.price = this.transform((price / currentDollar.blueProm).toFixed(0));
+        }
+        break;
+      }
+      case 'income_time': {
+        let auxSalaryDollar = 1;
+        const userData = this.userDataModelService.userData$.value;
+        if (this.userDataModelService.userData$.value && userData.isDollar) {
+          auxSalaryDollar = userData.isDepenRelationship ? userData.salary * (13 / 12) : userData.salary;
+        }
+        if (this.userDataModelService.userData$.value && !userData.isDollar) {
+          auxSalaryDollar = userData.isDepenRelationship ? userData.salary * (13 / 12) / currentDollar.blueProm : userData.salary / currentDollar.blueProm;
+        }
+        if (type === 'ARS') {
+          priceAndType.price = this.transform(((price / currentDollar.blueProm) / auxSalaryDollar).toFixed(3)) + 'm';
+        } else {
+          priceAndType.price = this.transform(((price) / auxSalaryDollar).toFixed(3)) + 'm';
+        }
+        break;
+      }
+      case 'saving_capacity_time': {
+        let auxSalaryDollar = 1;
+        const userData = this.userDataModelService.userData$.value;
+        if (this.userDataModelService.userData$.value && userData.isDollar) {
+          if (userData.isPercent) {
+            auxSalaryDollar = userData.isDepenRelationship ? userData.salary * (13 / 12) * userData.savingCapacity : userData.salary * userData.savingCapacity;
+          } else {
+            auxSalaryDollar = userData.isDepenRelationship ? userData.savingCapacity * (13 / 12) : userData.savingCapacity;
+          }
+        }
+        if (this.userDataModelService.userData$.value && !userData.isDollar) {
+          if (userData.isPercent) {
+            auxSalaryDollar = userData.isDepenRelationship ? userData.salary * (13 / 12) * userData.savingCapacity / currentDollar.blueProm : userData.salary * userData.savingCapacity / currentDollar.blueProm;
+          } else {
+            auxSalaryDollar = userData.isDepenRelationship ? userData.savingCapacity * (13 / 12) / currentDollar.blueProm : userData.savingCapacity / currentDollar.blueProm;
+          }
+        }
+        if (type === 'ARS') {
+          priceAndType.price = this.transform(((price / currentDollar.blueProm) / auxSalaryDollar).toFixed(3));
+        } else {
+          priceAndType.price = this.transform(((price) / auxSalaryDollar).toFixed(3));
         }
         break;
       }

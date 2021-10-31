@@ -122,6 +122,18 @@ export class SalesContainerComponent implements OnInit {
     });
   }
 
+  priceTypeMobile(item: any): void {
+    const modalRef = this.modalService.open(FiltersMobileComponent, {modalDialogClass: 'modal-dialog-centered'});
+    modalRef.componentInstance.filters = this.meliModelService.searchMeliData$.value.available_filters;
+    modalRef.result.then((result) => {
+      console.log(result);
+      if (result) {
+        console.log(result);
+      }
+    }).catch((res) => {
+    });
+  }
+
   /*******GENERLA MODAL ******/
   /*orderByMobile(item: any): void {
     const modalRef = this.modalService.open(SortItemMobileComponent, {modalDialogClass: 'modal-dialog-centered modal-dialog-zipcode'});
