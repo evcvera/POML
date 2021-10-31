@@ -6,7 +6,7 @@
       <ng-container>
         <div class="pointer-text" (click)="setPriceType(value)">
           <span class="filter-subtitle"
-                [ngClass]="priceTypeModelService.princeType$?.value?.name === value.name ? 'selected-value' : ''">{{value.name}}</span>
+                [ngClass]="priceTypeModelService.priceType$?.value?.name === value.name ? 'selected-value' : ''">{{value.name}}</span>
         </div>
       </ng-container>
     </li>

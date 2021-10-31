@@ -1,4 +1,5 @@
 import {IMeliItem, Struct} from './imeli-item';
+import {IPriceAndType} from './iprice-and-type';
 
 export interface IMeliSearch {
   site_id?: string;
@@ -64,6 +65,7 @@ export interface ResultsEntity {
   rating_average?: number;
   comments_count?: number;
   isFavourite?: boolean;
+  priceAndType?: IPriceAndType;
 }
 
 export interface Variation {
@@ -345,6 +347,7 @@ export interface AvailableFiltersEntity {
 export interface ValuesEntity2 {
   id?: string;
   name?: string;
+  display_currency?: string;
   results?: number;
 }
 

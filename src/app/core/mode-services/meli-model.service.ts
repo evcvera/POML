@@ -1,13 +1,14 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment.prod';
-import {AvailableFiltersEntity, FiltersEntity, IMeliSearch} from '../interfaces/imeli-search';
+import {AvailableFiltersEntity, FiltersEntity, IMeliSearch, ResultsEntity} from '../interfaces/imeli-search';
 import {BehaviorSubject, from, Observable, Subscription} from 'rxjs';
 import {IMeliZipCode} from '../interfaces/imeli-zip-code';
 import {IMeliSingleItem} from '../interfaces/imeli-single-item';
 import {concatMap} from 'rxjs/operators';
 import {IMeliItemOpinion} from '../interfaces/imeli-item-opinion';
 import {FavouritesModelServiceService} from './favourites-model-service.service';
+import {PriceTypeModelService} from './price-type-model.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ import {FavouritesModelServiceService} from './favourites-model-service.service'
 export class MeliModelService {
 
   constructor(private http: HttpClient,
-              private favouritesModelServiceService: FavouritesModelServiceService) {
+              private favouritesModelServiceService: FavouritesModelServiceService,
+              private priceTypeModelService: PriceTypeModelService) {
   }
 
   searchMeliData$: BehaviorSubject<IMeliSearch> = new BehaviorSubject<IMeliSearch>(undefined);
@@ -75,6 +77,7 @@ export class MeliModelService {
       });
     } else {
       this.searchSubscription = this.http.get(`${environment.api.meli}/sites/MLA/search?category=${search}&offset=${pageNumber * 50}&limit=50&zip_code=${zipCode}&sort=${sortPage}${filters}`).subscribe((resp: any) => {
+        console.log(resp);
         this.setSearchResp(resp);
       });
     }
@@ -83,7 +86,6 @@ export class MeliModelService {
   setSearchResp(resp: any): void {
     const respAux: IMeliSearch = resp;
     respAux.itemIds = [];
-    console.log(resp);
     respAux.results.forEach((x) => {
       x.thumbnail = x.thumbnail.replace('-I.jpg', '-O.webp');
       //https://http2.mlstatic.com/D_NQ_NP_723831-MLA45658735494_042021-O.webp
@@ -94,6 +96,12 @@ export class MeliModelService {
       if (this.favouritesModelServiceService.favouritesMeliItems$.value && this.favouritesModelServiceService.favouritesMeliItems$.value !== []) {
         x.isFavourite = this.favouritesModelServiceService.favouritesMeliItems$.value.some(r => r === x.id);
       }
+
+      if (this.priceTypeModelService.priceType$.value.id !== 'standar') {
+        const price = this.getCurrentPrice(x);
+        x.priceAndType = this.priceTypeModelService.buildPriceType(price, x.prices.presentation.display_currency);
+      }
+
     });
     const isClassified = respAux.results.find(x => x.buying_mode !== 'classified');
     respAux.classified = !isClassified;
@@ -111,6 +119,8 @@ export class MeliModelService {
 
     /****************** SET BLOCK UI ***************/
     this.blockUi$.next(false);
+
+
   }
 
   async getZipcode(zipCode: string): Promise<boolean> {
@@ -224,6 +234,17 @@ export class MeliModelService {
       auxFilter.values[0] = {name: filter.values[0].name, id: filter.values[0].id};
       this.selectedFilters$.value.push(auxFilter);
     }
+  }
 
+  getCurrentPrice(x: ResultsEntity): number {
+    if (x.prices?.prices?.length) {
+      if (x.prices?.prices[x.prices?.prices?.length - 1]?.amount) {
+        return Number(x.prices?.prices[x.prices?.prices?.length - 1]?.amount?.toFixed(0));
+      }
+    }
+    if (x.price) {
+      return Number(x.price.toFixed(0));
+    }
+    return 0;
   }
 }

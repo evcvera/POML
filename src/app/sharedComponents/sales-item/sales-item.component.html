@@ -60,9 +60,13 @@
           <div class="price-promo"
                *ngIf="currentPrice !== ''">
             <div class="d-flex align-items-center">
-              <label class="item-price mb-0">
+              <label class="item-price mb-0" *ngIf="priceTypeModelService.priceType$.value.id === 'standar'">
                 {{typeOfCurrency}}
                 {{currentPrice | thousandsPipe}}
+              </label>
+              <label class="item-price mb-0" *ngIf="priceTypeModelService.priceType$.value.id !== 'standar'">
+                {{priceTypeModelService.priceType$.value.display_currency}}
+                {{resultsEntity.priceAndType.price}}
               </label>
               <!-- Promo percent -->
               <span *ngIf="promoPercent !== ''">

@@ -4,6 +4,7 @@ import {MeliModelService} from '../../core/mode-services/meli-model.service';
 import {UserDataModelService} from '../../core/mode-services/user-data-model.service';
 import {Router} from '@angular/router';
 import {FavouritesModelServiceService} from '../../core/mode-services/favourites-model-service.service';
+import {PriceTypeModelService} from '../../core/mode-services/price-type-model.service';
 
 @Component({
   selector: 'app-sales-item-classified',
@@ -35,7 +36,8 @@ export class SalesItemClassifiedComponent implements OnInit {
 
 
   constructor(public meliModelService: MeliModelService,
-              public favouritesModelServiceService: FavouritesModelServiceService) {
+              public favouritesModelServiceService: FavouritesModelServiceService,
+              public priceTypeModelService: PriceTypeModelService) {
   }
 
   ngOnInit(): void {

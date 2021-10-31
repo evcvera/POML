@@ -3,6 +3,7 @@ import {MeliModelService} from '../../core/mode-services/meli-model.service';
 import {ResultsEntity} from '../../core/interfaces/imeli-search';
 import {Subscription} from 'rxjs';
 import {FavouritesModelServiceService} from '../../core/mode-services/favourites-model-service.service';
+import {PriceTypeModelService} from '../../core/mode-services/price-type-model.service';
 
 @Component({
   selector: 'app-sales-item',
@@ -16,9 +17,6 @@ export class SalesItemComponent implements OnInit {
   @Input() typeItem: string;
   @Input() opinions: boolean;
 
-  private _resultsEntity: ResultsEntity;
-  public activeHeart = false;
-  currentRate = 3.26;
   remainingDays: number;
   promoPercent: string;
   dealOfTheDay: boolean;
@@ -31,17 +29,10 @@ export class SalesItemComponent implements OnInit {
 
   currentDate: Date;
 
-  /*@Input('resultsEntity') set resultsEntity(value: ResultsEntity) {
-    this._resultsEntity = value;
-  }
-
-  get resultsEntity(): ResultsEntity {
-    return this._resultsEntity;
-  }*/
-
 
   constructor(public meliModelService: MeliModelService,
-              public favouritesModelServiceService: FavouritesModelServiceService) {
+              public favouritesModelServiceService: FavouritesModelServiceService,
+              public priceTypeModelService: PriceTypeModelService) {
   }
 
   ngOnInit(): void {
@@ -126,9 +117,6 @@ export class SalesItemComponent implements OnInit {
 
   getCurrentPrice(): string {
     if (this.resultsEntity.prices?.prices?.length) {
-      /*if (this.resultsEntity.prices?.reference_prices[0]?.amount) {
-        return this.resultsEntity.prices?.reference_prices[0]?.amount.toFixed(0);
-      }*/
       if (this.resultsEntity.prices?.prices[this.resultsEntity.prices?.prices?.length - 1]?.amount) {
         return this.resultsEntity.prices?.prices[this.resultsEntity.prices?.prices?.length - 1]?.amount?.toFixed(0);
       }
