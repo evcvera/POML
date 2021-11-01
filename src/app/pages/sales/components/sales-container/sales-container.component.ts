@@ -135,7 +135,7 @@ export class SalesContainerComponent implements OnInit {
   }
 
   /*******GENERLA MODAL ******/
-  /*orderByMobile(item: any): void {
+  orderByMobile(item: any): void {
     const modalRef = this.modalService.open(SortItemMobileComponent, {modalDialogClass: 'modal-dialog-centered modal-dialog-zipcode'});
     modalRef.componentInstance.item = item;
     modalRef.result.then((result) => {
@@ -145,6 +145,6 @@ export class SalesContainerComponent implements OnInit {
       }
     }).catch((res) => {
     });
-  }*/
+  }
   /*******GENERLA MODAL ******/
 }
