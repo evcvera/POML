@@ -10,6 +10,7 @@ import {SortItemMobileComponent} from '../../../../sharedComponents/sort-item-mo
 import {FiltersMobileComponent} from '../../../../sharedComponents/filters-mobile/filters-mobile.component';
 import {Subscription} from 'rxjs';
 import {BlockUI, NgBlockUI} from 'ng-block-ui';
+import {PriceTypeMobileComponent} from '../../../../sharedComponents/price-type-mobile/price-type-mobile.component';
 
 @Component({
   selector: 'app-sales-container',
@@ -110,6 +111,20 @@ export class SalesContainerComponent implements OnInit {
     });
   }
 
+
+
+  priceTypeMobile(item: any): void {
+    const modalRef = this.modalService.open(PriceTypeMobileComponent, {modalDialogClass: 'modal-dialog-centered'});
+    modalRef.componentInstance.item = item;
+    modalRef.result.then((result) => {
+      console.log(result);
+      if (result) {
+        console.log(result);
+      }
+    }).catch((res) => {
+    });
+  }
+
   filtersMobile(item: any): void {
     const modalRef = this.modalService.open(FiltersMobileComponent, {modalDialogClass: 'modal-dialog-centered'});
     modalRef.componentInstance.filters = this.meliModelService.searchMeliData$.value.available_filters;
@@ -122,20 +137,8 @@ export class SalesContainerComponent implements OnInit {
     });
   }
 
-  priceTypeMobile(item: any): void {
-    const modalRef = this.modalService.open(FiltersMobileComponent, {modalDialogClass: 'modal-dialog-centered'});
-    modalRef.componentInstance.filters = this.meliModelService.searchMeliData$.value.available_filters;
-    modalRef.result.then((result) => {
-      console.log(result);
-      if (result) {
-        console.log(result);
-      }
-    }).catch((res) => {
-    });
-  }
-
   /*******GENERLA MODAL ******/
-  orderByMobile(item: any): void {
+/*  orderByMobile(item: any): void {
     const modalRef = this.modalService.open(SortItemMobileComponent, {modalDialogClass: 'modal-dialog-centered modal-dialog-zipcode'});
     modalRef.componentInstance.item = item;
     modalRef.result.then((result) => {
@@ -145,6 +148,6 @@ export class SalesContainerComponent implements OnInit {
       }
     }).catch((res) => {
     });
-  }
+  }*/
   /*******GENERLA MODAL ******/
 }
