@@ -19,7 +19,6 @@ export class PriceTypeModelService {
 
 
   buildPriceType(price: number, type: string): IPriceAndType {
-    console.log(this.userDataModelService.userData$.value);
     /*console.log(this.priceType$.value.id);
     console.log(price);
     console.log(type);*/

@@ -2,19 +2,12 @@
   <div class="modal-header">
     <i class="fas fa-arrow-left return-arrow" routerLink="/sales" (click)="modal.close(false)"></i>
     <h3 class="order-title">Tipo de precio</h3>
-    <h3 class="order-title"> IN PROGRESS</h3>
   </div>
   <div class="modal-body pb-3">
     <ul class="actions-order">
-      <li><a class="action-item"
-             [ngClass]="meliModelService.searchSortBy$.value === 'relevance' ? 'active' : ''"
-             (click)="orderBy('relevance')">Más relevantes</a></li>
-      <li><a class="action-item"
-             [ngClass]="meliModelService.searchSortBy$.value === 'price_asc' ? 'active' : ''"
-             (click)="orderBy('price_asc')">Menor precio</a></li>
-      <li><a class="action-item last-action-item"
-             [ngClass]="meliModelService.searchSortBy$.value === 'price_desc' ? 'active' : ''"
-             (click)="orderBy('price_desc')">Mayor precio</a></li>
+      <li *ngFor="let item of priceType.values"><a class="action-item"
+             [ngClass]="priceTypeModelService.priceType$.value.name === item.name ? 'active' : ''"
+             (click)="setPriceType(item)">{{item.name}}</a></li>
     </ul>
   </div>
 </div>

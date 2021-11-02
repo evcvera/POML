@@ -3,7 +3,8 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {MeliModelService} from '../../core/mode-services/meli-model.service';
 import {Router} from '@angular/router';
 import {UserDataModelService} from '../../core/mode-services/user-data-model.service';
-import {IMeliSearch} from '../../core/interfaces/imeli-search';
+import {AvailableFiltersEntity, IMeliSearch, ResultsEntity, ValuesEntity2} from '../../core/interfaces/imeli-search';
+import {PriceTypeModelService} from '../../core/mode-services/price-type-model.service';
 
 @Component({
   selector: 'app-price-type-mobile',
@@ -12,75 +13,46 @@ import {IMeliSearch} from '../../core/interfaces/imeli-search';
 })
 export class PriceTypeMobileComponent implements OnInit {
 
-  @Input() item: any;
-  @Output() buttonResponse: EventEmitter<boolean> = new EventEmitter();
-  zipCode: string;
-  isZipcode: boolean;
+  priceType: AvailableFiltersEntity = {
+    name: 'Tipo de precio', id: 'price_type', type: 'string',
+    values: [{name: 'Estandar', id: 'standar', display_currency: ''},
+      {name: 'Peso oficial', id: 'peso', display_currency: '$'},
+      {name: 'Peso blue', id: 'peso_blue', display_currency: '$ B'},
+      {name: 'Dolar oficial', id: 'dollar', display_currency: 'U$D'},
+      {name: 'Dolar blue', id: 'dollar_blue', display_currency: 'U$D B'},
+      {name: 'Tiempo de mis ingresos b.', id: 'income_time', display_currency: 'T'},
+      {name: 'Tiempo capacidad de ahorro b.', id: 'saving_capacity_time', display_currency: 'Meses'}]
+  };
 
-  constructor(public modal: NgbActiveModal,
+  constructor(public priceTypeModelService: PriceTypeModelService,
               public meliModelService: MeliModelService,
+              public modal: NgbActiveModal,
               public router: Router,
               public userDataModelService: UserDataModelService) {
   }
 
-  orderName = 'relevance';
-
-  /*  private _resultsEntity: ResultsEntity;
-    @Input('resultsEntity') set resultsEntity(value: ResultsEntity) {
-      this._resultsEntity = value;
-    }*/
-
-  get resultsEntity(): IMeliSearch {
-    if (this.meliModelService.searchMeliData$.value) {
-      return this.meliModelService.searchMeliData$.value;
-    } else {
-      return undefined;
-    }
-  }
-
-  get labelText(): string {
-    if (this.orderName === 'relevance') {
-      return 'Más relevantes';
-    }
-    if (this.orderName === 'price_asc') {
-      return 'Menor precio';
-    }
-    if (this.orderName === 'price_desc') {
-      return 'Mayor precio';
-    }
-    return '';
-  }
-
-  orderBy(order: string): void {
-    this.orderName = order;
-    //this.userDataModelService.pageSort$.next(order);
-    this.userDataModelService.pageNumber$.next(0);
-    this.meliModelService.searchSortBy$.next(order);
-    this.meliModelService.meliSearch(this.userDataModelService.searchData$.value,
-      this.userDataModelService.pageNumber$.value,
-      this.meliModelService.searchSortBy$.value);
-    this.modal.close(true);
-  }
-
   ngOnInit(): void {
-    /*this.isZipcode = true;
-    if (this.meliModelService.zipCodeData$.value) {
-      this.zipCode = this.meliModelService.zipCodeData$.value.zip_code;
-    }*/
-    console.log(this.item);
   }
 
-  getZipCode(): void {
-    /*if (this.zipCode !== '' && this.zipCode !== 'undefined') {
-      this.meliModelService.getZipcode(this.zipCode).then(resp => {
-        this.isZipcode = resp;
-        if (resp) {
-          this.router.navigate(['/sales']);
-        }
-      });
-    }*/
-    this.buttonResponse.emit(true);
-    this.modal.close(true);
+  setPriceType(item: ValuesEntity2): void {
+    this.priceTypeModelService.priceType$.next(item);
+    this.meliModelService.searchMeliData$.value?.results.forEach((x) => {
+      const price = this.getCurrentPrice(x);
+      x.priceAndType = this.priceTypeModelService.buildPriceType(price, x.prices.presentation.display_currency);
+    });
+    this.modal.close(false);
+  }
+
+  getCurrentPrice(x: ResultsEntity): number {
+    if (x.prices?.prices?.length) {
+      if (x.prices?.prices[x.prices?.prices?.length - 1]?.amount) {
+        return Number(x.prices?.prices[x.prices?.prices?.length - 1]?.amount?.toFixed(0));
+      }
+    }
+    if (x.price) {
+      return Number(x.price.toFixed(0));
+    }
+    return 0;
   }
 
 }

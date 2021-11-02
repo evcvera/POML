@@ -103,10 +103,6 @@ export class SalesContainerComponent implements OnInit {
     const modalRef = this.modalService.open(SortItemMobileComponent, {modalDialogClass: 'modal-dialog-centered'});
     modalRef.componentInstance.item = item;
     modalRef.result.then((result) => {
-      console.log(result);
-      if (result) {
-        console.log(result);
-      }
     }).catch((res) => {
     });
   }
@@ -117,10 +113,6 @@ export class SalesContainerComponent implements OnInit {
     const modalRef = this.modalService.open(PriceTypeMobileComponent, {modalDialogClass: 'modal-dialog-centered'});
     modalRef.componentInstance.item = item;
     modalRef.result.then((result) => {
-      console.log(result);
-      if (result) {
-        console.log(result);
-      }
     }).catch((res) => {
     });
   }
