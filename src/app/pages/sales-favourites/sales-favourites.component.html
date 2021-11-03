@@ -5,14 +5,23 @@
     <a routerLink="/sales">
       <i class="my-3 ml-3 fas fa-arrow-left return-arrow"></i>
     </a>
-    <ng-container *ngIf="(favouritesModelService.favouritesMeliData$ | async) as meli">
-      <h4 class="mb-3" *ngIf="meli.totalSum">Monto total {{meli.totalSum | thousandsPipe}} $</h4>
-      <div *ngFor="let item of meli?.meliFavouriteItem; let first = first ;let last = last" class="general-font-family">
-        <div class="meli-card" [ngClass]="first ? 'item-first' : last ? 'item-last' : ''">
-          <app-sales-item [resultsEntity]="item.body" [typeItem]="'favourite'" [opinions]="true"></app-sales-item>
+    <h4 class="mb-3" *ngIf="favouritesModelService?.favouritesMeliData$?.value?.totalSum">Monto
+      total {{favouritesModelService?.favouritesMeliData$?.value?.totalSum | thousandsPipe}} $</h4>
+    <div class="d-flex">
+      <div>
+        <div style="width: 296px">
+          <app-price-type></app-price-type>
         </div>
       </div>
-      <!--<app-sales-paginator></app-sales-paginator>-->
-    </ng-container>
+      <div class="d-block w-100 mb-3" *ngIf="(favouritesModelService.favouritesMeliData$ | async) as meli">
+        <div *ngFor="let item of meli?.meliFavouriteItem; let first = first ;let last = last"
+             class="general-font-family">
+          <div class="meli-card" [ngClass]="first ? 'item-first' : last ? 'item-last' : ''">
+            <app-sales-item [resultsEntity]="item.body" [typeItem]="'favourite'" [opinions]="true"></app-sales-item>
+          </div>
+        </div>
+        <!--<app-sales-paginator></app-sales-paginator>-->
+      </div>
+    </div>
   </div>
 </ng-container>
