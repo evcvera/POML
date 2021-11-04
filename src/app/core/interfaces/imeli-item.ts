@@ -1,3 +1,5 @@
+import {IPriceAndType} from './iprice-and-type';
+
 export interface IMeliItem {
   code?: number;
   body?: Body;
@@ -61,6 +63,7 @@ export interface Body {
   isFavourite?: boolean;
   rating_average?: number;
   comments_count?: number;
+  priceAndType?: IPriceAndType;
 }
 
 export interface Variation {

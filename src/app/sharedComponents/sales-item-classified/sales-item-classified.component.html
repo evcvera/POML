@@ -28,8 +28,8 @@
         {{currentPrice | thousandsPipe}}
       </span>
           <span class="item-price mb-0" *ngIf="priceTypeModelService.priceType$.value.id !== 'standar'">
-            {{priceTypeModelService.priceType$.value.display_currency}}
-            {{resultsEntity.priceAndType.price}}
+            {{priceTypeModelService?.priceType$?.value?.display_currency}}
+            {{resultsEntity?.priceAndType?.price}}
       </span>
         </div>
         <div *ngIf="surface !== ''" class="surface-house">

@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {UserDataModelService} from '../../core/mode-services/user-data-model.service';
 import {AvailableFiltersEntity, IMeliSearch, ResultsEntity, ValuesEntity2} from '../../core/interfaces/imeli-search';
 import {PriceTypeModelService} from '../../core/mode-services/price-type-model.service';
+import {FavouritesModelServiceService} from '../../core/mode-services/favourites-model-service.service';
 
 @Component({
   selector: 'app-price-type-mobile',
@@ -12,6 +13,8 @@ import {PriceTypeModelService} from '../../core/mode-services/price-type-model.s
   styleUrls: ['./price-type-mobile.component.scss']
 })
 export class PriceTypeMobileComponent implements OnInit {
+
+  @Input() isFavourites: boolean;
 
   priceType: AvailableFiltersEntity = {
     name: 'Tipo de precio', id: 'price_type', type: 'string',
@@ -27,8 +30,8 @@ export class PriceTypeMobileComponent implements OnInit {
   constructor(public priceTypeModelService: PriceTypeModelService,
               public meliModelService: MeliModelService,
               public modal: NgbActiveModal,
-              public router: Router,
-              public userDataModelService: UserDataModelService) {
+              public userDataModelService: UserDataModelService,
+              public favouritesModelService: FavouritesModelServiceService) {
   }
 
   ngOnInit(): void {
@@ -36,10 +39,17 @@ export class PriceTypeMobileComponent implements OnInit {
 
   setPriceType(item: ValuesEntity2): void {
     this.priceTypeModelService.priceType$.next(item);
-    this.meliModelService.searchMeliData$.value?.results.forEach((x) => {
-      const price = this.getCurrentPrice(x);
-      x.priceAndType = this.priceTypeModelService.buildPriceType(price, x.prices.presentation.display_currency);
-    });
+    if (this.favouritesModelService.favouritesMeliData$.value?.meliFavouriteItem?.length > 0) {
+      this.favouritesModelService.favouritesMeliData$.value?.meliFavouriteItem.forEach((x) => {
+        x.body.priceAndType = this.priceTypeModelService.buildPriceType(x.body.price, x.body.currency_id);
+      });
+    }
+    if (this.meliModelService.searchMeliData$.value?.results?.length > 0) {
+      this.meliModelService.searchMeliData$.value?.results.forEach((x) => {
+        const price = this.getCurrentPrice(x);
+        x.priceAndType = this.priceTypeModelService.buildPriceType(price, x.prices.presentation.display_currency);
+      });
+    }
     this.modal.close(false);
   }
 
