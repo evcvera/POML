@@ -1,7 +1,7 @@
-@import "src/assets/baseStyles/baseStyles";
-@import "src/assets/baseStyles/variable";
-@import "~bootstrap/dist/css/bootstrap.css";
-@import '~material-icons/iconfont/material-icons.scss';
+@import "../../../../../assets/baseStyles/baseStyles";
+@import "../../../../../assets/baseStyles/variable";
+@import "../../../../../../node_modules/bootstrap/dist/css/bootstrap.css";
+@import '../../../../../../node_modules/material-icons/iconfont/material-icons';
 
 .modal-header {
   padding: 96px 32px 48px;

@@ -4,6 +4,7 @@ import {ISideBarForm} from '../../../core/interfaces/iside-bar-form';
 import {UserDataModelService} from '../../../core/mode-services/user-data-model.service';
 import {Router} from '@angular/router';
 import {DatePipe} from '@angular/common';
+import {RefreshAllModelService} from '../../../core/mode-services/refresh-all-model.service';
 
 @Component({
   selector: 'app-side-bar-form',
@@ -21,7 +22,8 @@ export class SideBarFormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private userDataModelService: UserDataModelService,
               private router: Router,
-              public datetime: DatePipe) {
+              public datetime: DatePipe,
+              private refreshAllModelService: RefreshAllModelService) {
     this.buildForm();
   }
 
@@ -67,6 +69,7 @@ export class SideBarFormComponent implements OnInit {
       this.userDataModelService.toggleForm$.next(false);
       this.router.navigate(['metrics']);
       localStorage.setItem('userData', JSON.stringify(this.sideBarForm));
+      this.refreshAllModelService.refresh();
     } else {
       this.form.markAllAsTouched();
     }

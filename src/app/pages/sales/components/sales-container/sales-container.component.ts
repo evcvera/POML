@@ -6,11 +6,11 @@ import {IMeliSearch, ResultsEntity} from '../../../../core/interfaces/imeli-sear
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {SalesZipCodeModalComponent} from '../sales-zip-code-modal/sales-zip-code-modal.component';
 import {GeneralPopupComponent} from '../../../../sharedComponents/general-popup/general-popup.component';
-import {SortItemMobileComponent} from '../../../../sharedComponents/sort-item-mobile/sort-item-mobile.component';
+import {SortItemMobileComponent} from '../../componets-mobile/sort-item-mobile/sort-item-mobile.component';
 import {FiltersMobileComponent} from '../../../../sharedComponents/filters-mobile/filters-mobile.component';
 import {Subscription} from 'rxjs';
 import {BlockUI, NgBlockUI} from 'ng-block-ui';
-import {PriceTypeMobileComponent} from '../../../../sharedComponents/price-type-mobile/price-type-mobile.component';
+import {PriceTypeMobileComponent} from '../../componets-mobile/price-type-mobile/price-type-mobile.component';
 
 @Component({
   selector: 'app-sales-container',

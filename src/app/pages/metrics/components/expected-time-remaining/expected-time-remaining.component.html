@@ -1,4 +1,4 @@
-<div class="d-flex flex-wrap">
+<div class="d-flex flex-wrap justify-content-center">
   <div>
     <div style="width: 260px; height: 360px" echarts [options]="_chartOption">
     </div>
@@ -8,11 +8,14 @@
       </button>
     </div>
   </div>
-  <div>
-    <p> Edad actual: {{age}} </p>
-    <p> Jubilacion: {{retirement}} </p>
-    <p> Esperanza de vida: {{expectedAge?.toFixed(2)}}</p>
-    <p> Edad actua completa: {{completedAge}}</p>
-    <button (click)="showme()">Show me</button>
+  <div class="col px-0">
+    <label class="d-block txtSize14 mb-0 txtBlack font-weight-600">INFORMACIÓN</label>
+    <hr class="line">
+    <label class="d-block txtSize14 mb-0 txtBlack"> <span class="font-weight-600"> Edad actual:</span> {{age}} </label>
+    <label class="d-block txtSize14 mb-0 txtBlack"> <span class="font-weight-600"> Jubilacion:</span> {{retirement}} </label>
+    <label class="d-block txtSize14 mb-0 txtBlack"> <span class="font-weight-600"> Esperanza de vida:</span> {{expectedAge?.toFixed(2)}}</label>
+    <!--<p> Edad actua completa: {{completedAge}}</p>-->
+    <label class="d-block txtSize14 mb-0 txtBlack"> <span class="font-weight-600">Edad actual completa:</span>  {{completedAgeNew}}</label>
+    <!--<button (click)="showme()">Show me</button>-->
   </div>
 </div>

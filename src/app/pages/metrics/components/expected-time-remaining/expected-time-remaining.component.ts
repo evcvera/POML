@@ -5,6 +5,7 @@ import {EChartsOption} from 'echarts';
 import {IBasicEchartLineModel} from '../../../../core/interfaces/ibasic-echart-line-model';
 import {ISideBarForm} from '../../../../core/interfaces/iside-bar-form';
 import {Subscription} from 'rxjs';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-expected-time-remaining',
@@ -17,6 +18,7 @@ export class ExpectedTimeRemainingComponent implements OnInit {
   retirement: number;
   expectedAge: number;
   completedAge: string;
+  completedAgeNew: string;
 
   agePercent: number;
   retirementPercent: number;
@@ -30,7 +32,8 @@ export class ExpectedTimeRemainingComponent implements OnInit {
   isPercent: boolean;
 
   constructor(public casaModelService: CasaModelService,
-              public userDataModelService: UserDataModelService) {
+              public userDataModelService: UserDataModelService,
+              private datePipe: DatePipe) {
   }
 
   ngOnInit(): void {
@@ -50,6 +53,7 @@ export class ExpectedTimeRemainingComponent implements OnInit {
     this.userDataSubscription = this.userDataModelService.userData$.subscribe(x => {
 
       this.getAge(x.birthday);
+      this.completedAgeNew = this.getAgeCompleted(this.datePipe.transform(x.birthday, 'MM-dd-yyyy'));
       this.retirement = x.gender === '0' ? 65 : x.gender === '1' ? 60 : 65;
       this.expectedAge = x.expectedAge;
       this.buildCompleteAge(x.birthday);
@@ -81,6 +85,95 @@ export class ExpectedTimeRemainingComponent implements OnInit {
 
   showme(): void {
     console.log(this.userDataModelService.userData$.value);
+  }
+
+  getAgeCompleted(dateString): string {
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+    const yearNow = now.getFullYear();
+    const monthNow = now.getMonth();
+    const dateNow = now.getDate();
+
+    const dob = new Date(dateString.substring(6, 10),
+      dateString.substring(0, 2) - 1,
+      dateString.substring(3, 5)
+    );
+
+    const yearDob = dob.getFullYear();
+    const monthDob = dob.getMonth();
+    const dateDob = dob.getDate();
+    let ageString = '';
+    let yearString = '';
+    let monthString = '';
+    let dayString = '';
+
+
+    let yearAge = yearNow - yearDob;
+    let monthAge = 0;
+
+    if (monthNow >= monthDob) {
+      monthAge = monthNow - monthDob;
+    } else {
+      yearAge--;
+      monthAge = 12 + monthNow - monthDob;
+    }
+
+    let dateAge = 0;
+    if (dateNow >= dateDob) {
+      dateAge = dateNow - dateDob;
+    } else {
+      monthAge--;
+      dateAge = 31 + dateNow - dateDob;
+
+      if (monthAge < 0) {
+        monthAge = 11;
+        yearAge--;
+      }
+    }
+
+    const age = {
+      years: yearAge,
+      months: monthAge,
+      days: dateAge
+    };
+
+    if (age.years > 1) {
+      yearString = ' años';
+    } else {
+      yearString = ' año';
+    }
+    if (age.months > 1) {
+      monthString = ' meses';
+    } else {
+      monthString = ' mes';
+    }
+    if (age.days > 1) {
+      dayString = ' días';
+    } else {
+      dayString = ' día';
+    }
+
+
+    if ((age.years > 0) && (age.months > 0) && (age.days > 0)) {
+      ageString = age.years + yearString + ', ' + age.months + monthString + ', y ' + age.days + dayString;
+    } else if ((age.years === 0) && (age.months === 0) && (age.days > 0)) {
+      ageString = 'Solo ' + age.days + dayString;
+    } else if ((age.years > 0) && (age.months === 0) && (age.days === 0)) {
+      ageString = age.years + yearString + ' Feliz cumpleaños!!';
+    } else if ((age.years > 0) && (age.months > 0) && (age.days === 0)) {
+      ageString = age.years + yearString + ' y ' + age.months + monthString;
+    } else if ((age.years === 0) && (age.months > 0) && (age.days > 0)) {
+      ageString = age.months + monthString + ' y ' + age.days + dayString;
+    } else if ((age.years > 0) && (age.months === 0) && (age.days > 0)) {
+      ageString = age.years + yearString + ' y ' + age.days + dayString;
+    } else if ((age.years === 0) && (age.months > 0) && (age.days === 0)) {
+      ageString = age.months + monthString;
+    } else {
+      ageString = 'Oops! No podemos calcular tu edad!';
+    }
+
+    return ageString;
   }
 
   buildCompleteAge(birthday: Date): void {
@@ -172,8 +265,14 @@ export class ExpectedTimeRemainingComponent implements OnInit {
             {value: this.retirementPercent, name: this.isPercent ? 'Tiempo porcentual para jubilación' : 'Tiempo para jubilación'},
             {value: this.expectedAgePercent, name: this.isPercent ? 'Tiempo porcentual con jubilación' : 'Tiempo con jubilacíon'},*/
             {value: Number((this.agePercent).toFixed(2)), name: this.isPercent ? 'Edad porcentual actual' : 'Edad actual'},
-            {value: Number((this.retirementPercent).toFixed(2)), name: this.isPercent ? 'Tiempo porcentual para jubilación' : 'Tiempo para jubilación'},
-            {value: Number((this.expectedAgePercent).toFixed(2)), name: this.isPercent ? 'Tiempo porcentual con jubilación' : 'Tiempo con jubilacíon'},
+            {
+              value: Number((this.retirementPercent).toFixed(2)),
+              name: this.isPercent ? 'Tiempo porcentual para jubilación' : 'Tiempo para jubilación'
+            },
+            {
+              value: Number((this.expectedAgePercent).toFixed(2)),
+              name: this.isPercent ? 'Tiempo porcentual con jubilación' : 'Tiempo con jubilacíon'
+            },
           ]
         }
       ]

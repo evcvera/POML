@@ -2,3 +2,16 @@
 @import "src/assets/baseStyles/variable";
 @import "~bootstrap/dist/css/bootstrap.css";
 @import '~material-icons/iconfont/material-icons.scss';
+
+.complete-form-container {
+  height: calc(100vh - 200px);
+}
+
+.open-form {
+  cursor: pointer;
+  color: #3483fa;
+
+  &:hover {
+    color: #1f4e96;
+  }
+}

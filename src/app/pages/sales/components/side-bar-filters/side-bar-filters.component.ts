@@ -25,8 +25,6 @@ export class SideBarFiltersComponent implements OnInit {
     this.userDataModelService.pageNumber$.next(0);
     this.userDataModelService.searchDataByCategory$.next(category.id);
     this.userDataModelService.searchData$.next(category.id);
-    /*this.meliModelService.meliSearch(this.userDataModelService.searchDataByCategory$.value,
-      this.userDataModelService.pageNumber$.value);*/
   }
 
 }

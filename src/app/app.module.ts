@@ -32,9 +32,9 @@ import {SalesZipCodeModalComponent} from './pages/sales/components/sales-zip-cod
 import {SalesMeliHeaderComponent} from './sharedComponents/sales-meli-header/sales-meli-header.component';
 import {StarRatingComponent} from './sharedComponents/star-rating/star-rating.component';
 import {SalesFavouritesComponent} from './pages/sales-favourites/sales-favourites.component';
-import {ZipCodeModalMobileComponent} from './sharedComponents/zip-code-modal-mobile/zip-code-modal-mobile.component';
+import {ZipCodeModalMobileComponent} from './pages/sales/componets-mobile/zip-code-modal-mobile/zip-code-modal-mobile.component';
 import {GeneralPopupComponent} from './sharedComponents/general-popup/general-popup.component';
-import {SortItemMobileComponent} from './sharedComponents/sort-item-mobile/sort-item-mobile.component';
+import {SortItemMobileComponent} from './pages/sales/componets-mobile/sort-item-mobile/sort-item-mobile.component';
 import {SubTextComponent} from './sharedComponents/sub-text/sub-text.component';
 import {CurrentDolarComponent} from './pages/metrics/components/current-dolar/current-dolar.component';
 import {CardMetricInfoComponent} from './pages/metrics/components/card-metric-info/card-metric-info.component';
@@ -48,7 +48,8 @@ import {SelectedFilterComponent} from './pages/sales/components/meli-filters/com
 import {ItemFilterMobileComponent} from './sharedComponents/filters-mobile/component/item-filter-mobile/item-filter-mobile.component';
 import {PriceTypeComponent} from './pages/sales/components/meli-filters/components/price-type/price-type.component';
 import {BlockUIModule} from 'ng-block-ui';
-import { PriceTypeMobileComponent } from './sharedComponents/price-type-mobile/price-type-mobile.component';
+import { PriceTypeMobileComponent } from './pages/sales/componets-mobile/price-type-mobile/price-type-mobile.component';
+import { CompleteFormComponent } from './sharedComponents/complete-form/complete-form.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { PriceTypeMobileComponent } from './sharedComponents/price-type-mobile/p
     SelectedFilterComponent,
     ItemFilterMobileComponent,
     PriceTypeComponent,
-    PriceTypeMobileComponent
+    PriceTypeMobileComponent,
+    CompleteFormComponent
   ],
   imports: [
     BrowserModule,

@@ -44,9 +44,14 @@ export class EchartLifeTimeComponent implements OnInit {
         sumWoman += this.dataEchart[i + 1].woman - this.dataEchart[i].woman;
         sumMan += this.dataEchart[i + 1].man - this.dataEchart[i].man;
       }*/
-      this.promProm = 0.19423728813559313;
+/*      this.promProm = 0.19423728813559313;
       this.promWoman = 0.19847457627118634;
-      this.promMan = 0.18067796610169487;
+      this.promMan = 0.18067796610169487;*/
+
+
+      this.promProm = 0.19677966102;
+      this.promWoman =  0.200847457627;
+      this.promMan = 0.18338983051;
       /*console.log('prom ' + this.promProm * 365);
       console.log('mujer ' + this.promWoman * 365);
       console.log('hombre ' + this.promMan * 365);*/

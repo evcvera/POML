@@ -1,8 +1,9 @@
 <div class="container">
-  <h1 class="py-3">Metrics</h1>
-  <ng-container *ngIf="(casaModelService.currentDollar$ | async) as currentDollar">
-    <ng-container *ngIf="currentDollar.oficialProm !== undefined">
-      <ng-container *ngIf="(userDataModelService.userData$ | async) as userData">
+  <ng-container *ngIf="userDataModelService.userData$ | async as userData">
+    <h1 class="py-3">Metrics</h1>
+    <app-echart-life-time></app-echart-life-time>
+    <ng-container *ngIf="(casaModelService.currentDollar$ | async) as currentDollar">
+      <ng-container *ngIf="currentDollar.oficialProm !== undefined">
         <div class="d-flex flex-wrap justify-content-around">
           <app-current-dolar [dollarInfo]="currentDollar"></app-current-dolar>
           <ng-container *ngIf="userDataModelService.userData$.value.expectedYear">
@@ -14,12 +15,11 @@
         </div>
       </ng-container>
     </ng-container>
-  </ng-container>
-  <app-echart-life-time></app-echart-life-time>
-  <ng-container *ngIf="userDataModelService.userData$ | async as userData">
-    <ng-container *ngIf="(casaModelService.currentDollar$ | async) as currentDollar">
-      <ng-container *ngIf="currentDollar.oficialProm !== undefined && userData.dailyHours !== undefined">
-        <app-user-metrics [dollarInfo]="currentDollar"></app-user-metrics>
+    <ng-container >
+      <ng-container *ngIf="(casaModelService.currentDollar$ | async) as currentDollar">
+        <ng-container *ngIf="currentDollar.oficialProm !== undefined && userData.dailyHours !== undefined">
+          <app-user-metrics [dollarInfo]="currentDollar"></app-user-metrics>
+        </ng-container>
       </ng-container>
     </ng-container>
   </ng-container>
