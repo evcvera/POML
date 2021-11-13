@@ -4,15 +4,16 @@
   </ng-container>
   <ng-container *ngIf="userData.gender">
     <app-sales-meli-header></app-sales-meli-header>
+    <app-sales-filter-mobile [isSales]="false"></app-sales-filter-mobile>
     <div class="container">
       <h1 class="py-3 pt-5 mx-1">Favoritos</h1>
       <a routerLink="/sales">
         <i class="my-3 ml-3 fas fa-arrow-left return-arrow"></i>
       </a>
       <h4 class="mb-3" *ngIf="favouritesModelService?.favouritesMeliData$?.value?.totalSum">Monto
-        total {{favouritesModelService?.favouritesMeliData$?.value?.totalSum | thousandsPipe}} $</h4>
+        total {{favouritesModelService?.favouritesMeliData$?.value?.totalSum | thousandsPipe}} B $</h4>
       <div class="d-flex">
-        <div>
+        <div class="filter-type">
           <div style="width: 296px">
             <app-price-type></app-price-type>
           </div>

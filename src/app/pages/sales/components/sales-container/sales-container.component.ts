@@ -99,7 +99,9 @@ export class SalesContainerComponent implements OnInit {
       this.userDataModelService.pageNumber$.value);*/
   }
 
-  orderMobile(item: any): void {
+
+  /**** SE CREA COMPONENTE app-sales-filter-mobile ****/
+/*  orderMobile(item: any): void {
     const modalRef = this.modalService.open(SortItemMobileComponent, {modalDialogClass: 'modal-dialog-centered'});
     modalRef.componentInstance.item = item;
     modalRef.result.then((result) => {
@@ -127,7 +129,7 @@ export class SalesContainerComponent implements OnInit {
       }
     }).catch((res) => {
     });
-  }
+  }*/
 
   /*******GENERLA MODAL ******/
 /*  orderByMobile(item: any): void {

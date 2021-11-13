@@ -1,6 +1,7 @@
 <div>
   <div *ngIf="resultsEntity as meli">
     <div class="container-margin" *blockUI="'sales-container'">
+<!--      SE CREA COMPONENTE APP-SALES-FILTER-MOBILE
       <div class="search-toolbar">
         <ul class="search-toolbar-actions">
           <li class="search-toolbar-action" (click)="orderMobile('')">
@@ -13,7 +14,8 @@
             <a class="search-link"><i class="fas fa-filter search-toolbar-icon"></i> Filtrar</a>
           </li>
         </ul>
-      </div>
+      </div>-->
+      <app-sales-filter-mobile [isSales]="true"></app-sales-filter-mobile>
       <div class="container-search-title">
         <h4 class="text-capitalize search-title">{{meli.query}}</h4>
       </div>

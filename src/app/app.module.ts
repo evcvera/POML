@@ -50,6 +50,7 @@ import {PriceTypeComponent} from './pages/sales/components/meli-filters/componen
 import {BlockUIModule} from 'ng-block-ui';
 import { PriceTypeMobileComponent } from './pages/sales/componets-mobile/price-type-mobile/price-type-mobile.component';
 import { CompleteFormComponent } from './sharedComponents/complete-form/complete-form.component';
+import { SalesFilterMobileComponent } from './pages/sales/componets-mobile/sales-filter-mobile/sales-filter-mobile.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +91,8 @@ import { CompleteFormComponent } from './sharedComponents/complete-form/complete
     ItemFilterMobileComponent,
     PriceTypeComponent,
     PriceTypeMobileComponent,
-    CompleteFormComponent
+    CompleteFormComponent,
+    SalesFilterMobileComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,9 @@ import {MeliModelService} from '../../core/mode-services/meli-model.service';
 import {FavouritesModelServiceService} from '../../core/mode-services/favourites-model-service.service';
 import {CasaModelService} from '../../core/mode-services/casa-model.service';
 import {UserDataModelService} from '../../core/mode-services/user-data-model.service';
+import {Subscription} from 'rxjs';
+import {PriceTypeModelService} from '../../core/mode-services/price-type-model.service';
+import {IPriceAndType} from '../../core/interfaces/iprice-and-type';
 
 @Component({
   selector: 'app-sales-favourites',
@@ -14,7 +17,8 @@ export class SalesFavouritesComponent implements OnInit, OnDestroy {
   constructor(public meliModelService: MeliModelService,
               public favouritesModelService: FavouritesModelServiceService,
               public casaModelService: CasaModelService,
-              public userDataModelService: UserDataModelService) {
+              public userDataModelService: UserDataModelService,
+              public priceTypeModelService: PriceTypeModelService) {
   }
 
   ngOnInit(): void {

@@ -1,2 +1,12 @@
 @import "src/assets/baseStyles/baseStyles";
 @import "src/assets/baseStyles/variable";
+@import "~bootstrap/dist/css/bootstrap.css";
+@import '~material-icons/iconfont/material-icons.scss';
+
+
+
+@media (max-width: 991px) {
+  .filter-type {
+    display: none;
+  }
+}
