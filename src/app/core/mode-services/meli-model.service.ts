@@ -72,12 +72,12 @@ export class MeliModelService {
 //&shipping_cost=free
     if (this.searchByInput$.value) {
       this.searchSubscription = this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}&offset=${pageNumber * 50}&limit=50&zip_code=${zipCode}&sort=${sortPage}${filters}`).subscribe((resp: any) => {
-        console.log(resp);
+        // a console.log(resp);
         this.setSearchResp(resp);
       });
     } else {
       this.searchSubscription = this.http.get(`${environment.api.meli}/sites/MLA/search?category=${search}&offset=${pageNumber * 50}&limit=50&zip_code=${zipCode}&sort=${sortPage}${filters}`).subscribe((resp: any) => {
-        console.log(resp);
+        // a console.log(resp);
         this.setSearchResp(resp);
       });
     }
@@ -129,7 +129,7 @@ export class MeliModelService {
         this.zipCodeSubscription.unsubscribe();
       }
       this.zipCodeSubscription = this.http.get(`${environment.api.meli}/countries/AR/zip_codes/${zipCode}`).subscribe((resp: any) => {
-        console.log(resp);
+        // a console.log(resp);
         this.zipCodeData$.next(resp);
         localStorage.setItem('zipCodeData', JSON.stringify(resp));
         ret(true);

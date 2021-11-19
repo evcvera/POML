@@ -84,7 +84,7 @@ export class ExpectedTimeRemainingComponent implements OnInit {
   }
 
   showme(): void {
-    console.log(this.userDataModelService.userData$.value);
+    // a console.log(this.userDataModelService.userData$.value);
   }
 
   getAgeCompleted(dateString): string {

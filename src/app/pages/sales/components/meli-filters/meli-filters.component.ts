@@ -129,7 +129,7 @@ export class MeliFiltersComponent implements OnInit {
         });
         if (!this.fullSend) {
           const index = this.meliModelService.selectedFilters$.value.findIndex(z => z.id === 'shipping' && z.values[0].id === 'fulfillment');
-          console.log((index));
+          // a console.log((index));
           if (index > -1) {
             this.meliModelService.selectedFilters$.value.splice(index, 1);
             this.userDataModelService.pageNumber$.next(0);
@@ -214,7 +214,7 @@ export class MeliFiltersComponent implements OnInit {
         });
         if (!this.freeSend) {
           const index = this.meliModelService.selectedFilters$.value.findIndex(z => z.id === 'shipping_cost' && z.values[0].id === 'free');
-          console.log((index));
+          // a console.log((index));
           if (index > -1) {
             this.meliModelService.selectedFilters$.value.splice(index, 1);
             this.userDataModelService.pageNumber$.next(0);

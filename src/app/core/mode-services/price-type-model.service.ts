@@ -59,9 +59,9 @@ export class PriceTypeModelService {
           auxSalaryDollar = userData.isDepenRelationship ? userData.salary * (13 / 12) / currentDollar.blueProm : userData.salary / currentDollar.blueProm;
         }
         if (type === 'ARS') {
-          priceAndType.price = this.transform(((price / currentDollar.blueProm) / auxSalaryDollar).toFixed(3)) + 'm';
+          priceAndType.price = this.transform(((price / currentDollar.blueProm) / auxSalaryDollar).toFixed(3));
         } else {
-          priceAndType.price = this.transform(((price) / auxSalaryDollar).toFixed(3)) + 'm';
+          priceAndType.price = this.transform(((price) / auxSalaryDollar).toFixed(3));
         }
         break;
       }
@@ -70,14 +70,14 @@ export class PriceTypeModelService {
         const userData = this.userDataModelService.userData$.value;
         if (this.userDataModelService.userData$.value && userData.isDollar) {
           if (userData.isPercent) {
-            auxSalaryDollar = userData.isDepenRelationship ? userData.salary * (13 / 12) * userData.savingCapacity : userData.salary * userData.savingCapacity;
+            auxSalaryDollar = userData.isDepenRelationship ? userData.salary * (13 / 12) * (100 / userData.savingCapacity) : userData.salary * (100 / userData.savingCapacity);
           } else {
             auxSalaryDollar = userData.isDepenRelationship ? userData.savingCapacity * (13 / 12) : userData.savingCapacity;
           }
         }
         if (this.userDataModelService.userData$.value && !userData.isDollar) {
           if (userData.isPercent) {
-            auxSalaryDollar = userData.isDepenRelationship ? userData.salary * (13 / 12) * userData.savingCapacity / currentDollar.blueProm : userData.salary * userData.savingCapacity / currentDollar.blueProm;
+            auxSalaryDollar = userData.isDepenRelationship ? userData.salary * (13 / 12) / currentDollar.blueProm * (100 / userData.savingCapacity) : userData.salary / currentDollar.blueProm * (100 / userData.savingCapacity);
           } else {
             auxSalaryDollar = userData.isDepenRelationship ? userData.savingCapacity * (13 / 12) / currentDollar.blueProm : userData.savingCapacity / currentDollar.blueProm;
           }

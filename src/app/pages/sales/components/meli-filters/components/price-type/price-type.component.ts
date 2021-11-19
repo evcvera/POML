@@ -20,7 +20,7 @@ export class PriceTypeComponent implements OnInit {
       {name: 'Dolar oficial', id: 'dollar', display_currency: 'U$D'},
       {name: 'Dolar blue', id: 'dollar_blue', display_currency: 'U$D B'},
       {name: 'Tiempo de mis ingresos b.', id: 'income_time', display_currency: 'T'},
-      {name: 'Tiempo capacidad de ahorro b.', id: 'saving_capacity_time', display_currency: 'Meses'}]
+      {name: 'Tiempo capacidad de ahorro b.', id: 'saving_capacity_time', display_currency: 'TC'}]
   };
 
   constructor(public priceTypeModelService: PriceTypeModelService,

@@ -67,7 +67,6 @@ export class SortItemMobileComponent implements OnInit {
     if (this.meliModelService.zipCodeData$.value) {
       this.zipCode = this.meliModelService.zipCodeData$.value.zip_code;
     }*/
-    console.log(this.item);
   }
 
   getZipCode(): void {

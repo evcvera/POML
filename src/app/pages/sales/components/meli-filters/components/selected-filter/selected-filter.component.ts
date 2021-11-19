@@ -18,7 +18,7 @@ export class SelectedFilterComponent implements OnInit {
 
   removeSelectedFilter(id: string): void {
     const index = this.meliModelService.selectedFilters$.value.findIndex(x => x.id === id);
-    console.log((index));
+    // a console.log((index));
     if (index > -1) {
       this.meliModelService.selectedFilters$.value.splice(index, 1);
       this.userDataModelService.pageNumber$.next(0);
