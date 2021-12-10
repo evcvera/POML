@@ -1,13 +1,15 @@
 <div class="vw-100 vh-100">
-  <div class="modal-header">
-    <i class="fas fa-arrow-left return-arrow" routerLink="/sales" (click)="modal.close(false)"></i>
-    <h3 class="order-title">Tipo de precio</h3>
-  </div>
-  <div class="modal-body pb-3">
-    <ul class="actions-order">
-      <li *ngFor="let item of priceType.values"><a class="action-item"
-             [ngClass]="priceTypeModelService.priceType$.value.name === item.name ? 'active' : ''"
-             (click)="setPriceType(item)">{{item.name}}</a></li>
-    </ul>
-  </div>
+  <ng-container *ngIf="(overPriceTypeService.priceType$ | async) as pricetype">
+    <div class="modal-header">
+      <i class="fas fa-arrow-left return-arrow" routerLink="/sales" (click)="modal.close(false)"></i>
+      <h3 class="order-title">Tipo de precio</h3>
+    </div>
+    <div class="modal-body pb-3">
+      <ul class="actions-order">
+        <li *ngFor="let item of pricetype.values"><a class="action-item"
+                                                     [ngClass]="priceTypeModelService.priceType$.value.name === item.name ? 'active' : ''"
+                                                     (click)="setPriceType(item)">{{item.name}}</a></li>
+      </ul>
+    </div>
+  </ng-container>
 </div>

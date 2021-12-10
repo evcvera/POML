@@ -1,14 +1,16 @@
 <!--<app-filter-item [filter]="priceType"></app-filter-item>-->
 <div class="filter-item-component switch-container">
-  <div class="filter-title">{{priceType.name}}</div>
+  <ng-container *ngIf="(overPriceTypeService.priceType$ | async) as pricetype">
+  <div class="filter-title">{{pricetype.name}}</div>
   <ul class="filter-ul">
-    <li class="search-filter-container" *ngFor="let value of priceType.values">
-      <ng-container>
-        <div class="pointer-text" (click)="setPriceType(value)">
+      <li class="search-filter-container" *ngFor="let value of pricetype.values">
+        <ng-container>
+          <div class="pointer-text" (click)="overPriceTypeService.setPriceType(value)">
           <span class="filter-subtitle"
                 [ngClass]="priceTypeModelService.priceType$?.value?.name === value.name ? 'selected-value' : ''">{{value.name}}</span>
-        </div>
-      </ng-container>
-    </li>
+          </div>
+        </ng-container>
+      </li>
   </ul>
+  </ng-container>
 </div>

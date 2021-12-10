@@ -141,7 +141,7 @@ export class MeliFiltersComponent implements OnInit {
       }
       setTimeout(() => {
         this.buttonFullSend = false;
-      }, 2000);
+      }, 500);
     }
   }
 
@@ -226,7 +226,7 @@ export class MeliFiltersComponent implements OnInit {
       }
       setTimeout(() => {
         this.buttonFreeSend = false;
-      }, 2000);
+      }, 500);
     }
   }
 

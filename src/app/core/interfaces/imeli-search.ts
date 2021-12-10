@@ -66,6 +66,7 @@ export interface ResultsEntity {
   comments_count?: number;
   isFavourite?: boolean;
   priceAndType?: IPriceAndType;
+  timeRequired?: string;
 }
 
 export interface Variation {

@@ -29,6 +29,8 @@ export class SalesItemComponent implements OnInit {
 
   currentDate: Date;
 
+  timeRequired: string;
+
 
   constructor(public meliModelService: MeliModelService,
               public favouritesModelServiceService: FavouritesModelServiceService,
@@ -84,12 +86,12 @@ export class SalesItemComponent implements OnInit {
   }
 
   getDealOfTheDay(): boolean {
-    if (this.resultsEntity.tags) {
-      const aux = this.resultsEntity.tags.find(x => x === 'deal_of_the_day');
+    if (this.resultsEntity?.tags) {
+      const aux = this.resultsEntity?.tags.find(x => x === 'deal_of_the_day');
       return aux !== undefined;
     }
-    if (this.resultsEntity.prices.prices) {
-      const aux = this.resultsEntity.prices.prices.find(x => x.metadata.promotion_type === 'deal_of_the_day');
+    if (this.resultsEntity?.prices?.prices) {
+      const aux = this.resultsEntity?.prices?.prices.find(x => x.metadata.promotion_type === 'deal_of_the_day');
       return aux !== undefined;
     }
     return false;
@@ -185,4 +187,7 @@ export class SalesItemComponent implements OnInit {
 
     this.favouritesModelServiceService.upSertFavouriteItem(id, this.resultsEntity.isFavourite);
   }
+
+
+
 }

@@ -1,4 +1,4 @@
-<div class="d-flex flex-wrap justify-content-center">
+<div *ngIf="age >= 0" class="d-flex flex-wrap justify-content-center">
   <div>
     <div style="width: 260px; height: 360px" echarts [options]="_chartOption">
     </div>
@@ -8,14 +8,60 @@
       </button>
     </div>
   </div>
-  <div class="col px-0">
+  <div class="ml-1 col px-0 info-container">
     <label class="d-block txtSize14 mb-0 txtBlack font-weight-600">INFORMACIÓN</label>
     <hr class="line">
-    <label class="d-block txtSize14 mb-0 txtBlack"> <span class="font-weight-600"> Edad actual:</span> {{age}} </label>
-    <label class="d-block txtSize14 mb-0 txtBlack"> <span class="font-weight-600"> Jubilacion:</span> {{retirement}} </label>
-    <label class="d-block txtSize14 mb-0 txtBlack"> <span class="font-weight-600"> Esperanza de vida:</span> {{expectedAge?.toFixed(2)}}</label>
+    <label class="d-block txtSize14 item-text txtBlack"> <span>Edad actual completa:</span>
+      <span class="font-weight-600"> {{completedAgeNew}}</span>
+    </label>
+    <!--<label class="d-block txtSize14 mb-0 txtBlack"> <span class="font-weight-600"> Edad actual:</span> {{age}} </label>-->
+    <label class="d-block txtSize14 item-text txtBlack"> <span> Jubilacion:</span>
+      <span class="font-weight-600"> {{retirement}} años</span>
+    </label>
+    <label class="d-block txtSize14 item-text txtBlack"> <span> Esperanza de vida:</span>
+      <span class="font-weight-600"> {{expectedAge?.toFixed(2)}} años</span>
+    </label>
+    <label class="d-block txtSize14 item-text txtBlack"> <span> Intervalo fechas:</span>
+      <span class="font-weight-600"> {{expectedDateLeftTimeFrom | date : 'dd/MM/yyyy'}}
+        a {{expectedDateLeftTimeTo | date : 'dd/MM/yyyy'}}</span>
+    </label>
+    <label class="d-block txtSize14 mb-0 mt-4 txtBlack font-weight-600">RESTANTES HASTA JUBILIARSE ({{this.retirement - this.age > 0 ? this.retirement - this.age : 0}} AÑOS)</label>
+    <hr class="line">
+    <label class="d-block txtSize14 item-text txtBlack"> <span> Ingresos:</span>
+      <span class="font-weight-600"> {{incomeBefore.toFixed(0) | thousandsPipe}} {{userDataModelService.userData$.value.isDollar ? 'U$D' : 'AR$'}}</span>
+    </label>
+    <label class="d-block txtSize14 item-text txtBlack"> <span> Capacidad de ahorro:</span>
+      <span class="font-weight-600"> {{incomeBeforeSavingCapacity.toFixed(0) | thousandsPipe}} {{userDataModelService.userData$.value.isDollar ? 'U$D' : 'AR$'}}</span>
+    </label>
+
+    <label class="d-block txtSize14 item-text txtBlack"> <span> Ingresos
+      <span>{{!userDataModelService.userData$?.value?.isDollar ? 'dolar' : 'peso'}}</span>
+      oficial:</span>
+      <span class="font-weight-600"> {{incomeBeforeOpositiveOff.toFixed(0) | thousandsPipe}} {{!userDataModelService.userData$.value.isDollar ? 'U$D' : 'AR$'}}</span>
+    </label>
+    <label class="d-block txtSize14 item-text txtBlack"> <span> Capacidad de ahorro
+      <span>{{!userDataModelService.userData$?.value?.isDollar ? 'dolar' : 'peso'}}</span>
+      oficial:</span>
+      <span class="font-weight-600"> {{incomeBeforeSavingCapacityOpositiveOff.toFixed(0) | thousandsPipe}} {{!userDataModelService.userData$.value.isDollar ? 'U$D' : 'AR$'}}</span>
+    </label>
+
+
+    <label class="d-block txtSize14 item-text txtBlack"> <span> Ingresos
+      <span>{{!userDataModelService.userData$?.value?.isDollar ? 'dolar' : 'peso'}}</span>
+      blue:</span>
+      <span class="font-weight-600"> {{incomeBeforeOpositiveBlue.toFixed(0) | thousandsPipe}} {{!userDataModelService.userData$.value.isDollar ? 'U$D' : 'AR$'}}</span>
+    </label>
+    <label class="d-block txtSize14 item-text txtBlack"> <span> Capacidad de ahorro
+      <span>{{!userDataModelService.userData$?.value?.isDollar ? 'dolar' : 'peso'}}</span>
+      blue:</span>
+      <span class="font-weight-600"> {{incomeBeforeSavingCapacityOpositiveBlue.toFixed(0) | thousandsPipe}} {{!userDataModelService.userData$.value.isDollar ? 'U$D' : 'AR$'}}</span>
+    </label>
+
+
     <!--<p> Edad actua completa: {{completedAge}}</p>-->
-    <label class="d-block txtSize14 mb-0 txtBlack"> <span class="font-weight-600">Edad actual completa:</span>  {{completedAgeNew}}</label>
-    <!--<button (click)="showme()">Show me</button>-->
   </div>
+</div>
+<div class="d-flex justify-content-center align-items-center txtBlack h-100" *ngIf="age < 0">
+  <h4 class="mb-0"> La persona aún no nació, pero la esperanza de vida es de
+    <span class="font-weight-700">{{expectedAge?.toFixed(2)}}</span> años</h4>
 </div>

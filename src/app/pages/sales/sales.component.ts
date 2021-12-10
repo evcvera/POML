@@ -16,9 +16,9 @@ export class SalesComponent implements OnInit, OnDestroy {
   public searchSubscription: Subscription;
   public pageNumberSubscription: Subscription;
 
-/*  public get tabletOrLess(): boolean {
-    return this.innerWidth <= 991;
-  }*/
+  /*  public get tabletOrLess(): boolean {
+      return this.innerWidth <= 991;
+    }*/
 
   constructor(public meliModelService: MeliModelService,
               public userDataModelService: UserDataModelService,
@@ -43,6 +43,10 @@ export class SalesComponent implements OnInit, OnDestroy {
       if (this.meliModelService.searchByInput$.value) {
         if (resp && resp !== (this.meliModelService.searchMeliData$.value.paging.offset / 50)) {
           this.meliModelService.meliSearch(this.userDataModelService.searchData$.value, resp);
+        } else {
+          /*if (this.userDataModelService.searchData$.value !== '' && resp === 0 && this.meliModelService.searchMeliData$.value.paging.offset) {
+            this.meliModelService.meliSearch(this.userDataModelService.searchData$.value, resp);
+          }*/
         }
       } else {
         if (resp && resp !== (this.meliModelService.searchMeliData$.value.paging.offset / 50)) {
@@ -70,9 +74,9 @@ export class SalesComponent implements OnInit, OnDestroy {
     }
   }
 
-/*  @HostListener('window:resize', ['$event'])
-  onResize($event): any {
-    this.innerWidth = window.innerWidth;
-  }*/
+  /*  @HostListener('window:resize', ['$event'])
+    onResize($event): any {
+      this.innerWidth = window.innerWidth;
+    }*/
 
 }

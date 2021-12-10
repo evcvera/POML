@@ -5,6 +5,8 @@ import {MeliModelService} from '../../core/mode-services/meli-model.service';
 import {GeneralPopupComponent} from '../general-popup/general-popup.component';
 import {UserDataModelService} from '../../core/mode-services/user-data-model.service';
 import {Router} from '@angular/router';
+import {PriceTypeModelService} from '../../core/mode-services/price-type-model.service';
+import {ValuesEntity2} from '../../core/interfaces/imeli-search';
 
 @Component({
   selector: 'app-sales-meli-header',
@@ -18,6 +20,7 @@ export class SalesMeliHeaderComponent implements OnInit {
   constructor(public modalService: NgbModal,
               public meliModelService: MeliModelService,
               public userDataModelService: UserDataModelService,
+              public priceTypeModelService: PriceTypeModelService,
               private router: Router) {
   }
 
@@ -28,12 +31,12 @@ export class SalesMeliHeaderComponent implements OnInit {
     const ref = this.modalService.open(SalesZipCodeModalComponent, {modalDialogClass: 'modal-dialog-centered modal-dialog-zipcode'});
     ref.componentInstance.item = item;
 
-/*    const modalRef = this.modalService.open(GeneralPopupComponent, {modalDialogClass: 'modal-dialog-centered modal-dialog-zipcode'});
-    modalRef.componentInstance.item = item;
-    modalRef.result.then((result) => {
-      if (result) {
-      }
-    }).catch((res) => {});*/
+    /*    const modalRef = this.modalService.open(GeneralPopupComponent, {modalDialogClass: 'modal-dialog-centered modal-dialog-zipcode'});
+        modalRef.componentInstance.item = item;
+        modalRef.result.then((result) => {
+          if (result) {
+          }
+        }).catch((res) => {});*/
   }
 
   keyPress(): void {
@@ -47,4 +50,8 @@ export class SalesMeliHeaderComponent implements OnInit {
     }
   }
 
+  setStandarPrice(): void {
+    const value: ValuesEntity2 = {name: 'Estandar', id: 'standar', display_currency: ''};
+    this.priceTypeModelService.priceType$.next(value);
+  }
 }

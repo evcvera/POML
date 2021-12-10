@@ -17,12 +17,25 @@ export class ExpectedTimeRemainingComponent implements OnInit {
   age: number;
   retirement: number;
   expectedAge: number;
-  completedAge: string;
+  //completedAge: string;
   completedAgeNew: string;
 
   agePercent: number;
   retirementPercent: number;
   expectedAgePercent: number;
+
+  expectedDateLeftTimeFrom: Date;
+  expectedDateLeftTimeTo: Date;
+
+  incomeBefore: number;
+  incomeBeforeSavingCapacity: number;
+
+  incomeBeforeOpositiveOff = 0;
+  incomeBeforeSavingCapacityOpositiveOff = 0;
+
+  incomeBeforeOpositiveBlue = 0;
+  incomeBeforeSavingCapacityOpositiveBlue = 0;
+
 
   userDataSubscription: Subscription;
 
@@ -39,9 +52,10 @@ export class ExpectedTimeRemainingComponent implements OnInit {
   ngOnInit(): void {
     this.isPercent = false;
     this.startImg();
-    /*const timeDiff = Math.abs(Date.now() - x.birthday.getTime());
-    const age = Math.floor((timeDiff / (1000 * 3600 * 24)) / 365.25);
-    console.log(age);*/
+    this.infoData();
+  }
+
+  infoData(): void {
   }
 
   startImg(): void {
@@ -56,7 +70,11 @@ export class ExpectedTimeRemainingComponent implements OnInit {
       this.completedAgeNew = this.getAgeCompleted(this.datePipe.transform(x.birthday, 'MM-dd-yyyy'));
       this.retirement = x.gender === '0' ? 65 : x.gender === '1' ? 60 : 65;
       this.expectedAge = x.expectedAge;
-      this.buildCompleteAge(x.birthday);
+      this.expectedDateLeftTimeTo = new Date(x.birthday);
+      this.expectedDateLeftTimeTo.setDate(x.birthday.getDate() + (x.expectedAge * 365.25));
+      this.expectedDateLeftTimeFrom = new Date(this.expectedDateLeftTimeTo);
+      this.expectedDateLeftTimeFrom.setDate(this.expectedDateLeftTimeTo.getDate() - 365.25);
+      //this.buildCompleteAge(x.birthday);
 
       if (this.isPercent) {
         this.agePercent = (this.age / this.expectedAge) * 100;
@@ -67,6 +85,29 @@ export class ExpectedTimeRemainingComponent implements OnInit {
         this.retirementPercent = this.retirement - this.age > 0 ? this.retirement - this.age : 0;
         this.expectedAgePercent = (this.expectedAge - this.retirement);
       }
+
+
+      const auxLeftRetirment = this.retirement - this.age > 0 ? this.retirement - this.age : 0;
+      const auxSalary = x.isDepenRelationship ? x.salary * 13 : x.salary * 12;
+      const auxSavingCapacityInt = x.isDepenRelationship ? x.savingCapacity * 13 : x.savingCapacity * 12;
+      this.incomeBefore = auxLeftRetirment * auxSalary;
+      this.incomeBeforeSavingCapacity = x.isPercent ? auxLeftRetirment * auxSalary * (x.savingCapacity / 100) :
+        auxLeftRetirment * auxSavingCapacityInt;
+
+      if (this.userDataModelService.userData$?.value?.isDollar) {
+        this.incomeBeforeOpositiveOff = this.incomeBefore * this.casaModelService.currentDollar$.value.oficialProm;
+        this.incomeBeforeSavingCapacityOpositiveOff = this.incomeBeforeSavingCapacity * this.casaModelService.currentDollar$.value.oficialProm;
+
+        this.incomeBeforeOpositiveBlue = this.incomeBefore * this.casaModelService.currentDollar$.value.blueProm;
+        this.incomeBeforeSavingCapacityOpositiveBlue = this.incomeBeforeSavingCapacity * this.casaModelService.currentDollar$.value.blueProm;
+      } else {
+        this.incomeBeforeOpositiveOff = this.incomeBefore / this.casaModelService.currentDollar$.value.oficialProm;
+        this.incomeBeforeSavingCapacityOpositiveOff = this.incomeBeforeSavingCapacity / this.casaModelService.currentDollar$.value.oficialProm;
+
+        this.incomeBeforeOpositiveBlue = this.incomeBefore / this.casaModelService.currentDollar$.value.blueProm;
+        this.incomeBeforeSavingCapacityOpositiveBlue = this.incomeBeforeSavingCapacity / this.casaModelService.currentDollar$.value.blueProm;
+      }
+
 
       this.buildEchartGraph();
     });
@@ -81,10 +122,6 @@ export class ExpectedTimeRemainingComponent implements OnInit {
       this.age--;
     }
 
-  }
-
-  showme(): void {
-    // a console.log(this.userDataModelService.userData$.value);
   }
 
   getAgeCompleted(dateString): string {
@@ -176,34 +213,34 @@ export class ExpectedTimeRemainingComponent implements OnInit {
     return ageString;
   }
 
-  buildCompleteAge(birthday: Date): void {
-    if (birthday !== undefined) {
-      const todayDate = new Date();
-      let ageyear = todayDate.getFullYear() - birthday.getFullYear();
-      let agemonth = todayDate.getMonth() - birthday.getMonth();
-      let ageday = todayDate.getDate() - birthday.getDate();
+  /*  buildCompleteAge(birthday: Date): void {
+      if (birthday !== undefined) {
+        const todayDate = new Date();
+        let ageyear = todayDate.getFullYear() - birthday.getFullYear();
+        let agemonth = todayDate.getMonth() - birthday.getMonth();
+        let ageday = todayDate.getDate() - birthday.getDate();
 
-      if (agemonth <= 0) {
-        ageyear--;
-        agemonth = (12 + agemonth);
-      }
-      if (new Date() < birthday) {
-        agemonth--;
-        ageday = 30 + ageday;
-      }
-      if (agemonth === 12) {
-        ageyear = ageyear + 1;
-        agemonth = 0;
-      }
+        if (agemonth <= 0) {
+          ageyear--;
+          agemonth = (12 + agemonth);
+        }
+        if (new Date() < birthday) {
+          agemonth--;
+          ageday = 30 + ageday;
+        }
+        if (agemonth === 12) {
+          ageyear = ageyear + 1;
+          agemonth = 0;
+        }
 
-      const year = ageyear + (ageyear < 2 ? ' año' : ' años');
-      const mounth = agemonth + (agemonth < 2 ? ' mes' : ' meses');
-      const day = ageday + (ageday < 2 ? ' dia' : ' dias');
+        const year = ageyear + (ageyear < 2 ? ' año' : ' años');
+        const mounth = agemonth + (agemonth < 2 ? ' mes' : ' meses');
+        const day = ageday + (ageday < 2 ? ' dia' : ' dias');
 
-      this.completedAge = year + ', ' + mounth + ', ' + day;
-      //alert('Age in Year:' + ageyear + ',' + 'Month:' + agemonth + ',' + 'Day:' + ageday);
-    }
-  }
+        this.completedAge = year + ', ' + mounth + ', ' + day;
+        //alert('Age in Year:' + ageyear + ',' + 'Month:' + agemonth + ',' + 'Day:' + ageday);
+      }
+    }*/
 
   buildEchartGraph(): void {
     this._chartOption = {

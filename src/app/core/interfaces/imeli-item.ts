@@ -64,6 +64,7 @@ export interface Body {
   rating_average?: number;
   comments_count?: number;
   priceAndType?: IPriceAndType;
+  timeRequired?: string;
 }
 
 export interface Variation {

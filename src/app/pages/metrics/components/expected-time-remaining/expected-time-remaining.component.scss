@@ -2,3 +2,17 @@
 @import "src/assets/baseStyles/variable";
 @import "~bootstrap/dist/css/bootstrap.css";
 @import '~material-icons/iconfont/material-icons.scss';
+
+.item-text{
+  margin: 4px 0;
+}
+
+.info-container{
+  min-width: 250px;
+}
+
+@media (max-width: 767px) {
+  .info-container{
+    margin-top: 20px;
+  }
+}

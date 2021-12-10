@@ -10,8 +10,8 @@
           <div>
             <label class="form-check-label mb-0">
               <app-full-icon></app-full-icon>
-              te ahorra envíos</label>
-            <label class="mb-0 sub-title">Con tu carrito de compras</label>
+              <span class="mb-0 free-send"> te ahorra envíos </span></label>
+            <label class="mb-0 free-sub-title w-100">Con tu carrito de compras</label>
           </div>
           <div class="mb-0 form-check form-switch">
             <input class="form-check-input" type="checkbox" [(ngModel)]="fullSend" name="something" [value]="fullSend"
@@ -21,7 +21,9 @@
       </li>
       <li>
         <div class="action-item" *ngIf="canFreeSend || freeSend" (click)="setFreeSend()">
-          <label class="form-check-label mb-0">Envío gratis</label>
+          <label class="form-check-label mb-0">
+            <span class="free-send">Envío gratis</span>
+          </label>
           <div class="mb-0 form-check form-switch">
             <input class="form-check-input" type="checkbox" [(ngModel)]="freeSend" name="free" [value]="freeSend"
                    [disabled]="buttonFreeSend">
