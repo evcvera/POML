@@ -74,7 +74,7 @@ export class FavouritesModelServiceService {
           this.favouritesMeliData$.value.ids = [];
           this.favouritesMeliData$.value.meliFavouriteItem.forEach((x) => {
             this.favouritesMeliData$.value.ids.push(x.body.id);
-            x.body.thumbnail = x.body.thumbnail.replace('-I.jpg', '-O.jpg');
+            x.body.thumbnail = x.body?.thumbnail?.replace('-I.jpg', '-O.jpg');
             this.favouritesMeliData$.value.totalSum += x.body.currency_id === 'USD' ? x.body.price * this.casaModelService.currentDollar$.value.blueProm : x.body.price;
             if (this.favouritesMeliItems$.value && this.favouritesMeliItems$.value !== []) {
               x.body.isFavourite = this.favouritesMeliItems$.value.some(r => r === x.body.id);

@@ -19,9 +19,6 @@ export class PriceTypeModelService {
 
 
   buildPriceType(price: number, type: string): IPriceAndType {
-    /*console.log(this.priceType$.value.id);
-    console.log(price);
-    console.log(type);*/
     const currentDollar = this.casaModelService.currentDollar$.value;
     const priceAndType: IPriceAndType = {price: this.transform(price.toString()), id: type};
     switch (this.priceType$.value.id) {
@@ -60,8 +57,10 @@ export class PriceTypeModelService {
         }
         if (type === 'ARS') {
           priceAndType.price = this.transform(((price / currentDollar.blueProm) / auxSalaryDollar).toFixed(3));
+          priceAndType.completedPriceTime = (((price / currentDollar.blueProm) / auxSalaryDollar));
         } else {
           priceAndType.price = this.transform(((price) / auxSalaryDollar).toFixed(3));
+          priceAndType.completedPriceTime = (((price) / auxSalaryDollar));
         }
         break;
       }
@@ -70,22 +69,24 @@ export class PriceTypeModelService {
         const userData = this.userDataModelService.userData$.value;
         if (this.userDataModelService.userData$.value && userData.isDollar) {
           if (userData.isPercent) {
-            auxSalaryDollar = userData.isDepenRelationship ? userData.salary * (13 / 12) * (100 / userData.savingCapacity) : userData.salary * (100 / userData.savingCapacity);
+            auxSalaryDollar = userData.isDepenRelationship ? userData.salary * (13 / 12) * (userData.savingCapacity / 100) : userData.salary * (userData.savingCapacity / 100);
           } else {
             auxSalaryDollar = userData.isDepenRelationship ? userData.savingCapacity * (13 / 12) : userData.savingCapacity;
           }
         }
         if (this.userDataModelService.userData$.value && !userData.isDollar) {
           if (userData.isPercent) {
-            auxSalaryDollar = userData.isDepenRelationship ? userData.salary * (13 / 12) / currentDollar.blueProm * (100 / userData.savingCapacity) : userData.salary / currentDollar.blueProm * (100 / userData.savingCapacity);
+            auxSalaryDollar = userData.isDepenRelationship ? userData.salary * (13 / 12) / currentDollar.blueProm * (userData.savingCapacity / 100) : userData.salary / currentDollar.blueProm * (userData.savingCapacity / 100);
           } else {
             auxSalaryDollar = userData.isDepenRelationship ? userData.savingCapacity * (13 / 12) / currentDollar.blueProm : userData.savingCapacity / currentDollar.blueProm;
           }
         }
         if (type === 'ARS') {
           priceAndType.price = this.transform(((price / currentDollar.blueProm) / auxSalaryDollar).toFixed(3));
+          priceAndType.completedPriceTime = (((price / currentDollar.blueProm) / auxSalaryDollar));
         } else {
           priceAndType.price = this.transform(((price) / auxSalaryDollar).toFixed(3));
+          priceAndType.completedPriceTime = (((price) / auxSalaryDollar));
         }
         break;
       }
