@@ -56,14 +56,15 @@ export class SideBarFormComponent implements OnInit {
     const userTimezoneOffset = new Date(auxDate).getTimezoneOffset() * 60000;
     this.sideBarForm.birthday = new Date(auxDate.getTime() + userTimezoneOffset);
     this.sideBarForm.gender = this.form.get('gender').value;
-    this.sideBarForm.isDollar = JSON.parse(this.form.get('isDollar').value);
+    this.sideBarForm.isDollar = JSON.parse(this.form.get('isDollar').value ? this.form.get('isDollar').value : null);
     this.sideBarForm.salary = this.form.get('salary').value;
     this.sideBarForm.dailyHours = this.form.get('weeklyHours').value;
-    this.sideBarForm.isDepenRelationship = JSON.parse(this.form.get('isDepenRelationship').value);
-    this.sideBarForm.isPercent = JSON.parse(this.form.get('isPercent').value);
+    this.sideBarForm.isDepenRelationship = JSON.parse(this.form.get('isDepenRelationship').value ? this.form.get('isDepenRelationship').value : null);
+    this.sideBarForm.isPercent = JSON.parse(this.form.get('isPercent').value ? this.form.get('isPercent').value : null);
     this.sideBarForm.savingCapacity = this.form.get('savingCapacity').value;
     //this.sideBarForm.savingCapacity = this.form.get('isPercent').value ? (this.form.get('savingCapacity').value * this.form.get('salary').value) / 100 : this.form.get('savingCapacity').value;
     event.preventDefault();
+    console.log(this.form.valid);
     if (this.form.valid) {
       this.userDataModelService.userData$.next(this.sideBarForm);
       this.userDataModelService.toggleForm$.next(false);
