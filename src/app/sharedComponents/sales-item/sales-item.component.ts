@@ -46,6 +46,9 @@ export class SalesItemComponent implements OnInit {
     this.typeOfCurrency = this.getTypeOfCurrency();
     this.currentPrice = this.getCurrentPrice();
     this.remainingPromoDays = this.getRemainingPromoDays();
+
+    /*** PARA VER LA RESPUESTA DE LOS ITEMS INDIVIDUALES ****/
+    this.meliModelService.getImages(this.resultsEntity.id);
   }
 
   imgLoaded(): any {

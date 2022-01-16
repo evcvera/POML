@@ -1,20 +1,20 @@
 <div>
   <div *ngIf="resultsEntity as meli">
     <div class="container-margin" *blockUI="'sales-container'">
-<!--      SE CREA COMPONENTE APP-SALES-FILTER-MOBILE
-      <div class="search-toolbar">
-        <ul class="search-toolbar-actions">
-          <li class="search-toolbar-action" (click)="orderMobile('')">
-            <a class="search-link"><i class="fas fa-exchange-alt order-icon search-toolbar-icon"></i>Ordenar</a>
-          </li>
-          <li class="search-toolbar-action" (click)="priceTypeMobile('')">
-            <a class="search-link"><i class="fas fa-dollar-sign search-toolbar-icon"></i>T. precio</a>
-          </li>
-          <li class="search-toolbar-action-filter" (click)="filtersMobile('')">
-            <a class="search-link"><i class="fas fa-filter search-toolbar-icon"></i> Filtrar</a>
-          </li>
-        </ul>
-      </div>-->
+      <!--      SE CREA COMPONENTE APP-SALES-FILTER-MOBILE
+            <div class="search-toolbar">
+              <ul class="search-toolbar-actions">
+                <li class="search-toolbar-action" (click)="orderMobile('')">
+                  <a class="search-link"><i class="fas fa-exchange-alt order-icon search-toolbar-icon"></i>Ordenar</a>
+                </li>
+                <li class="search-toolbar-action" (click)="priceTypeMobile('')">
+                  <a class="search-link"><i class="fas fa-dollar-sign search-toolbar-icon"></i>T. precio</a>
+                </li>
+                <li class="search-toolbar-action-filter" (click)="filtersMobile('')">
+                  <a class="search-link"><i class="fas fa-filter search-toolbar-icon"></i> Filtrar</a>
+                </li>
+              </ul>
+            </div>-->
       <app-sales-filter-mobile [isSales]="true"></app-sales-filter-mobile>
       <div class="container-search-title">
         <h4 class="text-capitalize search-title">{{meli.query}}</h4>

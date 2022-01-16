@@ -72,12 +72,12 @@ export class MeliModelService {
 //&shipping_cost=free
     if (this.searchByInput$.value) {
       this.searchSubscription = this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}&offset=${pageNumber * 50}&limit=50&zip_code=${zipCode}&sort=${sortPage}${filters}`).subscribe((resp: any) => {
-        // a console.log(resp);
+        // b console.log(resp);
         this.setSearchResp(resp);
       });
     } else {
       this.searchSubscription = this.http.get(`${environment.api.meli}/sites/MLA/search?category=${search}&offset=${pageNumber * 50}&limit=50&zip_code=${zipCode}&sort=${sortPage}${filters}`).subscribe((resp: any) => {
-        // a console.log(resp);
+        // b console.log(resp);
         this.setSearchResp(resp);
       });
     }
@@ -153,6 +153,7 @@ export class MeliModelService {
 
   getImages(id: string): void {
     this.getImagesSingleItem = this.http.get(`${environment.api.meli}/items/${id}`).subscribe((item: IMeliSingleItem) => {
+      // b console.log(item);
       item.pictures.shift();
       const index = this.searchMeliData$.value.results.findIndex(y => y.id === item.id);
       if (item.pictures) {
@@ -172,6 +173,7 @@ export class MeliModelService {
   getOpinionsRating(ids: string[]): any {
     let auxItemOpinion: IMeliItemOpinion = null;
     this.getOpinionsSingleItem = this.getOpinionsRatingObservable(ids).subscribe(response => {
+
       auxItemOpinion = response;
       if (auxItemOpinion !== null && auxItemOpinion.rating_average) {
         const index = this.searchMeliData$.value.results.findIndex(x => x.rating_average === undefined);

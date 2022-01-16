@@ -39,6 +39,7 @@
 
       <!--title-->
       <a [href]="resultsEntity.permalink" target="_blank" style="text-decoration: none">
+      <!--<a [routerLink]="['/item', resultsEntity.id]" style="text-decoration: none">-->
         <h2 class="item-title txtSize20 font-weight-400">{{resultsEntity.title}}
           <p *ngIf="sellerName !== ''" class="seller-name">Vendido por {{sellerName}}</p>
         </h2>
@@ -82,7 +83,6 @@
               </p>
             </div>
           </div>
-
 
           <!-- Remaining promo days-->
           <div *ngIf="remainingPromoDays !== '' && remainingDays > 0">

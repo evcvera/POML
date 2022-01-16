@@ -51,6 +51,8 @@ import {BlockUIModule} from 'ng-block-ui';
 import { PriceTypeMobileComponent } from './pages/sales/componets-mobile/price-type-mobile/price-type-mobile.component';
 import { CompleteFormComponent } from './sharedComponents/complete-form/complete-form.component';
 import { SalesFilterMobileComponent } from './pages/sales/componets-mobile/sales-filter-mobile/sales-filter-mobile.component';
+import { SingleItemComponent } from './pages/single-item/single-item.component';
+import { SaleItemDeskComponent } from './pages/single-item/sale-item-desk/sale-item-desk.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +94,9 @@ import { SalesFilterMobileComponent } from './pages/sales/componets-mobile/sales
     PriceTypeComponent,
     PriceTypeMobileComponent,
     CompleteFormComponent,
-    SalesFilterMobileComponent
+    SalesFilterMobileComponent,
+    SingleItemComponent,
+    SaleItemDeskComponent
   ],
   imports: [
     BrowserModule,

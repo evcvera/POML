@@ -5,6 +5,7 @@ import {SalesComponent} from './pages/sales/sales.component';
 import {MetricsComponent} from './pages/metrics/metrics.component';
 import {SalesFavouritesComponent} from './pages/sales-favourites/sales-favourites.component';
 import {ZipCodeModalMobileComponent} from './pages/sales/componets-mobile/zip-code-modal-mobile/zip-code-modal-mobile.component';
+import {SingleItemComponent} from './pages/single-item/single-item.component';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: 'metrics', component: MetricsComponent},
   {path: 'sales/favourites', component: SalesFavouritesComponent},
   {path: 'sales/zipcode', component: ZipCodeModalMobileComponent},
+  {path: 'item/:id', component: SingleItemComponent},
   {path: '**', redirectTo: ''}
 ];
 
