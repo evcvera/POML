@@ -6,6 +6,9 @@ import {MeliModelService} from './core/mode-services/meli-model.service';
 import {ISideBarForm} from './core/interfaces/iside-bar-form';
 import {IMeliZipCode} from './core/interfaces/imeli-zip-code';
 import {FavouritesModelServiceService} from './core/mode-services/favourites-model-service.service';
+import {Router, NavigationEnd} from '@angular/router';
+import {filter} from 'rxjs/operators';
+declare var gtag;
 
 @Component({
   selector: 'app-root',
@@ -19,7 +22,8 @@ export class AppComponent implements OnInit {
   constructor(private casaModelService: CasaModelService,
               private userDataModelService: UserDataModelService,
               private meliModelService: MeliModelService,
-              private favouritesModelServiceService: FavouritesModelServiceService) {
+              private favouritesModelServiceService: FavouritesModelServiceService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -52,6 +56,17 @@ export class AppComponent implements OnInit {
       });
       this.favouritesModelServiceService.favouritesMeliItems$.next(result);
     }
+
+    const navEndEvents$ = this.router.events
+      .pipe(
+        filter(event => event instanceof NavigationEnd)
+      );
+
+    navEndEvents$.subscribe((event: NavigationEnd) => {
+      gtag('config', 'UA-184146642-1', {
+        'page_path': event.urlAfterRedirects
+      });
+    });
   }
 
 
