@@ -48,7 +48,7 @@ export class SalesItemComponent implements OnInit {
     this.remainingPromoDays = this.getRemainingPromoDays();
 
     /*** PARA VER LA RESPUESTA DE LOS ITEMS INDIVIDUALES ****/
-    this.meliModelService.getImages(this.resultsEntity.id);
+    //this.meliModelService.getImages(this.resultsEntity.id);
   }
 
   imgLoaded(): any {
