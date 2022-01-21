@@ -1,17 +1,25 @@
-<ng-container *ngIf="(meliModelService.searchMeliData$ | async) as meli">
-  <div class="search-sidebar">
-    <div class="category-order-by">
-      <ng-container *ngFor="let filter of meli?.filters">
-        <ng-container *ngIf="filter.id === 'category'">
-          <ng-container *ngFor="let categories of filter.values">
-          <span *ngFor="let category of categories.path_from_root; let last = last"
-                class="name mb-0">
-            <!--<span class="name-item mb-0" (click)="searchByCategory(category)">{{category.name}}</span>-->
+<ng-container>
+  <div class="d-flex align-items-center single-item-header">
+    <a class="back-to-list" routerLink="/sales">Volver al listado</a>
+    <div class="search-sidebar">
+      <div class="d-flex align-items-center" *ngIf="iMeliItemCategory">
+          <span *ngFor="let category of iMeliItemCategory?.path_from_root; let last = last"
+                class="name">
+            <!--(click)="searchByCategory(category)"-->
+            <a class="name-item mb-0">{{category.name}}</a>
             <i *ngIf="!last" class="fas fa-angle-right icon-may"></i>
           </span>
-          </ng-container>
-        </ng-container>
-      </ng-container>
+      </div>
     </div>
+  </div>
+  <div class="single-item-container">
+    <ng-container *ngIf="iMeliSingleItem">
+      <app-single-item-desk [iMeliSingleItem]="iMeliSingleItem">
+      </app-single-item-desk>
+    </ng-container>
+    <h4>Item</h4>
+    <div>{{iMeliSingleItem | json}}</div>
+    <h4>Category</h4>
+    <div>{{iMeliItemCategory | json}}</div>
   </div>
 </ng-container>

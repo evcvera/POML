@@ -5,10 +5,11 @@ import {AvailableFiltersEntity, FiltersEntity, IMeliSearch, ResultsEntity} from 
 import {BehaviorSubject, from, Observable, Subscription} from 'rxjs';
 import {IMeliZipCode} from '../interfaces/imeli-zip-code';
 import {IMeliSingleItem} from '../interfaces/imeli-single-item';
-import {concatMap} from 'rxjs/operators';
+import {concatMap, map} from 'rxjs/operators';
 import {IMeliItemOpinion} from '../interfaces/imeli-item-opinion';
 import {FavouritesModelServiceService} from './favourites-model-service.service';
 import {PriceTypeModelService} from './price-type-model.service';
+import {IMeliItemCategory} from '../interfaces/imeli-item-category';
 
 @Injectable({
   providedIn: 'root'
@@ -73,11 +74,13 @@ export class MeliModelService {
     if (this.searchByInput$.value) {
       this.searchSubscription = this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}&offset=${pageNumber * 50}&limit=50&zip_code=${zipCode}&sort=${sortPage}${filters}`).subscribe((resp: any) => {
         // b console.log(resp);
+        console.log(resp);
         this.setSearchResp(resp);
       });
     } else {
       this.searchSubscription = this.http.get(`${environment.api.meli}/sites/MLA/search?category=${search}&offset=${pageNumber * 50}&limit=50&zip_code=${zipCode}&sort=${sortPage}${filters}`).subscribe((resp: any) => {
         // b console.log(resp);
+        console.log(resp);
         this.setSearchResp(resp);
       });
     }
@@ -154,16 +157,48 @@ export class MeliModelService {
   getImages(id: string): void {
     this.getImagesSingleItem = this.http.get(`${environment.api.meli}/items/${id}`).subscribe((item: IMeliSingleItem) => {
       // b console.log(item);
+      console.log(item);
       item.pictures.shift();
-      const index = this.searchMeliData$.value.results.findIndex(y => y.id === item.id);
+      const index = this.searchMeliData$.value?.results.findIndex(y => y.id === item.id);
       if (item.pictures) {
         item.pictures.forEach(z =>
-          this.searchMeliData$.value.results[index].pictures.push(z.url));
+          this.searchMeliData$.value?.results[index]?.pictures?.push(z.url));
       }
     });
   }
 
   /***************************** GET RATING AND OPINIONS ***************************************/
+
+  async getSingleItem(id: string): Promise<IMeliSingleItem> {
+    return new Promise<IMeliSingleItem>((resp) => {
+      this.http.get(`${environment.api.meli}/items/${id}`).subscribe((item: IMeliSingleItem) => {
+        resp(item);
+      });
+    });
+  }
+
+  async getCategoryBySingleItem(id: string): Promise<IMeliItemCategory> {
+    return new Promise<IMeliItemCategory>((resp) => {
+      this.http.get(`${environment.api.meli}/categories/${id}`).subscribe((item: any) => {
+        const itemCategory: IMeliItemCategory = item;
+        console.log(item);
+        console.log(itemCategory);
+        if (JSON.stringify(item) !== JSON.stringify(itemCategory)) {
+          console.log('AYUDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+        }
+        resp(item);
+      });
+    });
+  }
+
+  /*  getTransferHistory(id: string): Observable<any> {
+      return this.http.get(`${environment.api.meli}/items/${id}`)
+        .pipe(map((resp) => {
+          /!*console.log(resp);*!/
+          return resp;
+        }));
+    }*/
+
   getOpinionsRatingObservable(ids: string[]): any {
     return from(ids).pipe(
       concatMap(id => <Observable<IMeliItemOpinion>> this.http.get(`${environment.api.meli}/reviews/item/${id}`))

@@ -1,0 +1,9 @@
+<div class="tini-main-container">
+  <ng-container *ngIf="pictures">
+    <div class="tini-container" *ngFor="let picture of pictures">
+      <div class="tini-img-container">
+        <img class="tini-img" [src]="picture.secure_url">
+      </div>
+    </div>
+  </ng-container>
+</div>

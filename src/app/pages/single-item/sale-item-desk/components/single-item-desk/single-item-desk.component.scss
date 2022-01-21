@@ -1,0 +1,13 @@
+@import "src/assets/baseStyles/baseStyles";
+@import "src/assets/baseStyles/variable";
+@import "~bootstrap/dist/css/bootstrap.css";
+@import '~material-icons/iconfont/material-icons.scss';
+
+.primary-col{
+  width: 100%;
+}
+
+.secondary-col{
+  max-width: 325px;
+  min-width: 325px;
+}

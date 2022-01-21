@@ -1,0 +1,35 @@
+@import "src/assets/baseStyles/baseStyles";
+@import "src/assets/baseStyles/variable";
+@import "~bootstrap/dist/css/bootstrap.css";
+@import '~material-icons/iconfont/material-icons.scss';
+
+.tini-main-container{
+  margin-left: 16px;
+  margin-top: 16px;
+}
+
+.tini-img{
+  height: 100%;
+  object-fit: contain;
+  width: 100%;
+}
+
+.tini-img-container{
+  font-size: 12px;
+  height: 48px;
+  padding: 2px;
+  width: 48px;
+}
+
+.tini-container{
+  border: 1px solid rgba(0,0,0,.25);
+  cursor: pointer;
+  font-weight: 400;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  border-radius: 4px;
+  width: fit-content;
+  margin-right: 0;
+  margin-bottom: 8px;
+}

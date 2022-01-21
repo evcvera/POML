@@ -53,6 +53,8 @@ import { CompleteFormComponent } from './sharedComponents/complete-form/complete
 import { SalesFilterMobileComponent } from './pages/sales/componets-mobile/sales-filter-mobile/sales-filter-mobile.component';
 import { SingleItemComponent } from './pages/single-item/single-item.component';
 import { SaleItemDeskComponent } from './pages/single-item/sale-item-desk/sale-item-desk.component';
+import { SingleItemDeskComponent } from './pages/single-item/sale-item-desk/components/single-item-desk/single-item-desk.component';
+import { TiniLeftImgComponent } from './pages/single-item/sale-item-desk/components/tini-left-img/tini-left-img.component';
 
 @NgModule({
   declarations: [
@@ -96,7 +98,9 @@ import { SaleItemDeskComponent } from './pages/single-item/sale-item-desk/sale-i
     CompleteFormComponent,
     SalesFilterMobileComponent,
     SingleItemComponent,
-    SaleItemDeskComponent
+    SaleItemDeskComponent,
+    SingleItemDeskComponent,
+    TiniLeftImgComponent
   ],
   imports: [
     BrowserModule,

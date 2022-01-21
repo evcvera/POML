@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: 'metrics', component: MetricsComponent},
   {path: 'sales/favourites', component: SalesFavouritesComponent},
   {path: 'sales/zipcode', component: ZipCodeModalMobileComponent},
-  {path: 'item/:id', component: SingleItemComponent},
+  {path: 'sales/item/:id', component: SingleItemComponent},
   {path: '**', redirectTo: ''}
 ];
 
