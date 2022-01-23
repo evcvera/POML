@@ -19,6 +19,8 @@
     </ng-container>
     <h4>Item</h4>
     <div>{{iMeliSingleItem | json}}</div>
+    <h4>First item</h4>
+    <div>{{meliModelService.searchMeliData$.value?.results[0] | json}}</div>
     <h4>Category</h4>
     <div>{{iMeliItemCategory | json}}</div>
   </div>

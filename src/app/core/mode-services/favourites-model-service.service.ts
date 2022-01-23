@@ -35,6 +35,11 @@ export class FavouritesModelServiceService {
     localStorage.setItem('favouriteItems', JSON.stringify(this.favouritesMeliItems$.value));
   }
 
+  findFavouriteBoolean(id: string): boolean {
+    console.log(this.favouritesMeliItems$.value);
+    return this.favouritesMeliItems$.value?.some(x => x === id);
+  }
+
   async meliSearchFavouritesArrayString(): Promise<string[]> {
     return new Promise<string[]>(resolve => {
       const testAux: string[] = [];

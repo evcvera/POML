@@ -1,3 +1,5 @@
+import {IMeliCompleteRecommendations} from './imeli-complete-recommendations';
+
 export interface IMeliSingleItem {
   id: string;
   site_id: string;
@@ -53,6 +55,8 @@ export interface IMeliSingleItem {
   health: null;
   catalog_listing: boolean;
   channels: string[];
+  isFavourite: boolean;
+  fullRecommendations?: IMeliCompleteRecommendations;
 }
 
 export interface Variation {
@@ -76,14 +80,14 @@ export interface AttributeCombination {
 }
 
 export interface Attribute {
-  id: string;
-  name: string;
-  value_id: null | string;
-  value_name: string;
-  value_struct: Struct | null;
-  values: Value[];
-  attribute_group_id: string;
-  attribute_group_name: string;
+  id?: string;
+  name?: string;
+  value_id?: null | string;
+  value_name?: string;
+  value_struct?: Struct | null;
+  values?: Value[];
+  attribute_group_id?: string;
+  attribute_group_name?: string;
 }
 
 export interface Struct {

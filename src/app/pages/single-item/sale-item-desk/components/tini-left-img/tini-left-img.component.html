@@ -1,7 +1,7 @@
 <div class="tini-main-container">
-  <ng-container *ngIf="pictures">
-    <div class="tini-container" *ngFor="let picture of pictures">
-      <div class="tini-img-container">
+  <ng-container *ngIf="picture">
+    <div class="tini-container" [ngClass]="picture.isSelected ? 'selected-img' : ''">
+      <div class="tini-img-container" (mouseover)="setSelectedImage(picture.secure_url)">
         <img class="tini-img" [src]="picture.secure_url">
       </div>
     </div>

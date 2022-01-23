@@ -55,6 +55,7 @@ import { SingleItemComponent } from './pages/single-item/single-item.component';
 import { SaleItemDeskComponent } from './pages/single-item/sale-item-desk/sale-item-desk.component';
 import { SingleItemDeskComponent } from './pages/single-item/sale-item-desk/components/single-item-desk/single-item-desk.component';
 import { TiniLeftImgComponent } from './pages/single-item/sale-item-desk/components/tini-left-img/tini-left-img.component';
+import { MiddleColComponent } from './pages/single-item/sale-item-desk/components/middle-col/middle-col.component';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,8 @@ import { TiniLeftImgComponent } from './pages/single-item/sale-item-desk/compone
     SingleItemComponent,
     SaleItemDeskComponent,
     SingleItemDeskComponent,
-    TiniLeftImgComponent
+    TiniLeftImgComponent,
+    MiddleColComponent
   ],
   imports: [
     BrowserModule,

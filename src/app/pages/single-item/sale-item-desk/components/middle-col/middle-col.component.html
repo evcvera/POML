@@ -1,0 +1,39 @@
+<div>
+  <div class="top-header">
+    <div class="mb-2">
+    <span class="sub-title">{{itemConditionAndSoldQuantity}}
+    </span>
+      <span class="float-end" [ngClass]="isFavourite ? 'heart-icon-active' : ''">
+        <div class="heart-container" (click)="activeFavorites(iMeliSingleItem.id)">
+          <i class="fas fa-heart heart-icon"></i>
+        </div>
+      </span>
+      <span>
+    </span>
+    </div>
+
+    <h1 class="title">
+      {{iMeliSingleItem.title}}
+    </h1>
+
+    <div *ngIf="iMeliSingleItem.fullRecommendations?.recommended_products[0]?.product_details?.REVIEWS?.rating_average">
+      <app-star-rating
+        [rating]="iMeliSingleItem.fullRecommendations?.recommended_products[0]?.product_details?.REVIEWS?.rating_average"></app-star-rating>
+      <span class="sub-title"
+            *ngIf="iMeliSingleItem.fullRecommendations?.recommended_products[0]?.product_details?.REVIEWS?.count_reviews">
+        {{iMeliSingleItem.fullRecommendations?.recommended_products[0]?.product_details?.REVIEWS?.count_reviews}}
+        {{iMeliSingleItem.fullRecommendations?.recommended_products[0]?.product_details?.REVIEWS?.count_reviews > 1 ?
+        'opiniones' : 'opinion'}}
+      </span>
+    </div>
+
+  </div>
+  <!--<div *ngIf="resultsEntity.rating_average > 0">
+    <app-star-rating [rating]="resultsEntity.rating_average"
+                     ngbPopover="Rating: {{resultsEntity.rating_average}}"
+                     [openDelay]="200" [closeDelay]="200" triggers="mouseenter:mouseleave"></app-star-rating>
+    <span class="comments-count">{{resultsEntity.comments_count}}</span>
+    &lt;!&ndash;<small>{{resultsEntity.rating_average}}</small>&ndash;&gt;
+  </div>-->
+
+</div>

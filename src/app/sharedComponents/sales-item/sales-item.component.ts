@@ -54,7 +54,10 @@ export class SalesItemComponent implements OnInit {
   imgLoaded(): any {
     if (this.resultsEntity.rating_average === undefined && this.opinions) {
       this.resultsEntity.rating_average = 0;
-      this.meliModelService.getSingleMeliItemOpinion(this.resultsEntity.id, this.typeItem);
+      /*this.meliModelService.getSingleMeliItemOpinion(this.resultsEntity.id, this.typeItem);*/
+      if (this.resultsEntity.catalog_product_id) {
+        this.meliModelService.getSingleMeliItemOpinion2(this.resultsEntity.catalog_product_id, this.resultsEntity.id, this.typeItem);
+      }
     }
   }
 
@@ -190,7 +193,6 @@ export class SalesItemComponent implements OnInit {
 
     this.favouritesModelServiceService.upSertFavouriteItem(id, this.resultsEntity.isFavourite);
   }
-
 
 
 }

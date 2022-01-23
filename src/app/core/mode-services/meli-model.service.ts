@@ -10,6 +10,8 @@ import {IMeliItemOpinion} from '../interfaces/imeli-item-opinion';
 import {FavouritesModelServiceService} from './favourites-model-service.service';
 import {PriceTypeModelService} from './price-type-model.service';
 import {IMeliItemCategory} from '../interfaces/imeli-item-category';
+import {IMeliCompleteRecommendations} from '../interfaces/imeli-complete-recommendations';
+import {IMeliItemImg} from '../interfaces/imeli-item-img';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +32,8 @@ export class MeliModelService {
   searchSortBy$: BehaviorSubject<string> = new BehaviorSubject<string>('relevance');
   favouritesItems$: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
   searchByInput$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+
+  singleItemImages$: BehaviorSubject<IMeliItemImg[]> = new BehaviorSubject<IMeliItemImg[]>([]);
 
   blockUi$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
@@ -172,7 +176,25 @@ export class MeliModelService {
   async getSingleItem(id: string): Promise<IMeliSingleItem> {
     return new Promise<IMeliSingleItem>((resp) => {
       this.http.get(`${environment.api.meli}/items/${id}`).subscribe((item: IMeliSingleItem) => {
-        resp(item);
+
+        const auxImages: IMeliItemImg[] = [];
+        item.pictures.forEach((x, i) => {
+          const aux: IMeliItemImg = {imgUrl: x.url, isSelected: i === 0, secure_url: x.secure_url};
+          auxImages.push(aux);
+        });
+        this.singleItemImages$.next(auxImages);
+
+        if (item.catalog_product_id) {
+          this.getSingleMeliItemOpinionPromise2(item.catalog_product_id).then(x => {
+            item.fullRecommendations = x;
+            console.log('+++');
+            console.log(item);
+            console.log('+++');
+            resp(item);
+          });
+        } else {
+          resp(item);
+        }
       });
     });
   }
@@ -226,8 +248,28 @@ export class MeliModelService {
     });
   }
 
-  /***************************** GET RATING AND OPINIONS ***************************************/
+  getOpinionsRatingSingle(ids: string[]): any {
+    let auxItemOpinion: IMeliItemOpinion = null;
+    this.getOpinionsSingleItem = this.getOpinionsRatingObservable(ids).subscribe(response => {
 
+      auxItemOpinion = response;
+      if (auxItemOpinion !== null && auxItemOpinion.rating_average) {
+        const index = this.searchMeliData$.value.results.findIndex(x => x.rating_average === undefined);
+        if (index !== -1) {
+          this.searchMeliData$.value.results[index].rating_average = auxItemOpinion.rating_average;
+        }
+      } else {
+        const index = this.searchMeliData$.value.results.findIndex(x => x.rating_average === undefined);
+        if (index !== -1) {
+          this.searchMeliData$.value.results[index].rating_average = 0;
+        }
+      }
+    }, error => {
+      console.error(error);
+    });
+  }
+
+  /***************************** GET RATING AND OPINIONS ***************************************/
 
   getSingleMeliItemOpinionPromise(id: string): Promise<IMeliItemOpinion> {
     return new Promise<IMeliItemOpinion>((resp) => {
@@ -264,6 +306,54 @@ export class MeliModelService {
       }
     });
   }
+
+
+  /**** FORMA COMPLETA PARA OBTENER RATINGS ****/
+  getSingleMeliItemOpinionPromise1(catalogProductId: string): any {
+    return this.http.get(`https://www.mercadolibre.com.ar/product-fe-recommendations/recommendations?site_id=MLA&product_id=${catalogProductId}&tracking=true&product_details=true&client=pdp_comparator`).subscribe((respQ: any) => {
+      console.log(respQ);
+    });
+  }
+
+  getSingleMeliItemOpinionPromise2(catalogProductId: string): Promise<IMeliCompleteRecommendations> {
+    return new Promise<IMeliCompleteRecommendations>((resp) => {
+      this.http.get(`https://www.mercadolibre.com.ar/product-fe-recommendations/recommendations?site_id=MLA&product_id=${catalogProductId}&tracking=true&product_details=true&client=pdp_comparator`).subscribe((respQ: any) => {
+        const iMeliCompleteRecommendations: IMeliCompleteRecommendations = respQ;
+        console.log(respQ);
+        if (JSON.stringify(respQ) !== JSON.stringify(iMeliCompleteRecommendations)) {
+          console.log('AYUDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+        }
+        resp(iMeliCompleteRecommendations);
+      });
+    });
+  }
+
+  getSingleMeliItemOpinion2(catalogProductId: string, id: string, type: string): void {
+    this.getSingleMeliItemOpinionPromise2(catalogProductId).then((resp) => {
+      switch (type) {
+        case 'search': {
+          const index = this.searchMeliData$.value.results.findIndex(x => x.id === id);
+          if (index !== -1 && resp.recommended_products) {
+            this.searchMeliData$.value.results[index].rating_average = resp.recommended_products[0]?.product_details?.REVIEWS?.rating_average ?? null;
+            this.searchMeliData$.value.results[index].comments_count = resp.recommended_products[0]?.product_details?.REVIEWS?.count_reviews ?? null;
+          }
+          break;
+        }
+        case 'favourite': {
+          if (this.favouritesModelServiceService.favouritesMeliData$.value?.meliFavouriteItem !== undefined) {
+            const index = this.favouritesModelServiceService.favouritesMeliData$.value.meliFavouriteItem.findIndex(x => x.body.id === id);
+            if (index !== -1 && resp.recommended_products) {
+              this.favouritesModelServiceService.favouritesMeliData$.value.meliFavouriteItem[index].body.rating_average = resp?.recommended_products[0]?.product_details?.REVIEWS?.rating_average ?? null;
+              this.favouritesModelServiceService.favouritesMeliData$.value.meliFavouriteItem[index].body.comments_count = resp?.recommended_products[0]?.product_details?.REVIEWS?.count_reviews ?? null;
+            }
+            break;
+          }
+        }
+      }
+    });
+  }
+
+  /***************************** GET RATING AND OPINIONS ***************************************/
 
   addCategorieFilter(filter: FiltersEntity): void {
     if (filter && filter.id !== undefined) {

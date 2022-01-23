@@ -1,0 +1,87 @@
+@import "src/assets/baseStyles/baseStyles";
+@import "src/assets/baseStyles/variable";
+@import "~bootstrap/dist/css/bootstrap.css";
+@import '~material-icons/iconfont/material-icons.scss';
+
+.top-header {
+  /**********  BORRAR *********/
+  margin-left: 10px;
+  /**********  BORRAR *********/
+
+  margin-top: 40px;
+  max-width: 341px;
+
+  .title {
+    flex: auto;
+    font-size: 22px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    padding: 0;
+    color: rgba(0, 0, 0, .9);
+    line-height: 1.18;
+    word-break: break-word;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, .1);
+   /* font-family: Proxima Nova, -apple-system, Helvetica Neue, Helvetica, Roboto, Arial, sans-serif;*/
+  }
+
+  .sub-title {
+    line-height: 1.35;
+    color: rgba(0, 0, 0, .55);
+    font-size: 14px;
+    font-weight: 400;
+    white-space: pre-wrap;
+    font-family: Proxima Nova,-apple-system,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;
+  }
+
+
+  .heart-container {
+    display: flex;
+    font-size: 22px;
+    align-items: center;
+    z-index: 2;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .item-container {
+    .heart-container {
+      background: hsla(0, 0%, 100%, .7);
+
+      &:hover {
+        .heart-icon {
+          -webkit-text-stroke: 1px #1f4e96;;
+        }
+      }
+    }
+
+    &:hover {
+      .heart-icon {
+        -webkit-text-stroke: 1px #3483fa;
+      }
+    }
+  }
+
+  .heart-icon-active {
+    .heart-container {
+      background: hsla(0, 0%, 100%, .7);
+
+      &:hover {
+        .heart-icon {
+          -webkit-text-stroke: 1px #1f4e96;
+          color: #1f4e96;
+        }
+      }
+    }
+
+    .heart-icon {
+      -webkit-text-stroke: 1px #3483fa;
+      color: #3483fa;
+    }
+  }
+
+  .heart-icon {
+    -webkit-text-stroke: 1px #3483fa;
+    color: white;
+  }
+}

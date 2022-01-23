@@ -1,10 +1,23 @@
 <div class="d-flex">
   <div class="primary-col d-flex">
-    <app-tini-left-img [pictures]="iMeliSingleItem.pictures"></app-tini-left-img>
+    <ng-container *ngIf="meliModelService.singleItemImages$ | async as images">
+      <div>
+        <ng-container *ngFor="let image of images">
+          <app-tini-left-img [picture]="image"></app-tini-left-img>
+        </ng-container>
+      </div>
+    </ng-container>
     <div>
-      <img [src]="iMeliSingleItem?.pictures[0].url">
+      <figure class="figure-image">
+        <ng-container *ngIf="meliModelService.singleItemImages$ | async as images">
+          <div *ngFor="let image of images">
+            <img *ngIf="image.isSelected === true" class="item-image" [src]="image.imgUrl">
+          </div>
+        </ng-container>
+        <!--<img  class="item-image" src="https://http2.mlstatic.com/D_NQ_NP_696612-MLA48428092510_122021-O.webp">-->
+      </figure>
     </div>
-    <h1>hola 1</h1>
+    <app-middle-col [iMeliSingleItem]="iMeliSingleItem"></app-middle-col>
   </div>
   <div class="secondary-col">
     <h1>hola 2</h1>
