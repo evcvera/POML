@@ -23,8 +23,11 @@ export class MeliModelService {
               private priceTypeModelService: PriceTypeModelService) {
   }
 
+  zipCodeData: IMeliZipCode = JSON.parse(localStorage.getItem('zipCodeData'));
+  nullZipCode: IMeliZipCode = {zip_code: '1425', state: {name: 'Capital Federal', id: 'AR-C'}};
+  zipCodeData$: BehaviorSubject<IMeliZipCode> = new BehaviorSubject<IMeliZipCode>(this.zipCodeData ? this.zipCodeData : this.nullZipCode);
+
   searchMeliData$: BehaviorSubject<IMeliSearch> = new BehaviorSubject<IMeliSearch>(undefined);
-  zipCodeData$: BehaviorSubject<IMeliZipCode> = new BehaviorSubject<IMeliZipCode>(undefined);
 
   selectedFilters$: BehaviorSubject<AvailableFiltersEntity[]> = new BehaviorSubject<AvailableFiltersEntity[]>([]);
   categoryName$: BehaviorSubject<string> = new BehaviorSubject<string>('');
@@ -33,7 +36,7 @@ export class MeliModelService {
   favouritesItems$: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
   searchByInput$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
-  singleItemImages$: BehaviorSubject<IMeliItemImg[]> = new BehaviorSubject<IMeliItemImg[]>([]);
+  singleItemImages$: BehaviorSubject<IMeliItemImg[]> = new BehaviorSubject<IMeliItemImg[]>(undefined);
 
   blockUi$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
@@ -44,7 +47,7 @@ export class MeliModelService {
   getImagesSingleItem: Subscription;
   getOpinionsSingleItem: Subscription;
   getRatingSingleItem: Subscription;
-  defaultZipCode = '1425';
+  //defaultZipCode = '1425';
 
 
   meliSearch(search: string, pageNumber: number, sortPage = 'relevance'): any {
@@ -56,12 +59,12 @@ export class MeliModelService {
     sortPage = this.searchSortBy$.value;
     /*********************** ZIP CODE **************************/
     let zipCode = '';
-    if (this.zipCodeData$.value) {
-      zipCode = this.zipCodeData$.value.zip_code;
-    } else {
+    /*if (this.zipCodeData$.value) {*/
+    zipCode = this.zipCodeData$.value.zip_code;
+    /*} else {
       this.getZipcode(this.defaultZipCode).then();
       zipCode = this.defaultZipCode;
-    }
+    }*/
     /*********************** ZIP CODE **************************/
 
     /*********************** FILTERS **************************/
@@ -77,14 +80,12 @@ export class MeliModelService {
 //&shipping_cost=free
     if (this.searchByInput$.value) {
       this.searchSubscription = this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}&offset=${pageNumber * 50}&limit=50&zip_code=${zipCode}&sort=${sortPage}${filters}`).subscribe((resp: any) => {
-        // b console.log(resp);
-        console.log(resp);
+        // c console.log(resp);
         this.setSearchResp(resp);
       });
     } else {
       this.searchSubscription = this.http.get(`${environment.api.meli}/sites/MLA/search?category=${search}&offset=${pageNumber * 50}&limit=50&zip_code=${zipCode}&sort=${sortPage}${filters}`).subscribe((resp: any) => {
-        // b console.log(resp);
-        console.log(resp);
+        // c console.log(resp);
         this.setSearchResp(resp);
       });
     }
@@ -160,8 +161,7 @@ export class MeliModelService {
 
   getImages(id: string): void {
     this.getImagesSingleItem = this.http.get(`${environment.api.meli}/items/${id}`).subscribe((item: IMeliSingleItem) => {
-      // b console.log(item);
-      console.log(item);
+      // c console.log(item);
       item.pictures.shift();
       const index = this.searchMeliData$.value?.results.findIndex(y => y.id === item.id);
       if (item.pictures) {
@@ -175,8 +175,8 @@ export class MeliModelService {
 
   async getSingleItem(id: string): Promise<IMeliSingleItem> {
     return new Promise<IMeliSingleItem>((resp) => {
-      this.http.get(`${environment.api.meli}/items/${id}`).subscribe((item: IMeliSingleItem) => {
-
+      this.http.get(`${environment.api.meli}/items/${id}`).subscribe((itemAny: any) => {
+        const item: IMeliSingleItem = itemAny;
         const auxImages: IMeliItemImg[] = [];
         item.pictures.forEach((x, i) => {
           const aux: IMeliItemImg = {imgUrl: x.url, isSelected: i === 0, secure_url: x.secure_url};
@@ -187,9 +187,9 @@ export class MeliModelService {
         if (item.catalog_product_id) {
           this.getSingleMeliItemOpinionPromise2(item.catalog_product_id).then(x => {
             item.fullRecommendations = x;
-            console.log('+++');
-            console.log(item);
-            console.log('+++');
+            // c console.log('+++');
+            // c console.log(itemAny);
+            // c console.log('+++');
             resp(item);
           });
         } else {
@@ -203,10 +203,10 @@ export class MeliModelService {
     return new Promise<IMeliItemCategory>((resp) => {
       this.http.get(`${environment.api.meli}/categories/${id}`).subscribe((item: any) => {
         const itemCategory: IMeliItemCategory = item;
-        console.log(item);
-        console.log(itemCategory);
+        // c console.log(item);
+        // c console.log(itemCategory);
         if (JSON.stringify(item) !== JSON.stringify(itemCategory)) {
-          console.log('AYUDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+          // c console.log('AYUDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
         }
         resp(item);
       });
@@ -307,11 +307,13 @@ export class MeliModelService {
     });
   }
 
+  /************** https://api.mercadolibre.com/items/MLA1107341196/shipping_options?zip_code=5000 ***********/
+
 
   /**** FORMA COMPLETA PARA OBTENER RATINGS ****/
   getSingleMeliItemOpinionPromise1(catalogProductId: string): any {
     return this.http.get(`https://www.mercadolibre.com.ar/product-fe-recommendations/recommendations?site_id=MLA&product_id=${catalogProductId}&tracking=true&product_details=true&client=pdp_comparator`).subscribe((respQ: any) => {
-      console.log(respQ);
+      // c console.log(respQ);
     });
   }
 
@@ -319,9 +321,9 @@ export class MeliModelService {
     return new Promise<IMeliCompleteRecommendations>((resp) => {
       this.http.get(`https://www.mercadolibre.com.ar/product-fe-recommendations/recommendations?site_id=MLA&product_id=${catalogProductId}&tracking=true&product_details=true&client=pdp_comparator`).subscribe((respQ: any) => {
         const iMeliCompleteRecommendations: IMeliCompleteRecommendations = respQ;
-        console.log(respQ);
+        // c console.log(respQ);
         if (JSON.stringify(respQ) !== JSON.stringify(iMeliCompleteRecommendations)) {
-          console.log('AYUDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+          // c  console.log('AYUDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
         }
         resp(iMeliCompleteRecommendations);
       });

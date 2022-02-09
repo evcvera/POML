@@ -23,10 +23,10 @@ export class SaleItemDeskComponent implements OnInit, OnDestroy {
       console.log(params['sales/item/id']);
     });*/
     const id = this.route.snapshot.paramMap.get('id');
-    console.log(this.route.snapshot.paramMap.get('id'));
+    // c console.log(this.route.snapshot.paramMap.get('id'));
     this.meliModelService.getSingleItem(id).then(x => {
       this.iMeliSingleItem = x;
-      console.log(x);
+      // c console.log(x);
       this.meliModelService.getCategoryBySingleItem(x.category_id).then(category => {
         this.iMeliItemCategory = category;
       });

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {AvailableFiltersEntity, ResultsEntity, ValuesEntity2} from '../interfaces/imeli-search';
 import {CasaModelService} from './casa-model.service';
 import {UserDataModelService} from './user-data-model.service';
@@ -32,7 +32,8 @@ export class OverPriceTypeService {
               private userDataModelService: UserDataModelService,
               private priceTypeModelService: PriceTypeModelService,
               private favouritesModelService: FavouritesModelServiceService,
-              private meliModelService: MeliModelService) { }
+              private meliModelService: MeliModelService) {
+  }
 
 
   setPriceType(item: ValuesEntity2): void {
@@ -76,6 +77,8 @@ export class OverPriceTypeService {
     var auxMonths = 0;
     var weeks = 0;
     var auxWeeks = 0;
+    var days = 0;
+    var auxDays = 0;
 
     const auxNumber = currentPrince.replace(',', '.');
     const auxCurrentPrice = parseFloat(auxNumber);
@@ -101,7 +104,15 @@ export class OverPriceTypeService {
       result += auxWeeks > 1 ? ' semanas ' : ' semana ';
     }
 
-
+    //days = weeks - auxWeeks;
+    if (weeks >= (0.25 / 7)) {
+      let dias = Math.floor(((weeks * 28) + 1) % 7);
+      if (dias === 0) {
+        dias = 6;
+      }
+      result += dias;
+      result += dias > 1 ? ' dias ' : ' dia ';
+    }
     /*console.log(rest);
     if (rest % 7 > 0) {
       weeks = `${rest % 7}`;

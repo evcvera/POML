@@ -1,7 +1,7 @@
 <div class="d-flex">
   <div class="primary-col d-flex">
     <ng-container *ngIf="meliModelService.singleItemImages$ | async as images">
-      <div>
+      <div class="mt-3 ml-3">
         <ng-container *ngFor="let image of images">
           <app-tini-left-img [picture]="image"></app-tini-left-img>
         </ng-container>

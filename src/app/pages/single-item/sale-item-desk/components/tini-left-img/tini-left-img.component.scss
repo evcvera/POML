@@ -4,8 +4,7 @@
 @import '~material-icons/iconfont/material-icons.scss';
 
 .tini-main-container{
-  margin-left: 16px;
-  margin-top: 16px;
+  margin-bottom: 8px;
 }
 
 .tini-img{
@@ -36,4 +35,5 @@
 
 .selected-img{
   border: 2px solid #3483fa;
+  margin: -1px;
 }

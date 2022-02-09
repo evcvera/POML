@@ -48,6 +48,6 @@ export class MiddleColComponent implements OnInit {
   activeFavorites(id: string): void {
     this.favouritesModelService.upSertFavouriteItem(id, !this.isFavourite);
     this.isFavourite = this.favouritesModelService.findFavouriteBoolean(id);
-    console.log(id);
+    // c console.log(id);
   }
 }

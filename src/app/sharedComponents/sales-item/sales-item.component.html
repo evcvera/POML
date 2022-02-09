@@ -68,6 +68,7 @@
               </label>
               <label class="item-price mb-0" *ngIf="priceTypeModelService.priceType$.value.id !== 'standar'">
                 <span
+                  [triggers]="'hover'"
                   [ngbPopover]="resultsEntity.timeRequired"> {{priceTypeModelService?.priceType$?.value?.display_currency}}
                   {{resultsEntity?.priceAndType?.price}} </span>
               </label>

@@ -30,6 +30,7 @@ export interface IMeliSingleItem {
   descriptions: Description[];
   accepts_mercadopago: boolean;
   non_mercado_pago_payment_methods: any[];
+  installments?: any;
   shipping: Shipping;
   international_delivery_mode: string;
   seller_address: SellerAddress;

@@ -27,7 +27,10 @@
         {{typeOfCurrency}}
         {{currentPrice | thousandsPipe}}
       </span>
-          <span class="item-price mb-0" *ngIf="priceTypeModelService.priceType$.value.id !== 'standar'">
+          <!--[triggers]="'hover'"-->
+          <span
+                [ngbPopover]="resultsEntity.timeRequired"
+                class="item-price mb-0" *ngIf="priceTypeModelService.priceType$.value.id !== 'standar'">
             {{priceTypeModelService?.priceType$?.value?.display_currency}}
             {{resultsEntity?.priceAndType?.price}}
       </span>
@@ -41,7 +44,7 @@
         <div *ngIf="operationPropertyType !== ''" class="operationType-house">
           <span>{{operationPropertyType}} </span>
         </div>
-        <div *ngIf="resultsEntity.title !== ''" class="title-house">
+        <div [routerLink]="['/sales/item', resultsEntity.id]" *ngIf="resultsEntity.title !== ''" class="title-house">
           <span>{{resultsEntity.title}} </span>
         </div>
         <div *ngIf="location !== '' " class="location-house">

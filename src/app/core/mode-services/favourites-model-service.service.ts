@@ -36,7 +36,7 @@ export class FavouritesModelServiceService {
   }
 
   findFavouriteBoolean(id: string): boolean {
-    console.log(this.favouritesMeliItems$.value);
+    // c console.log(this.favouritesMeliItems$.value);
     return this.favouritesMeliItems$.value?.some(x => x === id);
   }
 

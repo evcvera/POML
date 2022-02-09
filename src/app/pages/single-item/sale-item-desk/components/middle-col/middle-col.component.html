@@ -1,5 +1,6 @@
 <div>
   <div class="top-header">
+
     <div class="mb-2">
     <span class="sub-title">{{itemConditionAndSoldQuantity}}
     </span>
@@ -12,21 +13,27 @@
     </span>
     </div>
 
-    <h1 class="title">
+    <h1 class="title">selected-img
       {{iMeliSingleItem.title}}
     </h1>
 
-    <div *ngIf="iMeliSingleItem.fullRecommendations?.recommended_products[0]?.product_details?.REVIEWS?.rating_average">
+    <div *ngIf="iMeliSingleItem?.fullRecommendations?.recommended_products && iMeliSingleItem?.fullRecommendations?.recommended_products[0]?.product_details?.REVIEWS?.rating_average">
       <app-star-rating
-        [rating]="iMeliSingleItem.fullRecommendations?.recommended_products[0]?.product_details?.REVIEWS?.rating_average"></app-star-rating>
+        [rating]="iMeliSingleItem?.fullRecommendations?.recommended_products[0]?.product_details?.REVIEWS?.rating_average"></app-star-rating>
       <span class="sub-title"
-            *ngIf="iMeliSingleItem.fullRecommendations?.recommended_products[0]?.product_details?.REVIEWS?.count_reviews">
+            *ngIf="iMeliSingleItem?.fullRecommendations?.recommended_products[0]?.product_details?.REVIEWS?.count_reviews">
         {{iMeliSingleItem.fullRecommendations?.recommended_products[0]?.product_details?.REVIEWS?.count_reviews}}
         {{iMeliSingleItem.fullRecommendations?.recommended_products[0]?.product_details?.REVIEWS?.count_reviews > 1 ?
         'opiniones' : 'opinion'}}
       </span>
     </div>
 
+    <div class="mt-3">
+      <div class="d-flex">
+      <span
+        class="price-title ">{{iMeliSingleItem.currency_id === 'ARS' ? '$' : 'U$D'}} {{iMeliSingleItem.price | thousandsPipe}}</span>
+      </div>
+    </div>
   </div>
   <!--<div *ngIf="resultsEntity.rating_average > 0">
     <app-star-rating [rating]="resultsEntity.rating_average"

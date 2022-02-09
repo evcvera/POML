@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {IMeliSingleItem} from '../../../../../core/interfaces/imeli-single-item';
 import {MeliModelService} from '../../../../../core/mode-services/meli-model.service';
@@ -9,7 +9,7 @@ import {Subscription} from 'rxjs';
   templateUrl: './single-item-desk.component.html',
   styleUrls: ['./single-item-desk.component.scss']
 })
-export class SingleItemDeskComponent implements OnInit {
+export class SingleItemDeskComponent implements OnInit, OnDestroy {
 
   @Input() iMeliSingleItem: IMeliSingleItem;
 
@@ -18,4 +18,9 @@ export class SingleItemDeskComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  ngOnDestroy(): void {
+    this.meliModelService.singleItemImages$.next(undefined);
+  }
+
 }

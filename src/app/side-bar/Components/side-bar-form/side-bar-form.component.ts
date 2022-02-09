@@ -64,8 +64,7 @@ export class SideBarFormComponent implements OnInit {
     this.sideBarForm.savingCapacity = this.form.get('savingCapacity').value;
     //this.sideBarForm.savingCapacity = this.form.get('isPercent').value ? (this.form.get('savingCapacity').value * this.form.get('salary').value) / 100 : this.form.get('savingCapacity').value;
     event.preventDefault();
-    // b console.log(this.form.valid);
-    console.log(this.form.valid);
+    // c console.log(this.form.valid);
     if (this.form.valid) {
       this.userDataModelService.userData$.next(this.sideBarForm);
       this.userDataModelService.toggleForm$.next(false);
