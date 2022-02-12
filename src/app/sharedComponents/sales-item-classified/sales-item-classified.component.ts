@@ -5,6 +5,7 @@ import {UserDataModelService} from '../../core/mode-services/user-data-model.ser
 import {Router} from '@angular/router';
 import {FavouritesModelServiceService} from '../../core/mode-services/favourites-model-service.service';
 import {PriceTypeModelService} from '../../core/mode-services/price-type-model.service';
+import {OverPriceTypeService} from '../../core/mode-services/over-price-type.service';
 
 @Component({
   selector: 'app-sales-item-classified',
@@ -37,7 +38,8 @@ export class SalesItemClassifiedComponent implements OnInit {
 
   constructor(public meliModelService: MeliModelService,
               public favouritesModelServiceService: FavouritesModelServiceService,
-              public priceTypeModelService: PriceTypeModelService) {
+              public priceTypeModelService: PriceTypeModelService,
+              public overPriceTypeService: OverPriceTypeService) {
   }
 
   ngOnInit(): void {

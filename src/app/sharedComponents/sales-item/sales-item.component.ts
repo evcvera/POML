@@ -4,6 +4,7 @@ import {ResultsEntity} from '../../core/interfaces/imeli-search';
 import {Subscription} from 'rxjs';
 import {FavouritesModelServiceService} from '../../core/mode-services/favourites-model-service.service';
 import {PriceTypeModelService} from '../../core/mode-services/price-type-model.service';
+import {OverPriceTypeService} from '../../core/mode-services/over-price-type.service';
 
 @Component({
   selector: 'app-sales-item',
@@ -34,7 +35,8 @@ export class SalesItemComponent implements OnInit {
 
   constructor(public meliModelService: MeliModelService,
               public favouritesModelServiceService: FavouritesModelServiceService,
-              public priceTypeModelService: PriceTypeModelService) {
+              public priceTypeModelService: PriceTypeModelService,
+              private overPriceTypeService: OverPriceTypeService) {
   }
 
   ngOnInit(): void {

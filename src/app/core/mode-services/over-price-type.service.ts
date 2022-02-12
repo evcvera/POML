@@ -41,19 +41,28 @@ export class OverPriceTypeService {
     if (this.favouritesModelService.favouritesMeliData$.value?.meliFavouriteItem?.length > 0) {
       this.favouritesModelService.favouritesMeliData$.value?.meliFavouriteItem.forEach((x) => {
         x.body.priceAndType = this.priceTypeModelService.buildPriceType(x.body.price, x.body.currency_id);
-        if (x.body?.priceAndType?.completedPriceTime) {
+        /*if (x.body?.priceAndType?.completedPriceTime) {
           x.body.timeRequired = this.getTimeRequired(x.body?.priceAndType?.completedPriceTime.toString());
-        }
+        }*/
       });
     }
     if (this.meliModelService.searchMeliData$.value?.results?.length > 0) {
       this.meliModelService.searchMeliData$.value?.results.forEach((x) => {
         const price = this.getCurrentPrice(x);
         x.priceAndType = this.priceTypeModelService.buildPriceType(price, x.prices.presentation.display_currency);
-        if (x.priceAndType?.completedPriceTime) {
+        /*if (x.priceAndType?.completedPriceTime) {
           x.timeRequired = this.getTimeRequired(x.priceAndType?.completedPriceTime.toString());
-        }
+        }*/
       });
+    }
+  }
+
+  setPriceTypeMouseOver(currentPrince: string, id: string): void {
+    if (this.priceTypeModelService.priceType$.value.id === 'income_time' || this.priceTypeModelService.priceType$.value.id === 'saving_capacity_time') {
+      const auxItem = this.meliModelService.searchMeliData$.value?.results.find((x => x.id === id));
+      if (auxItem && !auxItem.timeRequired) {
+        auxItem.timeRequired = this.getTimeRequired(currentPrince);
+      }
     }
   }
 

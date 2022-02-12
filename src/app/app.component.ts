@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   title = 'POML';
 
   constructor(private casaModelService: CasaModelService,
-              private userDataModelService: UserDataModelService,
+              public userDataModelService: UserDataModelService,
               private meliModelService: MeliModelService,
               private favouritesModelServiceService: FavouritesModelServiceService,
               private router: Router) {
