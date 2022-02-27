@@ -208,6 +208,19 @@
   font-size: 13px;
 }
 
+:host ::ng-deep .popover-body {
+  background: #1f4e96;
+  padding: 1rem;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  width: max-content;
+}
+
+:host ::ng-deep .bs-popover-top .arrow::after {
+  border-top-color: #1f4e96;
+}
+
 @media (min-width: 576px) {
 }
 

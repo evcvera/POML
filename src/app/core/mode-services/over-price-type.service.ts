@@ -22,8 +22,8 @@ export class OverPriceTypeService {
       {name: 'Peso blue', id: 'peso_blue', display_currency: '$ B'},
       {name: 'Dolar oficial', id: 'dollar', display_currency: 'U$D'},
       {name: 'Dolar blue', id: 'dollar_blue', display_currency: 'U$D B'},
-      {name: 'Tiempo de mis ingresos b.', id: 'income_time', display_currency: 'T'},
-      {name: 'Tiempo capacidad de ahorro b.', id: 'saving_capacity_time', display_currency: 'TC'}]
+      {name: 'Tiempo de mis ingresos blue', id: 'income_time', display_currency: 'M.I.'},
+      {name: 'Tiempo capacidad de ahorro b.', id: 'saving_capacity_time', display_currency: 'M.A.'}]
   };
 
   priceType$: BehaviorSubject<AvailableFiltersEntity> = new BehaviorSubject<AvailableFiltersEntity>(this.priceType);
@@ -37,6 +37,8 @@ export class OverPriceTypeService {
 
 
   setPriceType(item: ValuesEntity2): void {
+    this.clearTimeRequired();
+
     this.priceTypeModelService.priceType$.next(item);
     if (this.favouritesModelService.favouritesMeliData$.value?.meliFavouriteItem?.length > 0) {
       this.favouritesModelService.favouritesMeliData$.value?.meliFavouriteItem.forEach((x) => {
@@ -57,11 +59,26 @@ export class OverPriceTypeService {
     }
   }
 
+  clearTimeRequired(): void {
+    this.meliModelService.searchMeliData$.value?.results.forEach(x => {
+      x.timeRequired = null;
+    });
+    this.favouritesModelService.favouritesMeliData$.value?.meliFavouriteItem?.forEach((x) => {
+      x.body.timeRequired = null;
+    });
+  }
+
   setPriceTypeMouseOver(currentPrince: string, id: string): void {
     if (this.priceTypeModelService.priceType$.value.id === 'income_time' || this.priceTypeModelService.priceType$.value.id === 'saving_capacity_time') {
       const auxItem = this.meliModelService.searchMeliData$.value?.results.find((x => x.id === id));
-      if (auxItem && !auxItem.timeRequired) {
+      /*if (auxItem && !auxItem.timeRequired) {*/
+      if (auxItem) {
         auxItem.timeRequired = this.getTimeRequired(currentPrince);
+      }
+      const auxFavItem = this.favouritesModelService.favouritesMeliData$.value?.meliFavouriteItem?.find((x => x.body.id === id));
+      /*if (auxItem && !auxItem.timeRequired) {*/
+      if (auxFavItem) {
+        auxFavItem.body.timeRequired = this.getTimeRequired(currentPrince);
       }
     }
   }
@@ -89,7 +106,9 @@ export class OverPriceTypeService {
     var days = 0;
     var auxDays = 0;
 
-    const auxNumber = currentPrince.replace(',', '.');
+    let auxNumber = currentPrince.replace('.', '');
+    auxNumber = auxNumber.replace(',', '.');
+
     const auxCurrentPrice = parseFloat(auxNumber);
     if (auxCurrentPrice / 12 >= 1) {
       years = Math.floor(auxCurrentPrice / 12);
