@@ -3,10 +3,22 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import '~material-icons/iconfont/material-icons.scss';
 
-
+.favourites-title {
+  font-size: 24px;
+  font-weight: 600;
+  padding-top: 72px;
+  line-height: 1.25;
+}
 
 @media (max-width: 991px) {
   .filter-type {
     display: none;
+  }
+
+  .favourites-title {
+    font-size: 24px;
+    margin: 26px 16px;
+    padding-top: 0;
+    font-weight: 400;
   }
 }
