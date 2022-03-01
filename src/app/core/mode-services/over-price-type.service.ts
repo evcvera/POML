@@ -96,58 +96,105 @@ export class OverPriceTypeService {
   }
 
   /*************** AQUI TO DO *********************/
-  getTimeRequired(currentPrince: string): string {
-    var result = '';
-    var years = 0;
-    var months = 0;
-    var auxMonths = 0;
-    var weeks = 0;
-    var auxWeeks = 0;
-    var days = 0;
-    var auxDays = 0;
 
-    let auxNumber = currentPrince.replace('.', '');
-    auxNumber = auxNumber.replace(',', '.');
+  /*
+    getTimeRequired(currentPrince: string): string {
+      var result = '';
+      var years = 0;
+      var months = 0;
+      var auxMonths = 0;
+      var weeks = 0;
+      var auxWeeks = 0;
+      var days = 0;
+      var auxDays = 0;
 
-    const auxCurrentPrice = parseFloat(auxNumber);
-    if (auxCurrentPrice / 12 >= 1) {
-      years = Math.floor(auxCurrentPrice / 12);
-      result += years;
-      result += auxCurrentPrice / 12 ? ' años ' : 'año ';
-    }
+      let auxNumber = currentPrince.replace('.', '');
+      auxNumber = auxNumber.replace(',', '.');
 
-    months = (auxCurrentPrice - (years * 12));
-
-    if (months >= 1) {
-      auxMonths = Math.floor(months);
-      result += auxMonths;
-      result += auxMonths > 1 ? ' meses ' : ' mes ';
-    }
-
-    weeks = months - auxMonths;
-
-    if (weeks >= 0.25) {
-      auxWeeks = Math.floor(weeks * 4);
-      result += auxWeeks;
-      result += auxWeeks > 1 ? ' semanas ' : ' semana ';
-    }
-
-    //days = weeks - auxWeeks;
-    if (weeks >= (0.25 / 7)) {
-      let dias = Math.floor(((weeks * 28) + 1) % 7);
-      if (dias === 0) {
-        dias = 6;
+      const auxCurrentPrice = parseFloat(auxNumber);
+      if (auxCurrentPrice / 12 >= 1) {
+        years = Math.floor(auxCurrentPrice / 12);
+        result += years;
+        result += auxCurrentPrice / 12 ? ' años ' : 'año ';
       }
-      result += dias;
-      result += dias > 1 ? ' dias ' : ' dia ';
+
+      months = (auxCurrentPrice - (years * 12));
+
+      if (months >= 1) {
+        auxMonths = Math.floor(months);
+        result += auxMonths;
+        result += auxMonths > 1 ? ' meses ' : ' mes ';
+      }
+
+      weeks = months - auxMonths;
+
+      if (weeks >= 0.25) {
+        auxWeeks = Math.floor(weeks * 4);
+        result += auxWeeks;
+        result += auxWeeks > 1 ? ' semanas ' : ' semana ';
+      }
+
+      //days = weeks - auxWeeks;
+      if (weeks >= (0.25 / 7)) {
+        let dias = Math.floor(((weeks * 28) + 1) % 7);
+        if (dias === 0) {
+          dias = 6;
+        }
+        result += dias;
+        result += dias > 1 ? ' dias ' : ' dia ';
+      }
+      /!*console.log(rest);
+      if (rest % 7 > 0) {
+        weeks = `${rest % 7}`;
+        result += weeks;
+        result += rest % 7 ? ' meses ' : 'mes ';
+      }*!/
+      return result;
     }
-    /*console.log(rest);
-    if (rest % 7 > 0) {
-      weeks = `${rest % 7}`;
-      result += weeks;
-      result += rest % 7 ? ' meses ' : 'mes ';
-    }*/
+  */
+
+  getTimeRequired(currentPrince: string): string {
+    const daysInWeek = 7;
+    const daysInMonths = 30.436875;
+    const daysInYear = 365.2425;
+
+    var result = '';
+
+    // Function to find year, week, days
+    var year, months, week, days, hour;
+
+    let numberOfDaysString = currentPrince.replace('.', '');
+    numberOfDaysString = numberOfDaysString.replace(',', '.');
+
+    const numberOfDays = parseFloat(numberOfDaysString) * daysInMonths;
+    console.log(numberOfDays);
+    // Assume that years
+    // is of 365 days
+    year = Math.floor(numberOfDays / daysInYear);
+    months = Math.floor((numberOfDays % daysInYear) / daysInMonths);
+    week = Math.floor((numberOfDays % daysInMonths) / daysInWeek);
+    days = Math.floor(((numberOfDays % daysInYear) % daysInMonths) % daysInWeek);
+    hour = Math.floor((numberOfDays - Math.floor(numberOfDays)) * 24);
+
+    result += this.auxStringBuild('Año', year);
+    result += this.auxStringBuild('Mes' , months);
+    result += this.auxStringBuild('Semana', week);
+    result += this.auxStringBuild('Día', days);
+    result += this.auxStringBuild('Hora', hour);
+
     return result;
+  }
+
+  auxStringBuild(title: string, intTime: number): string {
+    if (intTime > 0) {
+      if (intTime > 1) {
+        return ' ' + title + (title === 'Mes' ? 'es: ' : 's: ' ) + intTime;
+      } else {
+        return ' ' + title + ': ' + intTime;
+      }
+    } else {
+      return '';
+    }
   }
 
 }
