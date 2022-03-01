@@ -157,10 +157,7 @@ export class OverPriceTypeService {
     const daysInWeek = 7;
     const daysInMonths = 30.436875;
     const daysInYear = 365.2425;
-
     var result = '';
-
-    // Function to find year, week, days
     var year, months, week, days, hour;
 
     let numberOfDaysString = currentPrince.replace('.', '');
@@ -168,8 +165,6 @@ export class OverPriceTypeService {
 
     const numberOfDays = parseFloat(numberOfDaysString) * daysInMonths;
     console.log(numberOfDays);
-    // Assume that years
-    // is of 365 days
     year = Math.floor(numberOfDays / daysInYear);
     months = Math.floor((numberOfDays % daysInYear) / daysInMonths);
     week = Math.floor((numberOfDays % daysInMonths) / daysInWeek);
@@ -188,9 +183,9 @@ export class OverPriceTypeService {
   auxStringBuild(title: string, intTime: number): string {
     if (intTime > 0) {
       if (intTime > 1) {
-        return ' ' + title + (title === 'Mes' ? 'es: ' : 's: ' ) + intTime;
+        return '  ' + title + (title === 'Mes' ? 'es:' : 's:' ) + intTime + '\n';
       } else {
-        return ' ' + title + ': ' + intTime;
+        return '  ' + title + ':' + intTime  + '\n';
       }
     } else {
       return '';

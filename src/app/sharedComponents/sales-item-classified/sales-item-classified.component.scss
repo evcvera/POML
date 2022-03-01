@@ -27,7 +27,9 @@
   color: #fff;
   font-weight: 600;
   font-size: 16px;
-  width: max-content;
+  display: flex;
+  text-align: center;
+  width: min-content;
 }
 
 :host ::ng-deep .bs-popover-top .arrow::after {
