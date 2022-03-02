@@ -164,7 +164,6 @@ export class OverPriceTypeService {
     numberOfDaysString = numberOfDaysString.replace(',', '.');
 
     const numberOfDays = parseFloat(numberOfDaysString) * daysInMonths;
-    console.log(numberOfDays);
     year = Math.floor(numberOfDays / daysInYear);
     months = Math.floor((numberOfDays % daysInYear) / daysInMonths);
     week = Math.floor((numberOfDays % daysInMonths) / daysInWeek);
