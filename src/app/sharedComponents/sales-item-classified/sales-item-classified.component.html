@@ -30,8 +30,8 @@
           <!--[triggers]="'hover'"-->
           <span
                 [triggers]="'hover'"
+                [animation]="false"
                 (mouseover)="overPriceTypeService.setPriceTypeMouseOver(resultsEntity?.priceAndType?.price, resultsEntity.id)"
-                (click)="overPriceTypeService.setPriceTypeMouseOver(resultsEntity?.priceAndType?.price, resultsEntity.id)"
                 [ngbPopover]="resultsEntity.timeRequired"
                 class="item-price mb-0" *ngIf="priceTypeModelService.priceType$.value.id !== 'standar'">
             {{priceTypeModelService?.priceType$?.value?.display_currency}}

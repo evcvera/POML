@@ -67,10 +67,10 @@
                   {{currentPrice | thousandsPipe}} </span>
               </label>
               <label class="item-price mb-0" *ngIf="priceTypeModelService.priceType$.value.id !== 'standar'"
-              (mouseover)="overPriceTypeService.setPriceTypeMouseOver(resultsEntity?.priceAndType?.price, resultsEntity.id)"
-              (click)="overPriceTypeService.setPriceTypeMouseOver(resultsEntity?.priceAndType?.price, resultsEntity.id)">
+              (mouseover)="overPriceTypeService.setPriceTypeMouseOver(resultsEntity?.priceAndType?.price, resultsEntity.id)">
                 <span
                   [triggers]="'hover'"
+                  [animation]="false"
                   [ngbPopover]="resultsEntity.timeRequired"> {{priceTypeModelService?.priceType$?.value?.display_currency}}
                   {{resultsEntity?.priceAndType?.price}} </span>
               </label>
