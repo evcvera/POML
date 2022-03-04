@@ -19,15 +19,15 @@
     padding-bottom: 48px;
     //min-height: calc(100vh - 53px);
   }
+
+  .router-outlet {
+    overflow-y: auto;
+    height: calc(100vh - 48px);
+  }
 }
 
 @media (min-width: 992px) {
   .bottom-nav-bar {
     display: none;
-  }
-
-  .router-outlet {
-    overflow-y: auto;
-    height: calc(100vh - 48px);
   }
 }
