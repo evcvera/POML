@@ -9,12 +9,11 @@
 }*/
 
 
-
 @media (max-width: 991px) {
-  .header{
+  .header {
     display: none;
   }
-  .main-container{
+  .main-container {
     /*  background-color: $bgc;
       min-height: 100vh; */
     padding-bottom: 48px;
@@ -23,7 +22,12 @@
 }
 
 @media (min-width: 992px) {
-  .bottom-nav-bar{
+  .bottom-nav-bar {
     display: none;
+  }
+
+  .router-outlet {
+    overflow-y: auto;
+    height: calc(100vh - 48px);
   }
 }
