@@ -1,7 +1,15 @@
 <header>
   <section class="container textos-header pl-3">
     <h1>Tiempo de las cosas</h1>
-    <h2 class="w-50">Te ayudamos a que conozcas el valor de tu tiempo, y el precio de lo que pagas.</h2>
+    <ng-container *ngIf="userDataModelService.userData$ | async as userData">
+      <ng-container *ngIf="userData.gender">
+        <h2 class="w-50">Te ayudamos a que conozcas el valor de tu tiempo, y el precio de lo que pagas.</h2>
+      </ng-container>
+      <ng-container *ngIf="!userData.gender">
+        <h2 class="complet-form" (click)="toggleForm()">COMPLETE FORMULARIO</h2>
+      </ng-container>
+    </ng-container>
+
   </section>
   <div class="wave" style="height: 150px; overflow: hidden;">
     <svg viewBox="0 0 500 150" preserveAspectRatio="none"
@@ -12,22 +20,22 @@
   </div>
 </header>
 <main class="container">
-<!--  <iframe class="first-video" src="https://www.youtube.com/embed/t2ar6XIcVgs">
-  </iframe>-->
+  <!--  <iframe class="first-video" src="https://www.youtube.com/embed/t2ar6XIcVgs">
+    </iframe>-->
   <section class="contenedor sobre-nosotros">
     <h2 class="titulo">Nuestro producto</h2>
     <div class="contenedor-sobre-nosotros">
       <img src="assets/img/ilustracion2.svg" alt="" class="imagen-about-us">
       <div class="contenido-textos">
         <h3><span>1</span>Conoce el precio de lo que pagas</h3>
-        <p>Conoce el precio de los productos brindados por la plataforma de mercado libre ya sea en pesos, dolares,
+        <p>Conoce el precio de los productos brindados por la plataforma de mercado libre ya sea en pesos, dólares,
           porcentaje de tus ingresos, en tiempo de tus ingresos, tiempo de tus ingresos acorde a tu capacidad de ahorro
           y tiempo en horas seguidas de tu trabajo.</p>
         <h3><span>2</span>Estima tu esperanza de vida</h3>
-        <p>Estima la esperanza de vida que tendras acorde a tu genero y fecha de nacimiento tambien los
-          ingresos que te quedan disponible acorde a tus ingresos actuales y el tiempo restante para que te jubiles.</p>
+        <p>Estima la esperanza de vida que tendrás acorde a tu género y fecha de nacimiento, también los ingresos que te
+          quedan disponible acorde a tus ingresos actuales y el tiempo restante para que te jubiles.</p>
         <h3><span>3</span>Calcula el tiempo necesario</h3>
-        <p>Tiempo necesario para adquirir propiedades, automotores y muebles que te gustaria tener dependiendo de tus
+        <p>Tiempo necesario para adquirir propiedades, automotores y muebles que te gustaría tener dependiendo de tus
           ingresos y capacidad de ahorro.</p>
       </div>
     </div>

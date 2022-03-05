@@ -15,7 +15,12 @@ import {Router} from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(public router: Router) {
+  constructor(public router: Router,
+              public userDataModelService: UserDataModelService) {
+  }
+
+  toggleForm(): void {
+    this.userDataModelService.toggleForm$.next(true);
   }
 
   ngOnInit(): void {
