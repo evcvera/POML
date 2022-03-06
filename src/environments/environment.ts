@@ -5,10 +5,13 @@
 export const environment = {
   production: false,
   api: {
-    meli: 'https://api.mercadolibre.com/'
+    meli: 'https://api.mercadolibre.com/',
+    weather: 'https://api.openweathermap.org/data/2.5/weather?q='
   }
 };
 
+
+//buenos%20aires,AR&appid=45c01786a7c18126d3d88795cde0453b
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

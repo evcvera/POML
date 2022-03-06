@@ -8,6 +8,9 @@ import {IMeliZipCode} from './core/interfaces/imeli-zip-code';
 import {FavouritesModelServiceService} from './core/mode-services/favourites-model-service.service';
 import {Router, NavigationEnd} from '@angular/router';
 import {filter} from 'rxjs/operators';
+import {WeatherModelService} from './core/mode-services/weather-model.service';
+import {Title} from '@angular/platform-browser';
+
 declare var gtag;
 
 @Component({
@@ -17,13 +20,16 @@ declare var gtag;
 })
 export class AppComponent implements OnInit {
 
-  title = 'POML';
+  favIcon: HTMLLinkElement = document.querySelector('#appIcon');
+  title: HTMLLinkElement = document.querySelector('#appTitle');
 
   constructor(private casaModelService: CasaModelService,
               public userDataModelService: UserDataModelService,
               private meliModelService: MeliModelService,
               private favouritesModelServiceService: FavouritesModelServiceService,
-              private router: Router) {
+              private router: Router,
+              private weatherModelService: WeatherModelService,
+              private titleService: Title) {
   }
 
   ngOnInit(): void {
@@ -57,7 +63,7 @@ export class AppComponent implements OnInit {
       this.favouritesModelServiceService.favouritesMeliItems$.next(result);
     }
 
-    const navEndEvents$ = this.router.events
+    /*const navEndEvents$ = this.router.events
       .pipe(
         filter(event => event instanceof NavigationEnd)
       );
@@ -66,7 +72,24 @@ export class AppComponent implements OnInit {
       gtag('config', 'UA-184146642-1', {
         'page_path': event.urlAfterRedirects
       });
+    });*/
+
+    this.weatherModelService.weatherData$.subscribe(x => {
+      if (x) {
+        let cityName = this.meliModelService.zipCodeData$.value.state.name;
+        if (cityName === 'Capital Federal') {
+          cityName = 'Buenos Aires';
+        }
+
+        this.favIcon.href = `http://openweathermap.org/img/wn/${x.weather[0]?.icon}@4x.png`;
+        this.titleService.setTitle(`${Math.round(x.main.temp)}°C ${cityName}`);
+      }
     });
+
+    this.meliModelService.zipCodeData$.subscribe(x => {
+      this.weatherModelService.getWeather(x.state.name);
+    });
+
   }
 
 
