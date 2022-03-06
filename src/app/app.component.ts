@@ -81,7 +81,7 @@ export class AppComponent implements OnInit {
           cityName = 'Buenos Aires';
         }
 
-        this.favIcon.href = `http://openweathermap.org/img/wn/${x.weather[0]?.icon}@4x.png`;
+        this.favIcon.href = `https://openweathermap.org/img/wn/${x.weather[0]?.icon}@4x.png`;
         this.titleService.setTitle(`${Math.round(x.main.temp)}°C ${cityName}`);
       }
     });
