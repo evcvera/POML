@@ -10,6 +10,8 @@ import {Router, NavigationEnd} from '@angular/router';
 import {filter} from 'rxjs/operators';
 import {WeatherModelService} from './core/mode-services/weather-model.service';
 import {Title} from '@angular/platform-browser';
+import {IWeather} from './core/interfaces/iweather';
+import {BehaviorSubject} from 'rxjs';
 
 declare var gtag;
 
@@ -22,6 +24,10 @@ export class AppComponent implements OnInit {
 
   favIcon: HTMLLinkElement = document.querySelector('#appIcon');
   title: HTMLLinkElement = document.querySelector('#appTitle');
+
+  intervaTitleFavIcon$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+
+  titleAndFavFlag = false;
 
   constructor(private casaModelService: CasaModelService,
               public userDataModelService: UserDataModelService,
@@ -74,22 +80,34 @@ export class AppComponent implements OnInit {
       });
     });*/
 
-    this.weatherModelService.weatherData$.subscribe(x => {
+    this.weatherModelService.weatherData$.subscribe((x: IWeather) => {
       if (x) {
-        let cityName = this.meliModelService.zipCodeData$.value.state.name;
-        if (cityName === 'Capital Federal') {
-          cityName = 'Buenos Aires';
-        }
-
-        this.favIcon.href = `https://openweathermap.org/img/wn/${x.weather[0]?.icon}@4x.png`;
-        this.titleService.setTitle(`${Math.round(x.main.temp)}°C ${cityName}`);
+        clearInterval(this.intervaTitleFavIcon$.value);
+        this.intervaTitleFavIcon$.next(setInterval(() => {
+          this.setWeather(x);
+        }, 10 * 1000));
       }
     });
 
     this.meliModelService.zipCodeData$.subscribe(x => {
       this.weatherModelService.getWeather(x.state.name);
     });
+  }
 
+
+  setWeather(weatherData: IWeather): void {
+    let cityName = this.meliModelService.zipCodeData$.value.state.name;
+    if (!this.titleAndFavFlag) {
+      if (cityName === 'Capital Federal') {
+        cityName = 'Buenos Aires';
+      }
+      this.favIcon.href = `https://openweathermap.org/img/wn/${weatherData.weather[0]?.icon}@4x.png`;
+      this.titleService.setTitle(`${Math.round(weatherData.main.temp)}°C ${cityName}`);
+    } else {
+      this.favIcon.href = `moon.png`;
+      this.titleService.setTitle(`Tiempo de las cosas`);
+    }
+    this.titleAndFavFlag = !this.titleAndFavFlag;
   }
 
 

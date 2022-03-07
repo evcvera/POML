@@ -11,10 +11,20 @@ export class WeatherModelService {
   searchSubscription: Subscription;
   weatherData$: BehaviorSubject<IWeather> = new BehaviorSubject<IWeather>(null);
 
+  intervalWeather$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+
   constructor(private http: HttpClient) {
   }
 
   getWeather(aux: string): void {
+    this.getWeatherData(aux);
+    clearInterval(this.intervalWeather$.value);
+    this.intervalWeather$.next(setInterval(() => {
+      this.getWeatherData(aux);
+    }, 5 * 60000));
+  }
+
+  getWeatherData(aux: string): void {
     if (aux) {
       if (aux === 'Capital Federal') {
         aux = 'Buenos%20Aires';
