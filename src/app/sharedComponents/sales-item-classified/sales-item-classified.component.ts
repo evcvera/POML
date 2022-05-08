@@ -72,13 +72,13 @@ export class SalesItemClassifiedComponent implements OnInit {
         }
 
         if (x.name.includes('Superficie cubierta') && !auxSurface) {
-          if (x.value_struct.number !== 0) {
+          if (x.value_struct?.number !== 0) {
             aux.push(x.value_name + ' cubiertos');
             auxSurface = true;
           }
         }
         if (x.name.includes('Superficie total') && !auxSurface) {
-          if (x.value_struct.number !== 0) {
+          if (x.value_struct?.number !== 0) {
             aux.push(x.value_name + ' totales');
             auxSurface = true;
           }

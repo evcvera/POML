@@ -10,6 +10,10 @@
       <a routerLink="/sales">
         <i class="my-3 ml-3 fas fa-arrow-left return-arrow"></i>
       </a>
+      <!--<h4 class="mb-3" *ngIf="favouritesModelService?.favouritesMeliData$?.value?.totalSum"
+          (mouseover)="totalSumValues()"
+          [animation]="false"
+          [ngbPopover]="sumTimeBlue + sumTimeIncome + sumTimeSavingCapacity">Monto-->
       <h4 class="mb-3" *ngIf="favouritesModelService?.favouritesMeliData$?.value?.totalSum">Monto
         total {{favouritesModelService?.favouritesMeliData$?.value?.totalSum | thousandsPipe}} B $</h4>
       <div class="d-flex">

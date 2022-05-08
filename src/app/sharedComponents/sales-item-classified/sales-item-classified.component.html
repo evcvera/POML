@@ -1,7 +1,7 @@
 <div class="mb-4 item-container">
   <div class="img-container">
     <div [ngClass]="resultsEntity.isFavourite ? 'heart-icon-active' : ''">
-      <div class="heart-container"  (click)="activeFavorites(resultsEntity.id)">
+      <div class="heart-container" (click)="activeFavorites(resultsEntity.id)">
         <i class="fas fa-heart heart-icon"></i>
       </div>
       <img *ngIf="!isCarousel" class="image-size" [src]="resultsEntity.pictures[0]" width="284" height="213"
@@ -29,11 +29,11 @@
       </span>
           <!--[triggers]="'hover'"-->
           <span
-                [triggers]="'hover'"
-                [animation]="false"
-                (mouseover)="overPriceTypeService.setPriceTypeMouseOver(resultsEntity?.priceAndType?.price, resultsEntity.id)"
-                [ngbPopover]="resultsEntity.timeRequired"
-                class="item-price mb-0" *ngIf="priceTypeModelService.priceType$.value.id !== 'standar'">
+            [triggers]="'hover'"
+            [animation]="false"
+            (mouseover)="overPriceTypeService.setPriceTypeMouseOver(resultsEntity?.priceAndType?.price, resultsEntity.id)"
+            [ngbPopover]="resultsEntity.timeRequired"
+            class="item-price mb-0" *ngIf="priceTypeModelService.priceType$.value.id !== 'standar'">
             {{priceTypeModelService?.priceType$?.value?.display_currency}}
             {{resultsEntity?.priceAndType?.price}}
       </span>
@@ -47,9 +47,12 @@
         <div *ngIf="operationPropertyType !== ''" class="operationType-house">
           <span>{{operationPropertyType}} </span>
         </div>
-        <div [routerLink]="['/sales/item', resultsEntity.id]" *ngIf="resultsEntity.title !== ''" class="title-house">
-          <span>{{resultsEntity.title}} </span>
-        </div>
+        <!--<div [routerLink]="['/sales/item', resultsEntity.id]" *ngIf="resultsEntity.title !== ''" class="title-house">-->
+        <a [href]="resultsEntity.permalink" target="_blank" style="text-decoration: none">
+          <div *ngIf="resultsEntity.title !== ''" class="title-house">
+            <span>{{resultsEntity.title}} </span>
+          </div>
+        </a>
         <div *ngIf="location !== '' " class="location-house">
           <span>{{location}} </span>
         </div>

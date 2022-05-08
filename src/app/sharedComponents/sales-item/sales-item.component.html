@@ -38,8 +38,8 @@
             </div>-->
 
       <!--title-->
-      <!--<a [href]="resultsEntity.permalink" target="_blank" style="text-decoration: none">-->
-      <a [routerLink]="['/sales/item', resultsEntity.id]" style="text-decoration: none">
+      <a [href]="resultsEntity.permalink" target="_blank" style="text-decoration: none">
+      <!--<a [routerLink]="['/sales/item', resultsEntity.id]" style="text-decoration: none">-->
         <h2 class="item-title txtSize20 font-weight-400">{{resultsEntity.title}}
           <p *ngIf="sellerName !== ''" class="seller-name">Vendido por {{sellerName}}</p>
         </h2>

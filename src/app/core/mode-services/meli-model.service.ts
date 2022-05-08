@@ -47,6 +47,7 @@ export class MeliModelService {
   getImagesSingleItem: Subscription;
   getOpinionsSingleItem: Subscription;
   getRatingSingleItem: Subscription;
+
   //defaultZipCode = '1425';
 
 
@@ -80,12 +81,12 @@ export class MeliModelService {
 //&shipping_cost=free
     if (this.searchByInput$.value) {
       this.searchSubscription = this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}&offset=${pageNumber * 50}&limit=50&zip_code=${zipCode}&sort=${sortPage}${filters}`).subscribe((resp: any) => {
-        // c console.log(resp);
+        console.log(resp);
         this.setSearchResp(resp);
       });
     } else {
       this.searchSubscription = this.http.get(`${environment.api.meli}/sites/MLA/search?category=${search}&offset=${pageNumber * 50}&limit=50&zip_code=${zipCode}&sort=${sortPage}${filters}`).subscribe((resp: any) => {
-        // c console.log(resp);
+        console.log(resp);
         this.setSearchResp(resp);
       });
     }
@@ -165,8 +166,10 @@ export class MeliModelService {
       item.pictures.shift();
       const index = this.searchMeliData$.value?.results.findIndex(y => y.id === item.id);
       if (item.pictures) {
-        item.pictures.forEach(z =>
-          this.searchMeliData$.value?.results[index]?.pictures?.push(z.url));
+        item.pictures.forEach(z => {
+          const imgUrlHttps = z.url.replace('http:', 'https:');
+          this.searchMeliData$.value?.results[index]?.pictures?.push(imgUrlHttps);
+        });
       }
     });
   }
@@ -326,6 +329,7 @@ export class MeliModelService {
           // c  console.log('AYUDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
         }
         resp(iMeliCompleteRecommendations);
+      }, error => {
       });
     });
   }

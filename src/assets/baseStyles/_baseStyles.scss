@@ -106,6 +106,26 @@ form{
   border-left: 0 solid rgba(255, 255, 255, 0.2);
 }
 
+
+/*::ng-deep .popover-body {
+  background: #1f4e96;
+  padding: 1rem;
+  color: #fff !important;
+  font-weight: 600;
+  font-size: 16px;
+  display: flex;
+  text-align: center;
+  width: min-content;
+}
+
+::ng-deep .bs-popover-top .arrow::after {
+  border-top-color: #1f4e96;
+}
+
+::ng-deep .bs-popover-bottom .arrow::after {
+  border-bottom-color: #1f4e96;
+}*/
+
 ::ng-deep .popover{
   z-index: 100 !important;
 }
