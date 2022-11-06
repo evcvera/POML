@@ -157,8 +157,8 @@ export class OverPriceTypeService {
     const daysInWeek = 7;
     const daysInMonths = 30.436875;
     const daysInYear = 365.2425;
-    var result = '';
-    var year, months, week, days, hour;
+    let result = '';
+    let year, months, week, days, hour;
 
     let numberOfDaysString = currentPrince.replace('.', '');
     numberOfDaysString = numberOfDaysString.replace(',', '.');

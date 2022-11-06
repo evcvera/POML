@@ -1,0 +1,100 @@
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="signUp" (ngSubmit)="save($event)">
+      <div class="w-100 d-flex">
+        <div>
+          <button *ngIf="currentImage" type="button" class="close-icon d-flex justify-content-center align-items-center" mat-icon-button
+          (click)="deleteImage()">
+            <mat-icon class="icon" fontIcon="close"></mat-icon>
+          </button>
+
+          <div *ngIf="currentImage" class="image-height">
+            <img [src]="currentImage" class="user-image">
+          </div>
+          <div class="user-image" *ngIf="!currentImage">
+            <app-empty-user-image class="empty-user-image"></app-empty-user-image>
+          </div>
+            <button type="button" class="camera-icon d-flex justify-content-center align-items-center" mat-icon-button
+                    (click)="fileInput.click()">
+              <input hidden (change)="onFileSelected()" #fileInput type="file" id="file">
+              <mat-icon class="primary" fontIcon="photo_camera"></mat-icon>
+            </button>
+        </div>
+        <div class="w-100">
+          <mat-card-title class="h-100 align-items-center">Sign Up</mat-card-title>
+        </div>
+
+      </div>
+      <p>
+        <mat-form-field appearance="legacy">
+          <input type="text" matInput placeholder="Nombre" formControlName="firstName">
+          <mat-error *ngIf="signUp.get('firstName')?.errors && signUp.get('firstName')?.touched">Campo obligatorio
+          </mat-error>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field appearance="legacy">
+          <input type="text" matInput placeholder="Apellido" formControlName="lastName">
+          <mat-error *ngIf="signUp.get('lastName')?.errors && signUp.get('lastName')?.touched">Campo obligatorio
+          </mat-error>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field appearance="legacy">
+          <input type="email" matInput placeholder="Email" formControlName="email">
+          <mat-error *ngIf="signUp.get('email')?.errors && signUp.get('email')?.touched">Campo obligatorio
+          </mat-error>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field appearance="legacy">
+          <input type="password" matInput placeholder="Contraseña" formControlName="password">
+          <mat-error *ngIf="signUp.get('password')?.errors && signUp.get('password')?.touched">Campo obligatorio
+          </mat-error>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field appearance="legacy">
+          <input type="password" matInput placeholder="Repetir contraseña" formControlName="rePassword">
+          <mat-error *ngIf="signUp.get('rePassword')?.errors && signUp.get('rePassword')?.touched">Campo obligatorio
+          </mat-error>
+        </mat-form-field>
+      </p>
+
+      <div class="button">
+        <button class="w-100" type="submit" [disabled]="!signUp.valid" mat-raised-button color="primary">Confirmar
+        </button>
+      </div>
+
+      <div class="d-flex w-100 divisor my-2">
+        <span class="w-100">
+          <hr>
+        </span>
+        <span class="px-3">o</span>
+        <span class="w-100">
+          <hr>
+        </span>
+      </div>
+
+      <app-google-login [isLogin]="false"></app-google-login>
+
+      <div class="d-flex justify-content-center">
+        <p class="my-2">
+          ¿Ya eres miembro de AWT? <a [routerLink]="'/login'">Iniciar sesión</a>
+        </p>
+      </div>
+
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<!--
+<div>
+  <button type="button" (click)="showme()">Show me</button>
+  <button type="button" (click)="save1()">save</button>
+</div>
+-->

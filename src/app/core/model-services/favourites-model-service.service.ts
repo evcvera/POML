@@ -81,11 +81,9 @@ export class FavouritesModelServiceService {
             }
             this.forkJoinSubscription = forkJoin(arrayOfObs).subscribe((resp: any) => {
                 const response: IMeliItem[]  = resp;
-                if (JSON.stringify(response) !== JSON.stringify(resp)) {
+                /*if (JSON.stringify(response) !== JSON.stringify(resp)) {
                   // c console.log('AYUDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
-                  console.log(response);
-                  console.log(resp);
-                }
+                }*/
 
                 for (const item of Object.keys(response)) {
                     favouriteItems = favouriteItems.concat(response[item]);

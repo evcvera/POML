@@ -34,7 +34,6 @@ export class WeatherModelService {
       if (this.searchSubscription) {
         this.searchSubscription.unsubscribe();
       }
-      //buenos%20aires
       this.searchSubscription = this.http.get(`${environment.api.weather}${city},AR&appid=45c01786a7c18126d3d88795cde0453b&units=metric`).subscribe((resp: IWeather) => {
         this.weatherData$.next(resp);
       });

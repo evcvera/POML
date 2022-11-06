@@ -48,8 +48,6 @@ export class MeliModelService {
   getOpinionsSingleItem: Subscription;
   getRatingSingleItem: Subscription;
 
-  //defaultZipCode = '1425';
-
 
   meliSearch(search: string, pageNumber: number, sortPage = 'relevance'): any {
 
@@ -58,14 +56,10 @@ export class MeliModelService {
 
     /********************** SET SORT ***************/
     sortPage = this.searchSortBy$.value;
+
     /*********************** ZIP CODE **************************/
     let zipCode = '';
-    /*if (this.zipCodeData$.value) {*/
     zipCode = this.zipCodeData$.value.zip_code;
-    /*} else {
-      this.getZipcode(this.defaultZipCode).then();
-      zipCode = this.defaultZipCode;
-    }*/
     /*********************** ZIP CODE **************************/
 
     /*********************** FILTERS **************************/
@@ -81,12 +75,10 @@ export class MeliModelService {
 //&shipping_cost=free
     if (this.searchByInput$.value) {
       this.searchSubscription = this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}&offset=${pageNumber * 50}&limit=50&zip_code=${zipCode}&sort=${sortPage}${filters}`).subscribe((resp: any) => {
-        console.log(resp);
         this.setSearchResp(resp);
       });
     } else {
       this.searchSubscription = this.http.get(`${environment.api.meli}/sites/MLA/search?category=${search}&offset=${pageNumber * 50}&limit=50&zip_code=${zipCode}&sort=${sortPage}${filters}`).subscribe((resp: any) => {
-        console.log(resp);
         this.setSearchResp(resp);
       });
     }
@@ -124,12 +116,8 @@ export class MeliModelService {
     }
 
     this.searchMeliData$.next(respAux);
-    //this.getOpinionsRating(respAux.itemIds);
-
     /****************** SET BLOCK UI ***************/
     this.blockUi$.next(false);
-
-
   }
 
   async getZipcode(zipCode: string): Promise<boolean> {
@@ -138,12 +126,9 @@ export class MeliModelService {
         this.zipCodeSubscription.unsubscribe();
       }
       this.zipCodeSubscription = this.http.get(`${environment.api.meli}/countries/AR/zip_codes/${zipCode}`).subscribe((resp: any) => {
-        // a console.log(resp);
         this.zipCodeData$.next(resp);
         localStorage.setItem('zipCodeData', JSON.stringify(resp));
         ret(true);
-      }, (error) => {
-        ret(false);
       });
     });
   }
@@ -162,7 +147,6 @@ export class MeliModelService {
 
   getImages(id: string): void {
     this.getImagesSingleItem = this.http.get(`${environment.api.meli}/items/${id}`).subscribe((item: IMeliSingleItem) => {
-      // c console.log(item);
       item.pictures.shift();
       const index = this.searchMeliData$.value?.results.findIndex(y => y.id === item.id);
       if (item.pictures) {
@@ -175,7 +159,6 @@ export class MeliModelService {
   }
 
   /***************************** GET RATING AND OPINIONS ***************************************/
-
   async getSingleItem(id: string): Promise<IMeliSingleItem> {
     return new Promise<IMeliSingleItem>((resp) => {
       this.http.get(`${environment.api.meli}/items/${id}`).subscribe((itemAny: any) => {
@@ -190,9 +173,6 @@ export class MeliModelService {
         if (item.catalog_product_id) {
           this.getSingleMeliItemOpinionPromise2(item.catalog_product_id).then(x => {
             item.fullRecommendations = x;
-            // c console.log('+++');
-            // c console.log(itemAny);
-            // c console.log('+++');
             resp(item);
           });
         } else {
@@ -206,11 +186,9 @@ export class MeliModelService {
     return new Promise<IMeliItemCategory>((resp) => {
       this.http.get(`${environment.api.meli}/categories/${id}`).subscribe((item: any) => {
         const itemCategory: IMeliItemCategory = item;
-        // c console.log(item);
-        // c console.log(itemCategory);
-        if (JSON.stringify(item) !== JSON.stringify(itemCategory)) {
+/*        if (JSON.stringify(item) !== JSON.stringify(itemCategory)) {
           // c console.log('AYUDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
-        }
+        }*/
         resp(item);
       });
     });
@@ -311,7 +289,6 @@ export class MeliModelService {
   }
 
   /************** https://api.mercadolibre.com/items/MLA1107341196/shipping_options?zip_code=5000 ***********/
-
 
   /**** FORMA COMPLETA PARA OBTENER RATINGS ****/
   getSingleMeliItemOpinionPromise1(catalogProductId: string): any {
