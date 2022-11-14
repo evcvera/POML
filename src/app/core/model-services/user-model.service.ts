@@ -29,14 +29,14 @@ export class UserModelService {
     formData.append('image', new Blob([user.image]));
     formData.append('data', JSON.stringify(userJson));
 
-    return this.http.post<IUser>(`${environment.apiUrl}/user`, formData)
+    return this.http.post<IUser>(`${environment.myUrl}/user`, formData)
       .pipe(map(result => {
         return result;
       }));
   }
 
   changePassword(changeUserPassword: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiUrl}/api/useraccount/changepassword`, changeUserPassword)
+    return this.http.post<any>(`${environment.myUrl}/api/useraccount/changepassword`, changeUserPassword)
       .pipe(map(resp => {
         return resp;
       }));
@@ -55,7 +55,7 @@ export class UserModelService {
     formData.append('image', new Blob([image]));
     formData.append('data', JSON.stringify(userJson));
 
-    return this.http.patch<IUser>(`${environment.apiUrl}/user/media/${field}`, formData)
+    return this.http.patch<IUser>(`${environment.myUrl}/user/media/${field}`, formData)
       .pipe(map(result => {
         userData.banner = result.banner;
         userData.avatar = result.avatar;
@@ -72,7 +72,7 @@ export class UserModelService {
 
     let userData = this.authenticationService.currentUserSubject$.value;
 
-    return this.http.delete(`${environment.apiUrl}/user/media/${field}`, {
+    return this.http.delete(`${environment.myUrl}/user/media/${field}`, {
       //body: {uuid, avatar, banner},
     }).pipe(map(result => {
       userData.banner = field === 'banner' ? '' : userData.banner;
@@ -94,7 +94,7 @@ export class UserModelService {
     }
     let userData = this.authenticationService.currentUserSubject$.value;
 
-    return this.http.patch<IUser>(`${environment.apiUrl}/user`, JSON.stringify(userJson) )
+    return this.http.patch<IUser>(`${environment.myUrl}/user`, JSON.stringify(userJson) )
       .pipe(map(result => {
         userData.first_name = result.first_name;
         userData.last_name = result.last_name;
@@ -108,7 +108,7 @@ export class UserModelService {
   }
 
   forgetPassword(email: string): Observable<any> {
-    return this.http.post<any>(`${environment.apiUrl}/user/forgotpassword`, {email} )
+    return this.http.post<any>(`${environment.myUrl}/user/forgotpassword`, {email} )
       .pipe(map(resp => {
         return resp;
       }));

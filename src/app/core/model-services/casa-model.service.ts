@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {ICoinCasa} from '../interfaces/icoin-casa';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {IDollarInfo} from '../interfaces/idollar-info';
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class CasaModelService {
   }
 
   getDollar(): any {
-    this.http.get('https://www.dolarsi.com/api/api.php?type=valoresprincipales').subscribe((resp: ICoinCasa[]) => {
+    this.http.get(environment.api.dolar).subscribe((resp: ICoinCasa[]) => {
       const auxCurrentDollar: IDollarInfo = {};
       auxCurrentDollar.oficialCompra = parseInt(resp[0].casa.compra, 10);
       auxCurrentDollar.oficialVenta = parseInt(resp[0].casa.venta, 10);

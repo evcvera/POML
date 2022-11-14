@@ -49,11 +49,11 @@ export class PriceTypeModelService {
       case 'income_time': {
         let auxSalaryDollar = 1;
         const userData = this.userDataModelService.userData$.value;
-        if (this.userDataModelService.userData$.value && userData.isDollar) {
-          auxSalaryDollar = userData.isDepenRelationship ? userData.salary * (13 / 12) : userData.salary;
+        if (this.userDataModelService.userData$.value && userData.is_dollar) {
+          auxSalaryDollar = userData.is_depen_relationship ? userData.salary * (13 / 12) : userData.salary;
         }
-        if (this.userDataModelService.userData$.value && !userData.isDollar) {
-          auxSalaryDollar = userData.isDepenRelationship ? userData.salary * (13 / 12) / currentDollar.blueProm : userData.salary / currentDollar.blueProm;
+        if (this.userDataModelService.userData$.value && !userData.is_dollar) {
+          auxSalaryDollar = userData.is_depen_relationship ? userData.salary * (13 / 12) / currentDollar.blueProm : userData.salary / currentDollar.blueProm;
         }
         if (type === 'ARS') {
           priceAndType.price = this.transform(((price / currentDollar.blueProm) / auxSalaryDollar).toFixed(3));
@@ -67,18 +67,18 @@ export class PriceTypeModelService {
       case 'saving_capacity_time': {
         let auxSalaryDollar = 1;
         const userData = this.userDataModelService.userData$.value;
-        if (this.userDataModelService.userData$.value && userData.isDollar) {
-          if (userData.isPercent) {
-            auxSalaryDollar = userData.isDepenRelationship ? userData.salary * (13 / 12) * (userData.savingCapacity / 100) : userData.salary * (userData.savingCapacity / 100);
+        if (this.userDataModelService.userData$.value && userData.is_dollar) {
+          if (userData.is_percent) {
+            auxSalaryDollar = userData.is_depen_relationship ? userData.salary * (13 / 12) * (userData.saving_capacity / 100) : userData.salary * (userData.saving_capacity / 100);
           } else {
-            auxSalaryDollar = userData.isDepenRelationship ? userData.savingCapacity * (13 / 12) : userData.savingCapacity;
+            auxSalaryDollar = userData.is_depen_relationship ? userData.saving_capacity * (13 / 12) : userData.saving_capacity;
           }
         }
-        if (this.userDataModelService.userData$.value && !userData.isDollar) {
-          if (userData.isPercent) {
-            auxSalaryDollar = userData.isDepenRelationship ? userData.salary * (13 / 12) / currentDollar.blueProm * (userData.savingCapacity / 100) : userData.salary / currentDollar.blueProm * (userData.savingCapacity / 100);
+        if (this.userDataModelService.userData$.value && !userData.is_dollar) {
+          if (userData.is_percent) {
+            auxSalaryDollar = userData.is_depen_relationship ? userData.salary * (13 / 12) / currentDollar.blueProm * (userData.saving_capacity / 100) : userData.salary / currentDollar.blueProm * (userData.saving_capacity / 100);
           } else {
-            auxSalaryDollar = userData.isDepenRelationship ? userData.savingCapacity * (13 / 12) / currentDollar.blueProm : userData.savingCapacity / currentDollar.blueProm;
+            auxSalaryDollar = userData.is_depen_relationship ? userData.saving_capacity * (13 / 12) / currentDollar.blueProm : userData.saving_capacity / currentDollar.blueProm;
           }
         }
         if (type === 'ARS') {
@@ -119,11 +119,11 @@ export class PriceTypeModelService {
       case 'income_time': {
         let auxSalaryDollar = 1;
         const userData = this.userDataModelService.userData$.value;
-        if (this.userDataModelService.userData$.value && userData.isDollar) {
-          auxSalaryDollar = userData.isDepenRelationship ? userData.salary * (13 / 12) : userData.salary;
+        if (this.userDataModelService.userData$.value && userData.is_dollar) {
+          auxSalaryDollar = userData.is_depen_relationship ? userData.salary * (13 / 12) : userData.salary;
         }
-        if (this.userDataModelService.userData$.value && !userData.isDollar) {
-          auxSalaryDollar = userData.isDepenRelationship ? userData.salary * (13 / 12) / currentDollar.blueProm : userData.salary / currentDollar.blueProm;
+        if (this.userDataModelService.userData$.value && !userData.is_dollar) {
+          auxSalaryDollar = userData.is_depen_relationship ? userData.salary * (13 / 12) / currentDollar.blueProm : userData.salary / currentDollar.blueProm;
         }
         if (type === 'ARS') {
           priceAndType.price = this.transform(((price / currentDollar.blueProm) / auxSalaryDollar).toFixed(3));
@@ -137,18 +137,18 @@ export class PriceTypeModelService {
       case 'saving_capacity_time': {
         let auxSalaryDollar = 1;
         const userData = this.userDataModelService.userData$.value;
-        if (this.userDataModelService.userData$.value && userData.isDollar) {
-          if (userData.isPercent) {
-            auxSalaryDollar = userData.isDepenRelationship ? userData.salary * (13 / 12) * (userData.savingCapacity / 100) : userData.salary * (userData.savingCapacity / 100);
+        if (this.userDataModelService.userData$.value && userData.is_dollar) {
+          if (userData.is_percent) {
+            auxSalaryDollar = userData.is_depen_relationship ? userData.salary * (13 / 12) * (userData.saving_capacity / 100) : userData.salary * (userData.saving_capacity / 100);
           } else {
-            auxSalaryDollar = userData.isDepenRelationship ? userData.savingCapacity * (13 / 12) : userData.savingCapacity;
+            auxSalaryDollar = userData.is_depen_relationship ? userData.saving_capacity * (13 / 12) : userData.saving_capacity;
           }
         }
-        if (this.userDataModelService.userData$.value && !userData.isDollar) {
-          if (userData.isPercent) {
-            auxSalaryDollar = userData.isDepenRelationship ? userData.salary * (13 / 12) / currentDollar.blueProm * (userData.savingCapacity / 100) : userData.salary / currentDollar.blueProm * (userData.savingCapacity / 100);
+        if (this.userDataModelService.userData$.value && !userData.is_dollar) {
+          if (userData.is_percent) {
+            auxSalaryDollar = userData.is_depen_relationship ? userData.salary * (13 / 12) / currentDollar.blueProm * (userData.saving_capacity / 100) : userData.salary / currentDollar.blueProm * (userData.saving_capacity / 100);
           } else {
-            auxSalaryDollar = userData.isDepenRelationship ? userData.savingCapacity * (13 / 12) / currentDollar.blueProm : userData.savingCapacity / currentDollar.blueProm;
+            auxSalaryDollar = userData.is_depen_relationship ? userData.saving_capacity * (13 / 12) / currentDollar.blueProm : userData.saving_capacity / currentDollar.blueProm;
           }
         }
         if (type === 'ARS') {
