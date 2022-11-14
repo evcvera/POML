@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MeliModelService} from '../../../../core/mode-services/meli-model.service';
+import {MeliModelService} from '../../../../core/model-services/meli-model.service';
 import {Router} from '@angular/router';
 
 @Component({

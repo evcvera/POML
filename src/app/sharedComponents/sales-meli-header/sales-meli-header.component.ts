@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {SalesZipCodeModalComponent} from '../../pages/sales/components/sales-zip-code-modal/sales-zip-code-modal.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {MeliModelService} from '../../core/mode-services/meli-model.service';
+import {MeliModelService} from '../../core/model-services/meli-model.service';
 import {GeneralPopupComponent} from '../general-popup/general-popup.component';
-import {UserDataModelService} from '../../core/mode-services/user-data-model.service';
+import {UserDataModelService} from '../../core/model-services/user-data-model.service';
 import {Router} from '@angular/router';
-import {PriceTypeModelService} from '../../core/mode-services/price-type-model.service';
+import {PriceTypeModelService} from '../../core/model-services/price-type-model.service';
 import {ValuesEntity2} from '../../core/interfaces/imeli-search';
 
 @Component({

@@ -2,8 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {SortItemMobileComponent} from '../sort-item-mobile/sort-item-mobile.component';
 import {PriceTypeMobileComponent} from '../price-type-mobile/price-type-mobile.component';
 import {FiltersMobileComponent} from '../../../../sharedComponents/filters-mobile/filters-mobile.component';
-import {MeliModelService} from '../../../../core/mode-services/meli-model.service';
-import {UserDataModelService} from '../../../../core/mode-services/user-data-model.service';
+import {MeliModelService} from '../../../../core/model-services/meli-model.service';
+import {UserDataModelService} from '../../../../core/model-services/user-data-model.service';
 import {Router} from '@angular/router';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 

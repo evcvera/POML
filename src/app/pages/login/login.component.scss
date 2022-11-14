@@ -1,0 +1,61 @@
+@import 'src/assets/baseStyles/variable';
+
+:host {
+  display: flex;
+  justify-content: center;
+}
+
+.mat-form-field {
+  width: 100%;
+  min-width: 300px;
+}
+
+mat-card-title,
+mat-card-content {
+  display: flex;
+  justify-content: center;
+}
+
+.error {
+  padding: 16px;
+  width: auto;
+  color: white;
+  background-color: red;
+}
+
+.button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.a-redirect{
+  color: -webkit-link;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/*.general-login-container{
+  padding: 0 10px;
+}
+
+.new-user{
+  text-align: end;
+}
+
+.login-container {
+  padding: 0 5px;
+}
+
+
+
+.login-button {
+  width: 100%;
+  color: #FFFFFF;
+  background-color: $color-topic-primary;
+}
+
+.alert-bad-login{
+  margin-bottom: 15px !important;
+  text-align: center;
+  font-weight: 500;
+}*/

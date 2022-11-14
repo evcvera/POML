@@ -2,9 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
-
-import {AuthenticationService} from '../services/authentication.service';
-import {AuthenticationGoogleService} from "../services/authentication-google.service";
+import {AuthenticationModelService} from "../core/model-services/authentication-model.service";
+import {AuthenticationGoogleService} from "../core/model-services/authentication-google.service";
 
 @Injectable({
   providedIn: 'root'

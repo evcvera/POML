@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CasaModelService} from '../../../../core/mode-services/casa-model.service';
+import {CasaModelService} from '../../../../core/model-services/casa-model.service';
 import {IDollarInfo} from '../../../../core/interfaces/idollar-info';
 import {IMetricCard} from '../../../../core/interfaces/imetric-card';
 import {IMetricCardSubtitle} from '../../../../core/interfaces/imetric-card-subtitle';

@@ -1,12 +1,12 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {MeliModelService} from '../../../../core/mode-services/meli-model.service';
+import {MeliModelService} from '../../../../core/model-services/meli-model.service';
 import {Router} from '@angular/router';
-import {UserDataModelService} from '../../../../core/mode-services/user-data-model.service';
+import {UserDataModelService} from '../../../../core/model-services/user-data-model.service';
 import {AvailableFiltersEntity, IMeliSearch, ResultsEntity, ValuesEntity2} from '../../../../core/interfaces/imeli-search';
-import {PriceTypeModelService} from '../../../../core/mode-services/price-type-model.service';
-import {FavouritesModelServiceService} from '../../../../core/mode-services/favourites-model-service.service';
-import {OverPriceTypeService} from '../../../../core/mode-services/over-price-type.service';
+import {PriceTypeModelService} from '../../../../core/model-services/price-type-model.service';
+import {FavouritesModelServiceService} from '../../../../core/model-services/favourites-model-service.service';
+import {OverPriceTypeService} from '../../../../core/model-services/over-price-type.service';
 
 @Component({
   selector: 'app-price-type-mobile',

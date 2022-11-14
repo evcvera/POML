@@ -1,19 +1,17 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {EchartModelService} from './core/mode-services/echart-model.service';
-import {UserDataModelService} from './core/mode-services/user-data-model.service';
-import {CasaModelService} from './core/mode-services/casa-model.service';
-import {MeliModelService} from './core/mode-services/meli-model.service';
+import {EchartModelService} from './core/model-services/echart-model.service';
+import {UserDataModelService} from './core/model-services/user-data-model.service';
+import {CasaModelService} from './core/model-services/casa-model.service';
+import {MeliModelService} from './core/model-services/meli-model.service';
 import {ISideBarForm} from './core/interfaces/iside-bar-form';
 import {IMeliZipCode} from './core/interfaces/imeli-zip-code';
-import {FavouritesModelServiceService} from './core/mode-services/favourites-model-service.service';
+import {FavouritesModelServiceService} from './core/model-services/favourites-model-service.service';
 import {Router, NavigationEnd} from '@angular/router';
 import {filter} from 'rxjs/operators';
-import {WeatherModelService} from './core/mode-services/weather-model.service';
+import {WeatherModelService} from './core/model-services/weather-model.service';
 import {Title} from '@angular/platform-browser';
 import {IWeather} from './core/interfaces/iweather';
 import {BehaviorSubject} from 'rxjs';
-
-declare var gtag;
 
 @Component({
   selector: 'app-root',
@@ -43,14 +41,11 @@ export class AppComponent implements OnInit {
       this.casaModelService.getDollar();
     }
 
-    const cacheUserData: ISideBarForm = JSON.parse(localStorage.getItem('userData'));
+    /*const cacheUserData: ISideBarForm = JSON.parse(localStorage.getItem('userData'));
     if (cacheUserData?.birthday !== undefined) {
       cacheUserData.birthday = new Date(cacheUserData.birthday);
-      /*cacheUserData.isDepenRelationship = cacheUserData.isDepenRelationship === 'true';
-      cacheUserData.isDollar = cacheUserData.isDollar === 'true';
-      cacheUserData.isPercent = cacheUserData.isPercent === 'true';*/
       this.userDataModelService.userData$.next(cacheUserData);
-    }
+    }*/
 
     const zipCodeData: IMeliZipCode = JSON.parse(localStorage.getItem('zipCodeData'));
     if (zipCodeData !== null && this.meliModelService.zipCodeData$.value === undefined) {
@@ -68,17 +63,6 @@ export class AppComponent implements OnInit {
       });
       this.favouritesModelServiceService.favouritesMeliItems$.next(result);
     }
-
-    /*const navEndEvents$ = this.router.events
-      .pipe(
-        filter(event => event instanceof NavigationEnd)
-      );
-
-    navEndEvents$.subscribe((event: NavigationEnd) => {
-      gtag('config', 'UA-184146642-1', {
-        'page_path': event.urlAfterRedirects
-      });
-    });*/
 
     this.weatherModelService.weatherData$.subscribe((x: IWeather) => {
       if (x) {

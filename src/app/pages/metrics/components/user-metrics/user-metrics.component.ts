@@ -1,6 +1,6 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {CasaModelService} from '../../../../core/mode-services/casa-model.service';
-import {UserDataModelService} from '../../../../core/mode-services/user-data-model.service';
+import {CasaModelService} from '../../../../core/model-services/casa-model.service';
+import {UserDataModelService} from '../../../../core/model-services/user-data-model.service';
 import {IDollarInfo} from '../../../../core/interfaces/idollar-info';
 import {ISideBarForm} from '../../../../core/interfaces/iside-bar-form';
 import {IMetricCard} from '../../../../core/interfaces/imetric-card';
@@ -39,7 +39,7 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.userData = this.userDataModelService.userData$.subscribe(x => {
       this.formData = x;
-      this.localSavingCapacity = this.formData.isPercent ? (this.formData.salary * this.formData.savingCapacity / 100) : this.formData.savingCapacity;
+      this.localSavingCapacity = this.formData.is_percent ? (this.formData.salary * this.formData.saving_capacity / 100) : this.formData.saving_capacity;
       this.buildIncome();
       this.buildIncomeUsdByTime();
       this.buildOficialProm();
@@ -62,8 +62,8 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
     this.titleLeft = 'DOLAR';
     this.titleRight = this.datetime.transform(this.currentDate, 'dd/MM/yyyy');*/
     const salary = this.transform(this.formData.salary);
-    const typeSalary = this.formData.isDollar ? `U$D` : `AR$`;
-    const oppositionTypeSalary = !this.formData.isDollar ? `U$D` : `AR$`;
+    const typeSalary = this.formData.is_dollar ? `U$D` : `AR$`;
+    const oppositionTypeSalary = !this.formData.is_dollar ? `U$D` : `AR$`;
     this.income = {
       leftTitle: `Ingresos a ${oppositionTypeSalary}`,
       rightTitle: `${salary} ${typeSalary}`,
@@ -76,7 +76,7 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
 
     this.income.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Oficial compra:',
-      rightSubtitle: this.formData.isDollar ?
+      rightSubtitle: this.formData.is_dollar ?
         this.transform((this.formData.salary * this.dollarInfo.oficialCompra).toFixed(0)) :
         this.transform((this.formData.salary / this.dollarInfo.oficialCompra).toFixed(1)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
@@ -84,7 +84,7 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
 
     this.income.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Oficial venta:',
-      rightSubtitle: this.formData.isDollar ?
+      rightSubtitle: this.formData.is_dollar ?
         this.transform((this.formData.salary * this.dollarInfo.oficialVenta).toFixed(0)) :
         this.transform((this.formData.salary / this.dollarInfo.oficialVenta).toFixed(1)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
@@ -92,7 +92,7 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
 
     this.income.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Oficial promedio:',
-      rightSubtitle: this.formData.isDollar ?
+      rightSubtitle: this.formData.is_dollar ?
         this.transform((this.formData.salary * this.dollarInfo.oficialProm).toFixed(0)) :
         this.transform((this.formData.salary / this.dollarInfo.oficialProm).toFixed(1)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
@@ -100,7 +100,7 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
 
     this.income.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Blue compra:',
-      rightSubtitle: this.formData.isDollar ?
+      rightSubtitle: this.formData.is_dollar ?
         this.transform((this.formData.salary * this.dollarInfo.blueCompra).toFixed(0)) :
         this.transform((this.formData.salary / this.dollarInfo.blueCompra).toFixed(1)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
@@ -108,7 +108,7 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
 
     this.income.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Blue venta:',
-      rightSubtitle: this.formData.isDollar ?
+      rightSubtitle: this.formData.is_dollar ?
         this.transform((this.formData.salary * this.dollarInfo.blueVenta).toFixed(0)) :
         this.transform((this.formData.salary / this.dollarInfo.blueVenta).toFixed(1)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
@@ -116,7 +116,7 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
 
     this.income.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Blue promedio:',
-      rightSubtitle: this.formData.isDollar ?
+      rightSubtitle: this.formData.is_dollar ?
         this.transform((this.formData.salary * this.dollarInfo.blueProm).toFixed(0)) :
         this.transform((this.formData.salary / this.dollarInfo.blueProm).toFixed(1)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
@@ -127,8 +127,8 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
 
   buildIncomeUsdByTime(): IMetricCard {
     const salary = this.transform(this.formData.salary);
-    const typeSalary = this.formData.isDollar ? `U$D` : `AR$`;
-    const oppositionTypeSalary = !this.formData.isDollar ? `U$D` : `AR$`;
+    const typeSalary = this.formData.is_dollar ? `U$D` : `AR$`;
+    const oppositionTypeSalary = !this.formData.is_dollar ? `U$D` : `AR$`;
     this.incomeUsdByTime = {
       leftTitle: `Ingresos en ${typeSalary} por tiempo`,
       rightTitle: ``,
@@ -141,37 +141,37 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
 
     this.incomeUsdByTime.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Anual:',
-      rightSubtitle: this.transform((this.formData.salary * (this.formData.isDepenRelationship ? 13 : 12)).toFixed(0)),
+      rightSubtitle: this.transform((this.formData.salary * (this.formData.is_depen_relationship ? 13 : 12)).toFixed(0)),
       typeOfCurrency: ` ${typeSalary}`,
     });
 
     this.incomeUsdByTime.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Mensual:',
-      rightSubtitle: this.transform((this.formData.salary * (this.formData.isDepenRelationship ? 13 : 12) / 12).toFixed(0)),
+      rightSubtitle: this.transform((this.formData.salary * (this.formData.is_depen_relationship ? 13 : 12) / 12).toFixed(0)),
       typeOfCurrency: ` ${typeSalary}`,
     });
 
     this.incomeUsdByTime.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Semanal:',
-      rightSubtitle: this.transform(((this.formData.salary * (this.formData.isDepenRelationship ? 13 : 12) / 12) / 4).toFixed(1)),
+      rightSubtitle: this.transform(((this.formData.salary * (this.formData.is_depen_relationship ? 13 : 12) / 12) / 4).toFixed(1)),
       typeOfCurrency: ` ${typeSalary}`,
     });
 
     this.incomeUsdByTime.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Diario:',
-      rightSubtitle: this.transform(((this.formData.salary * (this.formData.isDepenRelationship ? 13 : 12) / 232)).toFixed(1)),
+      rightSubtitle: this.transform(((this.formData.salary * (this.formData.is_depen_relationship ? 13 : 12) / 232)).toFixed(1)),
       typeOfCurrency: ` ${typeSalary}`,
     });
 
     this.incomeUsdByTime.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Hora:',
-      rightSubtitle: this.transform(((this.formData.salary * (this.formData.isDepenRelationship ? 13 : 12) / 232) / this.formData.dailyHours).toFixed(1)),
+      rightSubtitle: this.transform(((this.formData.salary * (this.formData.is_depen_relationship ? 13 : 12) / 232) / this.formData.daily_hours).toFixed(1)),
       typeOfCurrency: ` ${typeSalary}`,
     });
 
     this.incomeUsdByTime.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Minuto:',
-      rightSubtitle: this.transform((((this.formData.salary * (this.formData.isDepenRelationship ? 13 : 12) / 232) / this.formData.dailyHours) / 60).toFixed(2)),
+      rightSubtitle: this.transform((((this.formData.salary * (this.formData.is_depen_relationship ? 13 : 12) / 232) / this.formData.daily_hours) / 60).toFixed(2)),
       typeOfCurrency: ` ${typeSalary}`,
     });
 
@@ -180,8 +180,8 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
 
   buildOficialProm(): IMetricCard {
     const salary = this.transform(this.formData.salary);
-    const typeSalary = this.formData.isDollar ? `U$D` : `AR$`;
-    const oppositionTypeSalary = !this.formData.isDollar ? `U$D` : `AR$`;
+    const typeSalary = this.formData.is_dollar ? `U$D` : `AR$`;
+    const oppositionTypeSalary = !this.formData.is_dollar ? `U$D` : `AR$`;
     this.oficialProm = {
       leftTitle: `Ingresos en ${oppositionTypeSalary} oficial promedio`,
       rightTitle: ``,
@@ -194,37 +194,37 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
 
     this.oficialProm.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Anual:',
-      rightSubtitle: this.transform((this.inverseOficialProm * (this.formData.isDepenRelationship ? 13 : 12)).toFixed(0)),
+      rightSubtitle: this.transform((this.inverseOficialProm * (this.formData.is_depen_relationship ? 13 : 12)).toFixed(0)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
     });
 
     this.oficialProm.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Mensual:',
-      rightSubtitle: this.transform((this.inverseOficialProm * (this.formData.isDepenRelationship ? 13 : 12) / 12).toFixed(0)),
+      rightSubtitle: this.transform((this.inverseOficialProm * (this.formData.is_depen_relationship ? 13 : 12) / 12).toFixed(0)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
     });
 
     this.oficialProm.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Semanal:',
-      rightSubtitle: this.transform(((this.inverseOficialProm * (this.formData.isDepenRelationship ? 13 : 12) / 12) / 4).toFixed(1)),
+      rightSubtitle: this.transform(((this.inverseOficialProm * (this.formData.is_depen_relationship ? 13 : 12) / 12) / 4).toFixed(1)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
     });
 
     this.oficialProm.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Diario:',
-      rightSubtitle: this.transform(((this.inverseOficialProm * (this.formData.isDepenRelationship ? 13 : 12) / 232)).toFixed(1)),
+      rightSubtitle: this.transform(((this.inverseOficialProm * (this.formData.is_depen_relationship ? 13 : 12) / 232)).toFixed(1)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
     });
 
     this.oficialProm.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Hora:',
-      rightSubtitle: this.transform(((this.inverseOficialProm * (this.formData.isDepenRelationship ? 13 : 12) / 232) / this.formData.dailyHours).toFixed(1)),
+      rightSubtitle: this.transform(((this.inverseOficialProm * (this.formData.is_depen_relationship ? 13 : 12) / 232) / this.formData.daily_hours).toFixed(1)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
     });
 
     this.oficialProm.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Minuto:',
-      rightSubtitle: this.transform((((this.inverseOficialProm * (this.formData.isDepenRelationship ? 13 : 12) / 232) / this.formData.dailyHours) / 60).toFixed(2)),
+      rightSubtitle: this.transform((((this.inverseOficialProm * (this.formData.is_depen_relationship ? 13 : 12) / 232) / this.formData.daily_hours) / 60).toFixed(2)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
     });
 
@@ -233,8 +233,8 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
 
   buildBlueProm(): IMetricCard {
     const salary = this.transform(this.formData.salary);
-    const typeSalary = this.formData.isDollar ? `U$D` : `AR$`;
-    const oppositionTypeSalary = !this.formData.isDollar ? `U$D` : `AR$`;
+    const typeSalary = this.formData.is_dollar ? `U$D` : `AR$`;
+    const oppositionTypeSalary = !this.formData.is_dollar ? `U$D` : `AR$`;
     this.blueProm = {
       leftTitle: `Ingresos en ${oppositionTypeSalary} blue promedio`,
       rightTitle: ``,
@@ -247,37 +247,37 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
 
     this.blueProm.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Anual:',
-      rightSubtitle: this.transform((this.inverseBlueProm * (this.formData.isDepenRelationship ? 13 : 12)).toFixed(0)),
+      rightSubtitle: this.transform((this.inverseBlueProm * (this.formData.is_depen_relationship ? 13 : 12)).toFixed(0)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
     });
 
     this.blueProm.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Mensual:',
-      rightSubtitle: this.transform((this.inverseBlueProm * (this.formData.isDepenRelationship ? 13 : 12) / 12).toFixed(0)),
+      rightSubtitle: this.transform((this.inverseBlueProm * (this.formData.is_depen_relationship ? 13 : 12) / 12).toFixed(0)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
     });
 
     this.blueProm.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Semanal:',
-      rightSubtitle: this.transform(((this.inverseBlueProm * (this.formData.isDepenRelationship ? 13 : 12) / 12) / 4).toFixed(1)),
+      rightSubtitle: this.transform(((this.inverseBlueProm * (this.formData.is_depen_relationship ? 13 : 12) / 12) / 4).toFixed(1)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
     });
 
     this.blueProm.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Diario:',
-      rightSubtitle: this.transform(((this.inverseBlueProm * (this.formData.isDepenRelationship ? 13 : 12) / 232)).toFixed(1)),
+      rightSubtitle: this.transform(((this.inverseBlueProm * (this.formData.is_depen_relationship ? 13 : 12) / 232)).toFixed(1)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
     });
 
     this.blueProm.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Hora:',
-      rightSubtitle: this.transform(((this.inverseBlueProm * (this.formData.isDepenRelationship ? 13 : 12) / 232) / this.formData.dailyHours).toFixed(1)),
+      rightSubtitle: this.transform(((this.inverseBlueProm * (this.formData.is_depen_relationship ? 13 : 12) / 232) / this.formData.daily_hours).toFixed(1)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
     });
 
     this.blueProm.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Minuto:',
-      rightSubtitle: this.transform((((this.inverseBlueProm * (this.formData.isDepenRelationship ? 13 : 12) / 232) / this.formData.dailyHours) / 60).toFixed(2)),
+      rightSubtitle: this.transform((((this.inverseBlueProm * (this.formData.is_depen_relationship ? 13 : 12) / 232) / this.formData.daily_hours) / 60).toFixed(2)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
     });
 
@@ -287,8 +287,8 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
   buildSavingCapacityIncome(): IMetricCard {
     //const savingCapacity = this.formData.isPercent ? (this.formData.salary * this.formData.savingCapacity / 100) : this.formData.savingCapacity;
     const salary = this.transform(this.localSavingCapacity);
-    const typeSalary = this.formData.isDollar ? `U$D` : `AR$`;
-    const oppositionTypeSalary = !this.formData.isDollar ? `U$D` : `AR$`;
+    const typeSalary = this.formData.is_dollar ? `U$D` : `AR$`;
+    const oppositionTypeSalary = !this.formData.is_dollar ? `U$D` : `AR$`;
     this.savingCapacityIncome = {
       leftTitle: `Ahorro a ${oppositionTypeSalary}`,
       rightTitle: `${salary} ${typeSalary}`,
@@ -301,7 +301,7 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
 
     this.savingCapacityIncome.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Oficial compra:',
-      rightSubtitle: this.formData.isDollar ?
+      rightSubtitle: this.formData.is_dollar ?
         this.transform((this.localSavingCapacity * this.dollarInfo.oficialCompra).toFixed(0)) :
         this.transform((this.localSavingCapacity / this.dollarInfo.oficialCompra).toFixed(1)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
@@ -309,7 +309,7 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
 
     this.savingCapacityIncome.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Oficial venta:',
-      rightSubtitle: this.formData.isDollar ?
+      rightSubtitle: this.formData.is_dollar ?
         this.transform((this.localSavingCapacity * this.dollarInfo.oficialVenta).toFixed(0)) :
         this.transform((this.localSavingCapacity / this.dollarInfo.oficialVenta).toFixed(1)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
@@ -317,7 +317,7 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
 
     this.savingCapacityIncome.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Oficial promedio:',
-      rightSubtitle: this.formData.isDollar ?
+      rightSubtitle: this.formData.is_dollar ?
         this.transform((this.localSavingCapacity * this.dollarInfo.oficialProm).toFixed(0)) :
         this.transform((this.localSavingCapacity / this.dollarInfo.oficialProm).toFixed(1)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
@@ -325,7 +325,7 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
 
     this.savingCapacityIncome.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Blue compra:',
-      rightSubtitle: this.formData.isDollar ?
+      rightSubtitle: this.formData.is_dollar ?
         this.transform((this.localSavingCapacity * this.dollarInfo.blueCompra).toFixed(0)) :
         this.transform((this.localSavingCapacity / this.dollarInfo.blueCompra).toFixed(1)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
@@ -333,7 +333,7 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
 
     this.savingCapacityIncome.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Blue venta:',
-      rightSubtitle: this.formData.isDollar ?
+      rightSubtitle: this.formData.is_dollar ?
         this.transform((this.localSavingCapacity * this.dollarInfo.blueVenta).toFixed(0)) :
         this.transform((this.localSavingCapacity / this.dollarInfo.blueVenta).toFixed(1)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
@@ -341,7 +341,7 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
 
     this.savingCapacityIncome.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Blue promedio:',
-      rightSubtitle: this.formData.isDollar ?
+      rightSubtitle: this.formData.is_dollar ?
         this.transform((this.localSavingCapacity * this.dollarInfo.blueProm).toFixed(0)) :
         this.transform((this.localSavingCapacity / this.dollarInfo.blueProm).toFixed(1)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
@@ -352,8 +352,8 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
 
   buildSavingCapacityIncomeUsdByTime(): IMetricCard {
     const salary = this.transform(this.localSavingCapacity);
-    const typeSalary = this.formData.isDollar ? `U$D` : `AR$`;
-    const oppositionTypeSalary = !this.formData.isDollar ? `U$D` : `AR$`;
+    const typeSalary = this.formData.is_dollar ? `U$D` : `AR$`;
+    const oppositionTypeSalary = !this.formData.is_dollar ? `U$D` : `AR$`;
     this.savingCapacityIncomeUsdByTime = {
       leftTitle: `Ahorro en ${typeSalary} por tiempo`,
       rightTitle: ``,
@@ -366,37 +366,37 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
 
     this.savingCapacityIncomeUsdByTime.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Anual:',
-      rightSubtitle: this.transform((this.localSavingCapacity * (this.formData.isDepenRelationship ? 13 : 12)).toFixed(0)),
+      rightSubtitle: this.transform((this.localSavingCapacity * (this.formData.is_depen_relationship ? 13 : 12)).toFixed(0)),
       typeOfCurrency: ` ${typeSalary}`,
     });
 
     this.savingCapacityIncomeUsdByTime.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Mensual:',
-      rightSubtitle: this.transform((this.localSavingCapacity * (this.formData.isDepenRelationship ? 13 : 12) / 12).toFixed(0)),
+      rightSubtitle: this.transform((this.localSavingCapacity * (this.formData.is_depen_relationship ? 13 : 12) / 12).toFixed(0)),
       typeOfCurrency: ` ${typeSalary}`,
     });
 
     this.savingCapacityIncomeUsdByTime.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Semanal:',
-      rightSubtitle: this.transform(((this.localSavingCapacity * (this.formData.isDepenRelationship ? 13 : 12) / 12) / 4).toFixed(1)),
+      rightSubtitle: this.transform(((this.localSavingCapacity * (this.formData.is_depen_relationship ? 13 : 12) / 12) / 4).toFixed(1)),
       typeOfCurrency: ` ${typeSalary}`,
     });
 
     this.savingCapacityIncomeUsdByTime.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Diario:',
-      rightSubtitle: this.transform(((this.localSavingCapacity * (this.formData.isDepenRelationship ? 13 : 12) / 232)).toFixed(1)),
+      rightSubtitle: this.transform(((this.localSavingCapacity * (this.formData.is_depen_relationship ? 13 : 12) / 232)).toFixed(1)),
       typeOfCurrency: ` ${typeSalary}`,
     });
 
     this.savingCapacityIncomeUsdByTime.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Hora:',
-      rightSubtitle: this.transform(((this.localSavingCapacity * (this.formData.isDepenRelationship ? 13 : 12) / 232) / this.formData.dailyHours).toFixed(1)),
+      rightSubtitle: this.transform(((this.localSavingCapacity * (this.formData.is_depen_relationship ? 13 : 12) / 232) / this.formData.daily_hours).toFixed(1)),
       typeOfCurrency: ` ${typeSalary}`,
     });
 
     this.savingCapacityIncomeUsdByTime.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Minuto:',
-      rightSubtitle: this.transform((((this.localSavingCapacity * (this.formData.isDepenRelationship ? 13 : 12) / 232) / this.formData.dailyHours) / 60).toFixed(2)),
+      rightSubtitle: this.transform((((this.localSavingCapacity * (this.formData.is_depen_relationship ? 13 : 12) / 232) / this.formData.daily_hours) / 60).toFixed(2)),
       typeOfCurrency: ` ${typeSalary}`,
     });
 
@@ -405,8 +405,8 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
 
   buildSavingCapacityOficialProm(): IMetricCard {
     const salary = this.transform(this.localSavingCapacity);
-    const typeSalary = this.formData.isDollar ? `U$D` : `AR$`;
-    const oppositionTypeSalary = !this.formData.isDollar ? `U$D` : `AR$`;
+    const typeSalary = this.formData.is_dollar ? `U$D` : `AR$`;
+    const oppositionTypeSalary = !this.formData.is_dollar ? `U$D` : `AR$`;
     this.savingCapacityOficialProm = {
       leftTitle: `Ahorro en ${oppositionTypeSalary} oficial promedio`,
       rightTitle: ``,
@@ -419,37 +419,37 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
 
     this.savingCapacityOficialProm.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Anual:',
-      rightSubtitle: this.transform((this.inverseOficialPromSavingCapacity * (this.formData.isDepenRelationship ? 13 : 12)).toFixed(0)),
+      rightSubtitle: this.transform((this.inverseOficialPromSavingCapacity * (this.formData.is_depen_relationship ? 13 : 12)).toFixed(0)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
     });
 
     this.savingCapacityOficialProm.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Mensual:',
-      rightSubtitle: this.transform((this.inverseOficialPromSavingCapacity * (this.formData.isDepenRelationship ? 13 : 12) / 12).toFixed(0)),
+      rightSubtitle: this.transform((this.inverseOficialPromSavingCapacity * (this.formData.is_depen_relationship ? 13 : 12) / 12).toFixed(0)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
     });
 
     this.savingCapacityOficialProm.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Semanal:',
-      rightSubtitle: this.transform(((this.inverseOficialPromSavingCapacity * (this.formData.isDepenRelationship ? 13 : 12) / 12) / 4).toFixed(1)),
+      rightSubtitle: this.transform(((this.inverseOficialPromSavingCapacity * (this.formData.is_depen_relationship ? 13 : 12) / 12) / 4).toFixed(1)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
     });
 
     this.savingCapacityOficialProm.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Diario:',
-      rightSubtitle: this.transform(((this.inverseOficialPromSavingCapacity * (this.formData.isDepenRelationship ? 13 : 12) / 232)).toFixed(1)),
+      rightSubtitle: this.transform(((this.inverseOficialPromSavingCapacity * (this.formData.is_depen_relationship ? 13 : 12) / 232)).toFixed(1)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
     });
 
     this.savingCapacityOficialProm.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Hora:',
-      rightSubtitle: this.transform(((this.inverseOficialPromSavingCapacity * (this.formData.isDepenRelationship ? 13 : 12) / 232) / this.formData.dailyHours).toFixed(1)),
+      rightSubtitle: this.transform(((this.inverseOficialPromSavingCapacity * (this.formData.is_depen_relationship ? 13 : 12) / 232) / this.formData.daily_hours).toFixed(1)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
     });
 
     this.savingCapacityOficialProm.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Minuto:',
-      rightSubtitle: this.transform((((this.inverseOficialPromSavingCapacity * (this.formData.isDepenRelationship ? 13 : 12) / 232) / this.formData.dailyHours) / 60).toFixed(2)),
+      rightSubtitle: this.transform((((this.inverseOficialPromSavingCapacity * (this.formData.is_depen_relationship ? 13 : 12) / 232) / this.formData.daily_hours) / 60).toFixed(2)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
     });
 
@@ -458,8 +458,8 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
 
   buildSavingCapacityBlueProm(): IMetricCard {
     const salary = this.transform(this.localSavingCapacity);
-    const typeSalary = this.formData.isDollar ? `U$D` : `AR$`;
-    const oppositionTypeSalary = !this.formData.isDollar ? `U$D` : `AR$`;
+    const typeSalary = this.formData.is_dollar ? `U$D` : `AR$`;
+    const oppositionTypeSalary = !this.formData.is_dollar ? `U$D` : `AR$`;
     this.savingCapacityBlueProm = {
       leftTitle: `Ahorro en ${oppositionTypeSalary} blue promedio`,
       rightTitle: ``,
@@ -472,37 +472,37 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
 
     this.savingCapacityBlueProm.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Anual:',
-      rightSubtitle: this.transform((this.inverseBluePromSavingCapacity * (this.formData.isDepenRelationship ? 13 : 12)).toFixed(0)),
+      rightSubtitle: this.transform((this.inverseBluePromSavingCapacity * (this.formData.is_depen_relationship ? 13 : 12)).toFixed(0)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
     });
 
     this.savingCapacityBlueProm.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Mensual:',
-      rightSubtitle: this.transform((this.inverseBluePromSavingCapacity * (this.formData.isDepenRelationship ? 13 : 12) / 12).toFixed(0)),
+      rightSubtitle: this.transform((this.inverseBluePromSavingCapacity * (this.formData.is_depen_relationship ? 13 : 12) / 12).toFixed(0)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
     });
 
     this.savingCapacityBlueProm.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Semanal:',
-      rightSubtitle: this.transform(((this.inverseBluePromSavingCapacity * (this.formData.isDepenRelationship ? 13 : 12) / 12) / 4).toFixed(1)),
+      rightSubtitle: this.transform(((this.inverseBluePromSavingCapacity * (this.formData.is_depen_relationship ? 13 : 12) / 12) / 4).toFixed(1)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
     });
 
     this.savingCapacityBlueProm.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Diario:',
-      rightSubtitle: this.transform(((this.inverseBluePromSavingCapacity * (this.formData.isDepenRelationship ? 13 : 12) / 232)).toFixed(1)),
+      rightSubtitle: this.transform(((this.inverseBluePromSavingCapacity * (this.formData.is_depen_relationship ? 13 : 12) / 232)).toFixed(1)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
     });
 
     this.savingCapacityBlueProm.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Hora:',
-      rightSubtitle: this.transform(((this.inverseBluePromSavingCapacity * (this.formData.isDepenRelationship ? 13 : 12) / 232) / this.formData.dailyHours).toFixed(1)),
+      rightSubtitle: this.transform(((this.inverseBluePromSavingCapacity * (this.formData.is_depen_relationship ? 13 : 12) / 232) / this.formData.daily_hours).toFixed(1)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
     });
 
     this.savingCapacityBlueProm.subtitleItems.push(this.cardSubInfo = {
       leftSubtitle: 'Minuto:',
-      rightSubtitle: this.transform((((this.inverseBluePromSavingCapacity * (this.formData.isDepenRelationship ? 13 : 12) / 232) / this.formData.dailyHours) / 60).toFixed(2)),
+      rightSubtitle: this.transform((((this.inverseBluePromSavingCapacity * (this.formData.is_depen_relationship ? 13 : 12) / 232) / this.formData.daily_hours) / 60).toFixed(2)),
       typeOfCurrency: ` ${oppositionTypeSalary}`,
     });
 
@@ -511,7 +511,7 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
 
   get inverseOficialProm(): number {
     if (this.userDataModelService.userData$.value) {
-      if (this.userDataModelService.userData$.value.isDollar) {
+      if (this.userDataModelService.userData$.value.is_dollar) {
         return this.userDataModelService.userData$.value.salary * this.casaModelService.currentDollar$.value.oficialProm;
       } else {
         return this.userDataModelService.userData$.value.salary / this.casaModelService.currentDollar$.value.oficialProm;
@@ -523,7 +523,7 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
 
   get inverseBlueProm(): number {
     if (this.userDataModelService.userData$.value) {
-      if (this.userDataModelService.userData$.value.isDollar) {
+      if (this.userDataModelService.userData$.value.is_dollar) {
         return this.userDataModelService.userData$.value.salary * this.casaModelService.currentDollar$.value.blueProm;
       } else {
         return this.userDataModelService.userData$.value.salary / this.casaModelService.currentDollar$.value.blueProm;
@@ -535,7 +535,7 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
 
   get inverseOficialPromSavingCapacity(): number {
     if (this.userDataModelService.userData$.value) {
-      if (this.userDataModelService.userData$.value.isDollar) {
+      if (this.userDataModelService.userData$.value.is_dollar) {
         return this.localSavingCapacity * this.casaModelService.currentDollar$.value.oficialProm;
       } else {
         return this.localSavingCapacity / this.casaModelService.currentDollar$.value.oficialProm;
@@ -547,7 +547,7 @@ export class UserMetricsComponent implements OnInit, OnDestroy {
 
   get inverseBluePromSavingCapacity(): number {
     if (this.userDataModelService.userData$.value) {
-      if (this.userDataModelService.userData$.value.isDollar) {
+      if (this.userDataModelService.userData$.value.is_dollar) {
         return this.localSavingCapacity * this.casaModelService.currentDollar$.value.blueProm;
       } else {
         return this.localSavingCapacity / this.casaModelService.currentDollar$.value.blueProm;

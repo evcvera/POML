@@ -1,10 +1,11 @@
-@import "src/assets/baseStyles/_variable.scss";
+@import "src/assets/baseStyles/baseStyles";
+
 
 .user-image {
   border-radius: 50%;
   height: 118px;
   width: 118px;
-  border: #683ab7 1px solid;
+  border: #1f4e96 1px solid;
 }
 
 .image-height {
@@ -13,18 +14,22 @@
 
 .close-icon {
   position: absolute;
-  left: 100px;
+  padding: 5px;
+  margin-left: 80px;
 
-  .icon {
-    color: #000000;
-    border-radius: 50%;
-    border: 1px solid;
-    background: white;
+  color: #000000;
+  border-radius: 50%;
+  border: 1px solid;
+  background: white;
+
+  .btn-close{
+    font-size: 14.5px;
+    padding: 0;
   }
 }
 
 .letter {
-  color: #683ab7;
+  color: #1f4e96;
   font-weight: bold;
   font-size: 2rem;
 }
@@ -36,13 +41,15 @@
 }
 
 .camera-icon {
-  position: absolute;
-  left: 100px;
-  top: 105px;
-  color: #683ab7;
+  position: relative;
+  top: -30px;
+  padding: 5px;
+  color: #1f4e96;
+  border-radius: 50%;
+  border: 1px solid;
 
   &:hover {
-    color: #673ab7;
+    color: #1f4e96;
   }
 }
 

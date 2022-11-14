@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {UserDataModelService} from '../core/mode-services/user-data-model.service';
+import {UserDataModelService} from '../core/model-services/user-data-model.service';
+import {AuthenticationModelService} from "../core/model-services/authentication-model.service";
 
 @Component({
   selector: 'app-bottom-nav-bar',
@@ -10,7 +11,8 @@ import {UserDataModelService} from '../core/mode-services/user-data-model.servic
 export class BottomNavBarComponent implements OnInit {
 
   constructor(public router: Router,
-              public userDataModelService: UserDataModelService) { }
+              public userDataModelService: UserDataModelService,
+              public authenticationService: AuthenticationModelService) { }
 
   ngOnInit(): void {
   }

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {MeliModelService} from '../../../../../../core/mode-services/meli-model.service';
-import {UserDataModelService} from '../../../../../../core/mode-services/user-data-model.service';
+import {MeliModelService} from '../../../../../../core/model-services/meli-model.service';
+import {UserDataModelService} from '../../../../../../core/model-services/user-data-model.service';
 
 @Component({
   selector: 'app-selected-filter',

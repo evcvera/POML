@@ -1,10 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {MeliModelService} from '../../core/mode-services/meli-model.service';
+import {MeliModelService} from '../../core/model-services/meli-model.service';
 import {ResultsEntity} from '../../core/interfaces/imeli-search';
 import {Subscription} from 'rxjs';
-import {FavouritesModelServiceService} from '../../core/mode-services/favourites-model-service.service';
-import {PriceTypeModelService} from '../../core/mode-services/price-type-model.service';
-import {OverPriceTypeService} from '../../core/mode-services/over-price-type.service';
+import {FavouritesModelServiceService} from '../../core/model-services/favourites-model-service.service';
+import {PriceTypeModelService} from '../../core/model-services/price-type-model.service';
+import {OverPriceTypeService} from '../../core/model-services/over-price-type.service';
 
 @Component({
   selector: 'app-sales-item',
@@ -26,11 +26,8 @@ export class SalesItemComponent implements OnInit {
   currentPrice: string;
   remainingPromoDays: string;
 
-  getRating: Subscription;
 
   currentDate: Date;
-
-  timeRequired: string;
 
 
   constructor(public meliModelService: MeliModelService,
@@ -56,7 +53,6 @@ export class SalesItemComponent implements OnInit {
   imgLoaded(): any {
     if (this.resultsEntity.rating_average === undefined && this.opinions) {
       this.resultsEntity.rating_average = 0;
-      /*this.meliModelService.getSingleMeliItemOpinion(this.resultsEntity.id, this.typeItem);*/
       if (this.resultsEntity.catalog_product_id) {
         this.meliModelService.getSingleMeliItemOpinion2(this.resultsEntity.catalog_product_id, this.resultsEntity.id, this.typeItem);
       }

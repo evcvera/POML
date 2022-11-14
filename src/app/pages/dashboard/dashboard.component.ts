@@ -1,12 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Subscription} from 'rxjs';
-import {EchartModelService} from '../../core/mode-services/echart-model.service';
-import {IBasicEchartLineModel} from '../../core/interfaces/ibasic-echart-line-model';
-import {EChartsOption} from 'echarts';
-import {CasaModelService} from '../../core/mode-services/casa-model.service';
-import {UserDataModelService} from '../../core/mode-services/user-data-model.service';
-import {Casa} from '../../core/interfaces/casa';
+import {UserDataModelService} from '../../core/model-services/user-data-model.service';
 import {Router} from '@angular/router';
+import {AuthenticationGoogleService} from "../../core/model-services/authentication-google.service";
+import {AuthenticationModelService} from "../../core/model-services/authentication-model.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +12,9 @@ import {Router} from '@angular/router';
 export class DashboardComponent implements OnInit {
 
   constructor(public router: Router,
-              public userDataModelService: UserDataModelService) {
+              public userDataModelService: UserDataModelService,
+              public authenticationGoogleService: AuthenticationGoogleService,
+              public authenticationService: AuthenticationModelService) {
   }
 
   toggleForm(): void {
@@ -24,5 +22,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.authenticationGoogleService.loadProfile();
   }
+
 }

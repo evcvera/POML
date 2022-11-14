@@ -1,0 +1,28 @@
+<div class="popup-general-container">
+  <div class="popup-header" [ngClass]="data.title ? 'header-border' : ''">
+    <h2 class="popup-title" *ngIf="data">{{data.title}}</h2>
+    <button class="close-button" (click)="close()">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor"
+           class="mercado-match" width="24" height="24" focusable="false">
+        <path
+          d="M13.42 12L20 18.58 18.58 20 12 13.42 5.42 20 4 18.58 10.58 12 4 5.42 5.42 4 12 10.58 18.58 4 20 5.42z"></path>
+      </svg>
+    </button>
+  </div>
+  <div class="popup-content">
+    <ng-content select="[popup-body]"></ng-content>
+  </div>
+  <div [ngClass]="data.title ? 'popup-actions' : ''">
+    <ng-content select="[popup-actions]"></ng-content>
+    <ng-container *ngIf="data?.bdelete || data?.bsecondary || data?.bprimary">
+      <button class="action-button" (click)="bDelete()" *ngIf="data.bdelete" mat-button>{{data.bdelete}}</button>
+      <div *ngIf="data?.bsecondary || data?.bprimary"
+        class="d-flex ml-auto">
+        <button class="action-button mr-3" (click)="bSecondary()" *ngIf="data.bsecondary"
+                mat-stroked-button>{{data.bsecondary}}</button>
+        <button class="action-button" (click)="bPrimary()" mat-raised-button *ngIf="data.bprimary"
+                color="primary">{{data.bprimary}}</button>
+      </div>
+    </ng-container>
+  </div>
+</div>

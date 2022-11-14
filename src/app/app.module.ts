@@ -6,13 +6,11 @@ import {AppComponent} from './app.component';
 import {HeaderComponent} from './header/header.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
-import {HttpClientModule} from '@angular/common/http';
-import {EchartModelService} from './core/mode-services/echart-model.service';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {EchartModelService} from './core/model-services/echart-model.service';
 import {NgxEchartsModule} from 'ngx-echarts';
-import * as echarts from 'echarts';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {CasaModelService} from './core/mode-services/casa-model.service';
-import {CasaService} from './core/services/casa.service';
+import {CasaModelService} from './core/model-services/casa-model.service';
 import {SideBarComponent} from './side-bar/side-bar.component';
 import {SideBarFormComponent} from './side-bar/Components/side-bar-form/side-bar-form.component';
 import {EchartLifeTimeComponent} from './pages/metrics/components/echart-life-time/echart-life-time.component';
@@ -32,7 +30,9 @@ import {SalesZipCodeModalComponent} from './pages/sales/components/sales-zip-cod
 import {SalesMeliHeaderComponent} from './sharedComponents/sales-meli-header/sales-meli-header.component';
 import {StarRatingComponent} from './sharedComponents/star-rating/star-rating.component';
 import {SalesFavouritesComponent} from './pages/sales-favourites/sales-favourites.component';
-import {ZipCodeModalMobileComponent} from './pages/sales/componets-mobile/zip-code-modal-mobile/zip-code-modal-mobile.component';
+import {
+  ZipCodeModalMobileComponent
+} from './pages/sales/componets-mobile/zip-code-modal-mobile/zip-code-modal-mobile.component';
 import {GeneralPopupComponent} from './sharedComponents/general-popup/general-popup.component';
 import {SortItemMobileComponent} from './pages/sales/componets-mobile/sort-item-mobile/sort-item-mobile.component';
 import {SubTextComponent} from './sharedComponents/sub-text/sub-text.component';
@@ -40,22 +40,45 @@ import {CurrentDolarComponent} from './pages/metrics/components/current-dolar/cu
 import {CardMetricInfoComponent} from './pages/metrics/components/card-metric-info/card-metric-info.component';
 import {DatePipe} from '@angular/common';
 import {SideBarFiltersComponent} from './pages/sales/components/side-bar-filters/side-bar-filters.component';
-import {ExpectedTimeRemainingComponent} from './pages/metrics/components/expected-time-remaining/expected-time-remaining.component';
+import {
+  ExpectedTimeRemainingComponent
+} from './pages/metrics/components/expected-time-remaining/expected-time-remaining.component';
 import {MeliFiltersComponent} from './pages/sales/components/meli-filters/meli-filters.component';
 import {FiltersMobileComponent} from './sharedComponents/filters-mobile/filters-mobile.component';
 import {FilterItemComponent} from './pages/sales/components/meli-filters/components/filter-item/filter-item.component';
-import {SelectedFilterComponent} from './pages/sales/components/meli-filters/components/selected-filter/selected-filter.component';
-import {ItemFilterMobileComponent} from './sharedComponents/filters-mobile/component/item-filter-mobile/item-filter-mobile.component';
+import {
+  SelectedFilterComponent
+} from './pages/sales/components/meli-filters/components/selected-filter/selected-filter.component';
+import {
+  ItemFilterMobileComponent
+} from './sharedComponents/filters-mobile/component/item-filter-mobile/item-filter-mobile.component';
 import {PriceTypeComponent} from './pages/sales/components/meli-filters/components/price-type/price-type.component';
 import {BlockUIModule} from 'ng-block-ui';
-import { PriceTypeMobileComponent } from './pages/sales/componets-mobile/price-type-mobile/price-type-mobile.component';
-import { CompleteFormComponent } from './sharedComponents/complete-form/complete-form.component';
-import { SalesFilterMobileComponent } from './pages/sales/componets-mobile/sales-filter-mobile/sales-filter-mobile.component';
-import { SingleItemComponent } from './pages/single-item/single-item.component';
-import { SaleItemDeskComponent } from './pages/single-item/sale-item-desk/sale-item-desk.component';
-import { SingleItemDeskComponent } from './pages/single-item/sale-item-desk/components/single-item-desk/single-item-desk.component';
-import { TiniLeftImgComponent } from './pages/single-item/sale-item-desk/components/tini-left-img/tini-left-img.component';
-import { MiddleColComponent } from './pages/single-item/sale-item-desk/components/middle-col/middle-col.component';
+import {PriceTypeMobileComponent} from './pages/sales/componets-mobile/price-type-mobile/price-type-mobile.component';
+import {CompleteFormComponent} from './sharedComponents/complete-form/complete-form.component';
+import {
+  SalesFilterMobileComponent
+} from './pages/sales/componets-mobile/sales-filter-mobile/sales-filter-mobile.component';
+import {SingleItemComponent} from './pages/single-item/single-item.component';
+import {SaleItemDeskComponent} from './pages/single-item/sale-item-desk/sale-item-desk.component';
+import {
+  SingleItemDeskComponent
+} from './pages/single-item/sale-item-desk/components/single-item-desk/single-item-desk.component';
+import {
+  TiniLeftImgComponent
+} from './pages/single-item/sale-item-desk/components/tini-left-img/tini-left-img.component';
+import {MiddleColComponent} from './pages/single-item/sale-item-desk/components/middle-col/middle-col.component';
+import {RegistrationComponent} from "./pages/registration/registration.component";
+import {EmptyUserImageComponent} from "./svg-icons/empty-user-image/empty-user-image.component";
+import {GoogleLoginComponent} from "./sharedComponents/google-login/google-login.component";
+import {LoginComponent} from "./pages/login/login.component";
+import {UserComponent} from "./pages/user/user.component";
+import {EmptyImageComponent} from "./svg-icons/empty-image/empty-image.component";
+import {OAuthModule} from "angular-oauth2-oidc";
+import {JwtInterceptor} from "./helpers/jwt.interceptor";
+import {ErrorInterceptor} from "./helpers/error.interceptor";
+import {PopUpComponent} from "./sharedComponents/pop-up/pop-up.component";
+import {UpdateUserInfoComponent} from "./pages/user/update-user-info/update-user-info.component";
 
 @NgModule({
   declarations: [
@@ -102,7 +125,15 @@ import { MiddleColComponent } from './pages/single-item/sale-item-desk/component
     SaleItemDeskComponent,
     SingleItemDeskComponent,
     TiniLeftImgComponent,
-    MiddleColComponent
+    MiddleColComponent,
+    RegistrationComponent,
+    EmptyUserImageComponent,
+    GoogleLoginComponent,
+    LoginComponent,
+    UserComponent,
+    EmptyImageComponent,
+    PopUpComponent,
+    UpdateUserInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -117,8 +148,11 @@ import { MiddleColComponent } from './pages/single-item/sale-item-desk/component
     BlockUIModule.forRoot({
       message: 'Cargando...'
     }),
+    OAuthModule.forRoot(),
   ],
-  providers: [EchartModelService, CasaModelService, CasaService, DatePipe],
+  providers: [EchartModelService, CasaModelService, DatePipe,
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},],
   bootstrap: [AppComponent],
 })
 export class AppModule {

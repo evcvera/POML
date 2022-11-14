@@ -8,7 +8,6 @@
           <app-current-dolar [dollarInfo]="currentDollar"></app-current-dolar>
           <ng-container *ngIf="userDataModelService.userData$.value.expectedYear">
             <div class="ln-card col p-3 mx-1 mb-3">
-              <!--<button (click)="showme()"></button>-->
               <app-expected-time-remaining></app-expected-time-remaining>
             </div>
           </ng-container>
@@ -17,7 +16,7 @@
     </ng-container>
     <ng-container >
       <ng-container *ngIf="(casaModelService.currentDollar$ | async) as currentDollar">
-        <ng-container *ngIf="currentDollar.oficialProm !== undefined && userData.dailyHours !== undefined">
+        <ng-container *ngIf="currentDollar.oficialProm !== undefined && userData.daily_hours !== undefined">
           <app-user-metrics [dollarInfo]="currentDollar"></app-user-metrics>
         </ng-container>
       </ng-container>

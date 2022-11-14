@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IMeliSingleItem, Attribute} from '../../../../../core/interfaces/imeli-single-item';
-import {FavouritesModelServiceService} from '../../../../../core/mode-services/favourites-model-service.service';
+import {FavouritesModelServiceService} from '../../../../../core/model-services/favourites-model-service.service';
 
 @Component({
   selector: 'app-middle-col',
@@ -48,6 +48,5 @@ export class MiddleColComponent implements OnInit {
   activeFavorites(id: string): void {
     this.favouritesModelService.upSertFavouriteItem(id, !this.isFavourite);
     this.isFavourite = this.favouritesModelService.findFavouriteBoolean(id);
-    // c console.log(id);
   }
 }

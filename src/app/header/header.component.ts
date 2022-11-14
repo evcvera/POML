@@ -1,7 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {UserDataModelService} from '../core/mode-services/user-data-model.service';
+import {UserDataModelService} from '../core/model-services/user-data-model.service';
 import {Router} from '@angular/router';
-import {MeliModelService} from '../core/mode-services/meli-model.service';
+import {MeliModelService} from '../core/model-services/meli-model.service';
+import {AuthenticationModelService} from "../core/model-services/authentication-model.service";
+import {NgbDropdown} from "@ng-bootstrap/ng-bootstrap";
+import {AuthenticationGoogleService} from "../core/model-services/authentication-google.service";
 
 @Component({
   selector: 'app-header',
@@ -12,6 +15,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(public userDataModelService: UserDataModelService,
               public meliModelService: MeliModelService,
+              public authenticationService: AuthenticationModelService,
+              public authenticationGoogleService:AuthenticationGoogleService,
               private router: Router) {
   }
 
@@ -38,5 +43,17 @@ export class HeaderComponent implements OnInit {
       this.userDataModelService.searchData$.next(this.search);
       this.router.navigate(['sales']);
     }
+  }
+
+  leave($event: MouseEvent, myDrop: NgbDropdown) {
+    setTimeout( ()=>{
+      $event.stopPropagation();
+      myDrop.close();
+    }, 3000)
+  }
+
+
+  signOut() {
+    this.authenticationGoogleService.signOut()
   }
 }

@@ -27,6 +27,7 @@
   fill: #00000099;
   width: 80px;
   border-bottom: 2px solid transparent;
+  outline-color: transparent;
 }
 
 /*.nav__link--active{
@@ -108,4 +109,27 @@ svg {
   justify-content: center;
   align-items: center;
   transition: background-color .15s;
+}
+
+.tini-avatar-user{
+  height: 27px;
+  border-radius: 50%;
+}
+
+
+.dropdown-toggle::after {
+  left: 8px;
+  position: relative;
+  bottom: 10px;
+}
+
+.me-text{
+  margin-right: 10px;
+}
+
+.dropdown-menu.show {
+  position: absolute;
+  left: -50px;
+  top: 55px;
+  min-width: auto;
 }

@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {EChartsOption} from 'echarts';
 import {Subscription} from 'rxjs';
 import {IBasicEchartLineModel} from '../../../../core/interfaces/ibasic-echart-line-model';
-import {EchartModelService} from '../../../../core/mode-services/echart-model.service';
-import {UserDataModelService} from '../../../../core/mode-services/user-data-model.service';
+import {EchartModelService} from '../../../../core/model-services/echart-model.service';
+import {UserDataModelService} from '../../../../core/model-services/user-data-model.service';
 
 @Component({
   selector: 'app-echart-life-time',

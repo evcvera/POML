@@ -28,33 +28,33 @@
     <label class="d-block txtSize14 mb-0 mt-4 txtBlack font-weight-600">RESTANTES HASTA JUBILIARSE ({{this.retirement - this.age > 0 ? this.retirement - this.age : 0}} AÑOS)</label>
     <hr class="line">
     <label class="d-block txtSize14 item-text txtBlack"> <span> Ingresos:</span>
-      <span class="font-weight-600"> {{incomeBefore.toFixed(0) | thousandsPipe}} {{userDataModelService.userData$.value.isDollar ? 'U$D' : 'AR$'}}</span>
+      <span class="font-weight-600"> {{incomeBefore.toFixed(0) | thousandsPipe}} {{userDataModelService.userData$.value.is_dollar ? 'U$D' : 'AR$'}}</span>
     </label>
     <label class="d-block txtSize14 item-text txtBlack"> <span> Capacidad de ahorro:</span>
-      <span class="font-weight-600"> {{incomeBeforeSavingCapacity.toFixed(0) | thousandsPipe}} {{userDataModelService.userData$.value.isDollar ? 'U$D' : 'AR$'}}</span>
+      <span class="font-weight-600"> {{incomeBeforeSavingCapacity.toFixed(0) | thousandsPipe}} {{userDataModelService.userData$.value.is_dollar ? 'U$D' : 'AR$'}}</span>
     </label>
 
     <label class="d-block txtSize14 item-text txtBlack"> <span> Ingresos
-      <span>{{!userDataModelService.userData$?.value?.isDollar ? 'dolar' : 'peso'}}</span>
+      <span>{{!userDataModelService.userData$?.value?.is_dollar ? 'dolar' : 'peso'}}</span>
       oficial:</span>
-      <span class="font-weight-600"> {{incomeBeforeOpositiveOff.toFixed(0) | thousandsPipe}} {{!userDataModelService.userData$.value.isDollar ? 'U$D' : 'AR$'}}</span>
+      <span class="font-weight-600"> {{incomeBeforeOpositiveOff.toFixed(0) | thousandsPipe}} {{!userDataModelService.userData$.value.is_dollar ? 'U$D' : 'AR$'}}</span>
     </label>
     <label class="d-block txtSize14 item-text txtBlack"> <span> Capacidad de ahorro
-      <span>{{!userDataModelService.userData$?.value?.isDollar ? 'dolar' : 'peso'}}</span>
+      <span>{{!userDataModelService.userData$?.value?.is_dollar ? 'dolar' : 'peso'}}</span>
       oficial:</span>
-      <span class="font-weight-600"> {{incomeBeforeSavingCapacityOpositiveOff.toFixed(0) | thousandsPipe}} {{!userDataModelService.userData$.value.isDollar ? 'U$D' : 'AR$'}}</span>
+      <span class="font-weight-600"> {{incomeBeforeSavingCapacityOpositiveOff.toFixed(0) | thousandsPipe}} {{!userDataModelService.userData$.value.is_dollar ? 'U$D' : 'AR$'}}</span>
     </label>
 
 
     <label class="d-block txtSize14 item-text txtBlack"> <span> Ingresos
-      <span>{{!userDataModelService.userData$?.value?.isDollar ? 'dolar' : 'peso'}}</span>
+      <span>{{!userDataModelService.userData$?.value?.is_dollar ? 'dolar' : 'peso'}}</span>
       blue:</span>
-      <span class="font-weight-600"> {{incomeBeforeOpositiveBlue.toFixed(0) | thousandsPipe}} {{!userDataModelService.userData$.value.isDollar ? 'U$D' : 'AR$'}}</span>
+      <span class="font-weight-600"> {{incomeBeforeOpositiveBlue.toFixed(0) | thousandsPipe}} {{!userDataModelService.userData$.value.is_dollar ? 'U$D' : 'AR$'}}</span>
     </label>
     <label class="d-block txtSize14 item-text txtBlack"> <span> Capacidad de ahorro
-      <span>{{!userDataModelService.userData$?.value?.isDollar ? 'dolar' : 'peso'}}</span>
+      <span>{{!userDataModelService.userData$?.value?.is_dollar ? 'dolar' : 'peso'}}</span>
       blue:</span>
-      <span class="font-weight-600"> {{incomeBeforeSavingCapacityOpositiveBlue.toFixed(0) | thousandsPipe}} {{!userDataModelService.userData$.value.isDollar ? 'U$D' : 'AR$'}}</span>
+      <span class="font-weight-600"> {{incomeBeforeSavingCapacityOpositiveBlue.toFixed(0) | thousandsPipe}} {{!userDataModelService.userData$.value.is_dollar ? 'U$D' : 'AR$'}}</span>
     </label>
 
 

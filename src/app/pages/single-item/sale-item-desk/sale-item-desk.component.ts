@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {MeliModelService} from '../../../core/mode-services/meli-model.service';
+import {MeliModelService} from '../../../core/model-services/meli-model.service';
 import {ActivatedRoute} from '@angular/router';
 import {IMeliSingleItem} from '../../../core/interfaces/imeli-single-item';
 import {IMeliItemCategory} from '../../../core/interfaces/imeli-item-category';

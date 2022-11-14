@@ -1,12 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {MeliModelService} from '../../core/mode-services/meli-model.service';
-import {FavouritesModelServiceService} from '../../core/mode-services/favourites-model-service.service';
-import {CasaModelService} from '../../core/mode-services/casa-model.service';
-import {UserDataModelService} from '../../core/mode-services/user-data-model.service';
+import {MeliModelService} from '../../core/model-services/meli-model.service';
+import {FavouritesModelServiceService} from '../../core/model-services/favourites-model-service.service';
+import {CasaModelService} from '../../core/model-services/casa-model.service';
+import {UserDataModelService} from '../../core/model-services/user-data-model.service';
 import {Subscription} from 'rxjs';
-import {PriceTypeModelService} from '../../core/mode-services/price-type-model.service';
+import {PriceTypeModelService} from '../../core/model-services/price-type-model.service';
 import {IPriceAndType} from '../../core/interfaces/iprice-and-type';
-import {OverPriceTypeService} from '../../core/mode-services/over-price-type.service';
+import {OverPriceTypeService} from '../../core/model-services/over-price-type.service';
 
 @Component({
     selector: 'app-sales-favourites',

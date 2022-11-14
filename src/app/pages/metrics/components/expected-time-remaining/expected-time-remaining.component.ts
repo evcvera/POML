@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {CasaModelService} from '../../../../core/mode-services/casa-model.service';
-import {UserDataModelService} from '../../../../core/mode-services/user-data-model.service';
+import {CasaModelService} from '../../../../core/model-services/casa-model.service';
+import {UserDataModelService} from '../../../../core/model-services/user-data-model.service';
 import {EChartsOption} from 'echarts';
 import {IBasicEchartLineModel} from '../../../../core/interfaces/ibasic-echart-line-model';
 import {ISideBarForm} from '../../../../core/interfaces/iside-bar-form';
@@ -88,13 +88,13 @@ export class ExpectedTimeRemainingComponent implements OnInit {
 
 
       const auxLeftRetirment = this.retirement - this.age > 0 ? this.retirement - this.age : 0;
-      const auxSalary = x.isDepenRelationship ? x.salary * 13 : x.salary * 12;
-      const auxSavingCapacityInt = x.isDepenRelationship ? x.savingCapacity * 13 : x.savingCapacity * 12;
+      const auxSalary = x.is_depen_relationship ? x.salary * 13 : x.salary * 12;
+      const auxSavingCapacityInt = x.is_depen_relationship ? x.saving_capacity * 13 : x.saving_capacity * 12;
       this.incomeBefore = auxLeftRetirment * auxSalary;
-      this.incomeBeforeSavingCapacity = x.isPercent ? auxLeftRetirment * auxSalary * (x.savingCapacity / 100) :
+      this.incomeBeforeSavingCapacity = x.is_percent ? auxLeftRetirment * auxSalary * (x.saving_capacity / 100) :
         auxLeftRetirment * auxSavingCapacityInt;
 
-      if (this.userDataModelService.userData$?.value?.isDollar) {
+      if (this.userDataModelService.userData$?.value?.is_dollar) {
         this.incomeBeforeOpositiveOff = this.incomeBefore * this.casaModelService.currentDollar$.value.oficialProm;
         this.incomeBeforeSavingCapacityOpositiveOff = this.incomeBeforeSavingCapacity * this.casaModelService.currentDollar$.value.oficialProm;
 

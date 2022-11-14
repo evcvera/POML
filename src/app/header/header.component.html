@@ -11,14 +11,15 @@
             </svg>
           </a>
           <div class="search-container">
-            <input class="search" placeholder="Buscar productos, marcas y más…" [(ngModel)]="search" (keydown.enter)="$event.target.blur();keyPress();false"
+            <input class="search" placeholder="Buscar productos, marcas y más…" [(ngModel)]="search"
+                   (keydown.enter)="$event.target.blur();keyPress();false"
                    type="text">
             <div class="search-icon-ln">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" data-supported-dps="16x16" fill="currentColor"
                    class="mercado-match" width="16" height="16" focusable="false">
                 <path
                   d="M14.56 12.44L11.3 9.18a5.51 5.51 0 10-2.12 2.12l3.26 3.26a1.5 1.5 0 102.12-2.12zM3 6.5A3.5 3.5 0 116.5 10 3.5 3.5 0 013 6.5z"
-                fill="#00000099"></path>
+                  fill="#00000099"></path>
               </svg>
             </div>
           </div>
@@ -65,6 +66,56 @@
               </svg>
               <div class="txtSize12">Formulario</div>
             </a>
+            <!--<ng-container
+              *ngIf="authenticationService.currentUserSubject$.value && authenticationService.currentUserSubject$.value.uuid">
+              <a [routerLink]="'/in/'+authenticationService.currentUserSubject$.value.uuid"
+                 [routerLinkActive]="'active'" class="nav__link">
+                <ng-container *ngIf="authenticationService.currentUserSubject$.value.avatar">
+                  <img class="tini-avatar-user" [src]="authenticationService.currentUserSubject$.value.avatar">
+                </ng-container>
+                <ng-container *ngIf="!authenticationService.currentUserSubject$.value.avatar">
+                  <app-empty-user-image class="tini-avatar-user"></app-empty-user-image>
+                </ng-container>
+                <div class="txtSize12">Yo</div>
+              </a>
+            </ng-container>-->
+
+            <ng-container
+              *ngIf="authenticationService.currentUserSubject$.value && authenticationService.currentUserSubject$.value.uuid">
+              <div  ngbDropdown #myDrop="ngbDropdown">
+                <a [routerLink]="'/in/'+authenticationService.currentUserSubject$.value.uuid"
+                   [routerLinkActive]="'active'" class="nav__link user-img"
+                   id="dropdownManual" ngbDropdownToggle
+                   (mouseenter)="$event.stopPropagation(); myDrop.open();"
+                   (mouseleave)="leave($event,myDrop)">
+                  <!--(mouseenter)="$event.stopPropagation(); myDrop.open();" (mouseleave)="$event.stopPropagation(); myDrop.close();">-->
+                  <ng-container *ngIf="authenticationService.currentUserSubject$.value.avatar">
+                    <img class="tini-avatar-user" [src]="authenticationService.currentUserSubject$.value.avatar">
+                  </ng-container>
+                  <ng-container *ngIf="!authenticationService.currentUserSubject$.value.avatar">
+                    <app-empty-user-image class="tini-avatar-user"></app-empty-user-image>
+                  </ng-container>
+                  <div class="txtSize12 me-text">Yo</div>
+                </a>
+                <div ngbDropdownMenu aria-labelledby="dropdownManual">
+                    <ng-container
+                      *ngIf="(authenticationService.currentUserSubject$.value && authenticationService.currentUserSubject$.value.uuid)">
+                      <button class="dropdown-item" (click)="signOut()">Cerrar sesión</button>
+                    </ng-container>
+                </div>
+              </div>
+            </ng-container>
+
+            <!--<div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+              <button class="btn btn-outline-primary" id="dropdownManual" ngbDropdownToggle
+                      (mouseenter)="$event.stopPropagation(); myDrop.open();" (mouseleave)="$event.stopPropagation(); myDrop.close();">Toggle dropdown</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownManual">
+                <button class="dropdown-item">Action - 1</button>
+                <button class="dropdown-item">Another Action</button>
+                <button class="dropdown-item">Something else is here</button>
+              </div>
+            </div>-->
+
           </div>
         </nav>
       </div>

@@ -3,13 +3,25 @@
     <h1>Tiempo de las cosas</h1>
     <ng-container *ngIf="userDataModelService.userData$ | async as userData">
       <ng-container *ngIf="userData.gender">
-        <h2 class="w-50">Te ayudamos a que conozcas el valor de tu tiempo, y el precio de lo que pagas.</h2>
+        <h2 class="w-50">Te ayudamos a que conozcas el valor de tu tiempo y el precio de lo que pagas.</h2>
       </ng-container>
       <ng-container *ngIf="!userData.gender">
         <h2 class="complet-form" (click)="toggleForm()">COMPLETE FORMULARIO</h2>
       </ng-container>
-    </ng-container>
 
+      <div class="d-flex">
+        <ng-container
+          *ngIf="!(authenticationService.currentUserSubject$.value && authenticationService.currentUserSubject$.value.uuid)">
+          <button class="mx-1 primary-button" [routerLink]="'/signup'">Registrarse</button>
+          <button class="mx-1 primary-button" [routerLink]="'/login'">Login</button>
+        </ng-container>
+        <!--<ng-container
+          *ngIf="(authenticationService.currentUserSubject$.value && authenticationService.currentUserSubject$.value.uuid)">
+          <button class="mx-1 primary-button" (click)="signOut()">Cerrar sesión</button>
+        </ng-container>-->
+      </div>
+
+    </ng-container>
   </section>
   <div class="wave" style="height: 150px; overflow: hidden;">
     <svg viewBox="0 0 500 150" preserveAspectRatio="none"
@@ -166,7 +178,6 @@
         <div class="col-lg-2 col-xs-12 links mb-3">
           <h4 class="mt-lg-0 mt-sm-4">Links</h4>
           <ul class="m-0 p-0">
-            <!--<li>- <a href="https://github.com/evcvera" target="_blank">GitHub</a></li>-->
             <li>- <a href="https://www.linkedin.com/in/vera-celiz-ernesto/" target="_blank">Linkedin</a></li>
           </ul>
         </div>

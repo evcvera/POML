@@ -1,0 +1,49 @@
+<app-pop-up [data]="this.data" (dialogResponse)="dialogRespones($event)">
+  <ng-container popup-body>
+    <div>
+      <form [formGroup]="updateForm">
+        <div class="form-row">
+          <div class="info-input">
+            <p class="input__label txtSize14 mb-0">Nombre</p>
+            <input class="form-control" type="text" formControlName="firstName">
+            <div *ngIf="updateForm.get('firstName')?.errors && updateForm.get('firstName')?.touched">Campo obligatorio
+            </div>
+          </div>
+
+          <div class="info-input">
+            <p class="input__label txtSize14 mb-0">Apellido</p>
+            <input class="form-control" type="text"formControlName="lastName">
+            <div *ngIf="updateForm.get('lastName')?.errors && updateForm.get('lastName')?.touched">Campo obligatorio
+            </div>
+          </div>
+
+
+          <div class="info-input">
+            <p class="input__label txtSize14 mb-0">Ubicacion</p>
+            <input class="form-control" type="text" formControlName="location">
+          </div>
+
+          <div class="info-input">
+            <p class="input__label txtSize14 mb-0">Cargo</p>
+            <input class="form-control" type="text" formControlName="occupation">
+          </div>
+
+          <div class="mx-1 w-100 mt-3">
+            <div class="input__label txtSize14 mb-0">Acerca de</div>
+            <textarea type="text" formControlName="biography" class="form-control w-100 text-a"></textarea>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </ng-container>
+
+  <ng-container popup-actions>
+    <div class="d-flex ml-auto">
+      <button class="action-button mr-3 btn btn-light" (click)="close()">
+        Cancelar
+      </button>
+      <button class="action-button btn btn-primary" (click)="updateUser()">Aplicar</button>
+    </div>
+  </ng-container>
+</app-pop-up>
