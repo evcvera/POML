@@ -66,14 +66,16 @@ export class ExpectedTimeRemainingComponent implements OnInit {
 
     this.userDataSubscription = this.userDataModelService.userData$.subscribe(x => {
 
-      this.getAge(x.birthday);
-      this.completedAgeNew = this.getAgeCompleted(this.datePipe.transform(x.birthday, 'MM-dd-yyyy'));
-      this.retirement = x.gender === '0' ? 65 : x.gender === '1' ? 60 : 65;
-      this.expectedAge = x.expectedAge;
-      this.expectedDateLeftTimeTo = new Date(x.birthday);
-      this.expectedDateLeftTimeTo.setDate(x.birthday.getDate() + (x.expectedAge * 365.25));
-      this.expectedDateLeftTimeFrom = new Date(this.expectedDateLeftTimeTo);
-      this.expectedDateLeftTimeFrom.setDate(this.expectedDateLeftTimeTo.getDate() - 365.25);
+      if (x.birthday) {
+        this.getAge(x.birthday);
+        this.completedAgeNew = this.getAgeCompleted(this.datePipe.transform(x.birthday, 'MM-dd-yyyy'));
+        this.retirement = x.gender === '0' ? 65 : x.gender === '1' ? 60 : 65;
+        this.expectedAge = x.expectedAge;
+        this.expectedDateLeftTimeTo = new Date(x.birthday);
+        this.expectedDateLeftTimeTo.setDate(x.birthday.getDate() + (x.expectedAge * 365.25));
+        this.expectedDateLeftTimeFrom = new Date(this.expectedDateLeftTimeTo);
+        this.expectedDateLeftTimeFrom.setDate(this.expectedDateLeftTimeTo.getDate() - 365.25);
+      }
       //this.buildCompleteAge(x.birthday);
 
       if (this.isPercent) {
@@ -301,7 +303,10 @@ export class ExpectedTimeRemainingComponent implements OnInit {
             /*{value: this.agePercent, name: this.isPercent ? 'Edad porcentual actual' : 'Edad actual'},
             {value: this.retirementPercent, name: this.isPercent ? 'Tiempo porcentual para jubilación' : 'Tiempo para jubilación'},
             {value: this.expectedAgePercent, name: this.isPercent ? 'Tiempo porcentual con jubilación' : 'Tiempo con jubilacíon'},*/
-            {value: Number((this.agePercent).toFixed(2)), name: this.isPercent ? 'Edad porcentual actual' : 'Edad actual'},
+            {
+              value: Number((this.agePercent).toFixed(2)),
+              name: this.isPercent ? 'Edad porcentual actual' : 'Edad actual'
+            },
             {
               value: Number((this.retirementPercent).toFixed(2)),
               name: this.isPercent ? 'Tiempo porcentual para jubilación' : 'Tiempo para jubilación'

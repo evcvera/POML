@@ -4,7 +4,7 @@
   <div class="image-container">
     <a [href]="resultsEntity.permalink" target="_blank" style="text-decoration: none">
       <div class="image-size ">
-        <img [src]="resultsEntity.thumbnail" width="120" height="120" (load)="imgLoaded()"
+        <img [src]="resultsEntity.thumbnail ?resultsEntity.thumbnail : 'assets/img/empty.jpeg'" width="120" height="120" (load)="imgLoaded()"
              alt="{{resultsEntity.title}}">
       </div>
     </a>
