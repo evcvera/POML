@@ -1,18 +1,18 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
 import {Subscription} from "rxjs";
-import {AuthenticationModelService} from "../../../core/model-services/authentication-model.service";
-import {IUser} from "../../../core/interfaces/iuser";
+import {Router} from "@angular/router";
 import {UserModelService} from "../../../core/model-services/user-model.service";
+import {AuthenticationModelService} from "../../../core/model-services/authentication-model.service";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {IUser} from "../../../core/interfaces/iuser";
 
 @Component({
-  selector: 'app-update-user-info',
-  templateUrl: './update-user-info.component.html',
-  styleUrls: ['./update-user-info.component.scss']
+  selector: 'app-update-photo',
+  templateUrl: './update-photo.component.html',
+  styleUrls: ['./update-photo.component.scss']
 })
-export class UpdateUserInfoComponent implements OnInit, OnDestroy {
+export class UpdatePhotoComponent implements OnInit {
   updateForm = new FormGroup({
     firstName: new FormControl(`${''}`, [Validators.required, Validators.minLength(3)]),
     lastName: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -24,6 +24,7 @@ export class UpdateUserInfoComponent implements OnInit, OnDestroy {
   updateUserSub: any;
 
   @Input() data: any;
+  @Input() user: IUser;
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
@@ -52,30 +53,23 @@ export class UpdateUserInfoComponent implements OnInit, OnDestroy {
   }
 
 
-  updateUser() {
-    let user: IUser = {
-      first_name: this.updateForm.value.firstName || "",
-      last_name: this.updateForm.value.lastName || "",
-      biography: this.updateForm.value.biography || "",
-      location: this.updateForm.value.location || "",
-      occupation: this.updateForm.value.occupation || "",
-    }
-
-    if (this.updateForm.valid) {
-      this.updateUserSub = this.userService.updateUserInfo(user).subscribe(resp => {
-        this.modal.close()
-      })
-    } else {
-      this.updateForm.markAllAsTouched();
-    }
-  }
-
-
   dialogResponse($event: string) {
-   console.log($event);
+    console.log($event);
   }
 
   close() {
     this.modal.close();
+  }
+
+  deleteImg() {
+
+  }
+
+  onFileSelected() {
+
+  }
+
+  updateImg() {
+
   }
 }

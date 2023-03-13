@@ -25,8 +25,8 @@
           </button>
         </div>
         <div class="user-image-container">
-          <img class="user-image" *ngIf="user.avatar" [src]="user.avatar" (click)="openAvatar(user.avatar)">
-          <app-empty-user-image *ngIf="!user.avatar" class="user-image" (click)="openAvatar('')"></app-empty-user-image>
+          <img class="user-image" *ngIf="user.avatar" [src]="user.avatar" (click)="openPhoto(user.avatar)">
+          <app-empty-user-image *ngIf="!user.avatar" class="user-image" (click)="openPhoto('')"></app-empty-user-image>
         </div>
         <div class="user-card-footer mt-2">
           <h1 class="user-name my-0">{{user.first_name}} {{user.last_name}}</h1>

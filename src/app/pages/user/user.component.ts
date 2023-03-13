@@ -10,6 +10,7 @@ import {PriceTypeModelService} from "../../core/model-services/price-type-model.
 import {GeneralPopupComponent} from "../../sharedComponents/general-popup/general-popup.component";
 import {UpdateUserInfoComponent} from "./update-user-info/update-user-info.component";
 import {Subscription} from "rxjs";
+import {UpdatePhotoComponent} from "./update-photo/update-photo.component";
 
 @Component({
   selector: 'app-user',
@@ -37,7 +38,7 @@ export class UserComponent implements OnInit, OnDestroy {
     }
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
-      if(this.authenticationService.currentUserSubject$.value.uuid === this.id){
+      if(this.authenticationService.currentUserSubject$.value?.uuid === this.id){
         this.authenticationService.currentUserSubject$.subscribe( value => {
           this.user = value
         })
@@ -72,6 +73,18 @@ export class UserComponent implements OnInit, OnDestroy {
 
   openAvatar(url: string): void {
     const ref = this.modalService.open(GeneralPopupComponent, {modalDialogClass: 'modal-dialog-centered '});
+    ref.result.then((result) => {
+      if (result) {
+        console.log(result)
+      }
+    }).catch((res) => {});
+  }
+
+  openPhoto(url: string): void {
+    const data = { title: ''};
+    const ref = this.modalService.open(UpdatePhotoComponent, {modalDialogClass: 'modal-dialog-centered '});
+    ref.componentInstance.data = data;
+    ref.componentInstance.user = this.user;
     ref.result.then((result) => {
       if (result) {
         console.log(result)

@@ -1,0 +1,26 @@
+<app-pop-up [data]="this.data" (dialogResponse)="dialogResponse($event)">
+  <ng-container popup-body>
+    <ng-container>
+      <app-empty-user-image *ngIf="!(user?.avatar)" [user]="true" class="d-flex justify-content-center"></app-empty-user-image>
+      <img *ngIf="user?.avatar !== ''" [src]="user?.avatar" class="w-100">
+    </ng-container>
+  </ng-container>
+  <!--<ng-container popup-actions>
+    <button class="action-button" (click)="deleteImg()" mat-button>Borrar foto</button>
+    <div class="d-flex ml-auto">
+      <button class="action-button mr-3" mat-stroked-button (click)="fileInput.click()">
+        <input hidden (change)="onFileSelected()" #fileInput type="file" id="file">Cambiar foto
+      </button>
+      <button class="action-button" (click)="updateImg()" mat-raised-button color="primary">Aplicar</button>
+    </div>
+  </ng-container> -->
+  <ng-container popup-actions>
+    <button class="action-button" (click)="deleteImg()">Borrar foto</button>
+    <div class="d-flex ml-auto">
+      <button class="action-button mr-3 btn btn-light" (click)="close()">
+        Cancelar
+      </button>
+      <button class="action-button btn btn-primary" (click)="updateImg()">Aplicar</button>
+    </div>
+  </ng-container>
+</app-pop-up>
