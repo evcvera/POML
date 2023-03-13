@@ -1,0 +1,42 @@
+{
+  "rule_engine": {
+    "valid_promise": false,
+    "with_promise": false,
+    "rules": [
+      {
+        "rule_id": 21000795802,
+        "rule_set": "deductions"
+      },
+      {
+        "rule_id": 21002077793,
+        "rule_set": "release_custom_default"
+      },
+      {
+        "rule_id": 21000002955,
+        "rule_set": "processing_fee_and_release"
+      },
+      {
+        "rule_id": 21000143971,
+        "rule_set": "financing_fee_collector"
+      }
+    ]
+  },
+  "payment_method_id": "125091150",
+  "device_id": "603803ea08813b0018c85984",
+  "concept": "marketplace_order",
+  "internal_risk_analysis": "by_risk",
+  "payments_group_timestamp": "2022-10-31T18:42:48Z",
+  "payment_request_id": "2605744e-9088-43cd-b147-2fcd2a2d77dd",
+  "payments_group_size": 1,
+  "payments_group_uuid": "d77f3fe5-239e-4870-81f7-6602e37182a9",
+  "deferred_charges": [
+    "mp_fee",
+    "ml_fee",
+    "meli_fee",
+    "shipment_fee",
+    "shp_cross_docking",
+    "shp_dropoff",
+    "shp_fulfillment",
+    "shp_off"
+  ]
+}

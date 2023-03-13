@@ -10,6 +10,7 @@ export const environment = {
     dolar: 'https://www.dolarsi.com/api/api.php?type=valoresprincipales',
   },
   myUrl: 'http://localhost:8080'
+  //myUrl: 'https://tiempo-de-las-cosas.onrender.com'
 };
 
 

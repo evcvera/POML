@@ -12,7 +12,8 @@
   <div class="popup-content">
     <ng-content select="[popup-body]"></ng-content>
   </div>
-  <div [ngClass]="data.title ? 'popup-actions' : ''">
+  <!--<div [ngClass]="data.title ? 'popup-actions' : ''">-->
+    <div class="popup-actions">
     <ng-content select="[popup-actions]"></ng-content>
     <ng-container *ngIf="data?.bdelete || data?.bsecondary || data?.bprimary">
       <button class="action-button" (click)="bDelete()" *ngIf="data.bdelete" mat-button>{{data.bdelete}}</button>

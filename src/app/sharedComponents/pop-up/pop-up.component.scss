@@ -37,12 +37,6 @@
 
   }
 
-  .popup-actions {
-    display: flex;
-    border-top: 1px solid rgba(0, 0, 0, 0.15);
-    padding: 16px 24px;
-  }
-
   .popup-content {
     padding: 8px 24px 16px 24px;
   }
@@ -50,6 +44,12 @@
   /*.popup-content, .popup-actions{
     padding: 10px;
   }*/
+}
+
+.popup-actions {
+  display: flex;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 16px 24px;
 }
 
 .header-border {

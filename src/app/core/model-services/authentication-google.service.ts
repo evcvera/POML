@@ -68,9 +68,6 @@ export class AuthenticationGoogleService {
 
   getToken(): void {
     this.oAuthService.tryLoginImplicitFlow().then(() => {
-      console.log(this.oAuthService.getAccessToken())
-      //console.log(this.oAuthService.getIdentityClaims())
-      //console.log(this.oAuthService.getGrantedScopes())
     })
   }
 

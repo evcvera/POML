@@ -79,6 +79,7 @@ import {JwtInterceptor} from "./helpers/jwt.interceptor";
 import {ErrorInterceptor} from "./helpers/error.interceptor";
 import {PopUpComponent} from "./sharedComponents/pop-up/pop-up.component";
 import {UpdateUserInfoComponent} from "./pages/user/update-user-info/update-user-info.component";
+import { UpdatePhotoComponent } from './pages/user/update-photo/update-photo.component';
 
 @NgModule({
   declarations: [
@@ -134,6 +135,7 @@ import {UpdateUserInfoComponent} from "./pages/user/update-user-info/update-user
     EmptyImageComponent,
     PopUpComponent,
     UpdateUserInfoComponent,
+    UpdatePhotoComponent,
   ],
   imports: [
     BrowserModule,

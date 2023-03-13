@@ -21,6 +21,10 @@ export class ErrorInterceptor implements HttpInterceptor {
       }
 
       const error = err.error.message || err.statusText;
+      if(err.error.message === 'token vencido token invalido'){
+        this.authenticationGoogleService.signOut();
+        location.href = '/'
+      }
       return throwError(error);
     }));
   }

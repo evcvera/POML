@@ -109,7 +109,6 @@ export class SideBarFormComponent implements OnInit, OnDestroy {
       this.userDataModelService.userData$.next(this.sideBarForm);
       this.userDataModelService.toggleForm$.next(false);
       this.router.navigate(['metrics']);
-      //localStorage.setItem('userData', JSON.stringify(this.sideBarForm));
       this.refreshAllModelService.refresh();
     } else {
       this.form.markAllAsTouched();
