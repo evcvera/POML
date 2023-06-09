@@ -108,7 +108,7 @@ export class MeliModelService {
 
       if (this.priceTypeModelService.priceType$.value.id !== 'standar') {
         const price = this.getCurrentPrice(x);
-        x.priceAndType = this.priceTypeModelService.buildPriceType(price, x.prices.presentation.display_currency);
+        x.priceAndType = this.priceTypeModelService.buildPriceType(price, x.currency_id);
       }
 
     });
