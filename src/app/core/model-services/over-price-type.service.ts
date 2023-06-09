@@ -42,7 +42,8 @@ export class OverPriceTypeService {
     this.priceTypeModelService.priceType$.next(item);
     if (this.favouritesModelService.favouritesMeliData$.value?.meliFavouriteItem?.length > 0) {
       this.favouritesModelService.favouritesMeliData$.value?.meliFavouriteItem.forEach((x) => {
-        x.body.priceAndType = this.priceTypeModelService.buildPriceType(x.body.price, x.body.currency_id);
+        console.log("me ejecute 2");
+        x.body.priceAndType = this.priceTypeModelService.buildPriceType(x.body?.price, x.body?.currency_id);
         /*if (x.body?.priceAndType?.completedPriceTime) {
           x.body.timeRequired = this.getTimeRequired(x.body?.priceAndType?.completedPriceTime.toString());
         }*/
@@ -51,7 +52,9 @@ export class OverPriceTypeService {
     if (this.meliModelService.searchMeliData$.value?.results?.length > 0) {
       this.meliModelService.searchMeliData$.value?.results.forEach((x) => {
         const price = this.getCurrentPrice(x);
-        x.priceAndType = this.priceTypeModelService.buildPriceType(price, x.prices.presentation.display_currency);
+        console.log("me ejecute 3");
+        //console.log(x);
+        x.priceAndType = this.priceTypeModelService.buildPriceType(price, x.currency_id);
         /*if (x.priceAndType?.completedPriceTime) {
           x.timeRequired = this.getTimeRequired(x.priceAndType?.completedPriceTime.toString());
         }*/

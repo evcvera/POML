@@ -22,6 +22,8 @@ export class UpdatePhotoComponent implements OnInit {
   });
   userSub: Subscription;
   updateUserSub: any;
+  imgFile: any;
+  currentImg: string;
 
   @Input() data: any;
   @Input() user: IUser;
@@ -66,10 +68,25 @@ export class UpdatePhotoComponent implements OnInit {
   }
 
   onFileSelected() {
-
+    const inputNode: any = document.querySelector('#file');
+    if (typeof (FileReader) !== 'undefined') {
+      const reader = new FileReader();
+      const [file] = inputNode.files;
+      reader.readAsDataURL(file);
+      if (file.type.match('image/jpeg') || file.type.match('image/png') || file.type.match('image/jpg')) {
+        reader.onload = (e: any) => {
+          this.currentImg = reader.result as string;
+          this.imgFile = e.target.result;
+        };
+      }
+    }
   }
 
   updateImg() {
-
+    if (this.currentImg !== '') {
+      this.userService.updateMedia('avatar', this.imgFile).subscribe(x => {
+        this.close();
+      })
+    }
   }
 }

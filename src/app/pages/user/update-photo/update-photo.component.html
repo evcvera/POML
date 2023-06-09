@@ -1,8 +1,12 @@
 <app-pop-up [data]="this.data" (dialogResponse)="dialogResponse($event)">
   <ng-container popup-body>
-    <ng-container>
-      <app-empty-user-image *ngIf="!(user?.avatar)" [user]="true" class="d-flex justify-content-center"></app-empty-user-image>
+    <ng-container *ngIf="!currentImg">
+      <app-empty-user-image *ngIf="!(user?.avatar)" [user]="true"
+                            class="d-flex justify-content-center"></app-empty-user-image>
       <img *ngIf="user?.avatar !== ''" [src]="user?.avatar" class="w-100">
+    </ng-container>
+    <ng-container *ngIf="currentImg">
+      <img [src]="currentImg" class="w-100">
     </ng-container>
   </ng-container>
   <!--<ng-container popup-actions>
@@ -15,10 +19,10 @@
     </div>
   </ng-container> -->
   <ng-container popup-actions>
-    <button class="action-button" (click)="deleteImg()">Borrar foto</button>
+    <button class="action-button btn btn-secondary" (click)="deleteImg()">Borrar foto</button>
     <div class="d-flex ml-auto">
-      <button class="action-button mr-3 btn btn-light" (click)="close()">
-        Cancelar
+      <button class="action-button mr-3 btn btn-light" (click)="fileInput.click()">
+        <input hidden (change)="onFileSelected()" #fileInput type="file" id="file">Cambiar foto
       </button>
       <button class="action-button btn btn-primary" (click)="updateImg()">Aplicar</button>
     </div>

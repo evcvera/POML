@@ -75,6 +75,7 @@ export class MeliModelService {
 //&shipping_cost=free
     if (this.searchByInput$.value) {
       this.searchSubscription = this.http.get(`${environment.api.meli}/sites/MLA/search?q=${search}&offset=${pageNumber * 50}&limit=50&zip_code=${zipCode}&sort=${sortPage}${filters}`).subscribe((resp: any) => {
+        console.log(resp);
         this.setSearchResp(resp);
       });
     } else {
@@ -100,7 +101,8 @@ export class MeliModelService {
 
       if (this.priceTypeModelService.priceType$.value.id !== 'standar') {
         const price = this.getCurrentPrice(x);
-        x.priceAndType = this.priceTypeModelService.buildPriceType(price, x.prices.presentation.display_currency);
+        console.log("me ejecute 1");
+        x.priceAndType = this.priceTypeModelService.buildPriceType(price, x.prices?.presentation.display_currency);
       }
 
     });
