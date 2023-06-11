@@ -83,8 +83,8 @@ export class FavouritesModelServiceService {
                 const response: IMeliItem[]  = resp;
                 if (JSON.stringify(response) !== JSON.stringify(resp)) {
                   // c console.log('AYUDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
-                  console.log(response);
-                  console.log(resp);
+                  //console.log(response);
+                  //console.log(resp);
                 }
 
                 for (const item of Object.keys(response)) {
