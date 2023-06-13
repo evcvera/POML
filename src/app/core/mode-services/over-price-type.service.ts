@@ -51,7 +51,7 @@ export class OverPriceTypeService {
     if (this.meliModelService.searchMeliData$.value?.results?.length > 0) {
       this.meliModelService.searchMeliData$.value?.results.forEach((x) => {
         const price = this.getCurrentPrice(x);
-        x.priceAndType = this.priceTypeModelService.buildPriceType(price, x.prices.presentation.display_currency);
+        x.priceAndType = this.priceTypeModelService.buildPriceType(price, x.currency_id);
         /*if (x.priceAndType?.completedPriceTime) {
           x.timeRequired = this.getTimeRequired(x.priceAndType?.completedPriceTime.toString());
         }*/
