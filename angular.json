@@ -136,5 +136,8 @@
       }
     }
   },
-  "defaultProject": "POML"
+  "defaultProject": "POML",
+  "cli": {
+    "analytics": false
+  }
 }
