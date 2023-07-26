@@ -14,8 +14,14 @@
           (mouseover)="totalSumValues()"
           [animation]="false"
           [ngbPopover]="sumTimeBlue + sumTimeIncome + sumTimeSavingCapacity">Monto-->
-      <h4 class="mb-3" *ngIf="favouritesModelService?.favouritesMeliData$?.value?.totalSum">Monto
-        total {{favouritesModelService?.favouritesMeliData$?.value?.totalSum | thousandsPipe}} B $</h4>
+      <ng-container *ngIf="favouritesModelService?.favouritesMeliData$?.value?.totalSum">
+        <div class="favourites-sub-title">
+          <h6>Monto total {{favouritesModelService?.favouritesMeliData$?.value?.totalSum | thousandsPipe}} $ B</h6>
+          <h6>{{sumTimeBlue}}</h6>
+          <h6>{{sumTimeIncome}}</h6>
+          <h6>{{sumTimeSavingCapacity}}</h6>
+        </div>
+      </ng-container>
       <div class="d-flex">
         <div class="filter-type">
           <div style="width: 296px">

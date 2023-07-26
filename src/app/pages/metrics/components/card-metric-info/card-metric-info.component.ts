@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {CasaModelService} from '../../../../core/mode-services/casa-model.service';
+import {CasaModelService} from '../../../../core/model-services/casa-model.service';
 import {DatePipe} from '@angular/common';
 import {IMetricCard} from '../../../../core/interfaces/imetric-card';
 import {IMetricCardSubtitle} from '../../../../core/interfaces/imetric-card-subtitle';

@@ -1,7 +1,7 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {IMeliSingleItem} from '../../../../../core/interfaces/imeli-single-item';
-import {MeliModelService} from '../../../../../core/mode-services/meli-model.service';
+import {MeliModelService} from '../../../../../core/model-services/meli-model.service';
 import {Subscription} from 'rxjs';
 
 @Component({

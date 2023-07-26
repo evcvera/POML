@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {MeliModelService} from './meli-model.service';
-import {FavouritesModelServiceService} from './favourites-model-service.service';
+import {FavouritesModelService} from './favourites-model.service';
 import {PriceTypeModelService} from './price-type-model.service';
 
 @Injectable({
@@ -9,7 +9,7 @@ import {PriceTypeModelService} from './price-type-model.service';
 export class RefreshAllModelService {
 
   constructor(private meliModelService: MeliModelService,
-              private favouritesModelService: FavouritesModelServiceService,
+              private favouritesModelService: FavouritesModelService,
               private priceTypeModelService: PriceTypeModelService) { }
 
   refresh(): void{

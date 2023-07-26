@@ -1,6 +1,6 @@
 import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
-import {MeliModelService} from '../../core/mode-services/meli-model.service';
-import {UserDataModelService} from '../../core/mode-services/user-data-model.service';
+import {MeliModelService} from '../../core/model-services/meli-model.service';
+import {UserDataModelService} from '../../core/model-services/user-data-model.service';
 import {Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 

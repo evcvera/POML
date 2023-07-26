@@ -4,5 +4,6 @@ export interface IMeliFavouriteItems {
   meliFavouriteItem?: IMeliItem[];
   classified?: boolean;
   totalSum?: number;
+  timeRequired?: string;
   ids?: string[];
 }

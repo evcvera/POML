@@ -1,14 +1,14 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {EchartModelService} from './core/mode-services/echart-model.service';
-import {UserDataModelService} from './core/mode-services/user-data-model.service';
-import {CasaModelService} from './core/mode-services/casa-model.service';
-import {MeliModelService} from './core/mode-services/meli-model.service';
+import {EchartModelService} from './core/model-services/echart-model.service';
+import {UserDataModelService} from './core/model-services/user-data-model.service';
+import {CasaModelService} from './core/model-services/casa-model.service';
+import {MeliModelService} from './core/model-services/meli-model.service';
 import {ISideBarForm} from './core/interfaces/iside-bar-form';
 import {IMeliZipCode} from './core/interfaces/imeli-zip-code';
-import {FavouritesModelServiceService} from './core/mode-services/favourites-model-service.service';
+import {FavouritesModelService} from './core/model-services/favourites-model.service';
 import {Router, NavigationEnd} from '@angular/router';
 import {filter} from 'rxjs/operators';
-import {WeatherModelService} from './core/mode-services/weather-model.service';
+import {WeatherModelService} from './core/model-services/weather-model.service';
 import {Title} from '@angular/platform-browser';
 import {IWeather} from './core/interfaces/iweather';
 import {BehaviorSubject} from 'rxjs';
@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
   constructor(private casaModelService: CasaModelService,
               public userDataModelService: UserDataModelService,
               private meliModelService: MeliModelService,
-              private favouritesModelServiceService: FavouritesModelServiceService,
+              private FavouritesModelService: FavouritesModelService,
               private router: Router,
               private weatherModelService: WeatherModelService,
               private titleService: Title) {
@@ -66,7 +66,7 @@ export class AppComponent implements OnInit {
       const result = favouriteItems.filter((item, index) => {
         return favouriteItems.indexOf(item) === index;
       });
-      this.favouritesModelServiceService.favouritesMeliItems$.next(result);
+      this.FavouritesModelService.favouritesMeliItems$.next(result);
     }
 
     /*const navEndEvents$ = this.router.events

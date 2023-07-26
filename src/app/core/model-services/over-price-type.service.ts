@@ -3,7 +3,7 @@ import {AvailableFiltersEntity, ResultsEntity, ValuesEntity2} from '../interface
 import {CasaModelService} from './casa-model.service';
 import {UserDataModelService} from './user-data-model.service';
 import {PriceTypeModelService} from './price-type-model.service';
-import {FavouritesModelServiceService} from './favourites-model-service.service';
+import {FavouritesModelService} from './favourites-model.service';
 import {MeliModelService} from './meli-model.service';
 import {BehaviorSubject} from 'rxjs';
 import {IMeliFavouriteItems} from '../interfaces/imeli-favourite-items';
@@ -31,14 +31,13 @@ export class OverPriceTypeService {
   constructor(private casaModelService: CasaModelService,
               private userDataModelService: UserDataModelService,
               private priceTypeModelService: PriceTypeModelService,
-              private favouritesModelService: FavouritesModelServiceService,
+              private favouritesModelService: FavouritesModelService,
               private meliModelService: MeliModelService) {
   }
 
 
   setPriceType(item: ValuesEntity2): void {
     this.clearTimeRequired();
-
     this.priceTypeModelService.priceType$.next(item);
     if (this.favouritesModelService.favouritesMeliData$.value?.meliFavouriteItem?.length > 0) {
       this.favouritesModelService.favouritesMeliData$.value?.meliFavouriteItem.forEach((x) => {
@@ -71,17 +70,23 @@ export class OverPriceTypeService {
   setPriceTypeMouseOver(currentPrince: string, id: string): void {
     if (this.priceTypeModelService.priceType$.value.id === 'income_time' || this.priceTypeModelService.priceType$.value.id === 'saving_capacity_time') {
       const auxItem = this.meliModelService.searchMeliData$.value?.results.find((x => x.id === id));
-      /*if (auxItem && !auxItem.timeRequired) {*/
       if (auxItem) {
         auxItem.timeRequired = this.getTimeRequired(currentPrince);
       }
       const auxFavItem = this.favouritesModelService.favouritesMeliData$.value?.meliFavouriteItem?.find((x => x.body.id === id));
-      /*if (auxItem && !auxItem.timeRequired) {*/
       if (auxFavItem) {
         auxFavItem.body.timeRequired = this.getTimeRequired(currentPrince);
       }
     }
   }
+
+
+  setGlobalPriceType(currentPrince: string): void {
+    if (this.priceTypeModelService.priceType$.value.id === 'income_time' || this.priceTypeModelService.priceType$.value.id === 'saving_capacity_time') {
+        let timeRequired = this.getTimeRequired(currentPrince);
+    }
+  }
+
 
   getCurrentPrice(x: ResultsEntity): number {
     if (x.prices?.prices?.length) {

@@ -7,7 +7,7 @@ import {IMeliZipCode} from '../interfaces/imeli-zip-code';
 import {IMeliSingleItem} from '../interfaces/imeli-single-item';
 import {concatMap, map} from 'rxjs/operators';
 import {IMeliItemOpinion} from '../interfaces/imeli-item-opinion';
-import {FavouritesModelServiceService} from './favourites-model-service.service';
+import {FavouritesModelService} from './favourites-model.service';
 import {PriceTypeModelService} from './price-type-model.service';
 import {IMeliItemCategory} from '../interfaces/imeli-item-category';
 import {IMeliCompleteRecommendations} from '../interfaces/imeli-complete-recommendations';
@@ -19,7 +19,7 @@ import {IMeliItemImg} from '../interfaces/imeli-item-img';
 export class MeliModelService {
 
   constructor(private http: HttpClient,
-              private favouritesModelServiceService: FavouritesModelServiceService,
+              private favouritesModelServiceService: FavouritesModelService,
               private priceTypeModelService: PriceTypeModelService) {
   }
 
@@ -39,8 +39,6 @@ export class MeliModelService {
   singleItemImages$: BehaviorSubject<IMeliItemImg[]> = new BehaviorSubject<IMeliItemImg[]>(undefined);
 
   blockUi$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
-  public searchSortBy: string;
 
   searchSubscription: Subscription;
   zipCodeSubscription: Subscription;
@@ -95,24 +93,24 @@ export class MeliModelService {
   setSearchResp(resp: any): void {
     const respAux: IMeliSearch = resp;
     respAux.itemIds = [];
+
     respAux.results.forEach((x) => {
-      x.thumbnail = x.thumbnail.replace('-I.jpg', '-O.webp');
-      //https://http2.mlstatic.com/D_NQ_NP_723831-MLA45658735494_042021-O.webp
-      x.thumbnail = x.thumbnail.replace('http:', 'https:');
-      x.thumbnail = x.thumbnail.replace('D_', 'D_NQ_NP_');
+      x.thumbnail = x.thumbnail.replace('-I.jpg', '-O.webp').replace('http:', 'https:').replace('D_', 'D_NQ_NP_');
       x.pictures = [x.thumbnail];
       respAux.itemIds.push(x.id);
-      if (this.favouritesModelServiceService.favouritesMeliItems$.value && this.favouritesModelServiceService.favouritesMeliItems$.value !== []) {
-        x.isFavourite = this.favouritesModelServiceService.favouritesMeliItems$.value.some(r => r === x.id);
+
+      const favouritesItems = this.favouritesModelServiceService.favouritesMeliItems$.value;
+      if (favouritesItems && favouritesItems.length > 0) {
+        x.isFavourite = favouritesItems.includes(x.id);
       }
 
       if (this.priceTypeModelService.priceType$.value.id !== 'standar') {
         const price = this.getCurrentPrice(x);
         x.priceAndType = this.priceTypeModelService.buildPriceType(price, x.currency_id);
       }
-
     });
-    const isClassified = respAux.results.find(x => x.buying_mode !== 'classified');
+
+    const isClassified = respAux.results.some(x => x.buying_mode !== 'classified');
     respAux.classified = !isClassified;
 
     if (!this.searchByInput$.value) {
@@ -124,12 +122,7 @@ export class MeliModelService {
     }
 
     this.searchMeliData$.next(respAux);
-    //this.getOpinionsRating(respAux.itemIds);
-
-    /****************** SET BLOCK UI ***************/
     this.blockUi$.next(false);
-
-
   }
 
   async getZipcode(zipCode: string): Promise<boolean> {
@@ -162,13 +155,14 @@ export class MeliModelService {
 
   getImages(id: string): void {
     this.getImagesSingleItem = this.http.get(`${environment.api.meli}/items/${id}`).subscribe((item: IMeliSingleItem) => {
-      // c console.log(item);
       item.pictures.shift();
-      const index = this.searchMeliData$.value?.results.findIndex(y => y.id === item.id);
+      const searchResults = this.searchMeliData$.value?.results;
+      const index = searchResults?.findIndex(y => y.id === item.id);
+
       if (item.pictures) {
         item.pictures.forEach(z => {
           const imgUrlHttps = z.url.replace('http:', 'https:');
-          this.searchMeliData$.value?.results[index]?.pictures?.push(imgUrlHttps);
+          searchResults?.[index]?.pictures?.push(imgUrlHttps);
         });
       }
     });
@@ -177,27 +171,22 @@ export class MeliModelService {
   /***************************** GET RATING AND OPINIONS ***************************************/
 
   async getSingleItem(id: string): Promise<IMeliSingleItem> {
-    return new Promise<IMeliSingleItem>((resp) => {
-      this.http.get(`${environment.api.meli}/items/${id}`).subscribe((itemAny: any) => {
+    return new Promise<IMeliSingleItem>((resolve) => {
+      this.http.get(`${environment.api.meli}/items/${id}`).subscribe(async (itemAny: any) => {
         const item: IMeliSingleItem = itemAny;
-        const auxImages: IMeliItemImg[] = [];
-        item.pictures.forEach((x, i) => {
-          const aux: IMeliItemImg = {imgUrl: x.url, isSelected: i === 0, secure_url: x.secure_url};
-          auxImages.push(aux);
-        });
+        const auxImages: IMeliItemImg[] = item.pictures.map((x, i) => ({
+          imgUrl: x.url,
+          isSelected: i === 0,
+          secure_url: x.secure_url
+        }));
         this.singleItemImages$.next(auxImages);
 
         if (item.catalog_product_id) {
-          this.getSingleMeliItemOpinionPromise2(item.catalog_product_id).then(x => {
-            item.fullRecommendations = x;
-            // c console.log('+++');
-            // c console.log(itemAny);
-            // c console.log('+++');
-            resp(item);
-          });
-        } else {
-          resp(item);
+          const recommendations = await this.getSingleMeliItemOpinionPromise2(item.catalog_product_id);
+          item.fullRecommendations = recommendations;
         }
+
+        resolve(item);
       });
     });
   }

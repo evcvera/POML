@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Picture} from 'src/app/core/interfaces/imeli-item';
-import {MeliModelService} from '../../../../../core/mode-services/meli-model.service';
+import {MeliModelService} from '../../../../../core/model-services/meli-model.service';
 import {IMeliSingleItem} from '../../../../../core/interfaces/imeli-single-item';
 import {IMeliItemImg} from '../../../../../core/interfaces/imeli-item-img';
 import {Subscription} from 'rxjs';

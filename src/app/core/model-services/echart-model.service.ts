@@ -9,7 +9,6 @@ export class EchartModelService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public espVida: boolean;
   chartOption$: BehaviorSubject<EChartsOption> = new BehaviorSubject<EChartsOption>(null);
 
   getBasicLineEchartData(): Observable<IBasicEchartLineModel[]>{

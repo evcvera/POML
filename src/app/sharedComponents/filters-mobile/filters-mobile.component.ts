@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {MeliModelService} from '../../core/mode-services/meli-model.service';
+import {MeliModelService} from '../../core/model-services/meli-model.service';
 import {Router} from '@angular/router';
-import {UserDataModelService} from '../../core/mode-services/user-data-model.service';
+import {UserDataModelService} from '../../core/model-services/user-data-model.service';
 import {AvailableFiltersEntity, IMeliSearch, ValuesEntity2} from '../../core/interfaces/imeli-search';
 import {Subscription} from 'rxjs';
 

@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ISideBarForm} from '../../../core/interfaces/iside-bar-form';
-import {UserDataModelService} from '../../../core/mode-services/user-data-model.service';
+import {UserDataModelService} from '../../../core/model-services/user-data-model.service';
 import {Router} from '@angular/router';
 import {DatePipe} from '@angular/common';
-import {RefreshAllModelService} from '../../../core/mode-services/refresh-all-model.service';
+import {RefreshAllModelService} from '../../../core/model-services/refresh-all-model.service';
 
 @Component({
   selector: 'app-side-bar-form',

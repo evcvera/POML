@@ -8,9 +8,6 @@ import {IDollarInfo} from '../interfaces/idollar-info';
   providedIn: 'root'
 })
 export class CasaModelService {
-
-  result: any;
-  casaArray: ICoinCasa[] = [];
   currentDollar$: BehaviorSubject<IDollarInfo> = new BehaviorSubject<IDollarInfo>({});
 
   constructor(private http: HttpClient) {
@@ -28,6 +25,5 @@ export class CasaModelService {
       this.currentDollar$.next(auxCurrentDollar);
     });
   }
-
 
 }

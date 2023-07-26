@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IMeliSingleItem, Attribute} from '../../../../../core/interfaces/imeli-single-item';
-import {FavouritesModelServiceService} from '../../../../../core/mode-services/favourites-model-service.service';
+import {FavouritesModelService} from '../../../../../core/model-services/favourites-model.service';
 
 @Component({
   selector: 'app-middle-col',
@@ -13,7 +13,7 @@ export class MiddleColComponent implements OnInit {
   itemConditionAndSoldQuantity: string;
   isFavourite: boolean;
 
-  constructor(private favouritesModelService: FavouritesModelServiceService) {
+  constructor(private favouritesModelService: FavouritesModelService) {
   }
 
   ngOnInit(): void {

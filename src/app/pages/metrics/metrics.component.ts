@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {CasaModelService} from '../../core/mode-services/casa-model.service';
-import {UserDataModelService} from '../../core/mode-services/user-data-model.service';
+import {CasaModelService} from '../../core/model-services/casa-model.service';
+import {UserDataModelService} from '../../core/model-services/user-data-model.service';
 
 @Component({
   selector: 'app-metrics',

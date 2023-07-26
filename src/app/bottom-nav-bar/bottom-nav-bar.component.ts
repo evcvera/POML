@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {UserDataModelService} from '../core/mode-services/user-data-model.service';
+import {UserDataModelService} from '../core/model-services/user-data-model.service';
 
 @Component({
   selector: 'app-bottom-nav-bar',

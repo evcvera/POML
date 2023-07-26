@@ -10,6 +10,12 @@
   line-height: 1.25;
 }
 
+.favourites-sub-title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
 @media (max-width: 991px) {
   .filter-type {
     display: none;
@@ -19,6 +25,12 @@
     font-size: 24px;
     margin: 26px 16px;
     padding-top: 0;
+    font-weight: 400;
+  }
+
+  .favourites-sub-title {
+    font-size: 24px;
+    margin: 26px 16px;
     font-weight: 400;
   }
 }
